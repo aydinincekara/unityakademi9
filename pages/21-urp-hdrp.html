@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URP, HDRP &amp;amp; Unity 6 — UnityAkademi</title>
+  <meta name="description" content="Built-in vs URP vs HDRP, Forward+ Rendering, GPU Resident Drawer, Render Graph, Volume sistemi, Shader Graph — Unity 6 grafik çekirdeği — Bölüm 21.">
+  <meta name="theme-color" content="#fa7d19">
+  <link rel="manifest" href="../manifest.json">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="URP, HDRP &amp;amp; Unity 6">
+  <meta property="og:description" content="Built-in vs URP vs HDRP, Forward+ Rendering, GPU Resident Drawer, Render Graph, Volume sistemi, Shader Graph — Unity 6 grafik çekirdeği — Bölüm 21.">
+  <meta property="og:image" content="../og-image.svg">
+  <meta property="og:site_name" content="UnityAkademi">
+  <meta property="og:locale" content="tr_TR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="URP, HDRP &amp;amp; Unity 6">
+  <meta name="twitter:description" content="Built-in vs URP vs HDRP, Forward+ Rendering, GPU Resident Drawer, Render Graph, Volume sistemi, Shader Graph — Unity 6 grafik çekirdeği — Bölüm 21.">
+  <meta name="twitter:image" content="../og-image.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="../css/variables.css?v=11">
+  <link rel="stylesheet" href="../css/reset.css?v=11">
+  <link rel="stylesheet" href="../css/layout.css?v=11">
+  <link rel="stylesheet" href="../css/components.css?v=11">
+  <link rel="stylesheet" href="../css/content.css?v=11">
+  <link rel="stylesheet" href="../css/visuals.css?v=11">
+  <link rel="stylesheet" href="../css/extras.css?v=11">
+  <link rel="stylesheet" href="../css/responsive.css?v=11">
+</head>
+<body>
+<button class="nav-hamburger" id="navHamburger" aria-label="Menüyü aç">
+  <i class="ti ti-menu-2"></i>
+</button>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a href="../index.html" class="sidebar-brand">
+      <div class="sidebar-brand-icon"><i class="ti ti-home-2"></i></div>
+      <div class="sidebar-brand-text">
+        <span class="sidebar-brand-name">Ana Sayfa</span>
+        <span class="sidebar-brand-sub">UnityAkademi</span>
+      </div>
+    </a>
+    <button class="mobile-toggle" aria-label="Menü"><i class="ti ti-x"></i></button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-group">
+      <div class="nav-group-title">Temeller</div>
+      <a href="01-kurulum.html" class="nav-link" data-section="s1"><i class="ti ti-download"></i><span class="nav-link-text">Kurulum & İlk Bakış</span><span class="nav-link-num">01</span></a>
+      <a href="02-arayuz.html" class="nav-link" data-section="s2"><i class="ti ti-layout-board"></i><span class="nav-link-text">Editor Arayüzü</span><span class="nav-link-num">02</span></a>
+      <a href="03-gameobject-component.html" class="nav-link" data-section="s3"><i class="ti ti-cube"></i><span class="nav-link-text">GameObject & Component</span><span class="nav-link-num">03</span></a>
+      <a href="04-csharp-temelleri.html" class="nav-link" data-section="s4"><i class="ti ti-code"></i><span class="nav-link-text">C# Temelleri</span><span class="nav-link-num">04</span></a>
+      <a href="05-monobehaviour-lifecycle.html" class="nav-link" data-section="s5"><i class="ti ti-refresh"></i><span class="nav-link-text">MonoBehaviour Lifecycle</span><span class="nav-link-num">05</span></a>
+      <a href="06-transform-vector.html" class="nav-link" data-section="s6"><i class="ti ti-arrows-move"></i><span class="nav-link-text">Transform & Vector3</span><span class="nav-link-num">06</span></a>
+      <a href="07-input.html" class="nav-link" data-section="s7"><i class="ti ti-keyboard"></i><span class="nav-link-text">Input Sistemi</span><span class="nav-link-num">07</span></a>
+      <a href="08-physics.html" class="nav-link" data-section="s8"><i class="ti ti-atom"></i><span class="nav-link-text">Physics</span><span class="nav-link-num">08</span></a>
+      <a href="09-ui.html" class="nav-link" data-section="s9"><i class="ti ti-layout-grid"></i><span class="nav-link-text">UI Sistemi</span><span class="nav-link-num">09</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Görsel & Asset</div>
+      <a href="10-material-shader.html" class="nav-link" data-section="s10"><i class="ti ti-palette"></i><span class="nav-link-text">Material & Shader</span><span class="nav-link-num">10</span></a>
+      <a href="11-asset-import.html" class="nav-link" data-section="s11"><i class="ti ti-folder"></i><span class="nav-link-text">Asset Import</span><span class="nav-link-num">11</span></a>
+      <a href="12-animation.html" class="nav-link" data-section="s12"><i class="ti ti-bounce-right"></i><span class="nav-link-text">Animation</span><span class="nav-link-num">12</span></a>
+      <a href="13-particle-vfx.html" class="nav-link" data-section="s13"><i class="ti ti-sparkles"></i><span class="nav-link-text">Particle & VFX Graph</span><span class="nav-link-num">13</span></a>
+      <a href="14-lighting.html" class="nav-link" data-section="s14"><i class="ti ti-bulb"></i><span class="nav-link-text">Lighting</span><span class="nav-link-num">14</span></a>
+      <a href="15-audio.html" class="nav-link" data-section="s15"><i class="ti ti-volume"></i><span class="nav-link-text">Audio</span><span class="nav-link-num">15</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Sistemler</div>
+      <a href="16-probuilder.html" class="nav-link" data-section="s16"><i class="ti ti-3d-cube-sphere"></i><span class="nav-link-text">ProBuilder</span><span class="nav-link-num">16</span></a>
+      <a href="17-terrain.html" class="nav-link" data-section="s17"><i class="ti ti-mountain"></i><span class="nav-link-text">Terrain</span><span class="nav-link-num">17</span></a>
+      <a href="18-cinemachine.html" class="nav-link" data-section="s18"><i class="ti ti-camera"></i><span class="nav-link-text">Cinemachine</span><span class="nav-link-num">18</span></a>
+      <a href="19-timeline.html" class="nav-link" data-section="s19"><i class="ti ti-timeline"></i><span class="nav-link-text">Timeline</span><span class="nav-link-num">19</span></a>
+      <a href="20-navmesh.html" class="nav-link" data-section="s20"><i class="ti ti-route"></i><span class="nav-link-text">NavMesh & AI</span><span class="nav-link-num">20</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">İleri Seviye</div>
+      <a href="21-urp-hdrp.html" class="nav-link active" data-section="s21"><i class="ti ti-bolt"></i><span class="nav-link-text">URP, HDRP & Unity 6</span><span class="nav-link-num">21</span></a>
+      <a href="22-new-input.html" class="nav-link" data-section="s22"><i class="ti ti-device-gamepad-2"></i><span class="nav-link-text">New Input System</span><span class="nav-link-num">22</span></a>
+      <a href="23-save-menu.html" class="nav-link" data-section="s23"><i class="ti ti-device-floppy"></i><span class="nav-link-text">Save & Menü</span><span class="nav-link-num">23</span></a>
+      <a href="24-build.html" class="nav-link" data-section="s24"><i class="ti ti-package-export"></i><span class="nav-link-text">Build & Yayınlama</span><span class="nav-link-num">24</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Profesyonel</div>
+      <a href="25-csharp-ileri.html" class="nav-link" data-section="s25"><i class="ti ti-brackets-contain"></i><span class="nav-link-text">C# İleri</span><span class="nav-link-num">25</span></a>
+      <a href="26-performance.html" class="nav-link" data-section="s26"><i class="ti ti-gauge"></i><span class="nav-link-text">Performance</span><span class="nav-link-num">26</span></a>
+      <a href="27-yol-haritasi.html" class="nav-link" data-section="s27"><i class="ti ti-map-2"></i><span class="nav-link-text">Yol Haritası</span><span class="nav-link-num">27</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Pratik</div>
+      <a href="projects.html" class="nav-link nav-link-extra" data-section="x-projects"><i class="ti ti-rocket"></i><span class="nav-link-text">Projeler</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Ek Kaynaklar</div>
+      <a href="sozluk.html" class="nav-link nav-link-extra" data-section="x-sozluk"><i class="ti ti-book-2"></i><span class="nav-link-text">Sözlük</span></a>
+      <a href="cheatsheet.html" class="nav-link nav-link-extra" data-section="x-cheatsheet"><i class="ti ti-list-details"></i><span class="nav-link-text">Cheat Sheet</span></a>
+      <a href="sss.html" class="nav-link nav-link-extra" data-section="x-sss"><i class="ti ti-help-circle"></i><span class="nav-link-text">SSS</span></a>
+      <a href="arama.html" class="nav-link nav-link-extra" data-section="x-arama"><i class="ti ti-search"></i><span class="nav-link-text">Arama</span></a>
+      <a href="sertifika.html" class="nav-link nav-link-extra" data-section="x-sertifika"><i class="ti ti-certificate"></i><span class="nav-link-text">Sertifika</span></a>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="kaynaklar.html" class="sidebar-btn"><i class="ti ti-books"></i><span>Kaynaklar</span></a>
+    <a href="iletisim.html" class="sidebar-btn"><i class="ti ti-mail"></i><span>İletişim</span></a>
+  </div>
+</aside>
+<main class="main">
+  <div class="main-content">
+<nav class="breadcrumb" aria-label="Sayfa konumu">
+      <a href="../index.html"><i class="ti ti-home"></i><span>Ana Sayfa</span></a>
+      <i class="ti ti-chevron-right"></i><span><i class="ti ti-school" style="font-size: 13px; opacity: 0.7; margin-right: 4px;"></i>İleri Seviye</span>
+      <i class="ti ti-chevron-right"></i><span style="color: var(--primary-light);">URP & HDRP</span>
+    </nav>
+
+<header class="page-header">
+  <span class="chapter-pill">Bölüm 21</span>
+  <h1 class="page-title">URP, HDRP &amp; Unity 6 — Modern Render Boru Hatları</h1>
+  <p class="page-subtitle">Built-in, URP, HDRP karşılaştırması, Render Graph, GPU Resident Drawer, Volume sistemi, Render Pipeline Asset, Forward+ vs Deferred — Unity 6'nın grafik çekirdeği.</p>
+  <div class="page-meta">
+    <span>⏱ Okuma süresi: ~30 dk</span>
+    <span>🎨 Pipeline karşılaştırma</span>
+    <span>🎯 Zorluk: İleri</span>
+  </div>
+</header>
+
+<section class="topic-section" id="render-pipeline-nedir">
+  <div class="topic-header">
+    <span class="topic-number">21.1</span>
+    <h2 class="topic-title">🎨 Render Pipeline Nedir?</h2>
+  </div>
+  <p class="topic-text">
+    Bir kare resimde gördüğün <em>her piksel</em>, GPU'da çalışan onlarca adımdan geçer: kameranın frustum'unda hangi mesh'ler var, hangi ışıklar onları aydınlatıyor, gölgeleri kim yapıyor, post-processing efektleri (bloom, motion blur, color grading) hangi sırada uygulanıyor... Bu adımların <strong>sıralanışı ve organizasyonu</strong>na <strong>Render Pipeline</strong> denir.
+  </p>
+  <p class="topic-text">
+    Unity uzun yıllar <em>Built-in Render Pipeline</em> (BRP) ile geldi — kodu motorun içine gömülmüş, esnekliği sınırlı bir sistem. 2018'de Unity, kullanıcının kendi render adımlarını C# ile yazabilmesi için <strong>Scriptable Render Pipeline</strong> (SRP) API'sini açtı. Bu API üzerine iki resmi pipeline kuruldu: <strong>Universal Render Pipeline (URP)</strong> ve <strong>High Definition Render Pipeline (HDRP)</strong>.
+  </p>
+  <p class="topic-text">
+    Unity 6 ile birlikte URP ve HDRP <strong>Render Graph</strong> mimarisine taşındı — performans ve esneklik açısından devasa bir sıçrama. URP artık 2024'ten sonraki yeni projeler için <strong>Unity'nin önerdiği varsayılan</strong>dır. Built-in artık "legacy" (eski) olarak işaretlenmiştir.
+  </p>
+  <div class="real-world-box">
+    <h3>🎮 Gerçek Dünyadan: Genshin Impact vs Call of Duty: Mobile</h3>
+    <p><em>Genshin Impact</em>, Unity ile URP üzerine kuruludur — anime tarzı kalem-mürekkep shading, mobil + PC + PS uyumluluğu için URP'nin esnek ama performanslı yapısı seçildi. <em>Call of Duty: Mobile</em> ise yine Unity'de ama daha gerçekçi rendering için yer yer HDRP özelliklerini özelleştirilmiş bir URP kurgusuyla kullanır. <em>Subnautica: Below Zero</em> URP ile, Unity Demo "Enemies" HDRP ile yapıldı. Pipeline seçimi <strong>oyunun hedefini</strong> belirler.</p>
+  </div>
+</section>
+
+<section class="topic-section" id="pipeline-karsilastirma">
+  <div class="topic-header">
+    <span class="topic-number">21.2</span>
+    <h2 class="topic-title">🆚 Üç Pipeline — Hangisini Seçmeli?</h2>
+  </div>
+  <div class="u-compare">
+    <div class="u-compare-side lts">
+      <h4>🟫 Built-in (Legacy)</h4>
+      <ul class="check-list">
+        <li>Eski Unity projeleri için</li>
+        <li>Tüm platformlarda çalışır</li>
+        <li>SRP'den önce yazılmış asset'lerle uyumlu</li>
+        <li>Shader: Surface Shader / Vertex-Fragment</li>
+        <li>Esneklik düşük, değişiklik için C++ gerekir</li>
+        <li><strong>Yeni projelerde önerilmez</strong></li>
+      </ul>
+    </div>
+    <div class="u-compare-side u6">
+      <h4>🟢 URP — Universal</h4>
+      <ul class="check-list">
+        <li><strong>Tüm platformlar</strong> — mobil, konsol, PC, VR, WebGL</li>
+        <li>Forward+ Rendering (Unity 6'da)</li>
+        <li>Shader Graph desteği</li>
+        <li>Volume Profile post-process</li>
+        <li>Render Graph mimarisi (U6)</li>
+        <li><strong>Yeni projeler için önerilen</strong></li>
+      </ul>
+    </div>
+    <div class="u-compare-side u6">
+      <h4>🔴 HDRP — High Definition</h4>
+      <ul class="check-list">
+        <li>Sadece <strong>yüksek-end PC + konsol</strong></li>
+        <li>Fiziksel doğru ışıklandırma</li>
+        <li>Ray tracing desteği</li>
+        <li>Volumetric fog, sub-surface scattering, screen-space refraction</li>
+        <li>Decal Layers, Light Layers</li>
+        <li>Cinematic ve AAA projeleri için</li>
+      </ul>
+    </div>
+  </div>
+  <div class="info-box">
+    <strong>🤔 Karar Kılavuzu:</strong>
+    <ul>
+      <li>Mobil oyun mu? → <strong>URP</strong></li>
+      <li>Stilize/cel-shaded oyun? → <strong>URP</strong></li>
+      <li>Cross-platform indie? → <strong>URP</strong></li>
+      <li>VR oyun? → <strong>URP</strong> (HDRP VR'da performans yetersiz)</li>
+      <li>AAA gerçekçi PC/konsol? → <strong>HDRP</strong></li>
+      <li>Cinematic/sinematik? → <strong>HDRP</strong></li>
+      <li>Eski projeyi güncellemek? → BRP'de kal, geçişi planla</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic-section" id="urp-kurulum">
+  <div class="topic-header">
+    <span class="topic-number">21.3</span>
+    <h2 class="topic-title">📦 URP Kurulumu — Sıfırdan</h2>
+  </div>
+  <p class="topic-text">
+    Unity 6 ile <strong>3D (URP)</strong> şablonu seçtiğinde URP zaten kuruludur. Eğer Built-in bir projeyi URP'ye taşıyorsan:
+  </p>
+  <ol class="step-list">
+    <li><strong>Window → Package Manager</strong> → Unity Registry → <em>Universal RP</em> → Install.</li>
+    <li><strong>Assets → Create → Rendering → URP Asset (with Universal Renderer)</strong>.
+      <ul>
+        <li>İki dosya oluşur: <code>NewUniversalRenderPipelineAsset.asset</code> (pipeline config) ve <code>NewUniversalRenderPipelineAsset_Renderer.asset</code> (renderer config).</li>
+      </ul>
+    </li>
+    <li><strong>Edit → Project Settings → Graphics</strong> → "Scriptable Render Pipeline Settings" alanına az önce oluşturduğun pipeline asset'i sürükle.</li>
+    <li><strong>Edit → Project Settings → Quality</strong> → her quality level (Low, Medium, High) için de aynı pipeline asset'i ata.</li>
+    <li>Sahnedeki Built-in shader'lı materyaller <em>pembe</em> olur (URP bunları okuyamıyor). <strong>Edit → Rendering → Materials → Convert All Built-in Materials to URP</strong> ile otomatik dönüştür.</li>
+  </ol>
+  <div class="warning-box">
+    <strong>⚠️ Geri Dönüşü Yok:</strong> Bir projeyi URP'ye taşıdıktan sonra geri Built-in'e dönmek hem materyalleri hem pipeline-spesifik shader'ları geri çevirmeyi gerektirir — <strong>yedeksiz girme</strong>. Git/Plastic SCM ile snapshot al, sonra geçiş yap.
+  </div>
+</section>
+
+<section class="topic-section" id="urp-asset">
+  <div class="topic-header">
+    <span class="topic-number">21.4</span>
+    <h2 class="topic-title">⚙️ URP Pipeline Asset — Ayar Merkezi</h2>
+  </div>
+  <p class="topic-text">
+    URP Asset'i seçtiğinde Inspector tüm pipeline davranışını gösterir. Önemli alanlar:
+  </p>
+  <div class="u-inspector">
+    <div class="u-inspector-header">URP Pipeline Asset</div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Render Scale</span><span class="u-inspector-value">1.0 (0.5-2.0)</span></div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Anti Aliasing (MSAA)</span><span class="u-inspector-value">2x / 4x / 8x</span></div>
+    <div class="u-inspector-row"><span class="u-inspector-label">HDR</span><span class="u-inspector-value">☑ True</span></div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Main Light</span><span class="u-inspector-value">Per Pixel</span></div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Cast Shadows</span><span class="u-inspector-value">☑ True</span></div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Main Shadow Resolution</span><span class="u-inspector-value">2048</span></div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Additional Lights</span><span class="u-inspector-value">Per Pixel</span></div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Per Object Limit</span><span class="u-inspector-value">8</span></div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Cast Shadows (Additional)</span><span class="u-inspector-value">☑ True</span></div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Shadow Distance</span><span class="u-inspector-value">50</span></div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Cascade Count</span><span class="u-inspector-value">4</span></div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Post Processing</span><span class="u-inspector-value">☑ Enabled</span></div>
+  </div>
+  <ul class="check-list">
+    <li><strong>Render Scale</strong> — 0.7 yaparsan render çözünürlüğü %70 olur (sonra ekrana up-scaled). FPS arttırmak için kritik mobil ayarı.</li>
+    <li><strong>MSAA</strong> — Kenar yumuşatma. 4x mobil için iyi denge, 8x kalite ama %30 daha pahalı.</li>
+    <li><strong>HDR</strong> — High Dynamic Range. Bloom efekti için zorunlu.</li>
+    <li><strong>Additional Lights / Per Object Limit</strong> — Bir mesh'i kaç ışık aydınlatabilir? Mobil'de 4, PC'de 8. Daha yüksek = daha pahalı.</li>
+    <li><strong>Shadow Distance</strong> — Kameradan kaç metreye kadar gölge hesaplansın. 50 m makul orta seviye.</li>
+    <li><strong>Cascade Count</strong> — Directional light gölgesi için detay katmanları (1, 2, 4). Mobilde 2, PC'de 4.</li>
+  </ul>
+</section>
+
+<section class="topic-section" id="forward-plus">
+  <div class="topic-header">
+    <span class="topic-number">21.5</span>
+    <h2 class="topic-title">⚡ Forward+ Rendering <span class="u-ver-badge u6 u6-new">Unity 6 YENİ</span></h2>
+  </div>
+  <p class="topic-text">
+    Klasik <strong>Forward Rendering</strong>: Her mesh çizildiğinde sahnedeki tüm ışıklar tek tek hesaplanır. Çok ışıklı sahnelerde mesh sayısı × ışık sayısı kadar shader çalıştırması → kuadratik patlama.
+  </p>
+  <p class="topic-text">
+    <strong>Deferred Rendering</strong>: Önce sahnenin tüm yüzey bilgileri (G-buffer) toplanır, sonra ışıklar tek seferde uygulanır. Çok ışıkta verimli ama bellek pahalı, MSAA ile çalışmıyor, transparent objeler için ek geçiş gerekir.
+  </p>
+  <p class="topic-text">
+    <strong>Forward+ (Unity 6)</strong>: Ekran ızgaralara bölünür (örn. 16×16 piksel hücre); her hücre için "burayı etkileyen ışıklar" listesi GPU'da hazırlanır. Her mesh çizilirken sadece kendi hücresindeki ışıklara bakar. Sonuç:
+  </p>
+  <ul class="check-list">
+    <li>Çok sayıda ışıkta yüksek performans (Forward'tan 5-10x hızlı)</li>
+    <li>Forward gibi MSAA destekler</li>
+    <li>Deferred'ın bellek yükü yok</li>
+    <li>Transparent objeler için ekstra geçiş yok</li>
+    <li>Per-object 8 ışık limiti <strong>kalktı</strong> — sahnede yüzlerce ışık olabilir</li>
+  </ul>
+  <p class="topic-text">
+    URP Renderer asset'inde <em>Rendering Path</em>'i <strong>Forward+</strong> seç. Çok ışıklı oyunlar (sci-fi koridor, fener taşıyan karakterler, parıltılı RPG) için kritik bir iyileştirmedir.
+  </p>
+</section>
+
+<section class="topic-section" id="gpu-resident-drawer">
+  <div class="topic-header">
+    <span class="topic-number">21.6</span>
+    <h2 class="topic-title">🚀 GPU Resident Drawer <span class="u-ver-badge u6 u6-new">YENİ</span></h2>
+  </div>
+  <p class="topic-text">
+    Unity 6'nın en heyecan verici render iyileştirmesi. Klasik draw call mekanizmasında, her frame Unity sahneyi CPU'da tarar, hangi mesh'in nerede olduğunu hesaplar, GPU'ya tek tek gönderir. Bu CPU tarafı bir <em>boğaz</em>'dır.
+  </p>
+  <p class="topic-text">
+    <strong>GPU Resident Drawer</strong>, mesh ve transform verilerini <strong>GPU belleğinde sürekli tutar</strong>. Değişen şeyleri (taşınan objeleri) sadece delta olarak yollar. Static objeleri her frame yeniden göndermez. Üstüne <strong>GPU Occlusion Culling</strong> (GPU'da çalışan görünmezlik elemesi) ekler — kameranın görmediği objeler hiç çizilmez.
+  </p>
+  <ol class="step-list">
+    <li>URP Asset → <em>Advanced</em> bölümünde <strong>SRP Batcher</strong> ☑ açık olmalı.</li>
+    <li>URP Renderer Asset → <strong>GPU Resident Drawer</strong> dropdown → <em>Instanced Drawing</em>.</li>
+    <li><strong>GPU Occlusion Culling</strong> ☑ (RT destekli GPU'da daha verimli).</li>
+    <li>Sahnede mesh sayısı 1000+ olduğunda kazanım belirgin: 30 FPS → 60 FPS gibi.</li>
+  </ol>
+  <div class="info-box">
+    <strong>📊 Sayısal Örnek:</strong> Unity'nin demo "Lost Crypt" sahnesi (3000+ static mesh) — eski sistemle 35 FPS, GPU Resident Drawer ile 110 FPS. CPU tarafı %70 daha boş. Bu sayede AI, fizik, gameplay için daha çok bütçe kalır.
+  </div>
+</section>
+
+<section class="topic-section" id="render-graph">
+  <div class="topic-header">
+    <span class="topic-number">21.7</span>
+    <h2 class="topic-title">📐 Render Graph — Yeni Mimari <span class="u-ver-badge u6 u6-new">YENİ</span></h2>
+  </div>
+  <p class="topic-text">
+    Unity 6'da hem URP hem HDRP'nin altyapısı <strong>Render Graph</strong> mimarisine taşındı. Eski sistemde render adımları (depth pre-pass, opaque, transparent, post-process) tek bir uzun lineer fonksiyondu — bir şey değiştirmek istiyorsan tüm zinciri anlamalıydın.
+  </p>
+  <p class="topic-text">
+    Render Graph mimarisinde her adım bir <strong>node</strong>'dur ve kaynaklarını (texture, buffer) deklare eder. Unity, frame öncesi bu graph'ı analiz eder:
+  </p>
+  <ul class="check-list">
+    <li>Kullanılmayan node'ları otomatik <em>cull</em> eder (örn. post-process açık değilse o adımları atlar).</li>
+    <li>Render Target'ları tekrar kullanır (memory aliasing).</li>
+    <li>GPU üzerinde paralel iş bölümü.</li>
+    <li><strong>Render Graph Viewer</strong> (Window → Analysis → Render Graph Viewer) ile bir frame'in tüm grafiğini görselleştir.</li>
+  </ul>
+  <p class="topic-text">
+    Geliştirici olarak Custom Renderer Feature yazarken yeni API'ler kullanırsın:
+  </p>
+  <div class="cs-block">
+<pre><code><span class="kw">using</span> <span class="type">UnityEngine.Rendering</span>;
+<span class="kw">using</span> <span class="type">UnityEngine.Rendering.Universal</span>;
+<span class="kw">using</span> <span class="type">UnityEngine.Rendering.RenderGraphModule</span>;
+
+<span class="kw">public class</span> <span class="type">MyCustomPass</span> : <span class="type">ScriptableRenderPass</span>
+{
+    <span class="kw">public override void</span> <span class="fn">RecordRenderGraph</span>(<span class="type">RenderGraph</span> renderGraph,
+        <span class="type">ContextContainer</span> frameData)
+    {
+        <span class="type">UniversalResourceData</span> resourceData = frameData.<span class="fn">Get</span>&lt;<span class="type">UniversalResourceData</span>&gt;();
+        <span class="type">TextureHandle</span> source = resourceData.<span class="attr">activeColorTexture</span>;
+
+        <span class="kw">using</span> (<span class="kw">var</span> builder = renderGraph.<span class="fn">AddRasterRenderPass</span>&lt;<span class="type">PassData</span>&gt;(
+            <span class="str">"My Custom Effect"</span>, <span class="kw">out var</span> data))
+        {
+            builder.<span class="fn">SetRenderAttachment</span>(source, <span class="num">0</span>);
+            builder.<span class="fn">SetRenderFunc</span>((<span class="type">PassData</span> d, <span class="type">RasterGraphContext</span> ctx) =&gt;
+            {
+                <span class="com">// GPU komutları burada</span>
+            });
+        }
+    }
+
+    <span class="kw">class</span> <span class="type">PassData</span> { }
+}</code></pre>
+  </div>
+</section>
+
+<section class="topic-section" id="volume-system">
+  <div class="topic-header">
+    <span class="topic-number">21.8</span>
+    <h2 class="topic-title">🌫 Volume Sistemi — Post-Processing &amp; Atmosfer</h2>
+  </div>
+  <p class="topic-text">
+    Eski Post-Processing Stack v2 yerine URP ve HDRP'de <strong>Volume Framework</strong> kullanılır. Mantığı: sahneye <em>Volume</em> bileşeni olan trigger collider'lar yerleştirirsin, kamera o trigger'a girdiğinde o Volume'ün <strong>Profile</strong>'ında tanımlı efektler aktif olur.
+  </p>
+  <h3 class="topic-subtitle">Global Volume Kurulumu</h3>
+  <ol class="step-list">
+    <li><strong>GameObject → Volume → Global Volume</strong> ekle.</li>
+    <li>Inspector'da <em>Profile</em> alanının yanındaki <strong>New</strong>'a bas — bir Volume Profile asset oluşur.</li>
+    <li><em>Add Override</em> butonuyla efekt ekle: <strong>Post-processing → Bloom</strong>.</li>
+    <li>Bloom panelinde <em>Threshold</em> = 0.9, <em>Intensity</em> = 1, <em>Scatter</em> = 0.7 dene.</li>
+    <li>Sahnedeki parlak nesneler artık glow yapar.</li>
+  </ol>
+  <h3 class="topic-subtitle">Yaygın Override'lar</h3>
+  <ul class="check-list">
+    <li><strong>Bloom</strong> — Parlak yüzeylerden taşan ışık halesi.</li>
+    <li><strong>Color Adjustments</strong> — Exposure, Contrast, Saturation. Sahnenin genel tonunu kontrol et.</li>
+    <li><strong>White Balance</strong> — Sıcak/soğuk renk dengesi.</li>
+    <li><strong>Color Grading (Lift Gamma Gain)</strong> — Sinematik renk derecelendirme.</li>
+    <li><strong>Vignette</strong> — Köşeleri karart, odak ortada.</li>
+    <li><strong>Film Grain</strong> — Parazit, sinema dokusu.</li>
+    <li><strong>Motion Blur</strong> — Hızlı hareket bulanıklığı.</li>
+    <li><strong>Depth of Field</strong> — Yakın net, uzak bulanık (foto efekti).</li>
+    <li><strong>Tonemapping</strong> — HDR → LDR dönüşümü (ACES, Neutral seçenekleri).</li>
+    <li><strong>Chromatic Aberration</strong> — Renk kanallarının kayması (cyberpunk/glitch hissi).</li>
+  </ul>
+  <h3 class="topic-subtitle">Local Volume — Bölgesel Etki</h3>
+  <p class="topic-text">
+    Sahnenin sadece <em>belirli bir bölgesinde</em> farklı atmosfer istiyorsan: Volume bileşenini olan bir GameObject'in üzerine BoxCollider ekle, <em>Is Trigger</em> ☑, Volume'ün <em>Mode</em>'unu <strong>Local</strong> yap. Kamera o kutuya girince efektler aktif olur. <em>Blend Distance</em> ile yumuşak geçiş ayarlanır (kamera girip çıkarken efektler fade in/out).
+  </p>
+  <p class="topic-text">
+    Örnek: Bir mağaraya girdiğinde yeşil-mavi color grading aktifleşsin, ana dünyada normal renkler kalsın → mağaraya BoxCollider trigger + Local Volume.
+  </p>
+</section>
+
+<section class="topic-section" id="shader-graph">
+  <div class="topic-header">
+    <span class="topic-number">21.9</span>
+    <h2 class="topic-title">🎛 Shader Graph — Görsel Shader Yazımı</h2>
+  </div>
+  <p class="topic-text">
+    Shader yazmak için artık HLSL kodu bilmek zorunda değilsin. <strong>Shader Graph</strong> sürükle-bırak node tabanlı bir editör verir. Hem URP hem HDRP destekler.
+  </p>
+  <ol class="step-list">
+    <li><strong>Assets → Create → Shader Graph → URP → Lit Shader Graph</strong>.</li>
+    <li>Çift tıklayınca node editörü açılır.</li>
+    <li>Sol kenarda Blackboard, Property ekle (örn. <em>Color</em> tipinde "BaseColor").</li>
+    <li>Sağ panelde Master Stack: <em>Vertex</em>, <em>Fragment</em>.</li>
+    <li>Fragment'in "Base Color" girişine BaseColor property'sini sürükle.</li>
+    <li>Save Asset → bir <em>Material</em> oluştur, shader'ını bu graph yap.</li>
+  </ol>
+  <h3 class="topic-subtitle">Yaygın Node'lar</h3>
+  <ul class="check-list">
+    <li><strong>Sample Texture 2D</strong> — Texture örnekle, UV ile birleşir.</li>
+    <li><strong>Multiply / Add / Lerp</strong> — Renk/sayı kombinasyonları.</li>
+    <li><strong>Time</strong> — Animasyonlu shader'lar için (Time.x = saniye).</li>
+    <li><strong>Noise</strong> — Perlin/Simplex/Voronoi noise.</li>
+    <li><strong>UV → Tiling and Offset</strong> — Texture tekrarı/kaydırması.</li>
+    <li><strong>Fresnel</strong> — Yüzeye dik bakışlarda farklı görünüş (kalkan, su, hologram).</li>
+    <li><strong>Position / Normal</strong> — Vertex pozisyon ve normal.</li>
+    <li><strong>Custom Function</strong> — Kendi HLSL kodunu node yap.</li>
+  </ul>
+  <div class="mini-checkpoint">
+    <strong>💡 Kontrol Noktası:</strong> Bir su shader'ı yapmak için: Time × Tiling → Voronoi Noise → Normal Map oluştur → BaseColor mavi+beyaz Lerp → Smoothness 0.9 → Saydam yüzey. Shader Graph ile bu yarım saatlik iş, HLSL'de yarım günlük iş.
+  </div>
+</section>
+
+<section class="topic-section" id="hdrp-volume">
+  <div class="topic-header">
+    <span class="topic-number">21.10</span>
+    <h2 class="topic-title">🌅 HDRP'ye Hızlı Bakış</h2>
+  </div>
+  <p class="topic-text">
+    HDRP, URP'nin tüm özelliklerinin yanı sıra <strong>cinematic kalite</strong> hedefler. Önemli ek özellikler:
+  </p>
+  <ul class="check-list">
+    <li><strong>Physically Based Sky</strong> — Atmosfer fiziksel modellemesi, gerçekçi gün döngüsü.</li>
+    <li><strong>Volumetric Fog &amp; Clouds</strong> — Hacimsel sis ve bulutlar.</li>
+    <li><strong>Subsurface Scattering</strong> — Cilt, mum, mermer gibi yarı-saydam materyaller.</li>
+    <li><strong>Screen Space Reflections / Refractions</strong> — Su, cam, ayna.</li>
+    <li><strong>Ray Tracing</strong> — DXR/RTX destekli yansıma, gölge, GI.</li>
+    <li><strong>Light Layers</strong> — Bazı ışıklar sadece belirli mesh katmanlarını aydınlatsın.</li>
+    <li><strong>Decal Layers</strong> — Decaller (kan izleri, yol çizgileri) seçici uygulansın.</li>
+    <li><strong>Custom Pass</strong> — İleri seviye render geçişleri.</li>
+  </ul>
+  <p class="topic-text">
+    HDRP'nin sistem gereksinimleri yüksektir: minimum DX11 GPU, önerilen RTX serisi. Mobil ve WebGL desteklenmez. AAA cinematic deneyimi yoksa URP daha mantıklı bir seçimdir.
+  </p>
+</section>
+
+<section class="topic-section" id="renderer-feature">
+  <div class="topic-header">
+    <span class="topic-number">21.11</span>
+    <h2 class="topic-title">🧩 Renderer Feature — Pipeline'ı Uzatmak</h2>
+  </div>
+  <p class="topic-text">
+    URP Renderer Asset'inin altında <em>Add Renderer Feature</em> butonu vardır. Ekleyebileceğin hazır feature'lar:
+  </p>
+  <ul class="check-list">
+    <li><strong>Render Objects</strong> — Belirli bir layer'daki objeleri ayrı bir pass'te çiz (outline, custom shader uygulamak için).</li>
+    <li><strong>Screen Space Ambient Occlusion (SSAO)</strong> — Köşelerde gölge derinliği.</li>
+    <li><strong>Decal</strong> — Sahne yüzeylerine "yapıştırılan" texture'lar.</li>
+    <li><strong>Screen Space Shadows</strong> — Daha kaliteli güneş gölgesi.</li>
+    <li><strong>Full Screen Pass</strong> — Tüm ekrana shader uygula (custom post-process).</li>
+  </ul>
+  <h3 class="topic-subtitle">Outline Efekti Örneği</h3>
+  <ol class="step-list">
+    <li>Renderer Asset → Add Renderer Feature → <strong>Render Objects</strong>.</li>
+    <li>Name: "Outline". Event: AfterRenderingOpaques.</li>
+    <li>Layer Mask: "Outline" (önceden bir layer oluştur).</li>
+    <li>Material Override: Bir outline shader'ı (Cull = Front, vertex'leri normal yönünde genişlet).</li>
+    <li>Karakterin bir kopyasını "Outline" layer'ına koy ve biraz büyük render et.</li>
+  </ol>
+</section>
+
+<section class="topic-section" id="performans-tips">
+  <div class="topic-header">
+    <span class="topic-number">21.12</span>
+    <h2 class="topic-title">📊 Pipeline Performans İpuçları</h2>
+  </div>
+  <ul class="check-list">
+    <li><strong>SRP Batcher</strong> ☑ açık tut — aynı shader'a sahip objeleri tek draw call'da çizer.</li>
+    <li><strong>GPU Instancing</strong> ☑ materyallerde aç — aynı mesh'in 100 örneğini tek draw call.</li>
+    <li>Mobil'de <strong>HDR off</strong>, <strong>MSAA 2x</strong>, <strong>Render Scale 0.8</strong>.</li>
+    <li>Shadow Distance'ı abartma — 30-50 m mobil için yeterli.</li>
+    <li>Per Object Light Limit 4'te tut (mobil için).</li>
+    <li><strong>Light Probes</strong> + <strong>Baked Lighting</strong> ile runtime ışık yükünü azalt.</li>
+    <li>Post-process zincirinde <em>Bloom + Color Adjustments + Tonemapping</em> yeterli; her efekt %1-3 GPU yer.</li>
+    <li>Volume Profile'ları tek bir asset'e topla, sahne başına kopyalama.</li>
+    <li><strong>Frame Debugger</strong> (Window → Analysis → Frame Debugger) ile draw call sıralamasını incele.</li>
+  </ul>
+</section>
+
+<div class="mini-checkpoint">
+  <strong>🎨 Bölüm Kontrol Noktası:</strong> URP = çapraz platform varsayılan, HDRP = AAA cinematic, Built-in = legacy. Unity 6 Forward+ ile çok ışıkta performans, GPU Resident Drawer ile binlerce mesh ucuz. Volume sistemi post-process'i ve atmosferi yönetir. Shader Graph node tabanlı shader. Renderer Feature pipeline'a custom geçiş ekler.
+</div>
+
+<div class="practice-section">
+  <h2>🎯 Pratik Projeler</h2>
+
+  <div class="project-card">
+    <h3>Proje 1: URP Sahnesi + Bloom + Color Grading</h3>
+    <p><strong>Hedef:</strong> Yeni 3D URP projesi oluştur, sahneye parlak emissive küpler koy, post-process ile sinematik bir görünüm kazandır.</p>
+    <ol class="step-list">
+      <li>Unity Hub → New Project → 3D (URP) şablonu.</li>
+      <li>Sahneye 5-6 küp ekle, materyallerinin Emission'ını farklı renklerle (kırmızı, mavi, yeşil, sarı) aç. Intensity 3.</li>
+      <li>GameObject → Volume → Global Volume.</li>
+      <li>Volume Profile'a Bloom (Threshold 1, Intensity 1.2, Scatter 0.7), Color Adjustments (Saturation +20, Contrast +10), Tonemapping (ACES) ekle.</li>
+      <li>Camera'da Post Processing ☑ olduğunu kontrol et.</li>
+      <li>Karşılaştır: Volume yokken vs varken sahne. Belirgin bir fark gör.</li>
+    </ol>
+  </div>
+
+  <div class="project-card">
+    <h3>Proje 2: Local Volume ile Mağara Atmosferi</h3>
+    <p><strong>Hedef:</strong> Bir koridorun ortasına gelindiğinde renkler soğusun, vignette artsın; dışarı çıkınca normale dönsün.</p>
+    <ol class="step-list">
+      <li>Koridor yap (ProBuilder ile veya küp duvarlarla).</li>
+      <li>Empty GameObject → Volume → Box Collider (Is Trigger ☑).</li>
+      <li>Volume Mode = Local.</li>
+      <li>Blend Distance = 2 (kamera kutuya yaklaştıkça yumuşak geçiş).</li>
+      <li>Yeni Volume Profile oluştur, içine White Balance (Temperature -50), Color Adjustments (Saturation -30), Vignette (Intensity 0.5) ekle.</li>
+      <li>Test: Karakteri koridorun başından sonuna yürüt, atmosferin yumuşakça değiştiğini gör.</li>
+    </ol>
+  </div>
+
+  <div class="project-card">
+    <h3>Proje 3: Forward+ ile 50 Işıklı Sahne Testi</h3>
+    <p><strong>Hedef:</strong> Sahnedeki ışık sayısını arttırarak Forward vs Forward+ performans farkını öğren.</p>
+    <ol class="step-list">
+      <li>Sahneye 50 adet Point Light yerleştir (script ile rastgele konumlandır).</li>
+      <li>URP Renderer Asset → Rendering Path = <strong>Forward</strong>. Bir sahne için FPS not et (Stats penceresinden).</li>
+      <li>Sahne kayar mı? Per Object Light Limit'i aşar mı uyarı?</li>
+      <li>Aynı renderer'da Rendering Path = <strong>Forward+</strong> yap.</li>
+      <li>Tekrar oyna, FPS karşılaştır.</li>
+      <li>Bonus: Frame Debugger ile draw call sayılarını karşılaştır.</li>
+    </ol>
+  </div>
+</div>
+
+<section class="quiz" id="bolum-quiz">
+  <header class="quiz-header">
+    <div class="quiz-header-icon"><i class="ti ti-help"></i></div>
+    <div class="quiz-header-text">
+      <h2>Bölüm Sonu Sınavı</h2>
+      <span>5 soru</span>
+    </div>
+  </header>
+
+  <article class="quiz-question" id="q21-1">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">01</span>
+      <h3 class="quiz-prompt-text">Mobil hedefli oyun için hangi pipeline önerilir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Built-in (Legacy)</button>
+      <button class="quiz-option" data-correct="true">URP (Universal Render Pipeline)</button>
+      <button class="quiz-option" data-correct="false">HDRP</button>
+      <button class="quiz-option" data-correct="false">Custom SRP, sıfırdan yaz</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q21-2">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">02</span>
+      <h3 class="quiz-prompt-text">Unity 6'nın Forward+ Rendering ne sağlar?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Daha yüksek çözünürlük</button>
+      <button class="quiz-option" data-correct="true">Çok sayıda ışıkta yüksek performans + per-object 8 ışık limitinin kalkması</button>
+      <button class="quiz-option" data-correct="false">Ray tracing</button>
+      <button class="quiz-option" data-correct="false">Sadece HDRP'de çalışır</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q21-3">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">03</span>
+      <h3 class="quiz-prompt-text">Volume Framework'ün Local mode'u ne işe yarar?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Sadece local multiplayer için</button>
+      <button class="quiz-option" data-correct="true">Belirli bir alana giren kamerada post-process'i değiştirir</button>
+      <button class="quiz-option" data-correct="false">Volume'ü offline çalıştırır</button>
+      <button class="quiz-option" data-correct="false">Sadece editörde çalışır</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q21-4">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">04</span>
+      <h3 class="quiz-prompt-text">GPU Resident Drawer'ın ana faydası?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Texture'ları sıkıştırır</button>
+      <button class="quiz-option" data-correct="true">Mesh ve transform verisini GPU'da tutarak CPU yükünü azaltır</button>
+      <button class="quiz-option" data-correct="false">Audio rendering'i hızlandırır</button>
+      <button class="quiz-option" data-correct="false">Ray tracing'i etkinleştirir</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q21-5">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">05</span>
+      <h3 class="quiz-prompt-text">Built-in projeyi URP'ye taşırken hangi adım kritiktir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Sahneyi yeniden kur</button>
+      <button class="quiz-option" data-correct="true">Materyalleri Edit → Rendering → Materials → Convert to URP ile dönüştür</button>
+      <button class="quiz-option" data-correct="false">Tüm script'leri sil</button>
+      <button class="quiz-option" data-correct="false">Unity'yi yeniden kur</button>
+    </div>
+  </article>
+</section>
+
+<section class="complete-section">
+      <h3 class="complete-title">🎉 Bölüm 21 Tamamlandı!</h3>
+      <p class="complete-msg">URP, HDRP ve Unity 6'nın yeni render mimarisini artık biliyorsun. Pipeline asset'leri, Volume sistemi, Shader Graph, Forward+ ve GPU Resident Drawer ile sahneni hem güzel hem performanslı kıldın. Bir sonraki bölümde <strong>New Input System</strong>'a geçiyoruz: Unity'nin modern, çoklu cihaz destekli input sistemi.</p>
+      <button class="complete-btn" data-section="s21">
+        <i class="ti ti-circle-check"></i>
+        <span>Bu Bölümü Tamamladım</span>
+      </button>
+      <p class="complete-note">İlerlemen otomatik tarayıcına kaydedilir.</p>
+    </section>
+    <!-- Sayfa Gezinme -->
+    <nav class="page-nav" aria-label="Bölüm gezinme">
+      <a href="20-navmesh.html" class="page-nav-link prev">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-left"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Önceki Bölüm</div>
+          <div class="page-nav-title">20. NavMesh & AI</div>
+        </div>
+      </a>
+      <a href="22-new-input.html" class="page-nav-link next">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-right"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Sonraki Bölüm</div>
+          <div class="page-nav-title">22. New Input System</div>
+        </div>
+      </a>
+    </nav>
+
+  </div>
+</main>
+<script src="../js/progress.js?v=11"></script>
+<script src="../js/quiz.js?v=11"></script>
+<script src="../js/toc.js?v=11"></script>
+<script src="../js/main.js?v=11"></script>
+</body>
+</html>

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UnityAkademi — Türkçe Unity 2022.3 LTS &amp; Unity 6 Eğitim Platformu</title>
+  <meta name="description" content="Sıfırdan Unity öğreten ücretsiz Türkçe platform. 27 bölüm, 81 proje, 135 quiz sorusu. Unity 2022.3 LTS ve Unity 6 birlikte anlatılır.">
+  <meta name="keywords" content="unity, unity 6, unity 2022.3, c#, csharp, oyun motoru, türkçe, eğitim, monobehaviour, urp, hdrp, vfx graph, cinemachine, scriptable object">
+  <meta name="author" content="UnityAkademi">
+  <meta name="theme-color" content="#fa7d19">
+  <link rel="canonical" href="https://unityakademi.example/">
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://unityakademi.example/">
+  <meta property="og:title" content="UnityAkademi — Türkçe Unity 2022.3 &amp; Unity 6 Eğitimi">
+  <meta property="og:description" content="Sıfırdan ileri düzeye Unity öğreten ücretsiz Türkçe platform. 27 bölüm, 81 proje, Unity 6'nın yeni özellikleri dahil.">
+  <meta property="og:image" content="og-image.svg">
+  <meta property="og:site_name" content="UnityAkademi">
+  <meta property="og:locale" content="tr_TR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="UnityAkademi — Türkçe Unity Eğitimi">
+  <meta name="twitter:description" content="Unity 2022.3 LTS + Unity 6 sıfırdan, Türkçe, ücretsiz.">
+  <meta name="twitter:image" content="og-image.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+
+  <link rel="stylesheet" href="css/variables.css?v=11">
+  <link rel="stylesheet" href="css/reset.css?v=11">
+  <link rel="stylesheet" href="css/layout.css?v=11">
+  <link rel="stylesheet" href="css/components.css?v=11">
+  <link rel="stylesheet" href="css/content.css?v=11">
+  <link rel="stylesheet" href="css/visuals.css?v=11">
+  <link rel="stylesheet" href="css/extras.css?v=11">
+  <link rel="stylesheet" href="css/responsive.css?v=11">
+</head>
+<body>
+
+  <!-- ═══════════════ SIDEBAR ═══════════════ -->
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menüyü aç">
+  <i class="ti ti-menu-2"></i>
+</button>
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <a href="index.html" class="sidebar-brand">
+        <div class="sidebar-brand-icon"><i class="ti ti-home-2"></i></div>
+        <div class="sidebar-brand-text">
+          <span class="sidebar-brand-name">Ana Sayfa</span>
+          <span class="sidebar-brand-sub">UnityAkademi</span>
+        </div>
+      </a>
+      <button class="mobile-toggle" aria-label="Menü"><i class="ti ti-x"></i></button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-group">
+        <div class="nav-group-title">Temeller</div>
+        <a href="pages/01-kurulum.html" class="nav-link" data-section="s1"><i class="ti ti-download"></i><span class="nav-link-text">Kurulum & İlk Bakış</span><span class="nav-link-num">01</span></a>
+        <a href="pages/02-arayuz.html" class="nav-link" data-section="s2"><i class="ti ti-layout-board"></i><span class="nav-link-text">Editor Arayüzü</span><span class="nav-link-num">02</span></a>
+        <a href="pages/03-gameobject-component.html" class="nav-link" data-section="s3"><i class="ti ti-cube"></i><span class="nav-link-text">GameObject & Component</span><span class="nav-link-num">03</span></a>
+        <a href="pages/04-csharp-temelleri.html" class="nav-link" data-section="s4"><i class="ti ti-code"></i><span class="nav-link-text">C# Temelleri</span><span class="nav-link-num">04</span></a>
+        <a href="pages/05-monobehaviour-lifecycle.html" class="nav-link" data-section="s5"><i class="ti ti-refresh"></i><span class="nav-link-text">MonoBehaviour Lifecycle</span><span class="nav-link-num">05</span></a>
+        <a href="pages/06-transform-vector.html" class="nav-link" data-section="s6"><i class="ti ti-arrows-move"></i><span class="nav-link-text">Transform & Vector3</span><span class="nav-link-num">06</span></a>
+        <a href="pages/07-input.html" class="nav-link" data-section="s7"><i class="ti ti-keyboard"></i><span class="nav-link-text">Input Sistemi</span><span class="nav-link-num">07</span></a>
+        <a href="pages/08-physics.html" class="nav-link" data-section="s8"><i class="ti ti-atom"></i><span class="nav-link-text">Physics</span><span class="nav-link-num">08</span></a>
+        <a href="pages/09-ui.html" class="nav-link" data-section="s9"><i class="ti ti-layout-grid"></i><span class="nav-link-text">UI Sistemi</span><span class="nav-link-num">09</span></a>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-group-title">Görsel & Asset</div>
+        <a href="pages/10-material-shader.html" class="nav-link" data-section="s10"><i class="ti ti-palette"></i><span class="nav-link-text">Material & Shader</span><span class="nav-link-num">10</span></a>
+        <a href="pages/11-asset-import.html" class="nav-link" data-section="s11"><i class="ti ti-folder"></i><span class="nav-link-text">Asset Import</span><span class="nav-link-num">11</span></a>
+        <a href="pages/12-animation.html" class="nav-link" data-section="s12"><i class="ti ti-bounce-right"></i><span class="nav-link-text">Animation</span><span class="nav-link-num">12</span></a>
+        <a href="pages/13-particle-vfx.html" class="nav-link" data-section="s13"><i class="ti ti-sparkles"></i><span class="nav-link-text">Particle & VFX Graph</span><span class="nav-link-num">13</span></a>
+        <a href="pages/14-lighting.html" class="nav-link" data-section="s14"><i class="ti ti-bulb"></i><span class="nav-link-text">Lighting</span><span class="nav-link-num">14</span></a>
+        <a href="pages/15-audio.html" class="nav-link" data-section="s15"><i class="ti ti-volume"></i><span class="nav-link-text">Audio</span><span class="nav-link-num">15</span></a>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-group-title">Sistemler</div>
+        <a href="pages/16-probuilder.html" class="nav-link" data-section="s16"><i class="ti ti-3d-cube-sphere"></i><span class="nav-link-text">ProBuilder</span><span class="nav-link-num">16</span></a>
+        <a href="pages/17-terrain.html" class="nav-link" data-section="s17"><i class="ti ti-mountain"></i><span class="nav-link-text">Terrain</span><span class="nav-link-num">17</span></a>
+        <a href="pages/18-cinemachine.html" class="nav-link" data-section="s18"><i class="ti ti-camera"></i><span class="nav-link-text">Cinemachine</span><span class="nav-link-num">18</span></a>
+        <a href="pages/19-timeline.html" class="nav-link" data-section="s19"><i class="ti ti-timeline"></i><span class="nav-link-text">Timeline</span><span class="nav-link-num">19</span></a>
+        <a href="pages/20-navmesh.html" class="nav-link" data-section="s20"><i class="ti ti-route"></i><span class="nav-link-text">NavMesh & AI</span><span class="nav-link-num">20</span></a>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-group-title">İleri Seviye</div>
+        <a href="pages/21-urp-hdrp.html" class="nav-link" data-section="s21"><i class="ti ti-bolt"></i><span class="nav-link-text">URP, HDRP & Unity 6</span><span class="nav-link-num">21</span></a>
+        <a href="pages/22-new-input.html" class="nav-link" data-section="s22"><i class="ti ti-device-gamepad-2"></i><span class="nav-link-text">New Input System</span><span class="nav-link-num">22</span></a>
+        <a href="pages/23-save-menu.html" class="nav-link" data-section="s23"><i class="ti ti-device-floppy"></i><span class="nav-link-text">Save & Menü</span><span class="nav-link-num">23</span></a>
+        <a href="pages/24-build.html" class="nav-link" data-section="s24"><i class="ti ti-package-export"></i><span class="nav-link-text">Build & Yayınlama</span><span class="nav-link-num">24</span></a>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-group-title">Profesyonel</div>
+        <a href="pages/25-csharp-ileri.html" class="nav-link" data-section="s25"><i class="ti ti-brackets-contain"></i><span class="nav-link-text">C# İleri</span><span class="nav-link-num">25</span></a>
+        <a href="pages/26-performance.html" class="nav-link" data-section="s26"><i class="ti ti-gauge"></i><span class="nav-link-text">Performance</span><span class="nav-link-num">26</span></a>
+        <a href="pages/27-yol-haritasi.html" class="nav-link" data-section="s27"><i class="ti ti-map-2"></i><span class="nav-link-text">Yol Haritası</span><span class="nav-link-num">27</span></a>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-group-title">Pratik</div>
+        <a href="pages/projects.html" class="nav-link nav-link-extra" data-section="x-projects"><i class="ti ti-rocket"></i><span class="nav-link-text">Projeler</span></a>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-group-title">Ek Kaynaklar</div>
+        <a href="pages/sozluk.html" class="nav-link nav-link-extra" data-section="x-sozluk"><i class="ti ti-book-2"></i><span class="nav-link-text">Sözlük</span></a>
+        <a href="pages/cheatsheet.html" class="nav-link nav-link-extra" data-section="x-cheatsheet"><i class="ti ti-list-details"></i><span class="nav-link-text">Cheat Sheet</span></a>
+        <a href="pages/sss.html" class="nav-link nav-link-extra" data-section="x-sss"><i class="ti ti-help-circle"></i><span class="nav-link-text">SSS</span></a>
+        <a href="pages/arama.html" class="nav-link nav-link-extra" data-section="x-arama"><i class="ti ti-search"></i><span class="nav-link-text">Arama</span></a>
+        <a href="pages/sertifika.html" class="nav-link nav-link-extra" data-section="x-sertifika"><i class="ti ti-certificate"></i><span class="nav-link-text">Sertifika</span></a>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="pages/kaynaklar.html" class="sidebar-btn">
+        <i class="ti ti-books"></i>
+        <span>Kaynaklar</span>
+      </a>
+      <a href="pages/iletisim.html" class="sidebar-btn">
+        <i class="ti ti-mail"></i>
+        <span>İletişim</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- ═══════════════ MAIN ═══════════════ -->
+  <main class="main">
+    <div class="main-content">
+
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-eyebrow">
+          <i class="ti ti-sparkles"></i>
+          Türkçe · Sıfır Bilgi Yeterli · Unity 2022.3 LTS + Unity 6
+        </div>
+
+        <h1>
+          Unity'yi<br>
+          <span class="accent">sıfırdan</span> öğren.
+        </h1>
+
+        <p class="hero-lead">
+          C# bilmeden, oyun deneyimi olmadan, video izlemek zorunda kalmadan —
+          sadece bu sayfaları okuyarak ve pratikleri yaparak kendi oyununu yapabileceksin.
+          <strong>Hem 2022.3 LTS hem de Unity 6 birlikte anlatılır.</strong>
+        </p>
+
+        <div class="hero-cta">
+          <a href="pages/01-kurulum.html" class="btn btn-primary btn-lg">
+            <i class="ti ti-rocket"></i>
+            Başla — Bölüm 01
+          </a>
+          <a href="#program" class="btn btn-secondary btn-lg">
+            <i class="ti ti-list"></i>
+            Müfredatı Gör
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-number">27</div>
+            <div class="stat-label">Detaylı Bölüm</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">81</div>
+            <div class="stat-label">Pratik Proje</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">135</div>
+            <div class="stat-label">Quiz Sorusu</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">2</div>
+            <div class="stat-label">Unity Sürümü</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VERSION CALLOUT -->
+      <section style="margin-top: var(--space-12);">
+        <div class="u-compare">
+          <div class="u-compare-side lts">
+            <div class="u-compare-head">
+              <span class="u-ver-badge lts">Unity 2022.3 LTS</span>
+              Üretim için kararlı
+            </div>
+            <div class="u-compare-body">
+              <strong>Long-Term Support</strong> — uzun süreli destek versiyonu, en az 2 yıl güvenlik güncellemesi alır. Pratikte mevcut çoğu proje, asset store paketi ve eğitim içeriği bu sürüm için yazılmıştır. <strong>Yayında olan oyunlar</strong> için seçim budur.
+            </div>
+          </div>
+          <div class="u-compare-side u6">
+            <div class="u-compare-head">
+              <span class="u-ver-badge u6">Unity 6</span>
+              Modern ve hızlı
+            </div>
+            <div class="u-compare-body">
+              <strong>2024 sonu</strong>'nda çıkan yeni nesil. <code>GPU Resident Drawer</code>, <code>Render Graph</code>, <code>Build Profiles</code> ve <code>UI Toolkit</code> olgunluğu ile birlikte gelir. Yeni başlayan projeler için bunu kullan.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROGRAM / MÜFREDAT -->
+      <section id="program" style="margin-top: var(--space-16);">
+        <div class="page-meta">
+          <span class="page-num">// MÜFREDAT</span>
+          <span class="page-category">27 Bölüm</span>
+        </div>
+        <h2 style="font-size: var(--fs-3xl); margin-bottom: var(--space-4); letter-spacing: var(--tracking-tight);">
+          Sıfırdan ileri seviyeye, ders ders.
+        </h2>
+        <p style="font-size: var(--fs-lg); color: var(--text-secondary); margin-bottom: var(--space-8); max-width: 640px; line-height: var(--lh-relaxed);">
+          Her bölüm bir konu. Her konu okunarak öğrenilir, pratik projeyle pekiştirilir, quiz ile ölçülür. Bölüm sonunda "tamamladım" dersin, ilerlemen kayda alınır.
+        </p>
+
+        <div class="feature-grid">
+          <a href="pages/01-kurulum.html" class="feature-card" style="text-decoration: none; color: inherit; display: block;">
+            <div class="feature-icon"><i class="ti ti-download"></i></div>
+            <h3>01 — Kurulum & İlk Bakış</h3>
+            <p>Unity Hub, 2022.3 LTS ile Unity 6 birlikte kurulumu, ilk boş projeyi açma ve editör ortamına ısınma.</p>
+            <span class="badge badge-accent" style="margin-top: var(--space-3);">Başlangıç</span>
+          </a>
+
+          <a href="pages/04-csharp-temelleri.html" class="feature-card" style="text-decoration: none; color: inherit; display: block;">
+            <div class="feature-icon"><i class="ti ti-code"></i></div>
+            <h3>04 — C# Temelleri</h3>
+            <p>Değişken, fonksiyon, if/for/while, sınıflar — Unity'nin "Blueprint'i" yok, kod yazıyoruz. Sıfırdan başlangıç.</p>
+            <span class="badge badge-accent" style="margin-top: var(--space-3);">Programlama</span>
+          </a>
+
+          <a href="pages/05-monobehaviour-lifecycle.html" class="feature-card" style="text-decoration: none; color: inherit; display: block;">
+            <div class="feature-icon"><i class="ti ti-refresh"></i></div>
+            <h3>05 — MonoBehaviour Lifecycle</h3>
+            <p>Awake, Start, Update, FixedUpdate, OnEnable… Unity'nin kalbi: bu çağrılar ne zaman ve neden tetiklenir.</p>
+            <span class="badge badge-accent" style="margin-top: var(--space-3);">Çekirdek</span>
+          </a>
+
+          <a href="pages/13-particle-vfx.html" class="feature-card" style="text-decoration: none; color: inherit; display: block;">
+            <div class="feature-icon"><i class="ti ti-sparkles"></i></div>
+            <h3>13 — Particle & VFX Graph</h3>
+            <p>Built-in Particle System + VFX Graph'in karşılaştırması. Patlama, duman, ateş, magic efektleri.</p>
+            <span class="badge badge-accent" style="margin-top: var(--space-3);">Görsel Efekt</span>
+          </a>
+
+          <a href="pages/18-cinemachine.html" class="feature-card" style="text-decoration: none; color: inherit; display: block;">
+            <div class="feature-icon"><i class="ti ti-camera"></i></div>
+            <h3>18 — Cinemachine</h3>
+            <p>Virtual Camera, Free Look, Confiner, Blender — bir saat içinde profesyonel kamera sistemi.</p>
+            <span class="badge badge-accent" style="margin-top: var(--space-3);">Kamera</span>
+          </a>
+
+          <a href="pages/21-urp-hdrp.html" class="feature-card" style="text-decoration: none; color: inherit; display: block;">
+            <div class="feature-icon"><i class="ti ti-bolt"></i></div>
+            <h3>21 — URP, HDRP & Unity 6</h3>
+            <p>Hangi render pipeline'ı seçmeli? Unity 6'nın <strong>GPU Resident Drawer</strong> ve <strong>Render Graph</strong> ile neler değişti?</p>
+            <span class="badge badge-primary" style="margin-top: var(--space-3);">Unity 6</span>
+          </a>
+
+          <a href="pages/24-build.html" class="feature-card" style="text-decoration: none; color: inherit; display: block;">
+            <div class="feature-icon"><i class="ti ti-package-export"></i></div>
+            <h3>24 — Build & Yayınlama</h3>
+            <p>Windows, WebGL, Android, iOS — platform farkları. Unity 6'nın yeni <strong>Build Profiles</strong> sistemi.</p>
+            <span class="badge badge-primary" style="margin-top: var(--space-3);">Unity 6</span>
+          </a>
+
+          <a href="pages/25-csharp-ileri.html" class="feature-card" style="text-decoration: none; color: inherit; display: block;">
+            <div class="feature-icon"><i class="ti ti-brackets-contain"></i></div>
+            <h3>25 — C# İleri</h3>
+            <p>Coroutine, Event, delegate, ScriptableObject, Generics, async/await — profesyonel kod kalitesi.</p>
+            <span class="badge badge-accent" style="margin-top: var(--space-3);">İleri Seviye</span>
+          </a>
+
+          <a href="pages/27-yol-haritasi.html" class="feature-card" style="text-decoration: none; color: inherit; display: block;">
+            <div class="feature-icon"><i class="ti ti-map-2"></i></div>
+            <h3>27 — Yol Haritası</h3>
+            <p>Bittikten sonra ne yapmalı? Asset Store, GitHub, topluluklar, sertifikasyon, freelance yolları.</p>
+            <span class="badge badge-accent" style="margin-top: var(--space-3);">Final</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- WHY THIS SITE -->
+      <section style="margin-top: var(--space-16);">
+        <div class="page-meta">
+          <span class="page-num">// NEDEN</span>
+          <span class="page-category">Bu site</span>
+        </div>
+        <h2 style="font-size: var(--fs-3xl); margin-bottom: var(--space-4); letter-spacing: var(--tracking-tight);">
+          Video izlemiyorsun, okuyup yapıyorsun.
+        </h2>
+
+        <div class="feature-grid" style="margin-top: var(--space-8);">
+          <div class="info-card">
+            <div class="info-card-icon"><i class="ti ti-book"></i></div>
+            <h3>Okuyarak öğren</h3>
+            <p>Video durup başlatmıyorsun, hızını kendin belirliyorsun. Anlamadığında yukarı kaydırıyorsun. Türkçe ve net.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon"><i class="ti ti-target"></i></div>
+            <h3>Pratik proje odaklı</h3>
+            <p>Her bölümde 3 pratik proje. Konuyu sadece okumuyorsun — Unity'de açıp yapıyorsun, kayboluyorsan geri dönüyorsun.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon"><i class="ti ti-versions"></i></div>
+            <h3>2 sürüm birlikte</h3>
+            <p>Hem 2022.3 LTS (üretim için kararlı) hem Unity 6 (modern) öğrenirsin. Farklı yerlerde farklı işler için.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon"><i class="ti ti-flag-check"></i></div>
+            <h3>İlerleme takibi</h3>
+            <p>Tamamladığın bölümler tarayıcında kayda alınır. Sertifika alabilmek için tüm bölümleri tamamlaman gerekir.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- EK KAYNAKLAR -->
+      <section style="margin-top: var(--space-16);">
+        <div class="page-meta">
+          <span class="page-num">// EKSTRA</span>
+          <span class="page-category">Ek Kaynaklar</span>
+        </div>
+        <h2 style="font-size: var(--fs-3xl); margin-bottom: var(--space-4); letter-spacing: var(--tracking-tight);">
+          Sadece bölümler değil.
+        </h2>
+        <p style="font-size: var(--fs-lg); color: var(--text-secondary); margin-bottom: var(--space-8); max-width: 640px; line-height: var(--lh-relaxed);">
+          Aradığını bulmak, takıldığında hızla bakmak, sertifikanı almak için tasarlanmış destek sayfaları.
+        </p>
+
+        <div class="feature-grid">
+          <a href="pages/arama.html" class="feature-card" style="text-decoration: none; color: inherit; display: block;">
+            <div class="feature-icon"><i class="ti ti-search"></i></div>
+            <h3>Site İçi Arama</h3>
+            <p>27 bölümde geçen kavramı, sayfayı, konuyu saniyede bul. Anahtar kelime yaz, gerisi gelir.</p>
+            <span class="badge badge-accent" style="margin-top: var(--space-3);">Hızlı erişim</span>
+          </a>
+
+          <a href="pages/sozluk.html" class="feature-card" style="text-decoration: none; color: inherit; display: block;">
+            <div class="feature-icon"><i class="ti ti-book"></i></div>
+            <h3>Unity Sözlük</h3>
+            <p>80+ terim, Türkçe ve İngilizce karşılıkları. GameObject, Prefab, ScriptableObject, Cinemachine… Hepsi tek sayfada.</p>
+            <span class="badge badge-accent" style="margin-top: var(--space-3);">80+ terim</span>
+          </a>
+
+          <a href="pages/cheatsheet.html" class="feature-card" style="text-decoration: none; color: inherit; display: block;">
+            <div class="feature-icon"><i class="ti ti-bolt"></i></div>
+            <h3>Cheat Sheet</h3>
+            <p>Kısayollar, MonoBehaviour callbacks, en sık kullanılan API'ler, konsol komutları. Tek sayfa, hızlı bakış.</p>
+            <span class="badge badge-accent" style="margin-top: var(--space-3);">Hızlı başvuru</span>
+          </a>
+
+          <a href="pages/sss.html" class="feature-card" style="text-decoration: none; color: inherit; display: block;">
+            <div class="feature-icon"><i class="ti ti-help"></i></div>
+            <h3>Sık Sorulanlar</h3>
+            <p>"Unity mi Unreal mi?", "URP mi HDRP mi?", "Hangi PC?", "Asset Store ücretsizleri ticari?"… 20+ soru.</p>
+            <span class="badge badge-accent" style="margin-top: var(--space-3);">SSS</span>
+          </a>
+
+          <a href="pages/sertifika.html" class="feature-card" style="text-decoration: none; color: inherit; display: block;">
+            <div class="feature-icon"><i class="ti ti-certificate"></i></div>
+            <h3>Sertifika</h3>
+            <p>27/27 tamamladıysan adınla PDF sertifika al. Yerel olarak üretilir, paylaşmaya hazır.</p>
+            <span class="badge badge-primary" style="margin-top: var(--space-3);">Tamamlayıcılara</span>
+          </a>
+
+          <a href="pages/kaynaklar.html" class="feature-card" style="text-decoration: none; color: inherit; display: block;">
+            <div class="feature-icon"><i class="ti ti-books"></i></div>
+            <h3>Dış Kaynaklar</h3>
+            <p>Resmi Unity dokümantasyonu, YouTube kanalları, Discord toplulukları, Asset Store ipuçları.</p>
+            <span class="badge badge-accent" style="margin-top: var(--space-3);">Derleme</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- SITE FOOTER -->
+      <footer style="margin-top: var(--space-16); padding-top: var(--space-10); border-top: 1px solid var(--border); color: var(--text-secondary);">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--space-8); margin-bottom: var(--space-8);">
+
+          <div>
+            <h4 style="color: var(--text-primary); font-size: var(--fs-base); margin-bottom: var(--space-3); letter-spacing: var(--tracking-tight);">UnityAkademi</h4>
+            <p style="font-size: var(--fs-sm); line-height: var(--lh-relaxed); margin: 0;">
+              Türkçe, ücretsiz, reklamsız Unity 2022.3 LTS &amp; Unity 6 eğitim platformu.
+            </p>
+          </div>
+
+          <div>
+            <h4 style="color: var(--text-primary); font-size: var(--fs-base); margin-bottom: var(--space-3); letter-spacing: var(--tracking-tight);">Eğitim</h4>
+            <ul style="list-style: none; padding: 0; margin: 0; font-size: var(--fs-sm); line-height: var(--lh-loose);">
+              <li><a href="pages/01-kurulum.html" style="color: var(--text-secondary); text-decoration: none;">Bölüm 01 — Başla</a></li>
+              <li><a href="pages/27-yol-haritasi.html" style="color: var(--text-secondary); text-decoration: none;">Yol Haritası</a></li>
+              <li><a href="pages/sertifika.html" style="color: var(--text-secondary); text-decoration: none;">Sertifika</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 style="color: var(--text-primary); font-size: var(--fs-base); margin-bottom: var(--space-3); letter-spacing: var(--tracking-tight);">Yardımcı</h4>
+            <ul style="list-style: none; padding: 0; margin: 0; font-size: var(--fs-sm); line-height: var(--lh-loose);">
+              <li><a href="pages/arama.html" style="color: var(--text-secondary); text-decoration: none;">Arama</a></li>
+              <li><a href="pages/sozluk.html" style="color: var(--text-secondary); text-decoration: none;">Sözlük</a></li>
+              <li><a href="pages/cheatsheet.html" style="color: var(--text-secondary); text-decoration: none;">Cheat Sheet</a></li>
+              <li><a href="pages/sss.html" style="color: var(--text-secondary); text-decoration: none;">SSS</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 style="color: var(--text-primary); font-size: var(--fs-base); margin-bottom: var(--space-3); letter-spacing: var(--tracking-tight);">Hakkında</h4>
+            <ul style="list-style: none; padding: 0; margin: 0; font-size: var(--fs-sm); line-height: var(--lh-loose);">
+              <li><a href="pages/hakkinda.html" style="color: var(--text-secondary); text-decoration: none;">Proje</a></li>
+              <li><a href="pages/kaynaklar.html" style="color: var(--text-secondary); text-decoration: none;">Kaynaklar</a></li>
+              <li><a href="pages/iletisim.html" style="color: var(--text-secondary); text-decoration: none;">İletişim</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div style="text-align: center; padding: var(--space-6) 0; border-top: 1px solid var(--border); font-size: var(--fs-sm);">
+          <p style="margin: 0;">
+            © 2026 UnityAkademi · Türkçe Unity Eğitimi · İçerik ücretsiz, yayma serbest, atıf önerilir.
+          </p>
+          <p style="margin-top: var(--space-2); font-size: var(--fs-xs); opacity: 0.7;">
+            Unity, Unity 6 ve Unity logosu Unity Software Inc.'in tescilli markalarıdır. Bu site Unity ile bağlantılı değildir.
+          </p>
+        </div>
+      </footer>
+
+    </div>
+  </main>
+<script src="js/progress.js?v=11"></script>
+  <script src="js/quiz.js?v=11"></script>
+  <script src="js/toc.js?v=11"></script>
+  <script src="js/main.js?v=11"></script>
+</body>
+</html>

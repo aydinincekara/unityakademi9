@@ -1,0 +1,219 @@
+/* ========================================================
+   UnityAkademi — Design Tokens
+   Tema: Unity Editor + Unity Orange + Cyan-Teal accent
+   ======================================================== */
+
+:root {
+  /* === BACKGROUND LAYERS === */
+  --bg-deep:       #08080d;   /* En derin (body) */
+  --bg-base:       #0d0d14;   /* Ana arka plan */
+  --bg-surface:    #16161f;   /* Kart yüzeyi */
+  --bg-elevated:   #1c1c28;   /* Yükseltilmiş kart */
+  --bg-overlay:    #25252f;   /* Hover yüzeyi */
+  --bg-input:      #12121a;   /* Input/code zemini */
+
+  /* === BRAND — Unity Orange + Cyan-Teal === */
+  --primary:       #fa7d19;   /* Unity Orange — kurumsal turuncu */
+  --primary-light: #ff9d4f;
+  --primary-dark:  #d65f00;
+  --primary-glow:  rgba(250, 125, 25, 0.4);
+
+  --accent:        #50e3c2;   /* Cyan-teal — script success rengi */
+  --accent-light:  #7aebd1;
+  --accent-glow:   rgba(80, 227, 194, 0.35);
+
+  /* === SEMANTIC === */
+  --success:       #10b981;
+  --success-light: #34d399;
+  --warning:       #f59e0b;
+  --warning-light: #fbbf24;
+  --danger:        #ef4444;
+  --danger-light:  #f87171;
+  --info:          #3b82f6;
+  --info-light:    #60a5fa;
+
+  /* === UNITY EDITOR RENKLERİ — gerçek Inspector renkleri === */
+  --u-public:      #50e3c2;   /* Public/[SerializeField] — yeşilimsi */
+  --u-private:     #999999;   /* Private — gri */
+  --u-monobeh:     #5cb3ff;   /* MonoBehaviour — mavi */
+  --u-scriptable:  #ff9d29;   /* ScriptableObject — turuncu */
+  --u-prefab:      #4fc3f7;   /* Prefab — açık mavi */
+  --u-component:   #b876ff;   /* Component — leylak */
+  --u-error:       #f44336;   /* Console error */
+  --u-warning:     #ffc107;   /* Console warning */
+  --u-info:        #b3e5fc;   /* Console info */
+
+  /* === COMPONENT BADGE RENKLERİ === */
+  --c-transform:   #6c757d;
+  --c-rigidbody:   #ff9d29;
+  --c-collider:    #50e3c2;
+  --c-mesh:        #b876ff;
+  --c-light:       #ffc107;
+  --c-camera:      #4fc3f7;
+  --c-audio:       #ff5e94;
+  --c-ui:          #fa7d19;
+
+  /* === TEXT === */
+  --text-primary:   #f0f0ff;
+  --text-secondary: #b0b0c0;
+  --text-tertiary:  #7a7a90;
+  --text-muted:     #4a4a58;
+  --text-on-primary:#ffffff;
+
+  /* === BORDERS & DIVIDERS === */
+  --border-subtle:  rgba(255, 255, 255, 0.06);
+  --border-default: rgba(255, 255, 255, 0.10);
+  --border-strong:  rgba(255, 255, 255, 0.18);
+  --border-accent:  rgba(250, 125, 25, 0.35);
+  --border-glow:    rgba(80, 227, 194, 0.25);
+
+  /* Backward-compat alias'lar */
+  --border: var(--border-default);
+  --text: var(--text-primary);
+
+  /* === GRADIENTS — Unity'nin sıcak dünyası === */
+  --gradient-primary: linear-gradient(135deg, #fa7d19 0%, #d65f00 100%);
+  --gradient-accent:  linear-gradient(135deg, #50e3c2 0%, #2ab896 100%);
+  --gradient-hero:    linear-gradient(135deg, #08080d 0%, #2d1a08 40%, #08080d 100%);
+  --gradient-card:    linear-gradient(180deg, rgba(250, 125, 25, 0.05) 0%, transparent 100%);
+  --gradient-text:    linear-gradient(135deg, #ffffff 0%, #fa7d19 50%, #50e3c2 100%);
+
+  /* === GRID PATTERN (Unity Scene grid) === */
+  --grid-color:    rgba(250, 125, 25, 0.08);
+  --grid-color-2:  rgba(80, 227, 194, 0.04);
+
+  /* === SHADOWS === */
+  --shadow-sm:     0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md:     0 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-lg:     0 16px 48px rgba(0, 0, 0, 0.5);
+  --shadow-glow:   0 0 40px var(--primary-glow);
+  --shadow-glow-a: 0 0 30px var(--accent-glow);
+  --shadow-inset:  inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+  /* === RADIUS === */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-full: 999px;
+
+  /* === SPACING (8px grid) === */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+
+  /* === TYPOGRAPHY === */
+  --font-display: 'Sora', system-ui, sans-serif;
+  --font-body:    'Sora', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', 'Fira Code', monospace;
+
+  --fs-xs:   11px;
+  --fs-sm:   12px;
+  --fs-base: 14px;
+  --fs-md:   15px;
+  --fs-lg:   17px;
+  --fs-xl:   20px;
+  --fs-2xl:  24px;
+  --fs-3xl:  32px;
+  --fs-4xl:  44px;
+  --fs-5xl:  64px;
+
+  --lh-tight:   1.2;
+  --lh-snug:    1.4;
+  --lh-normal:  1.6;
+  --lh-relaxed: 1.75;
+
+  --tracking-tight:  -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.05em;
+  --tracking-wider:  0.1em;
+
+  /* === LAYOUT === */
+  --sidebar-width: 280px;
+  --header-height: 64px;
+  --content-max:   1100px;
+
+  /* === MOTION === */
+  --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:  cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 400ms;
+
+  /* === Z-INDEX === */
+  --z-base:    1;
+  --z-dropdown: 100;
+  --z-sticky:  200;
+  --z-sidebar: 500;
+  --z-overlay: 1000;
+  --z-modal:   2000;
+  --z-tooltip: 3000;
+
+  /* === FONT SCALE === */
+  --font-scale: 1;
+}
+
+/* ========================================================
+   LIGHT MODE — Açık tema
+   data-theme="light"
+   ======================================================== */
+[data-theme="light"] {
+  --bg-deep:       #f0f1f5;
+  --bg-base:       #f8f9fb;
+  --bg-surface:    #ffffff;
+  --bg-elevated:   #ffffff;
+  --bg-overlay:    #f0f1f6;
+  --bg-input:      #f2f3f7;
+
+  --text-primary:   #16161f;
+  --text-secondary: #4a4a5c;
+  --text-tertiary:  #6a6a7a;
+  --text-muted:     #a0a0b0;
+  --text-on-primary:#ffffff;
+
+  --border-subtle:  rgba(22, 22, 31, 0.06);
+  --border-default: rgba(22, 22, 31, 0.12);
+  --border-strong:  rgba(22, 22, 31, 0.22);
+  --border-accent:  rgba(214, 95, 0, 0.4);
+  --border-glow:    rgba(42, 184, 150, 0.3);
+
+  --primary:       #e65f00;
+  --primary-light: #fa7d19;
+  --primary-dark:  #b34900;
+  --primary-glow:  rgba(230, 95, 0, 0.22);
+
+  --accent:        #2ab896;
+  --accent-light:  #50e3c2;
+  --accent-glow:   rgba(42, 184, 150, 0.18);
+
+  --gradient-hero: linear-gradient(135deg, #f8f9fb 0%, #ffe9d6 40%, #f8f9fb 100%);
+  --gradient-card: linear-gradient(180deg, rgba(230, 95, 0, 0.04) 0%, transparent 100%);
+  --gradient-text: linear-gradient(135deg, #16161f 0%, #e65f00 50%, #2ab896 100%);
+
+  --grid-color:    rgba(230, 95, 0, 0.08);
+  --grid-color-2:  rgba(42, 184, 150, 0.05);
+
+  --shadow-sm:     0 2px 8px rgba(22, 22, 31, 0.06);
+  --shadow-md:     0 8px 24px rgba(22, 22, 31, 0.08);
+  --shadow-lg:     0 16px 48px rgba(22, 22, 31, 0.12);
+  --shadow-inset:  inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+/* Tema geçişi */
+html {
+  transition: background-color var(--duration-base) var(--ease-out),
+              color var(--duration-base) var(--ease-out);
+}
+body {
+  transition: background-color var(--duration-base) var(--ease-out),
+              color var(--duration-base) var(--ease-out);
+}

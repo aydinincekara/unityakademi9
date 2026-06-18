@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Input System — UnityAkademi</title>
+  <meta name="description" content="Klavye/mouse/gamepad/touch için modern input sistemi, Action Asset, Bindings, Control Schemes, Rebinding, Local Multiplayer — Bölüm 22.">
+  <meta name="theme-color" content="#fa7d19">
+  <link rel="manifest" href="../manifest.json">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="New Input System">
+  <meta property="og:description" content="Klavye/mouse/gamepad/touch için modern input sistemi, Action Asset, Bindings, Control Schemes, Rebinding, Local Multiplayer — Bölüm 22.">
+  <meta property="og:image" content="../og-image.svg">
+  <meta property="og:site_name" content="UnityAkademi">
+  <meta property="og:locale" content="tr_TR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="New Input System">
+  <meta name="twitter:description" content="Klavye/mouse/gamepad/touch için modern input sistemi, Action Asset, Bindings, Control Schemes, Rebinding, Local Multiplayer — Bölüm 22.">
+  <meta name="twitter:image" content="../og-image.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="../css/variables.css?v=11">
+  <link rel="stylesheet" href="../css/reset.css?v=11">
+  <link rel="stylesheet" href="../css/layout.css?v=11">
+  <link rel="stylesheet" href="../css/components.css?v=11">
+  <link rel="stylesheet" href="../css/content.css?v=11">
+  <link rel="stylesheet" href="../css/visuals.css?v=11">
+  <link rel="stylesheet" href="../css/extras.css?v=11">
+  <link rel="stylesheet" href="../css/responsive.css?v=11">
+</head>
+<body>
+<button class="nav-hamburger" id="navHamburger" aria-label="Menüyü aç">
+  <i class="ti ti-menu-2"></i>
+</button>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a href="../index.html" class="sidebar-brand">
+      <div class="sidebar-brand-icon"><i class="ti ti-home-2"></i></div>
+      <div class="sidebar-brand-text">
+        <span class="sidebar-brand-name">Ana Sayfa</span>
+        <span class="sidebar-brand-sub">UnityAkademi</span>
+      </div>
+    </a>
+    <button class="mobile-toggle" aria-label="Menü"><i class="ti ti-x"></i></button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-group">
+      <div class="nav-group-title">Temeller</div>
+      <a href="01-kurulum.html" class="nav-link" data-section="s1"><i class="ti ti-download"></i><span class="nav-link-text">Kurulum & İlk Bakış</span><span class="nav-link-num">01</span></a>
+      <a href="02-arayuz.html" class="nav-link" data-section="s2"><i class="ti ti-layout-board"></i><span class="nav-link-text">Editor Arayüzü</span><span class="nav-link-num">02</span></a>
+      <a href="03-gameobject-component.html" class="nav-link" data-section="s3"><i class="ti ti-cube"></i><span class="nav-link-text">GameObject & Component</span><span class="nav-link-num">03</span></a>
+      <a href="04-csharp-temelleri.html" class="nav-link" data-section="s4"><i class="ti ti-code"></i><span class="nav-link-text">C# Temelleri</span><span class="nav-link-num">04</span></a>
+      <a href="05-monobehaviour-lifecycle.html" class="nav-link" data-section="s5"><i class="ti ti-refresh"></i><span class="nav-link-text">MonoBehaviour Lifecycle</span><span class="nav-link-num">05</span></a>
+      <a href="06-transform-vector.html" class="nav-link" data-section="s6"><i class="ti ti-arrows-move"></i><span class="nav-link-text">Transform & Vector3</span><span class="nav-link-num">06</span></a>
+      <a href="07-input.html" class="nav-link" data-section="s7"><i class="ti ti-keyboard"></i><span class="nav-link-text">Input Sistemi</span><span class="nav-link-num">07</span></a>
+      <a href="08-physics.html" class="nav-link" data-section="s8"><i class="ti ti-atom"></i><span class="nav-link-text">Physics</span><span class="nav-link-num">08</span></a>
+      <a href="09-ui.html" class="nav-link" data-section="s9"><i class="ti ti-layout-grid"></i><span class="nav-link-text">UI Sistemi</span><span class="nav-link-num">09</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Görsel & Asset</div>
+      <a href="10-material-shader.html" class="nav-link" data-section="s10"><i class="ti ti-palette"></i><span class="nav-link-text">Material & Shader</span><span class="nav-link-num">10</span></a>
+      <a href="11-asset-import.html" class="nav-link" data-section="s11"><i class="ti ti-folder"></i><span class="nav-link-text">Asset Import</span><span class="nav-link-num">11</span></a>
+      <a href="12-animation.html" class="nav-link" data-section="s12"><i class="ti ti-bounce-right"></i><span class="nav-link-text">Animation</span><span class="nav-link-num">12</span></a>
+      <a href="13-particle-vfx.html" class="nav-link" data-section="s13"><i class="ti ti-sparkles"></i><span class="nav-link-text">Particle & VFX Graph</span><span class="nav-link-num">13</span></a>
+      <a href="14-lighting.html" class="nav-link" data-section="s14"><i class="ti ti-bulb"></i><span class="nav-link-text">Lighting</span><span class="nav-link-num">14</span></a>
+      <a href="15-audio.html" class="nav-link" data-section="s15"><i class="ti ti-volume"></i><span class="nav-link-text">Audio</span><span class="nav-link-num">15</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Sistemler</div>
+      <a href="16-probuilder.html" class="nav-link" data-section="s16"><i class="ti ti-3d-cube-sphere"></i><span class="nav-link-text">ProBuilder</span><span class="nav-link-num">16</span></a>
+      <a href="17-terrain.html" class="nav-link" data-section="s17"><i class="ti ti-mountain"></i><span class="nav-link-text">Terrain</span><span class="nav-link-num">17</span></a>
+      <a href="18-cinemachine.html" class="nav-link" data-section="s18"><i class="ti ti-camera"></i><span class="nav-link-text">Cinemachine</span><span class="nav-link-num">18</span></a>
+      <a href="19-timeline.html" class="nav-link" data-section="s19"><i class="ti ti-timeline"></i><span class="nav-link-text">Timeline</span><span class="nav-link-num">19</span></a>
+      <a href="20-navmesh.html" class="nav-link" data-section="s20"><i class="ti ti-route"></i><span class="nav-link-text">NavMesh & AI</span><span class="nav-link-num">20</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">İleri Seviye</div>
+      <a href="21-urp-hdrp.html" class="nav-link" data-section="s21"><i class="ti ti-bolt"></i><span class="nav-link-text">URP, HDRP & Unity 6</span><span class="nav-link-num">21</span></a>
+      <a href="22-new-input.html" class="nav-link active" data-section="s22"><i class="ti ti-device-gamepad-2"></i><span class="nav-link-text">New Input System</span><span class="nav-link-num">22</span></a>
+      <a href="23-save-menu.html" class="nav-link" data-section="s23"><i class="ti ti-device-floppy"></i><span class="nav-link-text">Save & Menü</span><span class="nav-link-num">23</span></a>
+      <a href="24-build.html" class="nav-link" data-section="s24"><i class="ti ti-package-export"></i><span class="nav-link-text">Build & Yayınlama</span><span class="nav-link-num">24</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Profesyonel</div>
+      <a href="25-csharp-ileri.html" class="nav-link" data-section="s25"><i class="ti ti-brackets-contain"></i><span class="nav-link-text">C# İleri</span><span class="nav-link-num">25</span></a>
+      <a href="26-performance.html" class="nav-link" data-section="s26"><i class="ti ti-gauge"></i><span class="nav-link-text">Performance</span><span class="nav-link-num">26</span></a>
+      <a href="27-yol-haritasi.html" class="nav-link" data-section="s27"><i class="ti ti-map-2"></i><span class="nav-link-text">Yol Haritası</span><span class="nav-link-num">27</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Pratik</div>
+      <a href="projects.html" class="nav-link nav-link-extra" data-section="x-projects"><i class="ti ti-rocket"></i><span class="nav-link-text">Projeler</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Ek Kaynaklar</div>
+      <a href="sozluk.html" class="nav-link nav-link-extra" data-section="x-sozluk"><i class="ti ti-book-2"></i><span class="nav-link-text">Sözlük</span></a>
+      <a href="cheatsheet.html" class="nav-link nav-link-extra" data-section="x-cheatsheet"><i class="ti ti-list-details"></i><span class="nav-link-text">Cheat Sheet</span></a>
+      <a href="sss.html" class="nav-link nav-link-extra" data-section="x-sss"><i class="ti ti-help-circle"></i><span class="nav-link-text">SSS</span></a>
+      <a href="arama.html" class="nav-link nav-link-extra" data-section="x-arama"><i class="ti ti-search"></i><span class="nav-link-text">Arama</span></a>
+      <a href="sertifika.html" class="nav-link nav-link-extra" data-section="x-sertifika"><i class="ti ti-certificate"></i><span class="nav-link-text">Sertifika</span></a>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="kaynaklar.html" class="sidebar-btn"><i class="ti ti-books"></i><span>Kaynaklar</span></a>
+    <a href="iletisim.html" class="sidebar-btn"><i class="ti ti-mail"></i><span>İletişim</span></a>
+  </div>
+</aside>
+<main class="main">
+  <div class="main-content">
+<nav class="breadcrumb" aria-label="Sayfa konumu">
+      <a href="../index.html"><i class="ti ti-home"></i><span>Ana Sayfa</span></a>
+      <i class="ti ti-chevron-right"></i><span><i class="ti ti-school" style="font-size: 13px; opacity: 0.7; margin-right: 4px;"></i>İleri Seviye</span>
+      <i class="ti ti-chevron-right"></i><span style="color: var(--primary-light);">New Input System</span>
+    </nav>
+
+<header class="page-header">
+  <span class="chapter-pill">Bölüm 22</span>
+  <h1 class="page-title">New Input System — Modern Giriş Yönetimi</h1>
+  <p class="page-subtitle">Action-based input, InputAction asset, Bindings, Control Schemes, PlayerInput component, Touch, Rebinding — klavye / mouse / gamepad / dokunmatik aynı kodla.</p>
+  <div class="page-meta">
+    <span>⏱ Okuma süresi: ~27 dk</span>
+    <span>🎮 Multi-platform input</span>
+    <span>🎯 Zorluk: Orta</span>
+  </div>
+</header>
+
+<section class="topic-section" id="neden-yeni">
+  <div class="topic-header">
+    <span class="topic-number">22.1</span>
+    <h2 class="topic-title">🎮 Neden Yeni Bir Sistem?</h2>
+  </div>
+  <p class="topic-text">
+    Bölüm 7'de eski <strong>Input Manager</strong>'ı (Edit → Project Settings → Input) gördün. <code>Input.GetAxis("Horizontal")</code>, <code>Input.GetKeyDown(KeyCode.Space)</code> gibi çağrılar. Çalışıyor, evet — ama 2025 yılında ciddi sorunları var:
+  </p>
+  <ul class="check-list">
+    <li><strong>Cihaz farkındalığı yok:</strong> <code>GetKey</code> sadece klavye, gamepad için ayrı <code>Input.GetJoystickNames()</code>, mobilde <code>Input.touches[i]</code>. Her cihaz için ayrı kod.</li>
+    <li><strong>Soft kalmış:</strong> 2010'da yazıldı, yeni gamepad'ler (PS5 DualSense, Switch Pro, Xbox Series), yeni input metodları (VR controller, dokunmatik) yarım destekli.</li>
+    <li><strong>Yeniden bağlama (rebinding) zor:</strong> Kullanıcının "Jump'ı Space yerine W'ye al" demesi için kendi sistemini yazmak zorundasın.</li>
+    <li><strong>Multiplayer zor:</strong> İki oyuncu yan yana, biri klavye biri gamepad — eski sistemde acı verici.</li>
+    <li><strong>Polling tabanlı:</strong> Update'te sürekli "tuşa basıldı mı?" diye sormak gerekir; event tabanlı değil.</li>
+  </ul>
+  <p class="topic-text">
+    Unity, 2019'da <strong>New Input System</strong> paketini tanıttı. Action tabanlı, event-driven, cihaz-bağımsız, multiplayer-friendly. Unity 6'da artık <strong>varsayılan</strong>.
+  </p>
+  <div class="real-world-box">
+    <h3>🎮 Gerçek Dünyadan: Cross-Platform Oyun Geliştirme</h3>
+    <p>Hades, Hollow Knight, Stardew Valley, Among Us — PC + Switch + iOS + Android. Her platformda farklı input cihazı, ama aynı oyun mantığı. New Input System ile <em>"Jump action tetiklendi"</em> kodu <strong>tek seferlik</strong> yazılır; binding tarafında her cihaz için Space/A button/Touch tap eşleştirilir. Yeni bir cihaz desteklenince sadece binding eklenir, kod değişmez.</p>
+  </div>
+</section>
+
+<section class="topic-section" id="kurulum">
+  <div class="topic-header">
+    <span class="topic-number">22.2</span>
+    <h2 class="topic-title">📦 Kurulum &amp; Active Input Handling</h2>
+  </div>
+  <ol class="step-list">
+    <li><strong>Window → Package Manager</strong> → Unity Registry → "Input System" → Install.</li>
+    <li>Kurulduğunda Unity bir popup gösterir: "Active Input Handling değiştirilecek, restart gerekecek" → Apply.</li>
+    <li>Restart sonrası kontrol: <strong>Edit → Project Settings → Player → Other Settings → Active Input Handling</strong>:
+      <ul>
+        <li><em>Input Manager (Old)</em> — Sadece eski sistem.</li>
+        <li><em>Input System Package (New)</em> — Sadece yeni sistem.</li>
+        <li><em>Both</em> — İkisi birden (yeni başlayanlar için önerilen, eski Asset Store paketleriyle uyum).</li>
+      </ul>
+    </li>
+  </ol>
+  <div class="info-box">
+    <strong>📌 "Both" Seçeneği:</strong> Eski Standard Assets veya tutorial'larda <code>Input.GetKey</code> kullanılıyorsa Both seçili olmalı. Performansa minimum etkisi vardır. Yeni projeye sıfırdan başlıyorsan <em>Input System Package</em> daha temizdir.
+  </div>
+</section>
+
+<section class="topic-section" id="action-asset">
+  <div class="topic-header">
+    <span class="topic-number">22.3</span>
+    <h2 class="topic-title">📜 Input Action Asset — Eylemler Sözleşmesi</h2>
+  </div>
+  <p class="topic-text">
+    Yeni sistemin merkezi <strong>Input Action Asset</strong>'tir (<code>.inputactions</code> uzantılı). Bu asset, projedeki tüm giriş eylemlerini ve cihaz bağlantılarını içerir.
+  </p>
+  <ol class="step-list">
+    <li>Project window: sağ tık → Create → Input Actions. Adı "PlayerControls".</li>
+    <li>Çift tık ile editör açılır. Üç sütun: <em>Action Maps</em>, <em>Actions</em>, <em>Properties</em>.</li>
+  </ol>
+
+  <h3 class="topic-subtitle">Action Maps — Bağlam Grupları</h3>
+  <p class="topic-text">
+    Bir Action Map, belirli bir <strong>bağlam</strong>'daki tüm input action'larıdır. Tipik oyunda:
+  </p>
+  <ul class="check-list">
+    <li><strong>Gameplay</strong> — Move, Jump, Fire, Look, Interact</li>
+    <li><strong>UI</strong> — Navigate, Submit, Cancel, Point, Click</li>
+    <li><strong>Menu</strong> — OpenInventory, Pause, Confirm</li>
+  </ul>
+  <p class="topic-text">
+    Sadece bir Action Map'i o anda aktif tutarsın. Pause açıldığında Gameplay deaktive, Menu aktive olur — bu sayede oyuncu menüdeyken yanlışlıkla Fire'a basamaz.
+  </p>
+</section>
+
+<section class="topic-section" id="action-tipleri">
+  <div class="topic-header">
+    <span class="topic-number">22.4</span>
+    <h2 class="topic-title">🎯 Action Tipleri</h2>
+  </div>
+  <p class="topic-text">Her action'ın bir <strong>Action Type</strong>'ı vardır:</p>
+  <ul class="check-list">
+    <li><strong>Button</strong> — Anlık tetik: Jump, Fire, Interact. Performed event ile tek seferlik.</li>
+    <li><strong>Value</strong> — Sürekli değer: Move (Vector2), Throttle (float), Look (Vector2). Her frame okuyabilirsin.</li>
+    <li><strong>Pass Through</strong> — Tüm değişiklikleri filtreleme yapmadan iletir. Birden çok input device aynı action'ı paylaşıyorsa kullanışlı.</li>
+  </ul>
+
+  <h3 class="topic-subtitle">Control Type — Beklenen Veri Tipi</h3>
+  <ul class="check-list">
+    <li><strong>Button</strong> — boolean (basıldı / basılmadı)</li>
+    <li><strong>Axis</strong> — float, -1 ile 1 arası (gas pedalı, throttle)</li>
+    <li><strong>Vector2</strong> — yatay+dikey (Move, Look, Stick)</li>
+    <li><strong>Vector3</strong> — 3D yön (Accelerometer)</li>
+    <li><strong>Stick</strong> — özelleştirilmiş Vector2 (dead zone destekli)</li>
+  </ul>
+</section>
+
+<section class="topic-section" id="bindings">
+  <div class="topic-header">
+    <span class="topic-number">22.5</span>
+    <h2 class="topic-title">🔌 Bindings — Cihaz Eşleştirme</h2>
+  </div>
+  <p class="topic-text">
+    Bir action tanımlandıktan sonra ona <strong>Binding</strong>'ler eklersin: hangi gerçek tuş/buton/eksen bu action'ı tetikler?
+  </p>
+  <h3 class="topic-subtitle">Jump Action — 3 Cihaz Binding'i</h3>
+  <ol class="step-list">
+    <li>Gameplay map'ine sağ tık → Add Action → "Jump". Action Type: Button.</li>
+    <li>Jump üzerine sağ tık → Add Binding. Path: <em>Keyboard / Space</em>.</li>
+    <li>Tekrar Add Binding. Path: <em>Gamepad / Button South</em> (Xbox: A, PS: X, Switch: B).</li>
+    <li>Tekrar Add Binding. Path: <em>Touchscreen / Touch 0 / Tap</em>.</li>
+  </ol>
+  <p class="topic-text">
+    Artık <strong>kod tarafında</strong> sadece <em>"Jump performed"</em> event'ini dinlersin; oyuncunun hangi cihazı kullandığı tamamen şeffaf.
+  </p>
+
+  <h3 class="topic-subtitle">2D Vector Composite — Move</h3>
+  <p class="topic-text">
+    Move action'ı için (WASD) <strong>2D Vector Composite</strong> kullanılır:
+  </p>
+  <ol class="step-list">
+    <li>Move (Value, Vector2) action'ına sağ tık → Add Up/Down/Left/Right Composite → "2D Vector".</li>
+    <li>Up: W, Down: S, Left: A, Right: D otomatik atanır (değiştirebilirsin).</li>
+    <li>Aynı action'a alternatif binding: ok tuşları, gamepad sol stick, vs. eklenebilir.</li>
+    <li>Mode: Digital (0/1), Digital Normalized (diagonal'da hız sabit), Analog (sürekli).</li>
+  </ol>
+</section>
+
+<section class="topic-section" id="control-schemes">
+  <div class="topic-header">
+    <span class="topic-number">22.6</span>
+    <h2 class="topic-title">🎛 Control Schemes — Cihaz Grupları</h2>
+  </div>
+  <p class="topic-text">
+    Control Scheme, bir <strong>cihaz kombinasyonunu</strong> temsil eder: "Keyboard&Mouse" (klavye + mouse beraber), "Gamepad" (sadece gamepad), "Touch" (sadece dokunmatik).
+  </p>
+  <ol class="step-list">
+    <li>Action editöründe sol üst dropdown'da <em>All Control Schemes</em> → Add Control Scheme.</li>
+    <li>Adı: "Keyboard&amp;Mouse". Requirements: Keyboard, Mouse.</li>
+    <li>Bir Control Scheme daha: "Gamepad". Requirements: Gamepad.</li>
+    <li>Her binding üzerine tıkla → sağda <em>Use in control scheme</em> seç (sadece K&amp;M veya sadece Gamepad).</li>
+  </ol>
+  <p class="topic-text">
+    Bu, multiplayer'da kritik: PlayerInput component oyuncunun cihazını algılar ve sadece o scheme'in binding'lerini kullanır. <strong>İki oyuncu, biri klavye diğeri gamepad</strong>, aynı sahnede.
+  </p>
+</section>
+
+<section class="topic-section" id="kullanim-yontemleri">
+  <div class="topic-header">
+    <span class="topic-number">22.7</span>
+    <h2 class="topic-title">💻 Kullanım — 3 Yöntem</h2>
+  </div>
+  <p class="topic-text">Action'ları C# tarafında kullanmanın üç yolu var:</p>
+
+  <h3 class="topic-subtitle">Yöntem 1: PlayerInput Component (En Kolay)</h3>
+  <ol class="step-list">
+    <li>Player GameObject'ine <strong>Add Component → PlayerInput</strong>.</li>
+    <li>Actions: PlayerControls asset'ini sürükle.</li>
+    <li>Default Map: Gameplay.</li>
+    <li>Behavior:
+      <ul>
+        <li><em>Send Messages</em> — OnJump(), OnMove() metodları otomatik çağrılır (eski SendMessage tarzı, refactor zor).</li>
+        <li><em>Broadcast Messages</em> — Children dahil.</li>
+        <li><em>Invoke Unity Events</em> — Inspector'da her action için event slot'u; UnityEvent ekleyip metod ata.</li>
+        <li><em>Invoke C# Events</em> — Kodla <code>playerInput.actions["Jump"].performed += OnJump;</code>.</li>
+      </ul>
+    </li>
+  </ol>
+  <div class="cs-block">
+<pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+<span class="kw">using</span> <span class="type">UnityEngine.InputSystem</span>;
+
+<span class="kw">public class</span> <span class="type">PlayerController</span> : <span class="type">MonoBehaviour</span>
+{
+    [<span class="type">SerializeField</span>] <span class="kw">private float</span> moveSpeed = <span class="num">5f</span>;
+    [<span class="type">SerializeField</span>] <span class="kw">private float</span> jumpForce = <span class="num">5f</span>;
+    <span class="kw">private</span> <span class="type">Rigidbody</span> rb;
+    <span class="kw">private</span> <span class="type">Vector2</span> moveInput;
+
+    <span class="kw">private void</span> <span class="fn">Awake</span>() =&gt; rb = <span class="fn">GetComponent</span>&lt;<span class="type">Rigidbody</span>&gt;();
+
+    <span class="com">// Send Messages mode'da otomatik çağrılır</span>
+    <span class="kw">public void</span> <span class="fn">OnMove</span>(<span class="type">InputValue</span> value)
+    {
+        moveInput = value.<span class="fn">Get</span>&lt;<span class="type">Vector2</span>&gt;();
+    }
+
+    <span class="kw">public void</span> <span class="fn">OnJump</span>(<span class="type">InputValue</span> value)
+    {
+        <span class="kw">if</span> (value.<span class="fn">isPressed</span>)
+        {
+            rb.<span class="fn">AddForce</span>(<span class="type">Vector3</span>.up * jumpForce, <span class="type">ForceMode</span>.Impulse);
+        }
+    }
+
+    <span class="kw">private void</span> <span class="fn">FixedUpdate</span>()
+    {
+        <span class="type">Vector3</span> move = <span class="kw">new</span>(moveInput.x, <span class="num">0</span>, moveInput.y);
+        rb.<span class="fn">MovePosition</span>(rb.position + move * moveSpeed * <span class="type">Time</span>.fixedDeltaTime);
+    }
+}</code></pre>
+  </div>
+
+  <h3 class="topic-subtitle">Yöntem 2: Generated C# Class (En Profesyonel)</h3>
+  <p class="topic-text">
+    Action asset'in inspector'ında <strong>Generate C# Class</strong> ☑ → Apply. Unity otomatik bir C# sınıf oluşturur (örn. <code>PlayerControls.cs</code>). Bu sınıf strongly-typed action'lar sunar — IntelliSense ile auto-complete.
+  </p>
+  <div class="cs-block">
+<pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+<span class="kw">using</span> <span class="type">UnityEngine.InputSystem</span>;
+
+<span class="kw">public class</span> <span class="type">PlayerController</span> : <span class="type">MonoBehaviour</span>
+{
+    <span class="kw">private</span> <span class="type">PlayerControls</span> controls;
+    <span class="kw">private</span> <span class="type">Vector2</span> moveInput;
+
+    <span class="kw">private void</span> <span class="fn">Awake</span>()
+    {
+        controls = <span class="kw">new</span> <span class="type">PlayerControls</span>();
+        controls.<span class="attr">Gameplay</span>.<span class="attr">Move</span>.<span class="attr">performed</span> += ctx =&gt; moveInput = ctx.<span class="fn">ReadValue</span>&lt;<span class="type">Vector2</span>&gt;();
+        controls.<span class="attr">Gameplay</span>.<span class="attr">Move</span>.<span class="attr">canceled</span> += ctx =&gt; moveInput = <span class="type">Vector2</span>.zero;
+        controls.<span class="attr">Gameplay</span>.<span class="attr">Jump</span>.<span class="attr">performed</span> += <span class="fn">OnJump</span>;
+    }
+
+    <span class="kw">private void</span> <span class="fn">OnEnable</span>() =&gt; controls.<span class="attr">Gameplay</span>.<span class="fn">Enable</span>();
+    <span class="kw">private void</span> <span class="fn">OnDisable</span>() =&gt; controls.<span class="attr">Gameplay</span>.<span class="fn">Disable</span>();
+
+    <span class="kw">private void</span> <span class="fn">OnJump</span>(<span class="type">InputAction.CallbackContext</span> ctx)
+    {
+        <span class="type">Debug</span>.<span class="fn">Log</span>(<span class="str">"Zıpla!"</span>);
+    }
+}</code></pre>
+  </div>
+
+  <h3 class="topic-subtitle">Yöntem 3: Doğrudan Action Reference</h3>
+  <p class="topic-text">Action'a serialize field olarak referans ver, polling ile oku:</p>
+  <div class="cs-block">
+<pre><code>[<span class="type">SerializeField</span>] <span class="kw">private</span> <span class="type">InputActionReference</span> moveAction;
+
+<span class="kw">private void</span> <span class="fn">OnEnable</span>() =&gt; moveAction.<span class="attr">action</span>.<span class="fn">Enable</span>();
+<span class="kw">private void</span> <span class="fn">OnDisable</span>() =&gt; moveAction.<span class="attr">action</span>.<span class="fn">Disable</span>();
+
+<span class="kw">private void</span> <span class="fn">Update</span>()
+{
+    <span class="type">Vector2</span> input = moveAction.<span class="attr">action</span>.<span class="fn">ReadValue</span>&lt;<span class="type">Vector2</span>&gt;();
+}</code></pre>
+  </div>
+  <p class="topic-text">
+    Bu yöntem PlayerInput'siz tek bir component'in input alması gerektiğinde temizdir. Önce action asset'i içindeki action'a "Reference" oluşturmalısın (asset inspector'ında, Generate ☐, Reference ☑).
+  </p>
+</section>
+
+<section class="topic-section" id="callback-states">
+  <div class="topic-header">
+    <span class="topic-number">22.8</span>
+    <h2 class="topic-title">🔔 Action Event'leri — started / performed / canceled</h2>
+  </div>
+  <p class="topic-text">Her action 3 event yayınlar:</p>
+  <ul class="check-list">
+    <li><strong>started</strong> — Action ilk tetiklenmeye başladığı an (örn. tuşa basıldı, ama henüz hold/tap belli değil).</li>
+    <li><strong>performed</strong> — Action başarıyla "performed" edildi. Button için tıklama anı, Value için her değer değişimi.</li>
+    <li><strong>canceled</strong> — Action sonlandı (tuş bırakıldı, stick merkeze döndü). Move için <em>canceled</em>'ta moveInput = Vector2.zero yapmak hayati.</li>
+  </ul>
+  <div class="cs-block">
+<pre><code>controls.<span class="attr">Gameplay</span>.<span class="attr">Fire</span>.<span class="attr">started</span>   += ctx =&gt; <span class="type">Debug</span>.<span class="fn">Log</span>(<span class="str">"Tetik basıldı"</span>);
+controls.<span class="attr">Gameplay</span>.<span class="attr">Fire</span>.<span class="attr">performed</span> += ctx =&gt; <span class="type">Debug</span>.<span class="fn">Log</span>(<span class="str">"Ateş!"</span>);
+controls.<span class="attr">Gameplay</span>.<span class="attr">Fire</span>.<span class="attr">canceled</span>  += ctx =&gt; <span class="type">Debug</span>.<span class="fn">Log</span>(<span class="str">"Tetik bırakıldı"</span>);</code></pre>
+  </div>
+</section>
+
+<section class="topic-section" id="interactions-processors">
+  <div class="topic-header">
+    <span class="topic-number">22.9</span>
+    <h2 class="topic-title">⚙ Interactions &amp; Processors — Davranış Ayarı</h2>
+  </div>
+  <h3 class="topic-subtitle">Interactions</h3>
+  <p class="topic-text">
+    Bir binding'in <em>nasıl</em> tetikleneceğini belirler. Action'a değil binding'e eklenir:
+  </p>
+  <ul class="check-list">
+    <li><strong>Tap</strong> — Hızlı basıp bırakma (varsayılan 0.5 sn altında).</li>
+    <li><strong>Hold</strong> — Belirli süre basılı tutma (örn. "Hold E to Pick Up" 0.5 sn).</li>
+    <li><strong>Multi Tap</strong> — Çift tıklama (Tap Count = 2). RPG'de "Sprint" için W+W gibi.</li>
+    <li><strong>Slow Tap</strong> — Yavaş basma.</li>
+    <li><strong>Press</strong> — Basıldığı an (default).</li>
+  </ul>
+  <h3 class="topic-subtitle">Processors</h3>
+  <p class="topic-text">Binding'den gelen ham değeri <em>işler</em>:</p>
+  <ul class="check-list">
+    <li><strong>Invert</strong> — Eksen tersine çevrilir (Y-axis flip seçenekleri için).</li>
+    <li><strong>Scale</strong> — Değer çarpılır (sensitivity, mouse look için).</li>
+    <li><strong>Normalize</strong> — Vector büyüklüğü 1'e sabitlenir.</li>
+    <li><strong>Stick Deadzone</strong> — Stick'in merkezindeki ölü bölge (gamepad drift'ini engeller).</li>
+    <li><strong>Clamp</strong> — Değer belli aralığa kısıtlanır.</li>
+  </ul>
+</section>
+
+<section class="topic-section" id="ui-input">
+  <div class="topic-header">
+    <span class="topic-number">22.10</span>
+    <h2 class="topic-title">🖱 UI Input Module</h2>
+  </div>
+  <p class="topic-text">
+    Yeni Input System UI ile birlikte çalışmak için EventSystem'i güncellemen gerek:
+  </p>
+  <ol class="step-list">
+    <li>Sahnedeki EventSystem GameObject'ini seç (Canvas oluşturduğunda otomatik gelir).</li>
+    <li>Inspector'da <em>Standalone Input Module</em> komponenti varsa "Replace with InputSystemUIInputModule" tıkla — sistem otomatik dönüştürür.</li>
+    <li>Yeni komponent <em>Actions Asset</em> alanına PlayerControls.asset'ini bağla.</li>
+    <li>UI Action Map'inden Navigate / Submit / Cancel / Point / Click / ScrollWheel action'larını uygun action'lara bağla.</li>
+  </ol>
+  <p class="topic-text">
+    Artık gamepad ile menülerde dolaşma, UI Button'lara A ile tıklama otomatik çalışır.
+  </p>
+</section>
+
+<section class="topic-section" id="rebinding">
+  <div class="topic-header">
+    <span class="topic-number">22.11</span>
+    <h2 class="topic-title">🔄 Rebinding — Kullanıcı Kontrolleri Değiştirsin</h2>
+  </div>
+  <p class="topic-text">
+    Modern oyunlarda Settings menüsünde "Jump tuşunu değiştir" özelliği standart. New Input System bunu native destekler:
+  </p>
+  <div class="cs-block">
+<pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+<span class="kw">using</span> <span class="type">UnityEngine.InputSystem</span>;
+<span class="kw">using</span> <span class="type">TMPro</span>;
+
+<span class="kw">public class</span> <span class="type">RebindButton</span> : <span class="type">MonoBehaviour</span>
+{
+    [<span class="type">SerializeField</span>] <span class="kw">private</span> <span class="type">InputActionReference</span> action;
+    [<span class="type">SerializeField</span>] <span class="kw">private</span> <span class="type">TMP_Text</span> displayText;
+    [<span class="type">SerializeField</span>] <span class="kw">private int</span> bindingIndex = <span class="num">0</span>;
+
+    <span class="kw">private</span> <span class="type">InputActionRebindingExtensions.RebindingOperation</span> rebinding;
+
+    <span class="kw">public void</span> <span class="fn">StartRebind</span>()
+    {
+        action.<span class="attr">action</span>.<span class="fn">Disable</span>();
+        displayText.<span class="attr">text</span> = <span class="str">"Yeni tuşa bas..."</span>;
+
+        rebinding = action.<span class="attr">action</span>.<span class="fn">PerformInteractiveRebinding</span>(bindingIndex)
+            .<span class="fn">WithControlsExcluding</span>(<span class="str">"Mouse"</span>)
+            .<span class="fn">OnMatchWaitForAnother</span>(<span class="num">0.1f</span>)
+            .<span class="fn">OnComplete</span>(op =&gt; {
+                op.<span class="fn">Dispose</span>();
+                action.<span class="attr">action</span>.<span class="fn">Enable</span>();
+                <span class="fn">UpdateDisplay</span>();
+            })
+            .<span class="fn">Start</span>();
+    }
+
+    <span class="kw">private void</span> <span class="fn">UpdateDisplay</span>()
+    {
+        displayText.<span class="attr">text</span> = action.<span class="attr">action</span>.<span class="fn">GetBindingDisplayString</span>(bindingIndex);
+    }
+
+    <span class="kw">private void</span> <span class="fn">Start</span>() =&gt; <span class="fn">UpdateDisplay</span>();
+}</code></pre>
+  </div>
+  <p class="topic-text">
+    Bu script bir UI Button'a bağlı; tıklandığında bir sonraki tuşu yakalayıp action'a binding olarak atar. <code>GetBindingDisplayString()</code> binding'in kullanıcı-okuyabilir adını verir ("Space", "Gamepad ButtonSouth (X)", vs.).
+  </p>
+  <h3 class="topic-subtitle">Kaydetme — PlayerPrefs</h3>
+  <p class="topic-text">
+    Rebinding'lerin kalıcı olması için:
+  </p>
+  <div class="cs-block">
+<pre><code><span class="com">// Kaydet</span>
+<span class="kw">string</span> rebinds = controls.asset.<span class="fn">SaveBindingOverridesAsJson</span>();
+<span class="type">PlayerPrefs</span>.<span class="fn">SetString</span>(<span class="str">"rebinds"</span>, rebinds);
+
+<span class="com">// Yükle (Awake'te)</span>
+<span class="kw">if</span> (<span class="type">PlayerPrefs</span>.<span class="fn">HasKey</span>(<span class="str">"rebinds"</span>))
+{
+    controls.asset.<span class="fn">LoadBindingOverridesFromJson</span>(<span class="type">PlayerPrefs</span>.<span class="fn">GetString</span>(<span class="str">"rebinds"</span>));
+}</code></pre>
+  </div>
+</section>
+
+<section class="topic-section" id="touch-input">
+  <div class="topic-header">
+    <span class="topic-number">22.12</span>
+    <h2 class="topic-title">📱 Dokunmatik (Touch) Input</h2>
+  </div>
+  <p class="topic-text">
+    Mobil için <strong>Enhanced Touch</strong> API var. Çoklu dokunma, basınç, swipe gesture'larını destekler.
+  </p>
+  <ol class="step-list">
+    <li>Sahneye <em>TouchSimulator</em> ekle (mobil cihaz olmadan editor'de mouse'u touch gibi simüle eder): <code>EnhancedTouchSupport.Enable();</code> Awake'te.</li>
+    <li>Action map'inde Touch Control Scheme oluştur, requirement: Touchscreen.</li>
+    <li>Move için iki touch binding: Touch 0 / Position (sol joystick), Touch 1 / Position (sağ joystick) — virtual joystick için.</li>
+  </ol>
+  <div class="cs-block">
+<pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+<span class="kw">using</span> <span class="type">UnityEngine.InputSystem</span>;
+<span class="kw">using</span> <span class="type">UnityEngine.InputSystem.EnhancedTouch</span>;
+
+<span class="kw">public class</span> <span class="type">TouchTracker</span> : <span class="type">MonoBehaviour</span>
+{
+    <span class="kw">private void</span> <span class="fn">OnEnable</span>() =&gt; <span class="type">EnhancedTouchSupport</span>.<span class="fn">Enable</span>();
+    <span class="kw">private void</span> <span class="fn">OnDisable</span>() =&gt; <span class="type">EnhancedTouchSupport</span>.<span class="fn">Disable</span>();
+
+    <span class="kw">private void</span> <span class="fn">Update</span>()
+    {
+        <span class="kw">foreach</span> (<span class="kw">var</span> touch <span class="kw">in</span> <span class="type">Touch</span>.<span class="attr">activeTouches</span>)
+        {
+            <span class="kw">if</span> (touch.<span class="attr">phase</span> == <span class="type">TouchPhase</span>.Began)
+                <span class="type">Debug</span>.<span class="fn">Log</span>(<span class="str">$"Yeni touch: {touch.screenPosition}"</span>);
+        }
+    }
+}</code></pre>
+  </div>
+</section>
+
+<section class="topic-section" id="multiplayer">
+  <div class="topic-header">
+    <span class="topic-number">22.13</span>
+    <h2 class="topic-title">👥 Local Multiplayer — Birden Fazla Oyuncu</h2>
+  </div>
+  <p class="topic-text">
+    Tek ekran iki oyuncu? <strong>PlayerInputManager</strong> bileşeniyle çok kolay:
+  </p>
+  <ol class="step-list">
+    <li>Empty GameObject "InputManager" + Add Component → PlayerInputManager.</li>
+    <li><em>Player Prefab</em> alanına PlayerInput component'li player prefab'ı sürükle.</li>
+    <li><em>Joining</em>: Join Players When Button Is Pressed (oyuncu butona basınca katılır).</li>
+    <li>Max Player Count: 2 (veya 4).</li>
+  </ol>
+  <p class="topic-text">
+    Oyun başladığında: oyuncu 1 klavyede WASD'a basar → otomatik player prefab spawn'lanır, klavye/mouse ona atanır. Oyuncu 2 gamepad'da A'ya basar → ikinci prefab spawn'lanır, gamepad ona atanır. Her birinin kendi PlayerInput'u olduğundan input'lar karışmaz.
+  </p>
+</section>
+
+<section class="topic-section" id="dualsense-haptics">
+  <div class="topic-header">
+    <span class="topic-number">22.14</span>
+    <h2 class="topic-title">🎮 Gamepad Rumble &amp; DualSense Özellikleri <span class="u-ver-badge u6">U6</span></h2>
+  </div>
+  <p class="topic-text">
+    New Input System gamepad titreşimini (rumble) destekler. DualSense (PS5) için adaptive trigger ve haptic feedback de kısıtlı destekle gelir.
+  </p>
+  <div class="cs-block">
+<pre><code><span class="kw">using</span> <span class="type">UnityEngine.InputSystem</span>;
+
+<span class="com">// Rumble başlat (low frequency, high frequency)</span>
+<span class="type">Gamepad</span>.<span class="attr">current</span>?.<span class="fn">SetMotorSpeeds</span>(<span class="num">0.5f</span>, <span class="num">0.8f</span>);
+
+<span class="com">// 0.3 saniye sonra durdur</span>
+<span class="fn">Invoke</span>(<span class="kw">nameof</span>(<span class="fn">StopRumble</span>), <span class="num">0.3f</span>);
+
+<span class="kw">private void</span> <span class="fn">StopRumble</span>()
+{
+    <span class="type">Gamepad</span>.<span class="attr">current</span>?.<span class="fn">SetMotorSpeeds</span>(<span class="num">0f</span>, <span class="num">0f</span>);
+}</code></pre>
+  </div>
+</section>
+
+<div class="mini-checkpoint">
+  <strong>🎬 Bölüm Kontrol Noktası:</strong> Input Action Asset = projedeki tüm input sözleşmesi. Action Maps bağlam grupları (Gameplay, UI, Menu). Action Type: Button / Value / Pass Through. Binding cihaz eşleştirir. Control Scheme cihaz kombinasyonu (K&amp;M, Gamepad). 3 kullanım: PlayerInput (kolay), Generated C# (profesyonel), InputActionReference (özel). Rebinding native destekli, PlayerPrefs ile kalıcı.
+</div>
+
+<div class="practice-section">
+  <h2>🎯 Pratik Projeler</h2>
+
+  <div class="project-card">
+    <h3>Proje 1: Cross-Platform Karakter Kontrolü</h3>
+    <p><strong>Hedef:</strong> Aynı kodla klavye (WASD + Space) ve gamepad (sol stick + A) ile çalışan 3D karakter hareketi.</p>
+    <ol class="step-list">
+      <li>Input System paketini kur.</li>
+      <li>PlayerControls.inputactions oluştur. Gameplay map'inde:
+        <ul>
+          <li>Move (Value, Vector2) — 2D Vector Composite (WASD) + Gamepad Left Stick.</li>
+          <li>Jump (Button) — Space + Gamepad Button South.</li>
+          <li>Look (Value, Vector2) — Mouse Delta + Gamepad Right Stick.</li>
+        </ul>
+      </li>
+      <li>Player GameObject (Capsule + Rigidbody + PlayerInput).</li>
+      <li>PlayerInput'ta Actions: PlayerControls, Behavior: Invoke C# Events.</li>
+      <li>PlayerController script yaz (yukarıdaki Yöntem 2 örneği).</li>
+      <li>Klavye ve gamepad ile test et — aynı karakter, iki cihaz.</li>
+    </ol>
+  </div>
+
+  <div class="project-card">
+    <h3>Proje 2: Rebinding Menüsü</h3>
+    <p><strong>Hedef:</strong> Settings panelinde 3 action için (Move Up, Jump, Fire) "Change Key" butonları, kullanıcı tıklayıp yeni tuşa basınca binding güncellensin.</p>
+    <ol class="step-list">
+      <li>Canvas → Panel → Settings layout. Her action için Label + Button + Display Text.</li>
+      <li>Yukarıdaki RebindButton script'ini her butona ekle, action ve binding index ata.</li>
+      <li>"Save" butonu: SaveBindingOverridesAsJson + PlayerPrefs.</li>
+      <li>"Reset to Defaults" butonu: <code>action.action.RemoveAllBindingOverrides();</code></li>
+      <li>Awake'te yüklenen PlayerPrefs'i geri uygula.</li>
+    </ol>
+  </div>
+
+  <div class="project-card">
+    <h3>Proje 3: 2 Player Couch Co-op</h3>
+    <p><strong>Hedef:</strong> Tek ekranda iki oyuncu, biri klavye biri gamepad, ayrı karakterleri kontrol etsin.</p>
+    <ol class="step-list">
+      <li>Action asset'inde Control Scheme'leri tanımla: Keyboard&amp;Mouse, Gamepad.</li>
+      <li>Player Prefab: PlayerInput (Actions: PlayerControls, Default Scheme: yok), PlayerController script.</li>
+      <li>Sahnede InputManager GameObject + PlayerInputManager. Player Prefab'ı ata. Joining: Join Players When Button Is Pressed.</li>
+      <li>Karakter spawn pozisyonlarını PlayerInputManager.OnPlayerJoined event'inden ayarla.</li>
+      <li>Oyuncu 1 klavye Space'e bas → katılır. Oyuncu 2 gamepad A'ya bas → katılır.</li>
+      <li>Split-screen kamera bonus: her PlayerInput'un kendi Camera'sı, viewport ayarları (0, 0, 0.5, 1) ve (0.5, 0, 0.5, 1).</li>
+    </ol>
+  </div>
+</div>
+
+<section class="quiz" id="bolum-quiz">
+  <header class="quiz-header">
+    <div class="quiz-header-icon"><i class="ti ti-help"></i></div>
+    <div class="quiz-header-text">
+      <h2>Bölüm Sonu Sınavı</h2>
+      <span>5 soru</span>
+    </div>
+  </header>
+
+  <article class="quiz-question" id="q22-1">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">01</span>
+      <h3 class="quiz-prompt-text">Eski Input.GetKey ile yeni sistem arasındaki TEMEL fark?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Yeni sistem daha hızlıdır.</button>
+      <button class="quiz-option" data-correct="true">Yeni sistem action tabanlıdır — kod cihazdan bağımsız, binding katmanında cihaz eşleştirilir.</button>
+      <button class="quiz-option" data-correct="false">Yeni sistem sadece editor'de çalışır.</button>
+      <button class="quiz-option" data-correct="false">Yeni sistem klavyeyi desteklemez.</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q22-2">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">02</span>
+      <h3 class="quiz-prompt-text">Bir Move action'ında "tuş bırakıldı, hareketi durdur" mantığını yazmak için hangi event?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">started</button>
+      <button class="quiz-option" data-correct="false">performed</button>
+      <button class="quiz-option" data-correct="true">canceled</button>
+      <button class="quiz-option" data-correct="false">started + performed</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q22-3">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">03</span>
+      <h3 class="quiz-prompt-text">WASD ile Vector2 Move action'ı oluşturmak için ne kullanılır?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">4 ayrı Button action.</button>
+      <button class="quiz-option" data-correct="true">2D Vector Composite binding (Up, Down, Left, Right).</button>
+      <button class="quiz-option" data-correct="false">Tek Axis binding.</button>
+      <button class="quiz-option" data-correct="false">Mouse Delta binding.</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q22-4">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">04</span>
+      <h3 class="quiz-prompt-text">Couch co-op için (2 oyuncu, biri klavye biri gamepad) hangi component kullanılır?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">PlayerInput (her oyuncuda tek başına yeterli)</button>
+      <button class="quiz-option" data-correct="true">PlayerInputManager (otomatik join ve PlayerInput spawn)</button>
+      <button class="quiz-option" data-correct="false">EventSystem</button>
+      <button class="quiz-option" data-correct="false">StandaloneInputModule</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q22-5">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">05</span>
+      <h3 class="quiz-prompt-text">Kullanıcının yaptığı rebinding'ler sahnede kalıcı olsun istiyorsan ne yaparsın?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Hiçbir şey, otomatik kaydedilir.</button>
+      <button class="quiz-option" data-correct="true">SaveBindingOverridesAsJson() → PlayerPrefs, Awake'te yükle.</button>
+      <button class="quiz-option" data-correct="false">Action asset'i editor'de güncelle.</button>
+      <button class="quiz-option" data-correct="false">Bilgisayarın registry'sine yaz.</button>
+    </div>
+  </article>
+</section>
+
+<section class="complete-section">
+      <h3 class="complete-title">🎉 Bölüm 22 Tamamlandı!</h3>
+      <p class="complete-msg">Modern, cihaz-bağımsız bir input sistemi artık emrindeyse. Klavye, mouse, gamepad, dokunmatik — hepsi aynı action sözleşmesi üzerinden. Rebinding, multiplayer, UI navigation — hepsi native. Bir sonraki bölüm <strong>Save &amp; Menü</strong>: oyuncunun ilerleyişini diske yazma, ana menü ve duraklama menüsü, ayarlar.</p>
+      <button class="complete-btn" data-section="s22">
+        <i class="ti ti-circle-check"></i>
+        <span>Bu Bölümü Tamamladım</span>
+      </button>
+      <p class="complete-note">İlerlemen otomatik tarayıcına kaydedilir.</p>
+    </section>
+    <!-- Sayfa Gezinme -->
+    <nav class="page-nav" aria-label="Bölüm gezinme">
+      <a href="21-urp-hdrp.html" class="page-nav-link prev">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-left"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Önceki Bölüm</div>
+          <div class="page-nav-title">21. URP & HDRP</div>
+        </div>
+      </a>
+      <a href="23-save-menu.html" class="page-nav-link next">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-right"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Sonraki Bölüm</div>
+          <div class="page-nav-title">23. Kayıt & Menü</div>
+        </div>
+      </a>
+    </nav>
+
+  </div>
+</main>
+<script src="../js/progress.js?v=11"></script>
+<script src="../js/quiz.js?v=11"></script>
+<script src="../js/toc.js?v=11"></script>
+<script src="../js/main.js?v=11"></script>
+</body>
+</html>

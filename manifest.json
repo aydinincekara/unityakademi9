@@ -1,0 +1,39 @@
+{
+  "name": "UnityAkademi — Türkçe Unity Eğitimi",
+  "short_name": "UnityAkademi",
+  "description": "Sıfırdan Unity 2022.3 LTS + Unity 6 öğreten ücretsiz Türkçe eğitim platformu. 27 bölüm, 81 proje, 135 quiz.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#08080d",
+  "theme_color": "#fa7d19",
+  "lang": "tr",
+  "dir": "ltr",
+  "categories": ["education", "productivity"],
+  "icons": [
+    {
+      "src": "og-image.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Bölüm 01 — Kurulum",
+      "url": "./pages/01-kurulum.html",
+      "description": "İlk bölümden başla"
+    },
+    {
+      "name": "Sözlük",
+      "url": "./pages/sozluk.html",
+      "description": "Unity terim sözlüğü"
+    },
+    {
+      "name": "Arama",
+      "url": "./pages/arama.html",
+      "description": "Site içi arama"
+    }
+  ]
+}

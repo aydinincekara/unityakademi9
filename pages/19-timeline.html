@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timeline — UnityAkademi</title>
+  <meta name="description" content="Sahne koreografisi: PlayableDirector, Timeline Asset, Track türleri, Signal sistemi, Cinemachine Track ile cutscene yapımı — Bölüm 19.">
+  <meta name="theme-color" content="#fa7d19">
+  <link rel="manifest" href="../manifest.json">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Timeline">
+  <meta property="og:description" content="Sahne koreografisi: PlayableDirector, Timeline Asset, Track türleri, Signal sistemi, Cinemachine Track ile cutscene yapımı — Bölüm 19.">
+  <meta property="og:image" content="../og-image.svg">
+  <meta property="og:site_name" content="UnityAkademi">
+  <meta property="og:locale" content="tr_TR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Timeline">
+  <meta name="twitter:description" content="Sahne koreografisi: PlayableDirector, Timeline Asset, Track türleri, Signal sistemi, Cinemachine Track ile cutscene yapımı — Bölüm 19.">
+  <meta name="twitter:image" content="../og-image.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="../css/variables.css?v=11">
+  <link rel="stylesheet" href="../css/reset.css?v=11">
+  <link rel="stylesheet" href="../css/layout.css?v=11">
+  <link rel="stylesheet" href="../css/components.css?v=11">
+  <link rel="stylesheet" href="../css/content.css?v=11">
+  <link rel="stylesheet" href="../css/visuals.css?v=11">
+  <link rel="stylesheet" href="../css/extras.css?v=11">
+  <link rel="stylesheet" href="../css/responsive.css?v=11">
+</head>
+<body>
+<button class="nav-hamburger" id="navHamburger" aria-label="Menüyü aç">
+  <i class="ti ti-menu-2"></i>
+</button>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a href="../index.html" class="sidebar-brand">
+      <div class="sidebar-brand-icon"><i class="ti ti-home-2"></i></div>
+      <div class="sidebar-brand-text">
+        <span class="sidebar-brand-name">Ana Sayfa</span>
+        <span class="sidebar-brand-sub">UnityAkademi</span>
+      </div>
+    </a>
+    <button class="mobile-toggle" aria-label="Menü"><i class="ti ti-x"></i></button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-group">
+      <div class="nav-group-title">Temeller</div>
+      <a href="01-kurulum.html" class="nav-link" data-section="s1"><i class="ti ti-download"></i><span class="nav-link-text">Kurulum & İlk Bakış</span><span class="nav-link-num">01</span></a>
+      <a href="02-arayuz.html" class="nav-link" data-section="s2"><i class="ti ti-layout-board"></i><span class="nav-link-text">Editor Arayüzü</span><span class="nav-link-num">02</span></a>
+      <a href="03-gameobject-component.html" class="nav-link" data-section="s3"><i class="ti ti-cube"></i><span class="nav-link-text">GameObject & Component</span><span class="nav-link-num">03</span></a>
+      <a href="04-csharp-temelleri.html" class="nav-link" data-section="s4"><i class="ti ti-code"></i><span class="nav-link-text">C# Temelleri</span><span class="nav-link-num">04</span></a>
+      <a href="05-monobehaviour-lifecycle.html" class="nav-link" data-section="s5"><i class="ti ti-refresh"></i><span class="nav-link-text">MonoBehaviour Lifecycle</span><span class="nav-link-num">05</span></a>
+      <a href="06-transform-vector.html" class="nav-link" data-section="s6"><i class="ti ti-arrows-move"></i><span class="nav-link-text">Transform & Vector3</span><span class="nav-link-num">06</span></a>
+      <a href="07-input.html" class="nav-link" data-section="s7"><i class="ti ti-keyboard"></i><span class="nav-link-text">Input Sistemi</span><span class="nav-link-num">07</span></a>
+      <a href="08-physics.html" class="nav-link" data-section="s8"><i class="ti ti-atom"></i><span class="nav-link-text">Physics</span><span class="nav-link-num">08</span></a>
+      <a href="09-ui.html" class="nav-link" data-section="s9"><i class="ti ti-layout-grid"></i><span class="nav-link-text">UI Sistemi</span><span class="nav-link-num">09</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Görsel & Asset</div>
+      <a href="10-material-shader.html" class="nav-link" data-section="s10"><i class="ti ti-palette"></i><span class="nav-link-text">Material & Shader</span><span class="nav-link-num">10</span></a>
+      <a href="11-asset-import.html" class="nav-link" data-section="s11"><i class="ti ti-folder"></i><span class="nav-link-text">Asset Import</span><span class="nav-link-num">11</span></a>
+      <a href="12-animation.html" class="nav-link" data-section="s12"><i class="ti ti-bounce-right"></i><span class="nav-link-text">Animation</span><span class="nav-link-num">12</span></a>
+      <a href="13-particle-vfx.html" class="nav-link" data-section="s13"><i class="ti ti-sparkles"></i><span class="nav-link-text">Particle & VFX Graph</span><span class="nav-link-num">13</span></a>
+      <a href="14-lighting.html" class="nav-link" data-section="s14"><i class="ti ti-bulb"></i><span class="nav-link-text">Lighting</span><span class="nav-link-num">14</span></a>
+      <a href="15-audio.html" class="nav-link" data-section="s15"><i class="ti ti-volume"></i><span class="nav-link-text">Audio</span><span class="nav-link-num">15</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Sistemler</div>
+      <a href="16-probuilder.html" class="nav-link" data-section="s16"><i class="ti ti-3d-cube-sphere"></i><span class="nav-link-text">ProBuilder</span><span class="nav-link-num">16</span></a>
+      <a href="17-terrain.html" class="nav-link" data-section="s17"><i class="ti ti-mountain"></i><span class="nav-link-text">Terrain</span><span class="nav-link-num">17</span></a>
+      <a href="18-cinemachine.html" class="nav-link" data-section="s18"><i class="ti ti-camera"></i><span class="nav-link-text">Cinemachine</span><span class="nav-link-num">18</span></a>
+      <a href="19-timeline.html" class="nav-link active" data-section="s19"><i class="ti ti-timeline"></i><span class="nav-link-text">Timeline</span><span class="nav-link-num">19</span></a>
+      <a href="20-navmesh.html" class="nav-link" data-section="s20"><i class="ti ti-route"></i><span class="nav-link-text">NavMesh & AI</span><span class="nav-link-num">20</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">İleri Seviye</div>
+      <a href="21-urp-hdrp.html" class="nav-link" data-section="s21"><i class="ti ti-bolt"></i><span class="nav-link-text">URP, HDRP & Unity 6</span><span class="nav-link-num">21</span></a>
+      <a href="22-new-input.html" class="nav-link" data-section="s22"><i class="ti ti-device-gamepad-2"></i><span class="nav-link-text">New Input System</span><span class="nav-link-num">22</span></a>
+      <a href="23-save-menu.html" class="nav-link" data-section="s23"><i class="ti ti-device-floppy"></i><span class="nav-link-text">Save & Menü</span><span class="nav-link-num">23</span></a>
+      <a href="24-build.html" class="nav-link" data-section="s24"><i class="ti ti-package-export"></i><span class="nav-link-text">Build & Yayınlama</span><span class="nav-link-num">24</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Profesyonel</div>
+      <a href="25-csharp-ileri.html" class="nav-link" data-section="s25"><i class="ti ti-brackets-contain"></i><span class="nav-link-text">C# İleri</span><span class="nav-link-num">25</span></a>
+      <a href="26-performance.html" class="nav-link" data-section="s26"><i class="ti ti-gauge"></i><span class="nav-link-text">Performance</span><span class="nav-link-num">26</span></a>
+      <a href="27-yol-haritasi.html" class="nav-link" data-section="s27"><i class="ti ti-map-2"></i><span class="nav-link-text">Yol Haritası</span><span class="nav-link-num">27</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Pratik</div>
+      <a href="projects.html" class="nav-link nav-link-extra" data-section="x-projects"><i class="ti ti-rocket"></i><span class="nav-link-text">Projeler</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Ek Kaynaklar</div>
+      <a href="sozluk.html" class="nav-link nav-link-extra" data-section="x-sozluk"><i class="ti ti-book-2"></i><span class="nav-link-text">Sözlük</span></a>
+      <a href="cheatsheet.html" class="nav-link nav-link-extra" data-section="x-cheatsheet"><i class="ti ti-list-details"></i><span class="nav-link-text">Cheat Sheet</span></a>
+      <a href="sss.html" class="nav-link nav-link-extra" data-section="x-sss"><i class="ti ti-help-circle"></i><span class="nav-link-text">SSS</span></a>
+      <a href="arama.html" class="nav-link nav-link-extra" data-section="x-arama"><i class="ti ti-search"></i><span class="nav-link-text">Arama</span></a>
+      <a href="sertifika.html" class="nav-link nav-link-extra" data-section="x-sertifika"><i class="ti ti-certificate"></i><span class="nav-link-text">Sertifika</span></a>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="kaynaklar.html" class="sidebar-btn"><i class="ti ti-books"></i><span>Kaynaklar</span></a>
+    <a href="iletisim.html" class="sidebar-btn"><i class="ti ti-mail"></i><span>İletişim</span></a>
+  </div>
+</aside>
+<main class="main">
+  <div class="main-content">
+<nav class="breadcrumb" aria-label="Sayfa konumu">
+      <a href="../index.html"><i class="ti ti-home"></i><span>Ana Sayfa</span></a>
+      <i class="ti ti-chevron-right"></i><span><i class="ti ti-school" style="font-size: 13px; opacity: 0.7; margin-right: 4px;"></i>Sistemler</span>
+      <i class="ti ti-chevron-right"></i><span style="color: var(--primary-light);">Timeline</span>
+    </nav>
+
+<header class="page-header">
+  <span class="chapter-pill">Bölüm 19</span>
+  <h1 class="page-title">Timeline — Sahne Koreografisi &amp; Sinematikler</h1>
+  <p class="page-subtitle">PlayableDirector, Timeline Asset, Track türleri, Clip'ler, Signal sistemi, Cinemachine Track ile ara sahne yapımı — kod yazmadan zamana göre olay zinciri oluştur.</p>
+  <div class="page-meta">
+    <span>⏱ Okuma süresi: ~28 dk</span>
+    <span>🎬 7 örnek timeline</span>
+    <span>🎯 Zorluk: Orta</span>
+  </div>
+</header>
+
+<section class="topic-section" id="timeline-nedir">
+  <div class="topic-header">
+    <span class="topic-number">19.1</span>
+    <h2 class="topic-title">⏱ Timeline Nedir?</h2>
+  </div>
+  <p class="topic-text">
+    Bir oyunda "ara sahne" (cutscene), karakter animasyonu, kamera hareketi, ses, ışık değişimi, partikül efekti ve UI'nin <strong>birbiriyle senkronize</strong> akmasını gerektirir. Bunu kodla yazmak bir kabustur: <code>StartCoroutine(WaitFor(1.5f, PlayAnim))</code>, <code>Invoke("ShakeCam", 2.3f)</code>, <code>audioSource.PlayDelayed(0.7f)</code>... Bir hafta sonra ne yaptığını anlamazsın.
+  </p>
+  <p class="topic-text">
+    Unity'nin <strong>Timeline</strong>'ı bu işi <em>video düzenleme programı</em> mantığıyla yapar. Yatay zaman çizelgesi üzerine track'ler (kanallar) eklersin: bir kanal karakter animasyonu, bir kanal kamera, bir kanal ses, bir kanal ışık. Her track üzerinde <strong>clip</strong>'ler vardır — sürükle bırak, başlangıç-bitiş zamanlarını uzatıp kısalt. Sonuç: <strong>kod yazmadan</strong> sinematik bir sahne.
+  </p>
+  <div class="real-world-box">
+    <h3>🎮 Gerçek Dünyadan: The Lion King (Unity Made With Unity)</h3>
+    <p>Unity Adam Demo'su ve Cinematic Studios projeleri, <strong>tamamen Timeline</strong> üzerine kuruludur. Sinema kalitesinde 3 dakikalık kısa filmler — birden fazla kamera açısı, animasyonlu karakterler, audio, dialog senkronu — bir tek Timeline asset'inde sıralanır. <em>Genshin Impact</em>'in ara sahnelerinde Timeline kullanıldığı, miHoYo'nun teknik konuşmalarında belirtilmiştir. <em>Hearthstone</em>'un kart oyunculuk efektleri ise hibrit: kısa Timeline parçaları kod tarafından tetiklenir.</p>
+  </div>
+</section>
+
+<section class="topic-section" id="timeline-vs-animator">
+  <div class="topic-header">
+    <span class="topic-number">19.2</span>
+    <h2 class="topic-title">🆚 Timeline vs Animator — Hangisi Ne Zaman?</h2>
+  </div>
+  <p class="topic-text">
+    Bölüm 12'de Animator'u öğrendin. Timeline ile Animator arasındaki çizgi:
+  </p>
+  <div class="u-compare">
+    <div class="u-compare-side lts">
+      <h4>🎮 Animator (State Machine)</h4>
+      <ul class="check-list">
+        <li><strong>Sürekli</strong>, gameplay sırasında</li>
+        <li>Karakterin Idle/Run/Jump <em>state</em>'leri</li>
+        <li>Oyuncu girdisine tepki verir</li>
+        <li>Loop'lu animasyonlar</li>
+        <li>"<em>Karakter ne yapıyor şu an?</em>"</li>
+      </ul>
+    </div>
+    <div class="u-compare-side u6">
+      <h4>🎬 Timeline (Sequence)</h4>
+      <ul class="check-list">
+        <li><strong>Belirli süreli</strong>, scripted olay</li>
+        <li>Ara sahne, boss intro, level intro</li>
+        <li>Zamana göre çalar</li>
+        <li>Tek seferlik koreografi</li>
+        <li>"<em>Sahne nasıl gelişiyor?</em>"</li>
+      </ul>
+    </div>
+  </div>
+  <p class="topic-text">
+    Çoğu zaman <strong>ikisi birlikte</strong> kullanılır: Timeline ara sahneyi yönetir, Animator Track ile karakterin spesifik animasyon clip'lerini timeline üzerinde yerleştirir.
+  </p>
+</section>
+
+<section class="topic-section" id="timeline-kurulumu">
+  <div class="topic-header">
+    <span class="topic-number">19.3</span>
+    <h2 class="topic-title">📐 İlk Timeline'ı Oluşturma</h2>
+  </div>
+  <p class="topic-text">
+    Timeline ile çalışmak için iki şeye ihtiyacın var:
+  </p>
+  <ol class="step-list">
+    <li>Sahnede bir GameObject (örn. <code>CutsceneDirector</code> adında empty).</li>
+    <li>Üzerine <strong>PlayableDirector</strong> bileşeni (Add Component'ten ekle).</li>
+    <li><strong>Window → Sequencing → Timeline</strong> ile Timeline pencereyi aç.</li>
+    <li>CutsceneDirector seçili iken Timeline penceresindeki <strong>Create</strong>'e bas. Bir dialog: nereye kaydedeyim?</li>
+    <li>Bir konum seç (örn. <code>Assets/Timelines/Intro.playable</code>). Bu, sahneden bağımsız bir <strong>asset</strong>'tir.</li>
+    <li>PlayableDirector'ın <strong>Playable</strong> alanına otomatik bağlanır.</li>
+  </ol>
+  <p class="topic-text">
+    Artık Timeline penceresinde boş bir zaman çizelgesi var. Sol tarafta "+" düğmesi ile <strong>Track</strong> ekleyebilirsin.
+  </p>
+  <div class="u-inspector">
+    <div class="u-inspector-header">PlayableDirector</div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Playable</span><span class="u-inspector-value">Intro.playable</span></div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Play On Awake</span><span class="u-inspector-value">☑ True</span></div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Wrap Mode</span><span class="u-inspector-value">Hold</span></div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Initial Time</span><span class="u-inspector-value">0</span></div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Update Method</span><span class="u-inspector-value">Game Time</span></div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Bindings</span><span class="u-inspector-value">Track → GameObject eşleşmeleri</span></div>
+  </div>
+  <p class="topic-text">
+    <strong>Wrap Mode</strong> önemlidir:
+  </p>
+  <ul class="check-list">
+    <li><em>Hold</em> — Timeline bitince son frame'de kalır.</li>
+    <li><em>Loop</em> — Tekrar başa döner ve sonsuz döner.</li>
+    <li><em>None</em> — Bitince hiçbir şey yapmaz; kontrol kodun olur.</li>
+  </ul>
+</section>
+
+<section class="topic-section" id="track-turleri">
+  <div class="topic-header">
+    <span class="topic-number">19.4</span>
+    <h2 class="topic-title">🎚 Track Türleri — Zaman Çizelgesinin Kanalları</h2>
+  </div>
+  <p class="topic-text">Timeline'ın güçlü yanı, çok çeşitli track türünün aynı zaman çizelgesinde uyum içinde çalışmasıdır:</p>
+
+  <h3 class="topic-subtitle">1. Activation Track</h3>
+  <p class="topic-text">
+    Bir GameObject'i <strong>belirli zaman aralığında aktif</strong> tutar. Clip'in başında SetActive(true), sonunda SetActive(false) çağrılır.
+  </p>
+  <p class="topic-text">
+    Örnek kullanım: 3. saniyede beliren bir prop, 8. saniyede yok olan bir UI paneli.
+  </p>
+
+  <h3 class="topic-subtitle">2. Animation Track</h3>
+  <p class="topic-text">
+    Bir <strong>Animator'a sahip GameObject</strong>'i bağlarsın ve üzerine animasyon clip'leri sürüklersin. Karakter Idle'dan yürüyüşe, oradan diyalog jestine — hepsi zaman çizelgesinde.
+  </p>
+  <ul class="check-list">
+    <li>Clip'leri birbirinin <strong>üzerine bindirirsen</strong> (overlap) otomatik blend olur.</li>
+    <li>Sağ tık → <em>Edit in Animation Mode</em> ile bir clip'i scene view'de doğrudan düzenleyebilirsin (karakteri elle pozla, key oluşur).</li>
+    <li>Track sağındaki <em>Avatar Mask</em> ile sadece üst gövde / alt gövde animasyonu çalabilir.</li>
+  </ul>
+
+  <h3 class="topic-subtitle">3. Audio Track</h3>
+  <p class="topic-text">
+    AudioSource bağlarsın, üzerine AudioClip sürüklersin. Clip'lerin başlangıç-bitiş kenarlarında otomatik <strong>fade in/out</strong> handle'ları çıkar.
+  </p>
+
+  <h3 class="topic-subtitle">4. Cinemachine Track <span class="u-ver-badge u6">U6</span></h3>
+  <p class="topic-text">
+    Bir CinemachineBrain'i bağlarsın, üzerine clip olarak vcam'leri sürüklersin. Her clip bir vcam'i Live yapar. Clip'ler arasındaki overlap'ler vcam <strong>blend</strong>'ini kontrol eder.
+  </p>
+  <p class="topic-text">
+    Sahnede 4 farklı açıdan 4 vcam varsa, Timeline üzerinde <em>sıralı bir film montajı</em> yapabilirsin: 0-3 sn vcam_A, 3-5 sn blend, 5-8 sn vcam_B, 8-10 sn blend, 10-15 sn vcam_C.
+  </p>
+
+  <h3 class="topic-subtitle">5. Control Track</h3>
+  <p class="topic-text">
+    İç içe <strong>başka Timeline</strong>'lar veya Prefab'ler çalıştırır. Karmaşık bir intro'yu küçük modüllere bölüp ana Timeline'da yan yana koyabilirsin.
+  </p>
+
+  <h3 class="topic-subtitle">6. Signal Track</h3>
+  <p class="topic-text">
+    Zaman çizelgesinin belirli noktalarında <strong>event yayını</strong>. Bir Signal Asset oluşturursun (sağ tık → Create → Signal), Timeline'da o asset'i kullanan Marker'ı yerleştirirsin. Sahnedeki bir <strong>SignalReceiver</strong> bileşeni bu Signal'i yakaladığında UnityEvent çağırır.
+  </p>
+  <p class="topic-text">
+    Örnek: 5. saniyede "DoorOpen" signal'i. Kapı GameObject'inin SignalReceiver'ı bu signal'i dinler, OnDoorOpen() metodunu çağırır. Kapı açılır.
+  </p>
+
+  <h3 class="topic-subtitle">7. Playable Track</h3>
+  <p class="topic-text">
+    En esnek olanı. <strong>Custom Playable</strong> yazıp kendi mantığını ekleyebilirsin (örn. ışık rengini zamana göre interpolate eden bir clip). İleri seviyedir.
+  </p>
+
+  <h3 class="topic-subtitle">8. Marker Track</h3>
+  <p class="topic-text">
+    Track'ler için <em>etiket</em> ve <em>nokta</em> koyduğun yer. Notalama amaçlı (bu noktada sahne biter, bu noktada kamera değişir) ya da Signal'ler için ana host.
+  </p>
+</section>
+
+<section class="topic-section" id="binding">
+  <div class="topic-header">
+    <span class="topic-number">19.5</span>
+    <h2 class="topic-title">🔗 Track Binding — Zaman Çizelgesi ile Sahneyi Bağlamak</h2>
+  </div>
+  <p class="topic-text">
+    Timeline asset'i <strong>sahneden bağımsızdır</strong> — kendi içinde "Cube" diye bir referans tutmaz, çünkü farklı sahnelerde de kullanılabilir. Onun yerine her track'in solunda "<em>None (Animator)</em>" gibi boş bir slot bulunur. Bu slot'a sahnedeki GameObject'i sürüklediğinde <strong>binding</strong> oluşur.
+  </p>
+  <p class="topic-text">
+    Bu binding'ler aslında PlayableDirector bileşeninde tutulur — yani aynı Timeline asset'ini iki farklı sahnede iki farklı karaktere bağlayabilirsin.
+  </p>
+  <div class="mini-checkpoint">
+    <strong>💡 Kontrol Noktası:</strong> Eğer bir Timeline'ı prefab'lediğin bir karaktere bağlamak istersen, runtime'da <code>director.SetGenericBinding(track, gameObject)</code> ile kodla bağlama yapabilirsin. Boss intro sahnesinde her boss farklı, ama Timeline aynı — kodla bind ederek tek timeline'la 10 boss intro'su yaparsın.
+  </div>
+</section>
+
+<section class="topic-section" id="ornek-cutscene">
+  <div class="topic-header">
+    <span class="topic-number">19.6</span>
+    <h2 class="topic-title">🎬 Adım Adım: 10 Saniyelik Level Intro Sahnesi</h2>
+  </div>
+  <p class="topic-text">Karakterin sahneye düştüğü, kameranın etrafında dönüp ona zoom yaptığı, müziğin yükseldiği klasik bir intro yapacağız.</p>
+
+  <h3 class="topic-subtitle">Sahne Hazırlığı</h3>
+  <ol class="step-list">
+    <li>Karakter (Capsule + Animator + RunForward animasyonu).</li>
+    <li>3 vcam: <em>SkyCam</em> (yüksekten), <em>OrbitCam</em> (etrafında dönen), <em>CloseCam</em> (yakın çekim yüz).</li>
+    <li>Bir AudioSource (Main Camera üzerinde) ile <em>EpicMusic.wav</em>.</li>
+    <li>Bir Directional Light (intro sırasında parıldayacak).</li>
+    <li>Empty GameObject "IntroDirector" + PlayableDirector.</li>
+  </ol>
+
+  <h3 class="topic-subtitle">Timeline Yapısı</h3>
+  <ul class="check-list">
+    <li><strong>Cinemachine Track</strong> (Brain'e bağlı):
+      <ul>
+        <li>0-3 sn: SkyCam clip</li>
+        <li>3-4 sn: blend (üst üste binme)</li>
+        <li>3-7 sn: OrbitCam clip</li>
+        <li>7-8 sn: blend</li>
+        <li>7-10 sn: CloseCam clip</li>
+      </ul>
+    </li>
+    <li><strong>Animation Track</strong> (Karakter Animator'ına bağlı):
+      <ul>
+        <li>0-1 sn: Falling clip</li>
+        <li>1-3 sn: Land clip</li>
+        <li>3-10 sn: Idle clip</li>
+      </ul>
+    </li>
+    <li><strong>Audio Track</strong> (Main Camera AudioSource'una bağlı):
+      <ul>
+        <li>0-10 sn: EpicMusic.wav (0.5 sn fade in)</li>
+      </ul>
+    </li>
+    <li><strong>Activation Track</strong> (Particle FX Glow):
+      <ul>
+        <li>1-2 sn: aktif (karakter yere düştüğünde toz patlamak)</li>
+      </ul>
+    </li>
+    <li><strong>Signal Track</strong>:
+      <ul>
+        <li>10. saniye: CutsceneEnd signal (gameplay başlatır)</li>
+      </ul>
+    </li>
+  </ul>
+  <p class="topic-text">
+    Sahneyi Play'e bastığında karakter düşer, sky'dan etrafa dönen kameralar onu sergiler, yakın çekimle son bulur, signal ile gameplay devralır. <strong>Tek satır kod yazmadın.</strong>
+  </p>
+</section>
+
+<section class="topic-section" id="signal-receiver">
+  <div class="topic-header">
+    <span class="topic-number">19.7</span>
+    <h2 class="topic-title">📡 Signal Receiver — Timeline'ı Kodla Konuşturma</h2>
+  </div>
+  <p class="topic-text">
+    Signal Track ile Timeline'dan kodu tetikleyebilirsin. Adımlar:
+  </p>
+  <ol class="step-list">
+    <li><strong>Project window'da sağ tık → Create → Signal</strong>. Adı: <em>CutsceneEnd</em>. Bu sadece bir kimliktir.</li>
+    <li>Sahnedeki bir GameObject'e (örn. <code>GameManager</code>) <strong>SignalReceiver</strong> bileşeni ekle.</li>
+    <li>Inspector'da <em>+ Add Reaction</em>'a bas, Signal Asset olarak <em>CutsceneEnd</em> seç, UnityEvent kısmına <code>GameManager.StartGameplay</code> metodunu ata.</li>
+    <li>Timeline penceresinde Signal Track'i yerleştirmek istediğin zamanı seç, sağ tık → <em>Add Signal Emitter from Signal Asset</em> → CutsceneEnd seç.</li>
+  </ol>
+  <p class="topic-text">
+    Bu mimari, Timeline'ı <strong>oyun mantığından izole</strong> tutar. Tasarımcı timeline'da signal'leri istediği gibi koyar, programcı SignalReceiver'da hangi metodun çağrılacağına karar verir — temiz iş bölümü.
+  </p>
+  <div class="cs-block">
+<pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+
+<span class="kw">public class</span> <span class="type">GameManager</span> : <span class="type">MonoBehaviour</span>
+{
+    [<span class="type">SerializeField</span>] <span class="kw">private</span> <span class="type">GameObject</span> playerControls;
+    [<span class="type">SerializeField</span>] <span class="kw">private</span> <span class="type">GameObject</span> hudCanvas;
+
+    <span class="com">// Signal Receiver'ın UnityEvent'inden çağrılır</span>
+    <span class="kw">public void</span> <span class="fn">StartGameplay</span>()
+    {
+        playerControls.<span class="fn">SetActive</span>(<span class="kw">true</span>);
+        hudCanvas.<span class="fn">SetActive</span>(<span class="kw">true</span>);
+        <span class="type">Debug</span>.<span class="fn">Log</span>(<span class="str">"Cutscene bitti, gameplay aktif!"</span>);
+    }
+}</code></pre>
+  </div>
+</section>
+
+<section class="topic-section" id="kod-ile-tetikleme">
+  <div class="topic-header">
+    <span class="topic-number">19.8</span>
+    <h2 class="topic-title">🎯 Timeline'ı Kodla Başlatmak</h2>
+  </div>
+  <p class="topic-text">
+    PlayableDirector'ın <em>Play On Awake</em>'ini kapatırsan timeline durur, kodla tetiklersin:
+  </p>
+  <div class="cs-block">
+<pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+<span class="kw">using</span> <span class="type">UnityEngine.Playables</span>;
+
+<span class="kw">public class</span> <span class="type">BossIntroTrigger</span> : <span class="type">MonoBehaviour</span>
+{
+    [<span class="type">SerializeField</span>] <span class="kw">private</span> <span class="type">PlayableDirector</span> bossIntroDirector;
+    <span class="kw">private bool</span> played = <span class="kw">false</span>;
+
+    <span class="kw">private void</span> <span class="fn">OnTriggerEnter</span>(<span class="type">Collider</span> other)
+    {
+        <span class="kw">if</span> (played) <span class="kw">return</span>;
+        <span class="kw">if</span> (other.<span class="fn">CompareTag</span>(<span class="str">"Player"</span>))
+        {
+            bossIntroDirector.<span class="fn">Play</span>();
+            played = <span class="kw">true</span>;
+        }
+    }
+}</code></pre>
+  </div>
+  <p class="topic-text">
+    Daha fazla kontrol için <code>director.time</code> ile o anki zamanı okuyabilir, <code>director.Pause()</code>, <code>director.Resume()</code>, <code>director.Stop()</code> kullanabilirsin. <code>director.stopped</code> event'i ile timeline bitince callback alırsın:
+  </p>
+  <div class="cs-block">
+<pre><code>director.stopped += <span class="fn">OnDirectorStopped</span>;
+
+<span class="kw">private void</span> <span class="fn">OnDirectorStopped</span>(<span class="type">PlayableDirector</span> d)
+{
+    <span class="type">Debug</span>.<span class="fn">Log</span>(<span class="str">"Cutscene bitti"</span>);
+}</code></pre>
+  </div>
+</section>
+
+<section class="topic-section" id="markers">
+  <div class="topic-header">
+    <span class="topic-number">19.9</span>
+    <h2 class="topic-title">📍 Markers — Zaman Çizelgesindeki Notlar</h2>
+  </div>
+  <p class="topic-text">
+    Marker'lar, Timeline üzerinde belirli zamanları işaretler. Kullanım alanları:
+  </p>
+  <ul class="check-list">
+    <li><strong>Signal Emitter</strong> — Yukarıda gördüğümüz signal yayını.</li>
+    <li><strong>Custom Marker</strong> — Kendi MarkerType'ını yazarak (örn. <em>SubtitleMarker</em>) timeline üzerine altyazı tetikleri yerleştirebilirsin. Diyalog sahnelerinde sıkça kullanılır.</li>
+    <li><strong>Track Level / Timeline Level</strong> — Track'in kendi marker'ları olabilir, ya da global timeline marker'ı.</li>
+  </ul>
+  <div class="info-box">
+    <strong>🎙 Altyazı Sistemi Örneği:</strong> Bir diyalog sahnesinde her replik için Subtitle Marker yerleştirirsin. Marker'ın string property'sinde altyazı metni vardır. Timeline çalarken UI Canvas üzerindeki bir SubtitleDisplay scripti marker'ı dinler ve TMP_Text component'ına yazıyı yazar. Hangi karakterin ne zaman konuştuğu Timeline'da görsel olarak görünür — yönetmen mantığıyla çalışırsın.
+  </div>
+</section>
+
+<section class="topic-section" id="recording-mode">
+  <div class="topic-header">
+    <span class="topic-number">19.10</span>
+    <h2 class="topic-title">🎙 Recording Mode — Sahnede Doğrudan Animasyonlama</h2>
+  </div>
+  <p class="topic-text">
+    Karakteri animasyonlamak için 3D yazılımına gitmen şart değil. Animation Track'in üzerinde sağ tık → <strong>Add Override Track</strong> → kırmızı record butonuna bas. Artık scene view'de karakterin transformlarını değiştirdiğin her şey, o zaman noktasında <strong>key'lenir</strong>.
+  </p>
+  <ol class="step-list">
+    <li>Timeline'da bir Animation Track oluştur.</li>
+    <li>Karakteri Animator slot'una bağla.</li>
+    <li>Sağ tık → <em>Add Recorded Animation Track</em> (Override Track).</li>
+    <li>Track'in kırmızı record düğmesine bas.</li>
+    <li>Timeline'ı 0. saniyeye getir, karakterin pozisyonunu/rotasyonunu istediğin gibi ayarla → key oluşur.</li>
+    <li>2. saniyeye git, başka bir poza geç → ikinci key.</li>
+    <li>Record'u kapat. Timeline çalınca karakter iki poz arasında yumuşak hareket eder.</li>
+  </ol>
+  <p class="topic-text">
+    Bu sistem <strong>vcam keyleme</strong> için de inanılmaz kullanışlıdır: bir vcam'in Lens FOV'unu 3 saniyede 60'tan 30'a indirmek istiyorsan, record on → 0 sn FOV 60 → 3 sn FOV 30 → record off. Otomatik zoom.
+  </p>
+</section>
+
+<section class="topic-section" id="ileri-konular">
+  <div class="topic-header">
+    <span class="topic-number">19.11</span>
+    <h2 class="topic-title">🚀 İleri Konular &amp; Performans</h2>
+  </div>
+
+  <h3 class="topic-subtitle">Sahne Geçişlerinde Timeline</h3>
+  <p class="topic-text">
+    Timeline asset'leri sahne bağımsız oldukları için bir <em>Level Manager</em> prefab'ında tek bir PlayableDirector tutabilir, farklı timeline'ları SetPlayable() ile değiştirebilirsin. Her level intro'su ayrı bir timeline, ama yönetim merkezi tek.
+  </p>
+
+  <h3 class="topic-subtitle">DSP Clock — Audio Hassasiyeti</h3>
+  <p class="topic-text">
+    PlayableDirector'ın Update Method seçeneği:
+  </p>
+  <ul class="check-list">
+    <li><em>Game Time</em> — Time.timeScale'a duyarlı (slow motion'da timeline da yavaşlar).</li>
+    <li><em>Unscaled Game Time</em> — timeScale'ı umursamaz (pause menü altında çalan UI animasyonları için).</li>
+    <li><em>DSP Clock</em> — Audio donanım saatine bağlı. Ritim oyunları için kritik (Beat Saber tarzı).</li>
+    <li><em>Manual</em> — Sen <code>director.time</code>'u her frame elle ayarlarsın.</li>
+  </ul>
+
+  <h3 class="topic-subtitle">Performans Notları</h3>
+  <ul class="check-list">
+    <li>Timeline çalmadığında PlayableDirector neredeyse sıfır maliyettir. <strong>Tetikleninceye kadar bekler.</strong></li>
+    <li>Çok fazla track olan timeline'larda <em>Editor only debugging</em>'i kapatmak performansı artırır.</li>
+    <li>Activation Track <strong>SetActive</strong> kullanır. Çok karmaşık prefab'ları açıp kapatma maliyetlidir; bunun yerine GameObject zaten aktif ama bir Renderer'ı enable/disable yapan custom marker daha hızlı olabilir.</li>
+    <li><strong>Nested timelines</strong> (Control Track ile) debug etmesi zordur; basit tut.</li>
+  </ul>
+</section>
+
+<section class="topic-section" id="unity6-yeni-timeline">
+  <div class="topic-header">
+    <span class="topic-number">19.12</span>
+    <h2 class="topic-title">⚡ Unity 6 Timeline İyileştirmeleri <span class="u-ver-badge u6 u6-new">YENİ</span></h2>
+  </div>
+  <ul class="check-list">
+    <li><strong>Better Cinemachine 3.x integration</strong> — CinemachineCamera ile timeline blend handle'ları daha kararlı.</li>
+    <li><strong>Marker preview</strong> — Editor'de Markers'ı timeline çalmadan da görsel önizleme.</li>
+    <li><strong>Subtle UI iyileştirmeleri</strong> — Track sürükleme, clip kopyalama, undo davranışı düzeltildi.</li>
+    <li><strong>Timeline Asset versioning</strong> — Eski projeleri açtığında otomatik upgrade prompt'u.</li>
+    <li><strong>Splines Track</strong> (paket gerekli) — Bir GameObject'i bir spline boyunca animasyonlayan track türü.</li>
+  </ul>
+</section>
+
+<div class="mini-checkpoint">
+  <strong>🎬 Bölüm Kontrol Noktası:</strong> Timeline = video düzenleme programı mantığı. PlayableDirector sahnede, Timeline Asset asset olarak ayrı. Bindings PlayableDirector üzerinde. Tracks: Activation, Animation, Audio, Cinemachine, Control, Signal. Signal sistemi timeline'ı koddan ayırır. Recording Mode ile scene view'de doğrudan animasyon key'leyebilirsin.
+</div>
+
+<div class="practice-section">
+  <h2>🎯 Pratik Projeler</h2>
+
+  <div class="project-card">
+    <h3>Proje 1: Boss Salonu Intro Cutscene</h3>
+    <p><strong>Hedef:</strong> Oyuncu boss salonuna girdiğinde 5 saniyelik dramatik bir intro çalsın; kamera bossa zoom yapsın, müzik yükselsin, ardından gameplay devralsın.</p>
+    <ol class="step-list">
+      <li>Boss salonuna bir Trigger Collider yerleştir.</li>
+      <li>Empty GameObject "BossIntroDirector" + PlayableDirector. Play On Awake = ☐.</li>
+      <li>Yeni Timeline asset oluştur.</li>
+      <li>Cinemachine Track ekle: 0-2.5 sn WideCam (salonun tamamı görünür), 2.5-5 sn BossCam (boss yakın çekim).</li>
+      <li>Audio Track ekle: BossTheme.wav (0.5 fade in).</li>
+      <li>Activation Track ekle: <em>"Hud"</em> objesini 0-5 sn kapat (UI gizlensin).</li>
+      <li>Signal Track ekle: 5. saniyede "IntroComplete" signal.</li>
+      <li>GameManager'a SignalReceiver ekle, IntroComplete → StartBossFight() metodu çağırsın.</li>
+      <li>Trigger script: oyuncu girince <code>bossIntroDirector.Play();</code>.</li>
+    </ol>
+  </div>
+
+  <div class="project-card">
+    <h3>Proje 2: Diyalog Sahnesi (3 Replik)</h3>
+    <p><strong>Hedef:</strong> İki karakter arasında 12 saniyelik diyalog. Her replikte konuşan karaktere kamera kessin, altyazı çıksın.</p>
+    <ol class="step-list">
+      <li>3 vcam: CamA (Karakter A yakın), CamB (Karakter B yakın), CamWide (geniş).</li>
+      <li>Cinemachine Track: 0-4 sn CamA, 4-8 sn CamB, 8-12 sn CamWide.</li>
+      <li>Audio Track 1 (KarakterA): 0-4 sn dialogue_A.wav.</li>
+      <li>Audio Track 2 (KarakterB): 4-8 sn dialogue_B.wav.</li>
+      <li>Custom <em>SubtitleMarker</em> oluştur (string text alanı ile). Marker Track'e 3 marker yerleştir, her birine replik metnini yaz.</li>
+      <li>UI Canvas üzerinde SubtitleDisplay scripti yaz; SubtitleMarker'ı dinleyip TMP_Text'e atasın.</li>
+      <li>Animation Track'ler ile her karakterin konuşma animasyonunu (TalkA, TalkB) yerleştir.</li>
+      <li>Sona Signal Emitter koy: gameplay devam etsin.</li>
+    </ol>
+  </div>
+
+  <div class="project-card">
+    <h3>Proje 3: Spline Üzerinde Kamera Drone Çekimi</h3>
+    <p><strong>Hedef:</strong> Level başlamadan önce 8 saniyelik bir drone çekimi: kamera yüksekten haritayı süzerek dolaşsın.</p>
+    <ol class="step-list">
+      <li>GameObject → Spline → Draw Spline. Haritanın üstünde havalı bir yörünge çiz.</li>
+      <li>Yeni vcam oluştur, Body olarak <strong>CinemachineSplineDolly</strong> seç, spline'ı bağla.</li>
+      <li>Aim olarak <strong>CinemachineHardLookAt</strong>, hedef olarak haritanın merkezi.</li>
+      <li>Yeni Timeline oluştur.</li>
+      <li>Animation Track ile vcam'i bağla (CinemachineSplineDolly bir Animator değil, ama "Position On Spline" property'sini Animation Track + Recording Mode ile keyleyebilirsin).</li>
+      <li>0 sn → Position 0, 8 sn → Position 1. Yumuşak interpolation.</li>
+      <li>Audio Track ile epic music ekle.</li>
+      <li>Signal Track ile 8. saniyede gameplay başlat.</li>
+    </ol>
+  </div>
+</div>
+
+<section class="quiz" id="bolum-quiz">
+  <header class="quiz-header">
+    <div class="quiz-header-icon"><i class="ti ti-help"></i></div>
+    <div class="quiz-header-text">
+      <h2>Bölüm Sonu Sınavı</h2>
+      <span>5 soru</span>
+    </div>
+  </header>
+
+  <article class="quiz-question" id="q19-1">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">01</span>
+      <h3 class="quiz-prompt-text">Timeline asset'i sahnedeki GameObject referanslarını nerede tutar?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Timeline asset'in kendisinin içinde.</button>
+      <button class="quiz-option" data-correct="true">PlayableDirector bileşeninde (binding olarak).</button>
+      <button class="quiz-option" data-correct="false">PlayerPrefs ile diskte.</button>
+      <button class="quiz-option" data-correct="false">Her track ayrı bir prefab içinde.</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q19-2">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">02</span>
+      <h3 class="quiz-prompt-text">Hangisi Timeline'a değil Animator'a daha uygundur?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Level başında 5 saniyelik intro.</button>
+      <button class="quiz-option" data-correct="false">Diyalog sahnesi.</button>
+      <button class="quiz-option" data-correct="true">Karakterin Idle ↔ Run ↔ Jump state geçişleri (gameplay).</button>
+      <button class="quiz-option" data-correct="false">Boss salonu giriş sinematik kesiti.</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q19-3">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">03</span>
+      <h3 class="quiz-prompt-text">Timeline'ın belirli bir noktasında bir C# metodu çağırmanın en temiz yolu?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Coroutine ile manuel Wait yaz.</button>
+      <button class="quiz-option" data-correct="true">Signal Track + SignalReceiver ile UnityEvent.</button>
+      <button class="quiz-option" data-correct="false">Animator parametreleri.</button>
+      <button class="quiz-option" data-correct="false">Update'te director.time'ı sürekli kontrol et.</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q19-4">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">04</span>
+      <h3 class="quiz-prompt-text">Cinemachine Track üzerinde iki vcam clip'i üst üste binerse ne olur?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">İkisi de aynı anda aktif olur, render karışır.</button>
+      <button class="quiz-option" data-correct="true">Otomatik blend gerçekleşir, yumuşak geçiş olur.</button>
+      <button class="quiz-option" data-correct="false">Hata fırlatır, timeline durur.</button>
+      <button class="quiz-option" data-correct="false">Sadece soldaki çalar, sağdaki silinir.</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q19-5">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">05</span>
+      <h3 class="quiz-prompt-text">PlayableDirector'ın "Update Method" → "DSP Clock" hangi durumda kullanılır?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">VR sahneleri için.</button>
+      <button class="quiz-option" data-correct="true">Müzik/ritim hassasiyeti gerekli durumlarda (audio donanım saatine bağlı).</button>
+      <button class="quiz-option" data-correct="false">Multiplayer senkronizasyonu için.</button>
+      <button class="quiz-option" data-correct="false">Slow motion efektleri için.</button>
+    </div>
+  </article>
+</section>
+
+<section class="complete-section">
+      <h3 class="complete-title">🎉 Bölüm 19 Tamamlandı!</h3>
+      <p class="complete-msg">Timeline ile artık sahne içinde <strong>zamana göre koreografi</strong> yapabilirsin. Ara sahneler, level intro'ları, diyalog sahneleri, scripted moment'lar — hepsi tek bir asset üzerinden. Bir sonraki bölümde karakterlerin akıllı hareketi için <strong>NavMesh &amp; AI Navigation</strong>'a geçiyoruz: agent'lar, Off-Mesh link'ler ve Unity 6'nın yeni AI Navigation paketi.</p>
+      <button class="complete-btn" data-section="s19">
+        <i class="ti ti-circle-check"></i>
+        <span>Bu Bölümü Tamamladım</span>
+      </button>
+      <p class="complete-note">İlerlemen otomatik tarayıcına kaydedilir.</p>
+    </section>
+    <!-- Sayfa Gezinme -->
+    <nav class="page-nav" aria-label="Bölüm gezinme">
+      <a href="18-cinemachine.html" class="page-nav-link prev">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-left"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Önceki Bölüm</div>
+          <div class="page-nav-title">18. Cinemachine</div>
+        </div>
+      </a>
+      <a href="20-navmesh.html" class="page-nav-link next">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-right"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Sonraki Bölüm</div>
+          <div class="page-nav-title">20. NavMesh & AI</div>
+        </div>
+      </a>
+    </nav>
+
+  </div>
+</main>
+<script src="../js/progress.js?v=11"></script>
+<script src="../js/quiz.js?v=11"></script>
+<script src="../js/toc.js?v=11"></script>
+<script src="../js/main.js?v=11"></script>
+</body>
+</html>

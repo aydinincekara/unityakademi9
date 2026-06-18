@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SSS — UnityAkademi</title>
+  <meta name="description" content="Sık sorulan sorular — sürüm seçimi, pipeline, Asset Store, lisans">
+  <meta name="theme-color" content="#fa7d19">
+  <link rel="manifest" href="../manifest.json">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="SSS">
+  <meta property="og:description" content="Sık sorulan sorular — sürüm seçimi, pipeline, Asset Store, lisans">
+  <meta property="og:image" content="../og-image.svg">
+  <meta property="og:site_name" content="UnityAkademi">
+  <meta property="og:locale" content="tr_TR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SSS">
+  <meta name="twitter:description" content="Sık sorulan sorular — sürüm seçimi, pipeline, Asset Store, lisans">
+  <meta name="twitter:image" content="../og-image.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="../css/variables.css?v=11">
+  <link rel="stylesheet" href="../css/reset.css?v=11">
+  <link rel="stylesheet" href="../css/layout.css?v=11">
+  <link rel="stylesheet" href="../css/components.css?v=11">
+  <link rel="stylesheet" href="../css/content.css?v=11">
+  <link rel="stylesheet" href="../css/visuals.css?v=11">
+  <link rel="stylesheet" href="../css/extras.css?v=11">
+  <link rel="stylesheet" href="../css/responsive.css?v=11">
+</head>
+<body>
+<button class="nav-hamburger" id="navHamburger" aria-label="Menüyü aç">
+  <i class="ti ti-menu-2"></i>
+</button>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a href="../index.html" class="sidebar-brand">
+      <div class="sidebar-brand-icon"><i class="ti ti-home-2"></i></div>
+      <div class="sidebar-brand-text">
+        <span class="sidebar-brand-name">Ana Sayfa</span>
+        <span class="sidebar-brand-sub">UnityAkademi</span>
+      </div>
+    </a>
+    <button class="mobile-toggle" aria-label="Menü"><i class="ti ti-x"></i></button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-group">
+      <div class="nav-group-title">Temeller</div>
+      <a href="01-kurulum.html" class="nav-link" data-section="s1"><i class="ti ti-download"></i><span class="nav-link-text">Kurulum & İlk Bakış</span><span class="nav-link-num">01</span></a>
+      <a href="02-arayuz.html" class="nav-link" data-section="s2"><i class="ti ti-layout-board"></i><span class="nav-link-text">Editor Arayüzü</span><span class="nav-link-num">02</span></a>
+      <a href="03-gameobject-component.html" class="nav-link" data-section="s3"><i class="ti ti-cube"></i><span class="nav-link-text">GameObject & Component</span><span class="nav-link-num">03</span></a>
+      <a href="04-csharp-temelleri.html" class="nav-link" data-section="s4"><i class="ti ti-code"></i><span class="nav-link-text">C# Temelleri</span><span class="nav-link-num">04</span></a>
+      <a href="05-monobehaviour-lifecycle.html" class="nav-link" data-section="s5"><i class="ti ti-refresh"></i><span class="nav-link-text">MonoBehaviour Lifecycle</span><span class="nav-link-num">05</span></a>
+      <a href="06-transform-vector.html" class="nav-link" data-section="s6"><i class="ti ti-arrows-move"></i><span class="nav-link-text">Transform & Vector3</span><span class="nav-link-num">06</span></a>
+      <a href="07-input.html" class="nav-link" data-section="s7"><i class="ti ti-keyboard"></i><span class="nav-link-text">Input Sistemi</span><span class="nav-link-num">07</span></a>
+      <a href="08-physics.html" class="nav-link" data-section="s8"><i class="ti ti-atom"></i><span class="nav-link-text">Physics</span><span class="nav-link-num">08</span></a>
+      <a href="09-ui.html" class="nav-link" data-section="s9"><i class="ti ti-layout-grid"></i><span class="nav-link-text">UI Sistemi</span><span class="nav-link-num">09</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Görsel & Asset</div>
+      <a href="10-material-shader.html" class="nav-link" data-section="s10"><i class="ti ti-palette"></i><span class="nav-link-text">Material & Shader</span><span class="nav-link-num">10</span></a>
+      <a href="11-asset-import.html" class="nav-link" data-section="s11"><i class="ti ti-folder"></i><span class="nav-link-text">Asset Import</span><span class="nav-link-num">11</span></a>
+      <a href="12-animation.html" class="nav-link" data-section="s12"><i class="ti ti-bounce-right"></i><span class="nav-link-text">Animation</span><span class="nav-link-num">12</span></a>
+      <a href="13-particle-vfx.html" class="nav-link" data-section="s13"><i class="ti ti-sparkles"></i><span class="nav-link-text">Particle & VFX Graph</span><span class="nav-link-num">13</span></a>
+      <a href="14-lighting.html" class="nav-link" data-section="s14"><i class="ti ti-bulb"></i><span class="nav-link-text">Lighting</span><span class="nav-link-num">14</span></a>
+      <a href="15-audio.html" class="nav-link" data-section="s15"><i class="ti ti-volume"></i><span class="nav-link-text">Audio</span><span class="nav-link-num">15</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Sistemler</div>
+      <a href="16-probuilder.html" class="nav-link" data-section="s16"><i class="ti ti-3d-cube-sphere"></i><span class="nav-link-text">ProBuilder</span><span class="nav-link-num">16</span></a>
+      <a href="17-terrain.html" class="nav-link" data-section="s17"><i class="ti ti-mountain"></i><span class="nav-link-text">Terrain</span><span class="nav-link-num">17</span></a>
+      <a href="18-cinemachine.html" class="nav-link" data-section="s18"><i class="ti ti-camera"></i><span class="nav-link-text">Cinemachine</span><span class="nav-link-num">18</span></a>
+      <a href="19-timeline.html" class="nav-link" data-section="s19"><i class="ti ti-timeline"></i><span class="nav-link-text">Timeline</span><span class="nav-link-num">19</span></a>
+      <a href="20-navmesh.html" class="nav-link" data-section="s20"><i class="ti ti-route"></i><span class="nav-link-text">NavMesh & AI</span><span class="nav-link-num">20</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">İleri Seviye</div>
+      <a href="21-urp-hdrp.html" class="nav-link" data-section="s21"><i class="ti ti-bolt"></i><span class="nav-link-text">URP, HDRP & Unity 6</span><span class="nav-link-num">21</span></a>
+      <a href="22-new-input.html" class="nav-link" data-section="s22"><i class="ti ti-device-gamepad-2"></i><span class="nav-link-text">New Input System</span><span class="nav-link-num">22</span></a>
+      <a href="23-save-menu.html" class="nav-link" data-section="s23"><i class="ti ti-device-floppy"></i><span class="nav-link-text">Save & Menü</span><span class="nav-link-num">23</span></a>
+      <a href="24-build.html" class="nav-link" data-section="s24"><i class="ti ti-package-export"></i><span class="nav-link-text">Build & Yayınlama</span><span class="nav-link-num">24</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Profesyonel</div>
+      <a href="25-csharp-ileri.html" class="nav-link" data-section="s25"><i class="ti ti-brackets-contain"></i><span class="nav-link-text">C# İleri</span><span class="nav-link-num">25</span></a>
+      <a href="26-performance.html" class="nav-link" data-section="s26"><i class="ti ti-gauge"></i><span class="nav-link-text">Performance</span><span class="nav-link-num">26</span></a>
+      <a href="27-yol-haritasi.html" class="nav-link" data-section="s27"><i class="ti ti-map-2"></i><span class="nav-link-text">Yol Haritası</span><span class="nav-link-num">27</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Pratik</div>
+      <a href="projects.html" class="nav-link nav-link-extra" data-section="x-projects"><i class="ti ti-rocket"></i><span class="nav-link-text">Projeler</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Ek Kaynaklar</div>
+      <a href="sozluk.html" class="nav-link nav-link-extra" data-section="x-sozluk"><i class="ti ti-book-2"></i><span class="nav-link-text">Sözlük</span></a>
+      <a href="cheatsheet.html" class="nav-link nav-link-extra" data-section="x-cheatsheet"><i class="ti ti-list-details"></i><span class="nav-link-text">Cheat Sheet</span></a>
+      <a href="sss.html" class="nav-link nav-link-extra active" data-section="x-sss"><i class="ti ti-help-circle"></i><span class="nav-link-text">SSS</span></a>
+      <a href="arama.html" class="nav-link nav-link-extra" data-section="x-arama"><i class="ti ti-search"></i><span class="nav-link-text">Arama</span></a>
+      <a href="sertifika.html" class="nav-link nav-link-extra" data-section="x-sertifika"><i class="ti ti-certificate"></i><span class="nav-link-text">Sertifika</span></a>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="kaynaklar.html" class="sidebar-btn"><i class="ti ti-books"></i><span>Kaynaklar</span></a>
+    <a href="iletisim.html" class="sidebar-btn"><i class="ti ti-mail"></i><span>İletişim</span></a>
+  </div>
+</aside>
+<main class="main">
+  <div class="main-content">
+    <nav class="breadcrumb">
+      <a href="../index.html"><i class="ti ti-home"></i> Ana Sayfa</a>
+      <i class="ti ti-chevron-right"></i><span style="color: var(--primary-light);">SSS</span>
+    </nav>
+
+    <header class="helper-page-header">
+      <h1><i class="ti ti-help-circle"></i> Sık Sorulan Sorular</h1>
+      <p>Unity öğrenmeye başlayan veya orta seviyede takılan kullanıcıların en sık sorduğu soruların derin cevapları.</p>
+    </header>
+
+    <div class="simple-page">
+
+      <!-- BAŞLANGIÇ -->
+      <div class="faq-group">
+        <h2 class="faq-group-title"><i class="ti ti-flame"></i> Başlangıç ve Sistem</h2>
+
+        <details class="faq-item">
+          <summary>Unity öğrenmek için hangi bilgisayar yeterli?</summary>
+          <div class="faq-body">
+            <p>Unity'nin <strong>resmi minimum gereksinimleri</strong>:</p>
+            <ul>
+              <li><strong>CPU:</strong> 2 çekirdek+ x64 (Intel i5-7. nesil veya Ryzen 3+)</li>
+              <li><strong>RAM:</strong> 8 GB (16 GB tavsiye)</li>
+              <li><strong>GPU:</strong> DirectX 11 destekli, 2 GB VRAM (GTX 1050 / RX 560 alt sınır)</li>
+              <li><strong>Disk:</strong> 30 GB+ SSD (HDD'de editör çalışır ama yavaş)</li>
+            </ul>
+            <p><strong>HDRP veya büyük 3B projeler</strong> için: RTX 2060+ / RX 5600+, 16-32 GB RAM, NVMe SSD. Unity 2B ve mobil için rakip motorlardan çok daha hafiftir — 4 GB RAM'li dizüstüde bile küçük 2B proje yapabilirsin.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Unity ücretli mi?</summary>
+          <div class="faq-body">
+            <p><strong>Hayır, ücretsizdir.</strong> Unity Personal lisansı: yıllık gelirin (veya finansmanın) $200,000'ın altındaysa tamamen ücretsizdir. Editör tüm özellikleriyle açıktır, royalty (telif payı) yoktur.</p>
+            <p>Üzerine çıkarsan: <strong>Unity Pro</strong> ($2,040/yıl/seat) veya <strong>Unity Enterprise</strong> ($4,950/yıl/seat). 2024'teki "Runtime Fee" tartışmasından sonra Unity bu modeli iptal etti — sadece eski revenue + seat lisans modeli geçerli.</p>
+            <p>Sonuç: Indie ve öğrenci için Unity %99 ücretsiz. İlk yıllarında lisans için tek kuruş ödemeyeceksin.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Unity LTS mi Unity 6 mı kuruyorum?</summary>
+          <div class="faq-body">
+            <p>Bu kursta her iki sürüm için de yönergeler var. Hangi senaryoda hangisini seç?</p>
+            <ul>
+              <li><strong>Unity 6 (en yeni)</strong> — Forward+ Rendering, GPU Resident Drawer, Render Graph, daha hızlı editor. Yeni başlıyorsan ve donanımın yeterse buradan başla. Sürüm: 6000.0.x.</li>
+              <li><strong>Unity 2022.3 LTS</strong> — Stabilite şart, hâlâ 2-3 yıl daha güncellenecek, çoğu eğitim videosu burada. Mobil/Hyper-casual stüdyolar genelde bunu kullanır.</li>
+              <li><strong>Unity 2021.3 LTS</strong> — Eski projeleri açmak/sürdürmek için. Yeni projede tercih etme.</li>
+            </ul>
+            <p>Karar: <strong>Unity 6</strong> + bir <strong>2022.3 LTS</strong> yedekte tutman dengeli seçim.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Unity Hub ve Editor arasındaki fark?</summary>
+          <div class="faq-body">
+            <p><strong>Unity Hub</strong> — Bütün Unity Editor sürümlerini yönettiğin "launcher". Buradan editör sürümleri kurar, projeleri açar, modül/platform ekler, lisans yenilersin. Çok küçük (~200 MB).</p>
+            <p><strong>Unity Editor</strong> — Gerçek motorun kendisi. 5-30 GB arası (modüllere göre). Her sürüm ayrı kurulur, paralel yaşar.</p>
+            <p>İlk açılışta Hub'ı kur → Hub'dan istediğin sürümün Editor'unu kur → Hub'dan yeni proje aç. Editor'ı doğrudan çift tıklayarak da açabilirsin ama yine de Hub üzerinden proje oluşturmak daha sağlıklı.</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- ÖĞRENME -->
+      <div class="faq-group">
+        <h2 class="faq-group-title"><i class="ti ti-school"></i> Öğrenme Süreci</h2>
+
+        <details class="faq-item">
+          <summary>Unity'i ne kadar sürede öğrenirim?</summary>
+          <div class="faq-body">
+            <p>Realist bir takvim:</p>
+            <ul>
+              <li><strong>1-2 ay</strong> — Editor arayüzü rahat, basit prefab/script ile küçük 2B veya 3B oyun yapabilirsin (Roll-a-Ball, Pong, Breakout).</li>
+              <li><strong>3-6 ay</strong> — MonoBehaviour lifecycle, animation, UI, Input System, Cinemachine, NavMesh — orta karmaşıklıkta platform/shooter prototipi.</li>
+              <li><strong>6-12 ay</strong> — Shader Graph, URP/HDRP, VFX Graph, save sistemleri, mağaza yayını, optimizasyon. Mağazaya küçük bir oyun yayınlayacak seviyedesin.</li>
+              <li><strong>1-2 yıl</strong> — ECS/DOTS, Job System + Burst, networking, custom editor tools, asset pipeline. Junior pozisyon için yeterli.</li>
+              <li><strong>3-5 yıl</strong> — Senior. Tek başına AAA-kalite sistem mimarisi tasarlayabilirsin.</li>
+            </ul>
+            <p>Anahtar: <em>Her gün</em> 1-2 saat sürekli &gt; haftada 1 kez 10 saat.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Hangi sırayla öğrenmeliyim?</summary>
+          <div class="faq-body">
+            <p>UnityAkademi'nin sırası optimize edilmiştir:</p>
+            <ol>
+              <li><strong>Temeller</strong> (1-9): Kurulum, arayüz, GameObject, C#, MonoBehaviour, Transform, Input, Physics, UI.</li>
+              <li><strong>Görsel</strong> (10-15): Material/Shader, asset import, animation, particle, lighting, audio.</li>
+              <li><strong>Sistemler</strong> (16-20): ProBuilder, Terrain, Cinemachine, Timeline, NavMesh.</li>
+              <li><strong>İleri</strong> (21-24): URP/HDRP, Input System, Save, Build.</li>
+              <li><strong>Profesyonel</strong> (25-27): C# ileri, Performance, Yol Haritası.</li>
+            </ol>
+            <p>İlk turunda baştan sona sırayla git. İkinci turda istediğin bölüme dön, derinleş.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Bir konuya takıldığımda ne yapmalıyım?</summary>
+          <div class="faq-body">
+            <p>Sırasıyla:</p>
+            <ol>
+              <li><strong>Hata mesajını oku.</strong> Unity Console hataları çoğunlukla net: NullReferenceException, MissingComponent, vs.</li>
+              <li><strong>Tam hata metnini Google'a yapıştır.</strong> %95 ihtimal birisi Unity Discussions / Stack Overflow'ta sormuş.</li>
+              <li><strong>Unity Docs &amp; Manual</strong> — docs.unity3d.com. API referansı + Manual paragrafı.</li>
+              <li><strong>YouTube (Code Monkey, Tarodev, Brackeys arşivi)</strong> — yapısal sorunlar için.</li>
+              <li><strong>Topluluk</strong> — Discord (Unity Türkiye), Reddit r/Unity3D, kurs Discord'u. Yeterli context vererek sor.</li>
+              <li><strong>ChatGPT / Claude</strong> — kavramsal sorulara hızlı yanıt verir ama Unity-spesifik API tarihçesinde hatalı olabilir; cross-check yap.</li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Önce 2B mi 3B mi öğrensem?</summary>
+          <div class="faq-body">
+            <p>Yeni başlıyorsan <strong>2B</strong> tavsiye edilir:</p>
+            <ul>
+              <li>Sanat eşiği düşük (basit pixel art / vektör asset).</li>
+              <li>Fizik basit (Rigidbody2D, Collider2D).</li>
+              <li>Kamera basit (Orthographic).</li>
+              <li>İlk tamamlanmış oyununu hızlı yaparsın → motivasyon artar.</li>
+            </ul>
+            <p>3B'ye daha sonra geçişte: aynı C# kodu, aynı motor, sadece Rigidbody/Camera/Lighting daha karmaşık. Geçiş yumuşaktır.</p>
+            <p>Mobil hyper-casual hedefin varsa: 3B ile de başlayabilirsin (basit lowpoly, single-camera projeler).</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- TEKNİK -->
+      <div class="faq-group">
+        <h2 class="faq-group-title"><i class="ti ti-code"></i> C# / MonoBehaviour Soruları</h2>
+
+        <details class="faq-item">
+          <summary>MonoBehaviour mı ScriptableObject mı kullanmalıyım?</summary>
+          <div class="faq-body">
+            <p>İkisi farklı amaçlar için:</p>
+            <ul>
+              <li><strong>MonoBehaviour</strong> — Sahnedeki bir GameObject'e bağlı, runtime'da yaşar, Update/Start gibi event'leri var. Player, Enemy, UI Controller gibi <em>davranış</em>lar için.</li>
+              <li><strong>ScriptableObject</strong> — Sahneye bağlı değil, asset olarak diskte yaşar. Item veritabanı, oyun ayarları, event channel, dialog gibi <em>veri</em> ve paylaşılan state için.</li>
+            </ul>
+            <p>Pratik kural: "Bu obje sahnede mi var?" → MonoBehaviour. "Bu sadece veri mi?" → ScriptableObject. Modern Unity mimarisinde ScriptableObject çok güçlü bir araçtır — Event Channel, Observer pattern, modüler item sistemleri için.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Update vs FixedUpdate vs LateUpdate — hangisi ne için?</summary>
+          <div class="faq-body">
+            <ul>
+              <li><strong>Update</strong> — Her frame. FPS'e bağlı (60 FPS → 60 kez/sn). <code>Input.GetKey</code>, kamera dışı hareket, animasyon parametre güncelleme.</li>
+              <li><strong>FixedUpdate</strong> — Sabit aralık (default 0.02s, 50 kez/sn). Fizik. <code>rigidbody.AddForce</code>, <code>rigidbody.velocity</code> burada. Time.fixedDeltaTime kullan.</li>
+              <li><strong>LateUpdate</strong> — Tüm Update'ler bittikten sonra. Kamera takibi (player hareket etti → kamera son halini görsün). <code>transform.LookAt</code> burada.</li>
+            </ul>
+            <p>Tipik hata: Input'u FixedUpdate'te okumak (input kaçabilir). Hareketi Update'te yapmak (FPS'e bağımlı, fizik buggy). <strong>Input → Update, Fizik → FixedUpdate, Kamera → LateUpdate.</strong></p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>GetComponent çağrısını her Update'te yapmak yanlış mı?</summary>
+          <div class="faq-body">
+            <p>Evet, yanlış. GetComponent reflection benzeri bir arama yapar — yavaştır. 1000 nesne, her frame, her GetComponent → FPS dibe.</p>
+            <p><strong>Doğru:</strong> Awake/Start'ta cache'le.</p>
+            <pre style="background:#0a0a10;padding:12px;border-radius:8px;color:#e0e0e0;overflow-x:auto;"><code>private Rigidbody rb;
+void Awake() { rb = GetComponent&lt;Rigidbody&gt;(); }
+void Update() { rb.AddForce(...); }  // cache kullan</code></pre>
+            <p>İkinci tuzak: <code>GameObject.Find()</code>, <code>FindObjectOfType()</code> — sahnede tarama yapar, çok yavaş. Bunları da Awake/Start'ta bir kez yap.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Coroutine mu async/await mı?</summary>
+          <div class="faq-body">
+            <p>İkisi de "uzun süre alan iş"i parça parça yapmak için. Farklar:</p>
+            <ul>
+              <li><strong>Coroutine</strong> — Unity'ye özel, MonoBehaviour'a bağlı. GameObject yok edilince otomatik iptal. Mobile/console'da çok stabil. WaitForSeconds, yield return gibi sözdizimi.</li>
+              <li><strong>async/await</strong> — Standart C#, daha güçlü (Task&lt;T&gt; ile geri dönüş değeri, exception throw). Ama GameObject yok edilince iptal etmek senin sorumluluğun (CancellationToken). Aksi takdirde NullReferenceException.</li>
+            </ul>
+            <p>Yeni başlıyorsan: <strong>Coroutine kullan</strong>. async/await'e ihtiyaç yok denecek kadar az. Server iletişimi, dosya I/O gibi gerçek async iş varsa o zaman async. Hatta o zaman bile <strong>UniTask</strong> (cancellation kolay) paketi önerilir.</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- ASSET VE LİSANS -->
+      <div class="faq-group">
+        <h2 class="faq-group-title"><i class="ti ti-photo"></i> Asset ve Lisans</h2>
+
+        <details class="faq-item">
+          <summary>Asset Store'dan aldığım asset'i kendi oyunumda kullanabilir miyim?</summary>
+          <div class="faq-body">
+            <p>Evet. Unity Asset Store'daki çoğu asset'in <strong>Standard Unity Asset Store EULA</strong>'sı vardır: aldığın asset'i sayısız kendi projende kullanabilir, ticari yayın yapabilirsin. Asset'i <em>aynen yeniden satamazsın</em> (ör. Asset Store'da satıcı olarak yayınlayamazsın).</p>
+            <p>Bazı yüksek-kalite asset'lerin "Pro" veya "Extended" lisansı vardır (örneğin asset pack'in kaynak dosyalarına erişim). Satın almadan önce lisans detaylarını oku.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Ücretsiz asset nereden bulabilirim?</summary>
+          <div class="faq-body">
+            <ul>
+              <li><strong>Unity Asset Store</strong> (free filter) — Resmi, her ay yeni ücretsiz asset'ler.</li>
+              <li><strong>Mixamo</strong> (mixamo.com, Adobe) — Karakter + ücretsiz animasyonlar.</li>
+              <li><strong>Kenney.nl</strong> — CC0 lisanslı, profesyonel kalite pixel + lowpoly asset paketleri.</li>
+              <li><strong>itch.io</strong> (Game Assets bölümü) — Pixel art, müzik, ses, lowpoly.</li>
+              <li><strong>OpenGameArt</strong> — CC lisanslı genel asset.</li>
+              <li><strong>Freesound.org</strong> — Ses efektleri (CC0 ve CC-BY).</li>
+              <li><strong>HumbleBundle</strong> — Periyodik Unity asset paketleri ($1-25 fiyatlarla AAA kalitede).</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Karakter modeli için Mixamo nasıl çalışır?</summary>
+          <div class="faq-body">
+            <p>Adobe'un ücretsiz aracı. Adımlar:</p>
+            <ol>
+              <li>Kendi T-pose modelini (.fbx) yükle (veya Mixamo'nun karakterlerinden birini seç).</li>
+              <li>Mixamo otomatik rigging yapar (joint atar, skin weight hesaplar).</li>
+              <li>Animasyon kütüphanesinden 1000+ animasyon (Idle, Walk, Run, Attack, Death) seç ve indir.</li>
+              <li>Unity'ye sürükle, Rig type "Humanoid" yap. Animasyon Avatar üzerinden retarget edilebilir.</li>
+            </ol>
+            <p>Ücretsiz, ticari kullanım dahil. Tek dezavantajı: Animasyonlar "generic", oyununa özel "movement language" istiyorsan kendi animasyonun gerekir.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>"Unity" kelimesini oyunumun adında veya tanıtımında kullanabilir miyim?</summary>
+          <div class="faq-body">
+            <p>Unity Technologies'in marka politikasına göre:</p>
+            <ul>
+              <li><strong>"Made with Unity" logosu</strong> — Splash screen'de zaten otomatik gösterilir (Personal sürümde mecburi). Pazarlamada da kullanabilirsin.</li>
+              <li><strong>Oyununun adında "Unity" geçemez</strong> ("Unity Adventure" gibi). Marka karışıklığı yaratır.</li>
+              <li><strong>"This game is made with Unity"</strong> şeklinde mesaj OK.</li>
+            </ul>
+            <p>Detaylar: unity.com/legal/branding-trademarks</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- PERFORMANS -->
+      <div class="faq-group">
+        <h2 class="faq-group-title"><i class="ti ti-bolt"></i> Performans ve Sorun Giderme</h2>
+
+        <details class="faq-item">
+          <summary>Oyunum 60 FPS'in altına düşüyor, nereden başlayayım?</summary>
+          <div class="faq-body">
+            <p><strong>Tahmin etme — ölç.</strong> Sırasıyla:</p>
+            <ol>
+              <li><strong>Window → Analysis → Profiler</strong>. Oyun çalışırken aç. 30 sn oyna, "spike" yapan frame'leri yakala.</li>
+              <li>CPU Usage modülü → Hierarchy → "Self ms" sütununa göre sırala. En yüksek 5 metot? İşte düşmanların.</li>
+              <li>Çoğunlukla sebep: Her frame GetComponent / FindObjectOfType, Update'te string concat, Update'te new List/LINQ, GC.Alloc.</li>
+              <li>GPU darboğazı şüphesi varsa: Frame Debugger ile draw call sayısını ölç. 1000+ ise — GPU Instancing, SRP Batcher, batching incele.</li>
+              <li>Mobilde: Quality Settings → Mobile preset, anti-aliasing kapat, shadow distance düşür, texture quality "Half".</li>
+            </ol>
+            <p>Bölüm 26'da bu konuyu derin işledik — oraya dön.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>"GC stutter" nedir, nasıl çözülür?</summary>
+          <div class="faq-body">
+            <p>C#'ta her <code>new</code> ile heap'te bellek ayrılır. Belirli bir eşik aşılınca Garbage Collector çalışır ve kullanılmayan belleği temizler. Bu temizlik aniden 5-50 ms sürebilir → frame freeze → görsel stutter.</p>
+            <p><strong>Çözüm:</strong> Hot path'te (Update, FixedUpdate) GC.Alloc'u sıfıra indir:</p>
+            <ul>
+              <li>String concat (<code>"abc" + variable</code>) yapma. <code>StringBuilder</code> kullan veya değişkeni cache'le.</li>
+              <li>LINQ (<code>.Where().ToList()</code>) Update'te yapma — her çağrı yeni List ayırır.</li>
+              <li><code>new Vector3(...)</code> performanslı (struct) ama <code>new List&lt;T&gt;()</code> ayırır.</li>
+              <li>Instantiate/Destroy yerine <strong>Object Pool</strong> kullan (UnityEngine.Pool.ObjectPool).</li>
+              <li>Profiler → GC Alloc sütununa bak, "0 B" hedefi.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Script değiştirdikten sonra derleme çok uzun sürüyor</summary>
+          <div class="faq-body">
+            <p>Unity her script değişikliğinde tüm Assembly'leri tekrar derler. Proje büyüdükçe bu yavaşlar.</p>
+            <p>Hızlandırma:</p>
+            <ul>
+              <li><strong>Assembly Definition (.asmdef)</strong> — Klasörlere ayrı asmdef koy. Sadece o klasördeki kod değişince o assembly derlenir.</li>
+              <li><strong>Editor → Preferences → General → Auto Refresh</strong> kapat. Sadece Ctrl+R'a basınca derler.</li>
+              <li><strong>IL2CPP</strong> sadece final build için (Editor'da Mono kullan — çok daha hızlı derleme).</li>
+              <li>SSD üzerinde tut, antivirüs Library/ klasörünü <em>exclude</em> et.</li>
+              <li>Burst Compiler'in "compile synchronously" özelliğini kapat (Editor → Burst Settings).</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>"NullReferenceException" hatasını nasıl çözerim?</summary>
+          <div class="faq-body">
+            <p>En yaygın Unity hatası. Sebep: bir değişkenin <code>null</code> olduğu halde üzerine metot çağırıyorsun (<code>player.transform.position</code> → player null ise patlar).</p>
+            <p>Çözüm adımları:</p>
+            <ol>
+              <li>Console'da satır numarasına tıkla — kodda hangi satır olduğunu gör.</li>
+              <li>O satırda bir <code>nesne.üye</code> ifadesi var. Hangi nesne null?</li>
+              <li>Yaygın sebepler:
+                <ul>
+                  <li>Inspector'da public field <code>None</code> kalmış (atanmamış).</li>
+                  <li>GetComponent çağrısı dönüş null (objede o component yok).</li>
+                  <li>GameObject Destroy edildi ama referansı hâlâ tutuyorsun.</li>
+                  <li>Static singleton init edilmeden çağrıldı.</li>
+                </ul>
+              </li>
+              <li>Önlem: <code>if (target != null) { ... }</code> veya <code>?.</code> null-conditional operator.</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+
+      <!-- KARİYER -->
+      <div class="faq-group">
+        <h2 class="faq-group-title"><i class="ti ti-briefcase"></i> Kariyer ve Yayın</h2>
+
+        <details class="faq-item">
+          <summary>Junior Unity geliştirici olmak için ne kadar bilmeliyim?</summary>
+          <div class="faq-body">
+            <p>Junior pozisyon için tipik beklentiler:</p>
+            <ul>
+              <li><strong>C#</strong> — Sınıflar, interface, delegate/event, generics, LINQ, async basic.</li>
+              <li><strong>Unity temelleri</strong> — MonoBehaviour, Prefab, ScriptableObject, Animator, Physics, UI.</li>
+              <li><strong>Portföy</strong> — 2-3 tamamlanmış küçük oyun (itch.io/Steam'de yayında).</li>
+              <li><strong>Versiyon kontrolü</strong> — Git, branch, merge, conflict çözme.</li>
+              <li><strong>Bonus</strong> — Shader Graph, Cinemachine, Job System, mobil platform deneyimi.</li>
+            </ul>
+            <p>Bilgi &gt;&gt; gösteriş. CV'den çok GitHub + itch.io sayfan. Mülakatta "şu oyunu nasıl yaptın" sorusuna teknik detayla yanıt verebilmek altın değer.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Hangi mağazada yayınlamalıyım: Steam mi itch.io mu Google Play mi?</summary>
+          <div class="faq-body">
+            <p>Hedef kitleye bağlı:</p>
+            <ul>
+              <li><strong>itch.io</strong> — Ücretsiz, hızlı yayın, indie kitle. İlk oyununu burada yayınla. Game jam standart.</li>
+              <li><strong>Steam</strong> — PC oyuncularının ana platformu. $100 SteamDirect ücreti (oyun başına). Görünürlük zor — wishlist + algoritma gerekir.</li>
+              <li><strong>Google Play</strong> — Mobil Android. $25 bir kerelik. Hyper-casual veya casual oyunlar için.</li>
+              <li><strong>App Store</strong> — iOS, $99/yıl Apple Developer Program. Daha kaliteli kitle ama review süreci sıkı.</li>
+              <li><strong>Epic Store</strong> — PC alternatifi, Steam'den daha az kitle ama %12 kesinti (Steam %30).</li>
+              <li><strong>Konsol</strong> (Nintendo Switch, Xbox, PlayStation) — Dev kit + onay süreçleri var. Junior için zor, sonraya bırak.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Unity ile yapılmış ünlü oyunlar neler?</summary>
+          <div class="faq-body">
+            <p>Unity son derece yaygın — milyarlarca cihaza ulaştı. Bilinen oyunlar:</p>
+            <ul>
+              <li><strong>Hollow Knight</strong> (Team Cherry) — Metroidvania, kült.</li>
+              <li><strong>Cuphead</strong> (StudioMDHR) — El çizimi 2B aksiyon.</li>
+              <li><strong>Among Us</strong> (Innersloth) — Sosyal deduction multiplayer.</li>
+              <li><strong>Genshin Impact</strong> (miHoYo) — Açık dünya RPG, multi-platform.</li>
+              <li><strong>Cities: Skylines</strong> (Colossal Order) — Şehir kurma simülasyonu.</li>
+              <li><strong>Ori and the Blind Forest</strong> (Moon Studios) — Görsel sanat eseri platformer.</li>
+              <li><strong>Subnautica</strong> (Unknown Worlds) — Sualtı survival.</li>
+              <li><strong>Beat Saber</strong> (Beat Games) — VR ritim oyunu.</li>
+              <li><strong>Pokémon GO</strong> (Niantic) — AR mobil.</li>
+              <li><strong>Outer Wilds, Risk of Rain 2, Cult of the Lamb, Hearthstone, Fall Guys</strong>.</li>
+            </ul>
+            <p>Unity 2B/3B, mobil/AAA, indie/stüdyo — her ölçekte kullanılır.</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- HAKKINDA -->
+      <div class="faq-group">
+        <h2 class="faq-group-title"><i class="ti ti-flame"></i> UnityAkademi Hakkında</h2>
+
+        <details class="faq-item">
+          <summary>Bu kurs ücretli mi olacak?</summary>
+          <div class="faq-body">
+            <p>Hayır, tamamı ücretsiz kalacak. Hedef Türkçe oyun geliştirici sayısını artırmak. Reklam yok, ödeme yok, üyelik yok.</p>
+            <p>Eğer destek olmak istersen: arkadaşlarına paylaş, Discord topluluğunda aktif ol, hata bildir, içerik öner.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>İçerik güncellenecek mi?</summary>
+          <div class="faq-body">
+            <p>Evet. Unity her büyük sürümünde değişiklik getirir. Şu anki içerik <strong>Unity 6 + 2022.3 LTS</strong> baz alınmıştır. Önemli değişiklikler oldukça ilgili bölümler güncellenir, yeni özellikler eklenir.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Bu kursu bitiren biri direkt iş bulabilir mi?</summary>
+          <div class="faq-body">
+            <p>Sadece kurs yetmez. Kurs + 3-5 portföy oyunu + GitHub aktivitesi + 1-2 game jam + biraz network → junior pozisyon başvurmaya hazırsın.</p>
+            <p>Kurs sana <strong>temeli</strong> verir. İş bulma kısmı senin <strong>pratiğine</strong> kalır. Bölüm 27 (Yol Haritası) bu sürece detaylı rehberdir.</p>
+          </div>
+        </details>
+      </div>
+
+    </div>
+
+    <nav class="page-nav">
+      <a href="cheatsheet.html" class="page-nav-link">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-left"></i></div>
+        <div class="page-nav-body"><div class="page-nav-label">Geri</div><div class="page-nav-title">Cheat Sheet</div></div>
+      </a>
+      <a href="kaynaklar.html" class="page-nav-link next">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-right"></i></div>
+        <div class="page-nav-body"><div class="page-nav-label">Devam</div><div class="page-nav-title">Kaynaklar</div></div>
+      </a>
+    </nav>
+
+  </div>
+</main>
+<script src="../js/progress.js?v=11"></script>
+<script src="../js/quiz.js?v=11"></script>
+<script src="../js/toc.js?v=11"></script>
+<script src="../js/main.js?v=11"></script>
+</body>
+</html>

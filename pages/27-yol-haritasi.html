@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yol Haritası — UnityAkademi</title>
+  <meta name="description" content="Kariyer yolları, portföy stratejisi, ileri kaynaklar (kanal, kitap, kurs), topluluk, game jam&#x27;ler, devlog kültürü, oyun yayını yol haritası — buradan sonrası.">
+  <meta name="theme-color" content="#fa7d19">
+  <link rel="manifest" href="../manifest.json">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Yol Haritası">
+  <meta property="og:description" content="Kariyer yolları, portföy stratejisi, ileri kaynaklar (kanal, kitap, kurs), topluluk, game jam&#x27;ler, devlog kültürü, oyun yayını yol haritası — buradan sonrası.">
+  <meta property="og:image" content="../og-image.svg">
+  <meta property="og:site_name" content="UnityAkademi">
+  <meta property="og:locale" content="tr_TR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Yol Haritası">
+  <meta name="twitter:description" content="Kariyer yolları, portföy stratejisi, ileri kaynaklar (kanal, kitap, kurs), topluluk, game jam&#x27;ler, devlog kültürü, oyun yayını yol haritası — buradan sonrası.">
+  <meta name="twitter:image" content="../og-image.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="../css/variables.css?v=11">
+  <link rel="stylesheet" href="../css/reset.css?v=11">
+  <link rel="stylesheet" href="../css/layout.css?v=11">
+  <link rel="stylesheet" href="../css/components.css?v=11">
+  <link rel="stylesheet" href="../css/content.css?v=11">
+  <link rel="stylesheet" href="../css/visuals.css?v=11">
+  <link rel="stylesheet" href="../css/extras.css?v=11">
+  <link rel="stylesheet" href="../css/responsive.css?v=11">
+</head>
+<body>
+<button class="nav-hamburger" id="navHamburger" aria-label="Menüyü aç">
+  <i class="ti ti-menu-2"></i>
+</button>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a href="../index.html" class="sidebar-brand">
+      <div class="sidebar-brand-icon"><i class="ti ti-home-2"></i></div>
+      <div class="sidebar-brand-text">
+        <span class="sidebar-brand-name">Ana Sayfa</span>
+        <span class="sidebar-brand-sub">UnityAkademi</span>
+      </div>
+    </a>
+    <button class="mobile-toggle" aria-label="Menü"><i class="ti ti-x"></i></button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-group">
+      <div class="nav-group-title">Temeller</div>
+      <a href="01-kurulum.html" class="nav-link" data-section="s1"><i class="ti ti-download"></i><span class="nav-link-text">Kurulum & İlk Bakış</span><span class="nav-link-num">01</span></a>
+      <a href="02-arayuz.html" class="nav-link" data-section="s2"><i class="ti ti-layout-board"></i><span class="nav-link-text">Editor Arayüzü</span><span class="nav-link-num">02</span></a>
+      <a href="03-gameobject-component.html" class="nav-link" data-section="s3"><i class="ti ti-cube"></i><span class="nav-link-text">GameObject & Component</span><span class="nav-link-num">03</span></a>
+      <a href="04-csharp-temelleri.html" class="nav-link" data-section="s4"><i class="ti ti-code"></i><span class="nav-link-text">C# Temelleri</span><span class="nav-link-num">04</span></a>
+      <a href="05-monobehaviour-lifecycle.html" class="nav-link" data-section="s5"><i class="ti ti-refresh"></i><span class="nav-link-text">MonoBehaviour Lifecycle</span><span class="nav-link-num">05</span></a>
+      <a href="06-transform-vector.html" class="nav-link" data-section="s6"><i class="ti ti-arrows-move"></i><span class="nav-link-text">Transform & Vector3</span><span class="nav-link-num">06</span></a>
+      <a href="07-input.html" class="nav-link" data-section="s7"><i class="ti ti-keyboard"></i><span class="nav-link-text">Input Sistemi</span><span class="nav-link-num">07</span></a>
+      <a href="08-physics.html" class="nav-link" data-section="s8"><i class="ti ti-atom"></i><span class="nav-link-text">Physics</span><span class="nav-link-num">08</span></a>
+      <a href="09-ui.html" class="nav-link" data-section="s9"><i class="ti ti-layout-grid"></i><span class="nav-link-text">UI Sistemi</span><span class="nav-link-num">09</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Görsel & Asset</div>
+      <a href="10-material-shader.html" class="nav-link" data-section="s10"><i class="ti ti-palette"></i><span class="nav-link-text">Material & Shader</span><span class="nav-link-num">10</span></a>
+      <a href="11-asset-import.html" class="nav-link" data-section="s11"><i class="ti ti-folder"></i><span class="nav-link-text">Asset Import</span><span class="nav-link-num">11</span></a>
+      <a href="12-animation.html" class="nav-link" data-section="s12"><i class="ti ti-bounce-right"></i><span class="nav-link-text">Animation</span><span class="nav-link-num">12</span></a>
+      <a href="13-particle-vfx.html" class="nav-link" data-section="s13"><i class="ti ti-sparkles"></i><span class="nav-link-text">Particle & VFX Graph</span><span class="nav-link-num">13</span></a>
+      <a href="14-lighting.html" class="nav-link" data-section="s14"><i class="ti ti-bulb"></i><span class="nav-link-text">Lighting</span><span class="nav-link-num">14</span></a>
+      <a href="15-audio.html" class="nav-link" data-section="s15"><i class="ti ti-volume"></i><span class="nav-link-text">Audio</span><span class="nav-link-num">15</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Sistemler</div>
+      <a href="16-probuilder.html" class="nav-link" data-section="s16"><i class="ti ti-3d-cube-sphere"></i><span class="nav-link-text">ProBuilder</span><span class="nav-link-num">16</span></a>
+      <a href="17-terrain.html" class="nav-link" data-section="s17"><i class="ti ti-mountain"></i><span class="nav-link-text">Terrain</span><span class="nav-link-num">17</span></a>
+      <a href="18-cinemachine.html" class="nav-link" data-section="s18"><i class="ti ti-camera"></i><span class="nav-link-text">Cinemachine</span><span class="nav-link-num">18</span></a>
+      <a href="19-timeline.html" class="nav-link" data-section="s19"><i class="ti ti-timeline"></i><span class="nav-link-text">Timeline</span><span class="nav-link-num">19</span></a>
+      <a href="20-navmesh.html" class="nav-link" data-section="s20"><i class="ti ti-route"></i><span class="nav-link-text">NavMesh & AI</span><span class="nav-link-num">20</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">İleri Seviye</div>
+      <a href="21-urp-hdrp.html" class="nav-link" data-section="s21"><i class="ti ti-bolt"></i><span class="nav-link-text">URP, HDRP & Unity 6</span><span class="nav-link-num">21</span></a>
+      <a href="22-new-input.html" class="nav-link" data-section="s22"><i class="ti ti-device-gamepad-2"></i><span class="nav-link-text">New Input System</span><span class="nav-link-num">22</span></a>
+      <a href="23-save-menu.html" class="nav-link" data-section="s23"><i class="ti ti-device-floppy"></i><span class="nav-link-text">Save & Menü</span><span class="nav-link-num">23</span></a>
+      <a href="24-build.html" class="nav-link" data-section="s24"><i class="ti ti-package-export"></i><span class="nav-link-text">Build & Yayınlama</span><span class="nav-link-num">24</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Profesyonel</div>
+      <a href="25-csharp-ileri.html" class="nav-link" data-section="s25"><i class="ti ti-brackets-contain"></i><span class="nav-link-text">C# İleri</span><span class="nav-link-num">25</span></a>
+      <a href="26-performance.html" class="nav-link" data-section="s26"><i class="ti ti-gauge"></i><span class="nav-link-text">Performance</span><span class="nav-link-num">26</span></a>
+      <a href="27-yol-haritasi.html" class="nav-link active" data-section="s27"><i class="ti ti-map-2"></i><span class="nav-link-text">Yol Haritası</span><span class="nav-link-num">27</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Pratik</div>
+      <a href="projects.html" class="nav-link nav-link-extra" data-section="x-projects"><i class="ti ti-rocket"></i><span class="nav-link-text">Projeler</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Ek Kaynaklar</div>
+      <a href="sozluk.html" class="nav-link nav-link-extra" data-section="x-sozluk"><i class="ti ti-book-2"></i><span class="nav-link-text">Sözlük</span></a>
+      <a href="cheatsheet.html" class="nav-link nav-link-extra" data-section="x-cheatsheet"><i class="ti ti-list-details"></i><span class="nav-link-text">Cheat Sheet</span></a>
+      <a href="sss.html" class="nav-link nav-link-extra" data-section="x-sss"><i class="ti ti-help-circle"></i><span class="nav-link-text">SSS</span></a>
+      <a href="arama.html" class="nav-link nav-link-extra" data-section="x-arama"><i class="ti ti-search"></i><span class="nav-link-text">Arama</span></a>
+      <a href="sertifika.html" class="nav-link nav-link-extra" data-section="x-sertifika"><i class="ti ti-certificate"></i><span class="nav-link-text">Sertifika</span></a>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="kaynaklar.html" class="sidebar-btn"><i class="ti ti-books"></i><span>Kaynaklar</span></a>
+    <a href="iletisim.html" class="sidebar-btn"><i class="ti ti-mail"></i><span>İletişim</span></a>
+  </div>
+</aside>
+<main class="main">
+  <div class="main-content">
+<nav class="breadcrumb" aria-label="Sayfa konumu">
+      <a href="../index.html"><i class="ti ti-home"></i><span>Ana Sayfa</span></a>
+      <i class="ti ti-chevron-right"></i><span><i class="ti ti-school" style="font-size: 13px; opacity: 0.7; margin-right: 4px;"></i>Profesyonel</span>
+      <i class="ti ti-chevron-right"></i><span style="color: var(--primary-light);">Yol Haritası</span>
+    </nav>
+
+<header class="page-header">
+  <span class="chapter-pill">Bölüm 27</span>
+  <h1 class="page-title">Yol Haritası — Buradan Sonrası</h1>
+  <p class="page-subtitle">Tebrikler — Unity'nin temellerini, görsel pipeline'ları, fizik, AI, animasyon, performans ve C# ileri konularını tamamladın. Bu son bölüm bir <strong>derleyici</strong> değil, bir <strong>pusula</strong>: kariyer yolları, portföy stratejisi, ileri kaynaklar, topluluk, game jam'ler ve oyun yayını rehberi.</p>
+  <div class="page-meta">
+    <span>⏱ Okuma süresi: ~25 dk</span>
+    <span>🧭 9 konu</span>
+    <span>🎯 Zorluk: Genel</span>
+  </div>
+</header>
+
+<section class="topic-section" id="neredesin">
+  <div class="topic-header">
+    <span class="topic-number">27.1</span>
+    <h2 class="topic-title">📍 Neredesin? — Şu Ana Kadar Öğrendiklerin</h2>
+  </div>
+  <p class="topic-text">
+    Geride bıraktığın 26 bölüm aslında bir <strong>oyun geliştirici eğitiminin omurgası</strong>. Kategorilere göre artık sahip olduğun bilgiler:
+  </p>
+  <ul class="check-list">
+    <li><strong>Editör &amp; Temel</strong> — Unity Hub, proje yönetimi, sahne/hiyerarşi/inspector, GameObject &amp; Component felsefesi.</li>
+    <li><strong>C# Programlama</strong> — Değişkenler, sınıflar, MonoBehaviour yaşam döngüsü, Coroutine, async/await, delegate/event, generics, LINQ, interface, extension method.</li>
+    <li><strong>3B Dünya</strong> — Transform, Vector3/Quaternion matematiği, Input System (yeni), Physics (Rigidbody/Collider/Raycast).</li>
+    <li><strong>Görsel</strong> — UI (Canvas, anchor, layout), Material/Shader Graph, Particle System &amp; VFX Graph, Lighting (baked/realtime/mixed), URP/HDRP.</li>
+    <li><strong>Asset &amp; Animasyon</strong> — Asset Store, FBX import, Animator state machine, blend tree, Cinemachine, Timeline.</li>
+    <li><strong>Dünya Yaratımı</strong> — ProBuilder, Terrain, Audio (3D, mixer, snapshot).</li>
+    <li><strong>AI &amp; Sistem</strong> — NavMesh &amp; AI Navigation, Save sistemleri (PlayerPrefs/JSON/Binary/AES), Build &amp; mağaza yayını.</li>
+    <li><strong>Performance</strong> — Profiler, Frame Debugger, GPU Instancing, Object Pool, Job System + Burst, LOD, Occlusion, GC kontrolü.</li>
+  </ul>
+  <p class="topic-text">
+    Bu liste seni <strong>junior Unity geliştirici</strong> seviyesine taşır. Şimdi sırada: <em>pratik, portföy ve uzmanlaşma</em>.
+  </p>
+</section>
+
+<section class="topic-section" id="kariyer-yollari">
+  <div class="topic-header">
+    <span class="topic-number">27.2</span>
+    <h2 class="topic-title">💼 Kariyer Yolları — Hangi Yön Sana Uygun?</h2>
+  </div>
+  <p class="topic-text">
+    Unity becerisiyle yapabileceğin iş tipleri çok çeşitli. Hepsinin farklı günlük rutini, gelir modeli ve zorlukları var:
+  </p>
+
+  <h3 class="topic-subtitle">1. Indie Geliştirici (Solo veya Küçük Takım)</h3>
+  <ul class="check-list">
+    <li>Kendi oyununu yapıp Steam / itch.io / mobil mağazalarda yayınlarsın.</li>
+    <li>Gelir: Telif (satış başına %70). Hit yaparsan büyük, yapmazsan sıfır.</li>
+    <li>Avantaj: Yaratıcı özgürlük, kendi patronun, isimden tanınma.</li>
+    <li>Dezavantaj: Pazarlama da senin işin, finansal risk, "her şapkayı giyme" yorgunluğu.</li>
+    <li>Örnek: <em>Stardew Valley</em> (ConcernedApe — tek kişi), <em>Hollow Knight</em> (Team Cherry — 3 kişi), <em>Cuphead</em> (StudioMDHR — küçük takım).</li>
+  </ul>
+
+  <h3 class="topic-subtitle">2. Studio Geliştirici (AA / AAA)</h3>
+  <ul class="check-list">
+    <li>Bir oyun stüdyosunda maaşlı, bir takımın parçası olarak çalışırsın.</li>
+    <li>Roller: Gameplay Programmer, Engine Programmer, Tools Programmer, Graphics Programmer, Network Programmer.</li>
+    <li>Avantaj: İstikrar, mentor erişimi, büyük bütçeli projelerde yer alma.</li>
+    <li>Dezavantaj: Crunch (yoğun sürüm öncesi), büyük şirket politikaları, yaratıcı kontrol az.</li>
+    <li>Türkiye'de Unity ile çalışan stüdyolar: Taleworlds, Peak Games (mobil), Dream Games, Gram Games, Spyke Games, Masomo.</li>
+  </ul>
+
+  <h3 class="topic-subtitle">3. Freelance / Contract</h3>
+  <ul class="check-list">
+    <li>Proje bazlı çalışır, Upwork / Fiverr / LinkedIn / kendi network üzerinden müşteri bulursun.</li>
+    <li>Saatlik ücret: $15-$150 (deneyim ve uzmanlığa göre).</li>
+    <li>Tipik işler: Mobil hyper-casual prototip, AR/VR uygulamaları, eğitim oyunları, simülasyon, mimari görselleştirme.</li>
+    <li>Avantaj: Esnek saat, çok proje deneyimi, uluslararası müşteri.</li>
+    <li>Dezavantaj: Gelir düzensiz, vergi/muhasebe kendi sorumluluğun, kendi pazarlamanı yapma.</li>
+  </ul>
+
+  <h3 class="topic-subtitle">4. Oyun-dışı Unity Kariyerleri</h3>
+  <ul class="check-list">
+    <li><strong>AR/VR &amp; XR</strong> — Meta Quest, Apple Vision Pro, HoloLens uygulamaları. Eğitim, sağlık, askeri simülasyon.</li>
+    <li><strong>Otomotiv &amp; Mimari</strong> — Araç konfigüratörleri, gerçek zamanlı mimari turlar, fabrika dijital ikizi (digital twin).</li>
+    <li><strong>Film &amp; Animasyon</strong> — Sanal prodüksiyon (Mandalorian benzeri LED duvarlar), pre-viz, oyun-sinema melezleri.</li>
+    <li><strong>Eğitim &amp; Sağlık</strong> — Tıp simülasyonları, ameliyat eğitimi, terapötik uygulamalar.</li>
+    <li>Bu sektörlerde maaşlar genelde oyun stüdyolarından <em>yüksek</em>.</li>
+  </ul>
+
+  <div class="mini-checkpoint">
+    <strong>Mini-Checkpoint:</strong> "İndie veya stüdyo" ikisinden birini seçmek zorunda değilsin. Birçok başarılı geliştirici stüdyoda çalışırken yan projede kendi oyununu yapar. Önemli olan: <em>her gün bir şey üret</em>.
+  </div>
+</section>
+
+<section class="topic-section" id="portfoy">
+  <div class="topic-header">
+    <span class="topic-number">27.3</span>
+    <h2 class="topic-title">🎯 Portföy Stratejisi — Ne Yapmalısın?</h2>
+  </div>
+  <p class="topic-text">
+    Bir junior pozisyon için CV'den çok <strong>portföy</strong> önemli. İşveren "ne biliyorsun" diye sormak yerine "ne yaptın, görelim" der.
+  </p>
+  <p class="topic-text">
+    <strong>Altın kural:</strong> 5 küçük <em>tamamlanmış</em> oyun &gt; 1 büyük <em>yarım kalmış</em> oyun. Tamamlama becerisi tek başına ayırt edicidir — başlamak kolay, bitirmek zor.
+  </p>
+
+  <h3 class="topic-subtitle">İdeal Portföyde Olması Gerekenler</h3>
+  <ul class="check-list">
+    <li><strong>3-5 küçük oyun</strong> — Her biri bir mekanik, bir tür, bir hedef öğrencisi. Her oyun farklı bir gösterge: "ben fizik biliyorum", "ben AI biliyorum", "ben UI biliyorum".</li>
+    <li><strong>1 orta proje</strong> — 2-3 ay üzerinde çalıştığın, mağazada yayınlanmış (itch.io olsa bile) bir oyun.</li>
+    <li><strong>1 teknik demo</strong> — Kompleks bir özelliği gösteren: özel shader, prosedürel dünya, AI davranış ağacı, network multiplayer.</li>
+    <li><strong>GitHub profili</strong> — Tüm projelerin kaynak kodu (özel/kapalı olanlar hariç). README'ler düzenli, screenshot'lar var.</li>
+    <li><strong>itch.io sayfası</strong> — WebGL build'leri ile tarayıcıdan oynanabilir oyunlar. Bu BÜYÜK fark yaratır — IK kişiyi oyununu tek tıkla oynatır.</li>
+    <li><strong>Devlog / YouTube</strong> — Geliştirme sürecini gösteren kısa videolar veya yazılar. Bir özelliği nasıl yaptığını anlatmak, sadece yapmaktan çok değerlidir.</li>
+  </ul>
+
+  <h3 class="topic-subtitle">Küçük Oyun Fikirleri (Her Biri 1-2 Haftalık)</h3>
+  <ul class="check-list">
+    <li><strong>2B Platformer</strong> — Çift atlama, duvar zıplama, 3 düşman tipi, basit boss.</li>
+    <li><strong>Top-down Shooter</strong> — Twin-stick kontrol, dalga sistemi, power-up'lar.</li>
+    <li><strong>Tower Defense</strong> — Yol bulma, 3 kule tipi, yükseltme sistemi.</li>
+    <li><strong>Puzzle</strong> — 20 seviyeli, mekanik öğretici (Sokoban, Lazer Yansıtma, Boya Karıştırma).</li>
+    <li><strong>Endless Runner</strong> — Mobil dokunmatik, hyper-casual estetik, leaderboard.</li>
+    <li><strong>3B First-Person</strong> — Walking simulator, küçük hikayeli (10-15 dk).</li>
+    <li><strong>Racing</strong> — Wheel collider, AI rakipler, tur sistemi.</li>
+  </ul>
+
+  <div class="real-world-box">
+    <h3>🎮 Gerçek Dünyadan: Vlambeer'in Hız Stratejisi</h3>
+    <p>Vlambeer (Hollanda) studio'su <em>Super Crate Box, Nuclear Throne, Luftrausers</em> gibi oyunlarla tanındı. Strateji: <strong>"prototype quickly, finish fast"</strong>. Her ay 1-2 küçük oyun prototipi yapıp, en sevdiklerini geliştirip yayınladılar. 5 yılda 10+ tamamlanmış oyun → güçlü portföy, sürekli para, kitleye sürekli bir şey verme. Sen de bu modeli benimseyebilirsin: <em>"Quick to start, faster to ship"</em>.</p>
+  </div>
+</section>
+
+<section class="topic-section" id="ileri-kaynaklar">
+  <div class="topic-header">
+    <span class="topic-number">27.4</span>
+    <h2 class="topic-title">📚 İleri Kaynaklar — Nereden Devam?</h2>
+  </div>
+
+  <h3 class="topic-subtitle">Resmi Kaynaklar</h3>
+  <ul class="check-list">
+    <li><strong>Unity Learn</strong> (learn.unity.com) — Ücretsiz tutorial'lar, pathway'ler ("Junior Programmer", "Creative Core"), interaktif örnekler.</li>
+    <li><strong>Unity Documentation</strong> (docs.unity3d.com) — Her API'nin resmi referansı. Manual + Scripting API ayrı.</li>
+    <li><strong>Unity Discussions</strong> (discussions.unity.com) — Resmi forum, sorular ve cevaplar.</li>
+    <li><strong>Unity GitHub</strong> (github.com/Unity-Technologies) — Açık kaynak örnek projeler: 2D Game Kit, FPS Microgame, BoatAttack (URP), ECS samples.</li>
+  </ul>
+
+  <h3 class="topic-subtitle">YouTube Kanalları (İngilizce)</h3>
+  <ul class="check-list">
+    <li><strong>Code Monkey</strong> — Hugo Pereira. Yapı + tasarım odaklı, her seviyeye uygun. Çok güncel.</li>
+    <li><strong>Tarodev</strong> — Daha ileri seviye, kod kalitesi, mimari, "best practices".</li>
+    <li><strong>Brackeys</strong> (arşiv) — Klasikler. Tutorial'lar 2020'de durdu ama hâlâ son derece değerli — özellikle yeni başlayanlar için.</li>
+    <li><strong>Catlike Coding</strong> (catlikecoding.com) — Yazılı, derin teknik (shader, render pipeline, ECS). Akademik tat.</li>
+    <li><strong>Game Maker's Toolkit</strong> — Mark Brown. Oyun tasarımı (Unity-spesifik değil ama bilmen şart).</li>
+    <li><strong>Sebastian Lague</strong> — Prosedürel jenerasyon, AI, matematik. Sanat eseri seviyesinde videolar.</li>
+    <li><strong>Freya Holmér</strong> — Shader ve matematik öğretmeni. Görsel açıklamaları efsanevi.</li>
+    <li><strong>Jason Weimann</strong> — Mimari, design pattern, profesyonel pratikler.</li>
+  </ul>
+
+  <h3 class="topic-subtitle">Türkçe Kaynaklar</h3>
+  <ul class="check-list">
+    <li><strong>Bilgisayar Kavramları</strong> (YouTube) — Türkçe Unity tutorial'ları.</li>
+    <li><strong>Mustafa Yaşar</strong>, <strong>Furkan Karaca</strong> — Türkçe gamedev içerikler.</li>
+    <li><strong>Unity Türkiye Discord</strong> &amp; <strong>r/UnityTurkiye</strong> — Topluluk soru/cevap.</li>
+    <li><strong>BTK Akademi</strong> — Ücretsiz Unity kursları (kalite değişken ama temel için iyi).</li>
+  </ul>
+
+  <h3 class="topic-subtitle">Kitaplar</h3>
+  <ul class="check-list">
+    <li><em>Game Programming Patterns</em> — Robert Nystrom (gameprogrammingpatterns.com, ücretsiz online). Singleton/Observer/State/Command pattern'leri öğrenmek için kutsal metin.</li>
+    <li><em>Unity in Action</em> — Joseph Hocking. Klasik referans.</li>
+    <li><em>Game Engine Architecture</em> — Jason Gregory. Daha ileri, engine'in iç mekaniğini anlamak için.</li>
+    <li><em>The Art of Game Design</em> — Jesse Schell. Tasarım odaklı, "lens" kavramı.</li>
+  </ul>
+
+  <h3 class="topic-subtitle">Ücretli Kurslar</h3>
+  <ul class="check-list">
+    <li><strong>GameDev.tv</strong> (Udemy) — Ben Tristem. Komple oyun projeleri, $10-15 indirimde.</li>
+    <li><strong>Wilmer Lin</strong> — Shader Graph ve VFX uzmanı, Udemy'de bütünleşik kurslar.</li>
+    <li><strong>School of Game Design</strong>, <strong>Pluralsight</strong>, <strong>Coursera</strong> Game Development specialization.</li>
+  </ul>
+</section>
+
+<section class="topic-section" id="toplulukla">
+  <div class="topic-header">
+    <span class="topic-number">27.5</span>
+    <h2 class="topic-title">👥 Toplulukla Bağlantı</h2>
+  </div>
+  <p class="topic-text">
+    Gamedev tek başına yapılmaz. Topluluk = öğrenme + motivasyon + ilk müşteri + arkadaşlık.
+  </p>
+
+  <h3 class="topic-subtitle">Discord Sunucuları</h3>
+  <ul class="check-list">
+    <li><strong>Unity Resmi Discord</strong> — Onbinlerce üye, kanallar (yardim, vfx, shader, mobile, vr).</li>
+    <li><strong>Tarodev Community</strong>, <strong>Code Monkey</strong> — YouTuber'ların kendi toplulukları, samimi.</li>
+    <li><strong>Indie Game Developers</strong> — Solo geliştiriciler için.</li>
+    <li><strong>Türkçe</strong>: Unity Türkiye, Türk Oyun Geliştiricileri (kişisel olarak araştır, link verme).</li>
+  </ul>
+
+  <h3 class="topic-subtitle">Reddit</h3>
+  <ul class="check-list">
+    <li><strong>r/Unity3D</strong> — Genel Unity, Q&amp;A + showcase + tutorial linkleri.</li>
+    <li><strong>r/Unity2D</strong> — 2D odaklı.</li>
+    <li><strong>r/gamedev</strong> — Genel oyun geliştirme, motor-bağımsız.</li>
+    <li><strong>r/IndieGaming</strong>, <strong>r/IndieDev</strong> — Indie tanıtım.</li>
+    <li><strong>r/UnityTurkiye</strong> — Türkçe topluluk.</li>
+  </ul>
+
+  <h3 class="topic-subtitle">Twitter / X</h3>
+  <ul class="check-list">
+    <li><strong>#gamedev</strong>, <strong>#unity3d</strong>, <strong>#indiedev</strong>, <strong>#screenshotsaturday</strong>, <strong>#FF</strong> (FollowFriday) hashtag'leri.</li>
+    <li>Geliştiriciler buradan iş bulur, müşteri çeker, oyununu duyurur.</li>
+    <li>Haftada en az 1 kez kendi çalışmanı paylaş — GIF/video formatında.</li>
+    <li>Etkileşimli ol: Diğer gamedev'lerin postlarına yorum/RT yap. Topluluk kendine bakar.</li>
+  </ul>
+
+  <div class="mini-checkpoint">
+    <strong>Mini-Checkpoint:</strong> Kendin için bir #screenshotsaturday başlat. Her cumartesi geçen haftanın bir GIF'ini paylaş. 6 ay sonra büyük bir takipçi kitlen ve momentum'un olur.
+  </div>
+</section>
+
+<section class="topic-section" id="game-jamler">
+  <div class="topic-header">
+    <span class="topic-number">27.6</span>
+    <h2 class="topic-title">🎲 Game Jam'ler — Hızlı Pişirme</h2>
+  </div>
+  <p class="topic-text">
+    Game jam, belirli bir tema ve süre içinde (genelde 48-72 saat) bir oyun yapma yarışmasıdır. <strong>Junior gamedev için altın değerinde</strong>:
+  </p>
+  <ul class="check-list">
+    <li><strong>Bitiriş disiplini</strong> — Süre baskısı, "mükemmel" olmadan "yayın" yapmayı öğretir.</li>
+    <li><strong>Scope yönetimi</strong> — Büyük fikri 48 saate sığacak küçük bir core'a indirme becerisi.</li>
+    <li><strong>Portföye katkı</strong> — Tamamlanmış mini oyunlar, jam sayfasında otomatik vitrin.</li>
+    <li><strong>Topluluk</strong> — Diğer geliştiriciler oyununu oynar, oy verir, feedback bırakır.</li>
+    <li><strong>Beklenmedik fırsat</strong> — Bazı hit oyunlar jam'de doğdu: <em>Baba Is You, Superhot, Goat Simulator, Surgeon Simulator</em>.</li>
+  </ul>
+
+  <h3 class="topic-subtitle">Popüler Jam'ler</h3>
+  <ul class="check-list">
+    <li><strong>Ludum Dare</strong> (ldjam.com) — 3 ayda bir, 48/72 saat. En eski ve büyük jam.</li>
+    <li><strong>Global Game Jam</strong> (globalgamejam.org) — Ocak ayında, dünya çapında lokal etkinliklerle. Türkiye'de İstanbul/Ankara'da fiziksel mekânlar olur.</li>
+    <li><strong>GMTK Jam</strong> — Game Maker's Toolkit'in yıllık jam'i. Çok güçlü tema, geniş katılım.</li>
+    <li><strong>Brackeys Game Jam</strong> — Yarı yılda bir, başlangıç-dostu.</li>
+    <li><strong>itch.io Jams</strong> (itch.io/jams) — Her gün başlayan onlarca jam: Pixel Art Jam, Horror Jam, 1-Bit Jam.</li>
+  </ul>
+
+  <h3 class="topic-subtitle">Jam Stratejisi</h3>
+  <ol class="step-list">
+    <li><strong>İlk 2 saat</strong> — Tema oku, 5-10 fikir kâğıda dök, en küçük olanı seç.</li>
+    <li><strong>İlk gün</strong> — Core mekanik çalışsın. "Hareket eden bir şey, oynayabileceğim bir şey." Sanat henüz primitive cube.</li>
+    <li><strong>İkinci gün</strong> — İçerik (5 seviye / 3 düşman / 1 boss), polish (juicy efektler, sesler).</li>
+    <li><strong>Son 3 saat</strong> — Build alma, test, yükleme, sayfa metni yazma. Bu en stresli kısım — buna pay ayır.</li>
+    <li><strong>Sahip ol</strong> — Bug'lı olsa bile gönder. Bitmeyen oyun &gt; yayınlanmamış oyun.</li>
+  </ol>
+
+  <div class="warning-box">
+    <strong>⚠ Tuzak:</strong> İlk jam'inde her şeyi öğrenmek isteme. <em>Bitirmek</em> tek hedef. Sonra her jam'de 1-2 yeni teknik dene.
+  </div>
+</section>
+
+<section class="topic-section" id="devlog-kulturu">
+  <div class="topic-header">
+    <span class="topic-number">27.7</span>
+    <h2 class="topic-title">📹 Devlog Kültürü &amp; Görünürlük</h2>
+  </div>
+  <p class="topic-text">
+    Devlog: Bir oyunun geliştirme sürecini düzenli olarak (haftalık/aylık) belgelemek. Yazı, video veya GIF olabilir. Neden değerli?
+  </p>
+  <ul class="check-list">
+    <li><strong>Kitleyi büyütür</strong> — Oyun çıkmadan önce zaten ilgili insanlar olur. Steam'de "Wishlist" yaparlar.</li>
+    <li><strong>Geri bildirim</strong> — Daha tasarım fazındayken kullanıcı tepkisini görürsün.</li>
+    <li><strong>Disiplin</strong> — "Bu hafta paylaşacak bir şeyim olmalı" baskısı çalışmaya iter.</li>
+    <li><strong>İş fırsatı</strong> — Stüdyolar Twitter'dan iş teklif eder, freelance müşteri devlog'unu görüp DM atar.</li>
+  </ul>
+
+  <h3 class="topic-subtitle">Devlog Formatları</h3>
+  <ul class="check-list">
+    <li><strong>Twitter/X GIF</strong> — Haftada 1, 10-30 saniyelik yeni özellik GIF'i. ScreenToGif veya OBS Studio + GIPHY Capture.</li>
+    <li><strong>YouTube Video</strong> — Aylık 5-10 dk, "bu ay ne yaptım". Kompleksiyle başlama — kısa ve net.</li>
+    <li><strong>Blog/Substack</strong> — Yazılı detay, teknik öğretici, post-mortem.</li>
+    <li><strong>Reddit r/IndieDev</strong> — Hafta sonu pazartesi showcase post'u, mesai başı gözlere çarp.</li>
+  </ul>
+
+  <h3 class="topic-subtitle">"İlk Görüşte Etkile" Kuralı</h3>
+  <p class="topic-text">
+    İnsanlar GIF/videoya bakar bakmaz <strong>3 saniye</strong> içinde karar verir. Bu yüzden:
+  </p>
+  <ul class="check-list">
+    <li>İlk frame eylem içerir — patlama, atlama, dramatik bir şey.</li>
+    <li>GIF kısa: 5-10 sn. Daha uzun gerekirse video.</li>
+    <li>"Juicy" efektler (ekran sarsma, partikül, freeze frame) — oyun daha eğlenceli görünür.</li>
+    <li>Metin az — görsel ön plan.</li>
+  </ul>
+</section>
+
+<section class="topic-section" id="yayın-yolu">
+  <div class="topic-header">
+    <span class="topic-number">27.8</span>
+    <h2 class="topic-title">🚀 Oyun Yayını Yol Haritası</h2>
+  </div>
+  <p class="topic-text">
+    Yıllık bir oyun projesi yapacaksan tipik fazlar:
+  </p>
+
+  <h3 class="topic-subtitle">Faz 1: Prototype (1-4 hafta)</h3>
+  <ul class="check-list">
+    <li>Tek mekanik, primitive sanat. "Bu eğlenceli mi?" sorusunu cevapla.</li>
+    <li>Birkaç arkadaşa oynat, "5 dk daha oynayayım" diyor mu?</li>
+    <li>Eğlenceli değilse — buraya kadar. Yeni prototip. Vakit kaybetme.</li>
+  </ul>
+
+  <h3 class="topic-subtitle">Faz 2: Vertical Slice (1-3 ay)</h3>
+  <ul class="check-list">
+    <li>Oyunun "küçük ama bitmiş" hali. 10-20 dk oynanabilir, son oyunun kalitesinde.</li>
+    <li>1 tam seviye, 1 boss, ana mekanik kilitli, sanat &amp; ses son haliyle.</li>
+    <li>Bu Steam Wishlist için kullanılır — trailer'dan, ekran görüntüsünden bu kalite çıkar.</li>
+  </ul>
+
+  <h3 class="topic-subtitle">Faz 3: Production (3-12 ay)</h3>
+  <ul class="check-list">
+    <li>İçerik üretme: kalan seviyeler, düşmanlar, hikaye, müzik.</li>
+    <li>Bu en uzun ve sıkıcı faz. Devlog'la motive ol.</li>
+    <li>Scope creep'e dikkat — yeni fikirleri "DLC parking lot"a koy, sürüm 1'i bitir.</li>
+  </ul>
+
+  <h3 class="topic-subtitle">Faz 4: Polish &amp; Beta (1-3 ay)</h3>
+  <ul class="check-list">
+    <li>Bug fix, performans, lokalizasyon, UI tutarlılık.</li>
+    <li>Closed beta (50-200 oyuncu) — geri bildirim, kritik bug yakalama.</li>
+    <li>Steam sayfası canlı, trailer hazır, basın kit (game press, YouTuber'lara gönderilecek paket).</li>
+  </ul>
+
+  <h3 class="topic-subtitle">Faz 5: Launch (1 gün)</h3>
+  <ul class="check-list">
+    <li>Steam sayfası "Available", press release, sosyal medya patlaması.</li>
+    <li>YouTuber/streamer'lara önceden anahtar gönderdiysen launch günü video çıkar.</li>
+    <li>İlk haftadaki satış, Steam algoritmasında uzun vadeli görünürlüğü belirler. Bu yüzden launch'tan önce 1000+ wishlist hedef.</li>
+  </ul>
+
+  <h3 class="topic-subtitle">Faz 6: Post-launch / Live Ops (devamlı)</h3>
+  <ul class="check-list">
+    <li>Bug fix patch'leri ilk hafta, "Day-One Patch".</li>
+    <li>Topluluk yönetimi: Steam discussion, Discord, review yanıtları.</li>
+    <li>İçerik update'leri: yeni seviye, mod desteği, sezonluk etkinlik.</li>
+    <li>DLC veya sequel — kitleyi sıcak tut.</li>
+  </ul>
+
+  <div class="real-world-box">
+    <h3>🎮 Gerçek Dünyadan: ConcernedApe ve Stardew Valley</h3>
+    <p><em>Stardew Valley</em>'i Eric Barone (ConcernedApe) tek başına 4 yılda yaptı. Süreç: Prototype (ilk yıl - "yapılabilir mi"), production (2-3. yıl - içerik kazma), polish &amp; beta (4. yıl - test). Yayında 2016'da çıktı, milyonlarca sattı. Sonraki 8 yıl: ücretsiz update'ler (1.6 versiyonda hâlâ yeni özellik), modlama, port'lar (mobil, console). Bir oyun "bitmez" — büyür. Sen de hangi oyunu yapacaksan, post-launch'u <em>planla</em>.</p>
+  </div>
+</section>
+
+<section class="topic-section" id="kapanis">
+  <div class="topic-header">
+    <span class="topic-number">27.9</span>
+    <h2 class="topic-title">🌟 Son Söz — Bundan Sonra Senin Hikâyen</h2>
+  </div>
+  <p class="topic-text">
+    Bu kursta 27 bölüm ve onlarca pratik gördün. Ama gamedev'in en büyük gerçeği şu: <strong>öğrenmek bitmez</strong>. Unity her yıl yeni özellikler ekler (URP, ECS, Sentis, Muse, AI yardımcıları). Topluluk yeni pattern'ler keşfeder. Donanım gelişir.
+  </p>
+  <p class="topic-text">
+    Bu yüzden yolculuk asla "bitmiş" hissettirmez — ve bu güzeldir. Her yeni proje yeni bir şey öğretir. Her başarısız jam'de bir şey biriktirirsin. Her sürüm sonrası post-mortem yazarsan kendin bir sonraki sürümün daha iyi olur.
+  </p>
+  <p class="topic-text">
+    Anahtar: <strong>her gün küçük bir şey yap</strong>. 1 satır kod, 1 GIF, 1 tweet, 1 prototip mekaniği. Bir yıl sonra arkana dönüp baktığında ne kadar yol aldığına şaşırırsın.
+  </p>
+  <p class="topic-text">
+    Şimdi Unity Hub'ı aç, yeni proje oluştur ve <strong>ilk fikrinin</strong> ilk prototipini yap. Bu kursun gerçek bitirme tezi: <em>yapılmış bir oyun.</em>
+  </p>
+  <p class="topic-text">
+    İyi oyunlar.
+  </p>
+</section>
+
+<section class="practice-section">
+  <div class="topic-header">
+    <span class="topic-number">27.10</span>
+    <h2 class="topic-title">🎯 Final Projeleri — Yolun Başlangıcı</h2>
+  </div>
+
+  <div class="project-card">
+    <h3>Proje 1: Portföy Planı (Yazılı, 1 sayfa)</h3>
+    <p><strong>Hedef:</strong> Kendi 12 aylık portföy yol haritanı yaz.</p>
+    <ol class="step-list">
+      <li>Hangi 3 küçük oyunu yapacaksın? (mekanik + süre tahmini)</li>
+      <li>Hangi tek orta projeyi yapacaksın? (3-6 ay)</li>
+      <li>Hangi devlog formatını seçeceksin? (Twitter GIF / YouTube / blog)</li>
+      <li>Hangi 2 jam'e katılmayı planlıyorsun? (tarih)</li>
+      <li>İlk Steam/itch.io sayfanı ne zaman açacaksın?</li>
+      <li>12 ay sonu hedefin nedir? (junior pozisyon / freelance kazancı / kendi mağaza sayfası)</li>
+    </ol>
+  </div>
+
+  <div class="project-card">
+    <h3>Proje 2: İlk Game Jam Katılımı</h3>
+    <p><strong>Hedef:</strong> Bir sonraki Ludum Dare / GMTK / Brackeys jam'ine katıl, bitir, yükle.</p>
+    <ol class="step-list">
+      <li>itch.io / ldjam.com'da hesap aç, profil tamamla.</li>
+      <li>Tema açıklandığında 5 fikir kâğıda dök, en küçüğünü seç.</li>
+      <li>İlk gün core mekanik, ikinci gün içerik &amp; polish.</li>
+      <li>Son 3 saatte WebGL build al, yükle, sayfa metni yaz.</li>
+      <li>Yükledikten sonra 10+ başka oyun oyna, anlamlı yorum bırak — topluluk seninle ilgilenir.</li>
+      <li>Jam sonrası post-mortem yaz: ne işe yaradı, ne yaramadı, bir dahaki sefer ne değişir.</li>
+    </ol>
+  </div>
+
+  <div class="project-card">
+    <h3>Proje 3: 4 Haftalık Devlog Deneyi</h3>
+    <p><strong>Hedef:</strong> 4 hafta boyunca her hafta bir #screenshotsaturday postu paylaş, takipçi sayını ölç.</p>
+    <ol class="step-list">
+      <li>Twitter/X hesap aç (varsa devam et), bio'ya "Unity gamedev | building [oyun adı]" yaz.</li>
+      <li>Her cumartesi 1 GIF veya video paylaş, #screenshotsaturday + #unity3d + #gamedev hashtag'leri.</li>
+      <li>Hafta içi diğer gamedev'lerin postlarına yorum + RT yap (günde 10 dk).</li>
+      <li>İlk hafta vs 4. hafta: takipçi, görüntülenme, etkileşim karşılaştır.</li>
+      <li>En çok etkileşim alan post'unun ortak yanı nedir? Sonraki postlarında bunu uygula.</li>
+      <li>4 hafta sonu: Devam etmeye değer mi? Cevap evetse yıllık plan yap.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="quiz" id="bolum-quiz">
+  <header class="quiz-header">
+    <div class="quiz-header-icon"><i class="ti ti-help"></i></div>
+    <div class="quiz-header-text">
+      <h2>Bölüm Sonu Sınavı</h2>
+      <span>5 soru</span>
+    </div>
+  </header>
+
+  <article class="quiz-question" id="q27-1">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">01</span>
+      <h3 class="quiz-prompt-text">Portföy için en doğru strateji?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">1 büyük yarım kalmış oyun</button>
+      <button class="quiz-option" data-correct="true">3-5 küçük tamamlanmış oyun + 1 orta proje</button>
+      <button class="quiz-option" data-correct="false">10 prototype, hiçbiri bitmeden devam</button>
+      <button class="quiz-option" data-correct="false">Sadece kod örnekleri, görsel önemsiz</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q27-2">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">02</span>
+      <h3 class="quiz-prompt-text">Game jam'in junior gamedev için en büyük faydası?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Para kazandırır</button>
+      <button class="quiz-option" data-correct="true">Bitirme disiplini ve scope yönetimi öğretir</button>
+      <button class="quiz-option" data-correct="false">Yayıncı bulmak</button>
+      <button class="quiz-option" data-correct="false">Unity sürümlerini test etmek</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q27-3">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">03</span>
+      <h3 class="quiz-prompt-text">Vertical slice nedir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Oyunun yarısı, sanat eksik</button>
+      <button class="quiz-option" data-correct="true">Küçük ama son kalitede, 10-20 dk oynanabilir bir bölüm</button>
+      <button class="quiz-option" data-correct="false">Sadece teknik demo, oynanmaz</button>
+      <button class="quiz-option" data-correct="false">Tüm seviyelerin kabataslak hali</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q27-4">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">04</span>
+      <h3 class="quiz-prompt-text">Devlog (Twitter GIF, YouTube) yapmanın ana ticari faydası?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Daha hızlı kod yazmak</button>
+      <button class="quiz-option" data-correct="true">Yayın öncesi kitle &amp; wishlist biriktirme, görünürlük</button>
+      <button class="quiz-option" data-correct="false">Unity lisansı ücretsiz olur</button>
+      <button class="quiz-option" data-correct="false">Asset Store'da satış zorunlu</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q27-5">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">05</span>
+      <h3 class="quiz-prompt-text">Steam launch günü neden ilk hafta satışı kritik?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Steam ilk hafta satışı yüksekse $1000 hediye verir</button>
+      <button class="quiz-option" data-correct="true">Steam algoritması ilk hafta verisiyle uzun vadeli görünürlüğü belirler</button>
+      <button class="quiz-option" data-correct="false">İlk hafta satılmazsa oyun mağazadan kalkar</button>
+      <button class="quiz-option" data-correct="false">Vergisel zorunluluk</button>
+    </div>
+  </article>
+</section>
+
+<section class="complete-section">
+      <h3 class="complete-title">🎉 Bölüm 27 Tamamlandı!</h3>
+      <p class="complete-msg">UnityAkademi yolculuğunu tamamladın. Kurulumdan başlayıp performance ve kariyer planına kadar geldin. <strong>Şimdi tek bir şey kaldı: Unity Hub'ı aç ve ilk projeni başlat.</strong> Bilmek ≠ yapmak. Senin için en doğru sonraki adım — bir oyun yapmak. Sadece bir tane. Bitir. Yayınla. Sonrası kendiliğinden gelir.</p>
+      <button class="complete-btn" data-section="s27">
+        <i class="ti ti-circle-check"></i>
+        <span>Bu Bölümü Tamamladım</span>
+      </button>
+      <p class="complete-note">İlerlemen otomatik tarayıcına kaydedilir.</p>
+    </section>
+    <!-- Sayfa Gezinme -->
+    <nav class="page-nav" aria-label="Bölüm gezinme">
+      <a href="26-performance.html" class="page-nav-link prev">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-left"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Önceki Bölüm</div>
+          <div class="page-nav-title">26. Performans</div>
+        </div>
+      </a>
+      <a href="sertifika.html" class="page-nav-link next">
+        <div class="page-nav-arrow"><i class="ti ti-certificate"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Tebrikler!</div>
+          <div class="page-nav-title">Sertifikanı Al</div>
+        </div>
+      </a>
+    </nav>
+
+  </div>
+</main>
+<script src="../js/progress.js?v=11"></script>
+<script src="../js/quiz.js?v=11"></script>
+<script src="../js/toc.js?v=11"></script>
+<script src="../js/main.js?v=11"></script>
+</body>
+</html>

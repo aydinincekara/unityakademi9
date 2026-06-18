@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kurulum &amp; İlk Bakış — UnityAkademi</title>
+  <meta name="description" content="Unity Hub kurulumu, Unity 2022.3 LTS ve Unity 6 sürümleri, ilk projeyi oluşturma ve Visual Studio entegrasyonu — Bölüm 01.">
+  <meta name="theme-color" content="#fa7d19">
+  <link rel="manifest" href="../manifest.json">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Kurulum &amp; İlk Bakış">
+  <meta property="og:description" content="Unity Hub kurulumu, Unity 2022.3 LTS ve Unity 6 sürümleri, ilk projeyi oluşturma ve Visual Studio entegrasyonu — Bölüm 01.">
+  <meta property="og:image" content="../og-image.svg">
+  <meta property="og:site_name" content="UnityAkademi">
+  <meta property="og:locale" content="tr_TR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Kurulum &amp; İlk Bakış">
+  <meta name="twitter:description" content="Unity Hub kurulumu, Unity 2022.3 LTS ve Unity 6 sürümleri, ilk projeyi oluşturma ve Visual Studio entegrasyonu — Bölüm 01.">
+  <meta name="twitter:image" content="../og-image.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="../css/variables.css?v=11">
+  <link rel="stylesheet" href="../css/reset.css?v=11">
+  <link rel="stylesheet" href="../css/layout.css?v=11">
+  <link rel="stylesheet" href="../css/components.css?v=11">
+  <link rel="stylesheet" href="../css/content.css?v=11">
+  <link rel="stylesheet" href="../css/visuals.css?v=11">
+  <link rel="stylesheet" href="../css/extras.css?v=11">
+  <link rel="stylesheet" href="../css/responsive.css?v=11">
+</head>
+<body>
+<button class="nav-hamburger" id="navHamburger" aria-label="Menüyü aç">
+  <i class="ti ti-menu-2"></i>
+</button>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a href="../index.html" class="sidebar-brand">
+      <div class="sidebar-brand-icon"><i class="ti ti-home-2"></i></div>
+      <div class="sidebar-brand-text">
+        <span class="sidebar-brand-name">Ana Sayfa</span>
+        <span class="sidebar-brand-sub">UnityAkademi</span>
+      </div>
+    </a>
+    <button class="mobile-toggle" aria-label="Menü"><i class="ti ti-x"></i></button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-group">
+      <div class="nav-group-title">Temeller</div>
+      <a href="01-kurulum.html" class="nav-link active" data-section="s1"><i class="ti ti-download"></i><span class="nav-link-text">Kurulum & İlk Bakış</span><span class="nav-link-num">01</span></a>
+      <a href="02-arayuz.html" class="nav-link" data-section="s2"><i class="ti ti-layout-board"></i><span class="nav-link-text">Editor Arayüzü</span><span class="nav-link-num">02</span></a>
+      <a href="03-gameobject-component.html" class="nav-link" data-section="s3"><i class="ti ti-cube"></i><span class="nav-link-text">GameObject & Component</span><span class="nav-link-num">03</span></a>
+      <a href="04-csharp-temelleri.html" class="nav-link" data-section="s4"><i class="ti ti-code"></i><span class="nav-link-text">C# Temelleri</span><span class="nav-link-num">04</span></a>
+      <a href="05-monobehaviour-lifecycle.html" class="nav-link" data-section="s5"><i class="ti ti-refresh"></i><span class="nav-link-text">MonoBehaviour Lifecycle</span><span class="nav-link-num">05</span></a>
+      <a href="06-transform-vector.html" class="nav-link" data-section="s6"><i class="ti ti-arrows-move"></i><span class="nav-link-text">Transform & Vector3</span><span class="nav-link-num">06</span></a>
+      <a href="07-input.html" class="nav-link" data-section="s7"><i class="ti ti-keyboard"></i><span class="nav-link-text">Input Sistemi</span><span class="nav-link-num">07</span></a>
+      <a href="08-physics.html" class="nav-link" data-section="s8"><i class="ti ti-atom"></i><span class="nav-link-text">Physics</span><span class="nav-link-num">08</span></a>
+      <a href="09-ui.html" class="nav-link" data-section="s9"><i class="ti ti-layout-grid"></i><span class="nav-link-text">UI Sistemi</span><span class="nav-link-num">09</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Görsel & Asset</div>
+      <a href="10-material-shader.html" class="nav-link" data-section="s10"><i class="ti ti-palette"></i><span class="nav-link-text">Material & Shader</span><span class="nav-link-num">10</span></a>
+      <a href="11-asset-import.html" class="nav-link" data-section="s11"><i class="ti ti-folder"></i><span class="nav-link-text">Asset Import</span><span class="nav-link-num">11</span></a>
+      <a href="12-animation.html" class="nav-link" data-section="s12"><i class="ti ti-bounce-right"></i><span class="nav-link-text">Animation</span><span class="nav-link-num">12</span></a>
+      <a href="13-particle-vfx.html" class="nav-link" data-section="s13"><i class="ti ti-sparkles"></i><span class="nav-link-text">Particle & VFX Graph</span><span class="nav-link-num">13</span></a>
+      <a href="14-lighting.html" class="nav-link" data-section="s14"><i class="ti ti-bulb"></i><span class="nav-link-text">Lighting</span><span class="nav-link-num">14</span></a>
+      <a href="15-audio.html" class="nav-link" data-section="s15"><i class="ti ti-volume"></i><span class="nav-link-text">Audio</span><span class="nav-link-num">15</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Sistemler</div>
+      <a href="16-probuilder.html" class="nav-link" data-section="s16"><i class="ti ti-3d-cube-sphere"></i><span class="nav-link-text">ProBuilder</span><span class="nav-link-num">16</span></a>
+      <a href="17-terrain.html" class="nav-link" data-section="s17"><i class="ti ti-mountain"></i><span class="nav-link-text">Terrain</span><span class="nav-link-num">17</span></a>
+      <a href="18-cinemachine.html" class="nav-link" data-section="s18"><i class="ti ti-camera"></i><span class="nav-link-text">Cinemachine</span><span class="nav-link-num">18</span></a>
+      <a href="19-timeline.html" class="nav-link" data-section="s19"><i class="ti ti-timeline"></i><span class="nav-link-text">Timeline</span><span class="nav-link-num">19</span></a>
+      <a href="20-navmesh.html" class="nav-link" data-section="s20"><i class="ti ti-route"></i><span class="nav-link-text">NavMesh & AI</span><span class="nav-link-num">20</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">İleri Seviye</div>
+      <a href="21-urp-hdrp.html" class="nav-link" data-section="s21"><i class="ti ti-bolt"></i><span class="nav-link-text">URP, HDRP & Unity 6</span><span class="nav-link-num">21</span></a>
+      <a href="22-new-input.html" class="nav-link" data-section="s22"><i class="ti ti-device-gamepad-2"></i><span class="nav-link-text">New Input System</span><span class="nav-link-num">22</span></a>
+      <a href="23-save-menu.html" class="nav-link" data-section="s23"><i class="ti ti-device-floppy"></i><span class="nav-link-text">Save & Menü</span><span class="nav-link-num">23</span></a>
+      <a href="24-build.html" class="nav-link" data-section="s24"><i class="ti ti-package-export"></i><span class="nav-link-text">Build & Yayınlama</span><span class="nav-link-num">24</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Profesyonel</div>
+      <a href="25-csharp-ileri.html" class="nav-link" data-section="s25"><i class="ti ti-brackets-contain"></i><span class="nav-link-text">C# İleri</span><span class="nav-link-num">25</span></a>
+      <a href="26-performance.html" class="nav-link" data-section="s26"><i class="ti ti-gauge"></i><span class="nav-link-text">Performance</span><span class="nav-link-num">26</span></a>
+      <a href="27-yol-haritasi.html" class="nav-link" data-section="s27"><i class="ti ti-map-2"></i><span class="nav-link-text">Yol Haritası</span><span class="nav-link-num">27</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Pratik</div>
+      <a href="projects.html" class="nav-link nav-link-extra" data-section="x-projects"><i class="ti ti-rocket"></i><span class="nav-link-text">Projeler</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Ek Kaynaklar</div>
+      <a href="sozluk.html" class="nav-link nav-link-extra" data-section="x-sozluk"><i class="ti ti-book-2"></i><span class="nav-link-text">Sözlük</span></a>
+      <a href="cheatsheet.html" class="nav-link nav-link-extra" data-section="x-cheatsheet"><i class="ti ti-list-details"></i><span class="nav-link-text">Cheat Sheet</span></a>
+      <a href="sss.html" class="nav-link nav-link-extra" data-section="x-sss"><i class="ti ti-help-circle"></i><span class="nav-link-text">SSS</span></a>
+      <a href="arama.html" class="nav-link nav-link-extra" data-section="x-arama"><i class="ti ti-search"></i><span class="nav-link-text">Arama</span></a>
+      <a href="sertifika.html" class="nav-link nav-link-extra" data-section="x-sertifika"><i class="ti ti-certificate"></i><span class="nav-link-text">Sertifika</span></a>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="kaynaklar.html" class="sidebar-btn"><i class="ti ti-books"></i><span>Kaynaklar</span></a>
+    <a href="iletisim.html" class="sidebar-btn"><i class="ti ti-mail"></i><span>İletişim</span></a>
+  </div>
+</aside>
+<main class="main">
+  <div class="main-content">
+    <!-- BREADCRUMB -->
+    <nav class="breadcrumb" aria-label="Sayfa konumu">
+      <a href="../index.html"><i class="ti ti-home"></i><span>Ana Sayfa</span></a>
+      <i class="ti ti-chevron-right"></i><span><i class="ti ti-school" style="font-size: 13px; opacity: 0.7; margin-right: 4px;"></i>Temeller</span>
+      <i class="ti ti-chevron-right"></i><span style="color: var(--primary-light);">Kurulum & İlk Bakış</span>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <header class="page-header">
+      <div class="page-header-meta">
+        <span class="page-number">Bölüm 01</span>
+        <span class="page-category">Temeller</span>
+        <span class="u-ver-badge both">Unity 2022.3 LTS + Unity 6</span>
+      </div>
+      <h1 class="page-title">Kurulum & İlk Bakış</h1>
+      <p class="page-lead">
+        Unity'ye başlamadan önce Unity Hub'ı, doğru editor sürümünü ve Visual Studio'yu kurmamız gerek.
+        Bu bölümde sıfır kurulumdan çalışan ilk projene kadar her adımı, neden o adımı attığını ve
+        ileride seni rahatlatacak küçük kararları birlikte yaparız. Sonunda iki farklı Unity sürümü
+        (2022.3 LTS ve Unity 6) yan yana kuruluyor olacak.
+      </p>
+      <div class="page-meta-bar">
+        <span><i class="ti ti-clock"></i> 35-50 dakika</span>
+        <span><i class="ti ti-stack-2"></i> 0 önkoşul</span>
+        <span><i class="ti ti-target"></i> 3 proje</span>
+        <span><i class="ti ti-help"></i> 5 quiz</span>
+      </div>
+    </header>
+
+    <!-- 1.1 — UNITY NEDIR -->
+    <section class="topic" id="t1-1">
+      <div class="topic-header">
+        <span class="topic-number">1.1</span>
+        <h2 class="topic-title">Unity nedir, neden bu kadar popüler?</h2>
+      </div>
+      <div class="topic-body">
+        <p>
+          Unity bir <strong>oyun motoru</strong>dur. Bir oyun motoru = grafik kartını yöneten + fiziği
+          hesaplayan + sesi çalan + kontrolleri okuyan + kod çalıştıran tek bir program. Tek başına
+          bunların hepsini yazmak yıllar sürer; Unity bu temeli sana hazır verir, sen sadece oyunun
+          mantığını yazarsın.
+        </p>
+
+        <div class="info-box">
+          <div class="info-box-icon"><i class="ti ti-bulb"></i></div>
+          <div class="info-box-content">
+            <strong>Rakamla Unity:</strong> Mobil oyunların yaklaşık <strong>%70'i</strong> Unity ile
+            yapılır (App Annie, Sensor Tower verileri). Pokémon GO, Among Us, Genshin Impact, Cities:
+            Skylines, Hearthstone, Hollow Knight, Cuphead, Beat Saber, Ori and the Blind Forest — hepsi
+            Unity. Sadece mobil değil; PC, konsol, VR, AR, hatta endüstriyel simülasyon ve film
+            prodüksiyonu da Unity kullanır.
+          </div>
+        </div>
+
+        <h3>Unity'nin güçlü yanları</h3>
+        <ul class="check-list">
+          <li><strong>Asset Store</strong> — 70.000+ hazır model, ses, kod paketi. Birçoğu ücretsiz.</li>
+          <li><strong>Platformlar arası</strong> — Tek projeden Windows, Mac, Linux, iOS, Android, PS5, Xbox, Switch, WebGL ve VR build alabilirsin.</li>
+          <li><strong>C# dili</strong> — Modern, öğrenmesi kolay, güçlü bir dil. Python'dan daha hızlı, C++'tan daha güvenli.</li>
+          <li><strong>Topluluk</strong> — YouTube'da Türkçe + İngilizce binlerce eğitim, StackOverflow ve Discord aktif.</li>
+          <li><strong>Ücretsiz başlama</strong> — Yıllık geliri 200.000 USD altındaki bireyler ve şirketler için tamamen ücretsiz.</li>
+        </ul>
+
+        <h3>Unity ne için <em>en iyi</em>, ne için <em>değil</em>?</h3>
+        <div class="u-compare">
+          <div class="u-compare-side lts">
+            <div class="u-compare-head">
+              <i class="ti ti-check"></i> Unity bu işlerde parlıyor
+            </div>
+            <div class="u-compare-body">
+              <ul>
+                <li>Mobil oyunlar (hipercasual, midcore, kart oyunları)</li>
+                <li>2D oyunlar (platformer, RPG, puzzle)</li>
+                <li>Stilize 3D oyunlar (Hollow Knight, Ori, Cuphead)</li>
+                <li>VR ve AR uygulamaları</li>
+                <li>Eğitsel ve simülasyon yazılımları</li>
+                <li>Indie ve orta ölçek bağımsız projeler</li>
+                <li>WebGL tarayıcı oyunları</li>
+              </ul>
+            </div>
+          </div>
+          <div class="u-compare-side u6">
+            <div class="u-compare-head">
+              <i class="ti ti-alert-triangle"></i> Unity'nin zorlandığı yerler
+            </div>
+            <div class="u-compare-body">
+              <ul>
+                <li>Foto-gerçekçi AAA grafikleri (Unreal'in alanı)</li>
+                <li>Açık dünya devasa haritalar (HDRP geliştiriliyor ama hâlâ Unreal/CryEngine daha kolay)</li>
+                <li>Çok yüksek poligonlu sinematik prodüksiyonlar</li>
+                <li>Hızlı C++ erişimi gerektiren özel motor değişiklikleri</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <p>
+          Yani <strong>seçim oyun türüne göre</strong>. 2D bir puzzle yapacaksan Unity en doğru seçim.
+          Foto-gerçekçi bir aksiyon RPG'si yapacaksan Unreal Engine daha az savaşmana yol açar. Bu
+          rehberde Unity'nin parladığı alanlarda ustalaşacaksın.
+        </p>
+      </div>
+    </section>
+
+    <!-- 1.2 — UNITY HUB -->
+    <section class="topic" id="t1-2">
+      <div class="topic-header">
+        <span class="topic-number">1.2</span>
+        <h2 class="topic-title">Unity Hub — Tüm projelerin merkezi</h2>
+      </div>
+      <div class="topic-body">
+        <p>
+          Unity tek bir program değildir; <strong>Unity Hub</strong> ve onun yönettiği <strong>Unity
+          Editor</strong>'lerden oluşur. Hub, bilgisayarına farklı sürümlerde Unity kurmana, projelerini
+          listelemene, lisansını yönetmene ve eğitim modüllerine erişmene yarayan kontrol merkezidir.
+        </p>
+
+        <div class="warning-box">
+          <div class="warning-box-icon"><i class="ti ti-alert-triangle"></i></div>
+          <div class="warning-box-content">
+            <strong>Yanlış başlama:</strong> Doğrudan "Unity download" diye aratıp eski bir Unity
+            installer indirmeye çalışma. Tek doğru giriş Unity Hub. Editor'ü Hub'tan kuracaksın.
+            Birden fazla projen olduğunda farklı sürümler arasında geçiş yapmana izin verir.
+          </div>
+        </div>
+
+        <h3>Unity Hub kurulum adımları</h3>
+        <ol class="step-list">
+          <li>
+            <strong>unity.com/download</strong> adresine git. "Download Unity Hub" tuşuna tıkla.
+            <span class="step-note">Windows için .exe, Mac için .dmg, Linux için .AppImage iner.</span>
+          </li>
+          <li>
+            İndirilen dosyayı çalıştır. Standart Next-Next-Finish kurulum. Lisans sözleşmesini
+            (EULA) kabul et.
+          </li>
+          <li>
+            Hub açıldığında <strong>Unity ID</strong> ile giriş ister. Hesabın yoksa
+            "Create a Unity ID" → e-posta + şifre + ad. Ücretsiz.
+            <span class="step-note">Bu hesap aynı zamanda Asset Store ve forum hesabın olacak.</span>
+          </li>
+          <li>
+            <strong>License</strong> aktivasyonu: Hub içinde sağ üstteki dişli ikona tıkla → Licenses
+            → "Add" → "Get a free personal license". Lisansın otomatik aktive olur.
+          </li>
+        </ol>
+
+        <div class="info-box">
+          <div class="info-box-icon"><i class="ti ti-info-circle"></i></div>
+          <div class="info-box-content">
+            <strong>Personal License nedir?</strong> Unity Personal, yıllık geliri 200.000 USD altı
+            olan herkes için ücretsizdir. Yapım yaptığın oyunu Steam'de satabilir, mobile çıkarabilir,
+            reklam koyabilirsin. Tek şartı: oyun açılışında "Made with Unity" splash göstermen
+            (Unity 6 ile bu zorunluluk kaldırıldı — istersen kapatabilirsin).
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1.3 — UNITY 2022.3 vs UNITY 6 -->
+    <section class="topic" id="t1-3">
+      <div class="topic-header">
+        <span class="topic-number">1.3</span>
+        <h2 class="topic-title">Unity 2022.3 LTS mi, Unity 6 mı? — Sürüm seçimi</h2>
+      </div>
+      <div class="topic-body">
+        <p>
+          Unity Hub'tan editor indireceğinde karşına onlarca sürüm çıkar. Yeni başlayan birinin
+          kafası karışır. Aslında karar basit: <strong>iki sürümü de kur</strong>, çünkü ikisinin de
+          gerçek üretimde farklı yeri var.
+        </p>
+
+        <div class="u-compare">
+          <div class="u-compare-side lts">
+            <div class="u-compare-head">
+              <span class="u-ver-badge lts">Unity 2022.3 LTS</span>
+            </div>
+            <div class="u-compare-body">
+              <h4>Ne için iyi?</h4>
+              <ul>
+                <li><strong>Üretimde olan oyunlar</strong> için kararlı temel</li>
+                <li>2025 sonuna kadar uzun vadeli destek (LTS)</li>
+                <li>Asset Store'daki paketlerin <strong>%95'i</strong> bu sürümde çalışır</li>
+                <li>Türkçe YouTube eğitimlerinin çoğu bu sürüm için</li>
+                <li>Sektörde yayında olan ticari oyunların çoğunluğu</li>
+              </ul>
+              <h4>Ne zaman kullan?</h4>
+              <p>Profesyonel iş başvurusu yapıyorsan, yayında bir oyunu güncelliyorsan,
+              ekiple bir projeye katıldıysan, mobil free-to-play çalışıyorsan: bu sürüm.</p>
+            </div>
+          </div>
+          <div class="u-compare-side u6">
+            <div class="u-compare-head">
+              <span class="u-ver-badge u6">Unity 6</span>
+            </div>
+            <div class="u-compare-body">
+              <h4>Ne için iyi?</h4>
+              <ul>
+                <li>Yeni başlayan projeler için <strong>varsayılan sürüm</strong></li>
+                <li>GPU Resident Drawer (sahnede %2-3 kat daha hızlı render)</li>
+                <li>Olgunlaşmış UI Toolkit, ECS, DOTS</li>
+                <li>Build Profiles ile platform yönetimi (eski Build Settings'i değiştirir)</li>
+                <li>WebGPU desteği (tarayıcıda daha hızlı 3D)</li>
+                <li>"Made with Unity" splash zorunluluğu yok</li>
+              </ul>
+              <h4>Ne zaman kullan?</h4>
+              <p>Yeni proje başlatıyorsan, modern özelliklerle çalışmak istiyorsan, indie veya
+              hobi projesi yapıyorsan: bu sürüm. Bu rehberin örnekleri çoğunlukla burada.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-box">
+          <div class="info-box-icon"><i class="ti ti-versions"></i></div>
+          <div class="info-box-content">
+            <strong>LTS ne demek?</strong> Long-Term Support, uzun vadeli destek. LTS sürümler
+            çıktıktan sonra 2 yıl boyunca sadece bug fix ve güvenlik yaması alır, yeni özellik
+            eklenmez. Bu da projende <em>sürpriz bozulma</em> riskini sıfırlar. 2022.3 LTS ilk
+            olarak Mart 2023'te çıktı; 2022.3.50f1, 2022.3.55f1 gibi minör sürümleri bug fix'tir.
+            Unity 6 ise yepyeni LTS dalı (eski "Unity 2023" dalının olgunlaşmış hali).
+          </div>
+        </div>
+
+        <h3>Pratik tavsiye: İkisini birden kur</h3>
+        <p>
+          Disk alanın yetiyorsa (yaklaşık 8-12 GB her sürüm için, yaklaşık 2x = 16-24 GB) her ikisini
+          de kurmanı şiddetle öneririm. Çünkü:
+        </p>
+        <ul class="check-list">
+          <li>Bu rehberin örnekleri her ikisinde de çalışır — sen tercih edersin.</li>
+          <li>Eski bir asset'i incelemek istediğinde 2022.3 hazır.</li>
+          <li>Yeni özellikleri denemek istediğinde Unity 6 hazır.</li>
+          <li>Aynı projeyi iki sürümde açabilirsin (kopyasını ayrı klasöre alarak).</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- MINI CHECKPOINT 1 -->
+    <aside class="mini-checkpoint">
+      <div class="mini-checkpoint-icon"><i class="ti ti-flag-3"></i></div>
+      <div class="mini-checkpoint-content">
+        <strong>Mini Checkpoint — 1.3 sonrası</strong>
+        <p>Şu ana kadar Unity'nin ne olduğunu, Unity Hub'ın rolünü ve 2022.3 LTS ile Unity 6
+        arasındaki farkı kavradın. Bir sonraki adım: gerçekten editor'ü kurmak. Hangisinden
+        başlayacaksın? Bu rehber boyunca <em>iki sürümün</em> de örneklerini göreceksin, bu yüzden
+        hangisini önce kuracağın önemli değil. Kararsızsan <strong>Unity 6</strong> ile başla —
+        modern, yeni özellikler hazır.</p>
+      </div>
+    </aside>
+
+    <!-- 1.4 — EDITOR INDIRME -->
+    <section class="topic" id="t1-4">
+      <div class="topic-header">
+        <span class="topic-number">1.4</span>
+        <h2 class="topic-title">Editor indirme & modül seçimi</h2>
+      </div>
+      <div class="topic-body">
+        <p>
+          Unity Hub açık. Sol kenarda <strong>Installs</strong> sekmesi var. Buradan editor sürümü
+          ekleyeceksin. Süreç şu:
+        </p>
+
+        <ol class="step-list">
+          <li>
+            <strong>Installs → Install Editor</strong> tuşuna tıkla.
+          </li>
+          <li>
+            "Official Releases" sekmesinde sürümleri göreceksin. Yanında <span class="u-ver-badge lts" style="font-size:11px">LTS</span>
+            etiketi olan kararlı sürüm. Şu an için: <strong>Unity 6 (örn. 6000.0.30f1)</strong> ve
+            <strong>Unity 2022.3.55f1 LTS</strong> tipik seçenekler.
+            <span class="step-note">"6000.0" Unity 6'nın iç sürüm numarasıdır; pazarlama adı "Unity 6".</span>
+          </li>
+          <li>
+            <strong>Install</strong> tuşuna basınca modül seçimi açılır. İşte bu kritik:
+          </li>
+        </ol>
+
+        <h3>Hangi modülleri seçmelisin?</h3>
+
+        <div class="u-inspector">
+          <div class="u-inspector-header">
+            <i class="ti ti-puzzle"></i> Add modules
+          </div>
+          <div class="u-inspector-body">
+            <div class="u-inspector-row">
+              <div class="u-inspector-icon script"><i class="ti ti-brand-visual-studio"></i></div>
+              <span><strong>Microsoft Visual Studio Community 2022</strong></span>
+              <div class="u-inspector-checkbox checked"></div>
+            </div>
+            <div class="u-inspector-row">
+              <div class="u-inspector-icon"><i class="ti ti-brand-android"></i></div>
+              <span><strong>Android Build Support</strong> (mobil çıkış için)</span>
+              <div class="u-inspector-checkbox checked"></div>
+            </div>
+            <div class="u-inspector-row" style="padding-left: 32px;">
+              <span style="opacity:0.7;">↳ OpenJDK + Android SDK & NDK Tools</span>
+              <div class="u-inspector-checkbox checked"></div>
+            </div>
+            <div class="u-inspector-row">
+              <div class="u-inspector-icon"><i class="ti ti-brand-windows"></i></div>
+              <span><strong>Windows Build Support (IL2CPP)</strong></span>
+              <div class="u-inspector-checkbox checked"></div>
+            </div>
+            <div class="u-inspector-row">
+              <div class="u-inspector-icon"><i class="ti ti-world"></i></div>
+              <span><strong>WebGL Build Support</strong> (tarayıcı için)</span>
+              <div class="u-inspector-checkbox checked"></div>
+            </div>
+            <div class="u-inspector-row">
+              <div class="u-inspector-icon"><i class="ti ti-language"></i></div>
+              <span>Documentation</span>
+              <div class="u-inspector-checkbox"></div>
+            </div>
+            <div class="u-inspector-row">
+              <div class="u-inspector-icon"><i class="ti ti-flag"></i></div>
+              <span>Language Pack (Türkçe yok, İngilizce kal)</span>
+              <div class="u-inspector-checkbox"></div>
+            </div>
+          </div>
+        </div>
+
+        <p>
+          <strong>Toplam indirme boyutu:</strong> Editor + Visual Studio + Android tools = yaklaşık
+          7-10 GB. İlk kurulum 30-60 dakika sürebilir (internete bağlı). Sonraki sürümler daha hızlı.
+        </p>
+
+        <div class="warning-box">
+          <div class="warning-box-icon"><i class="ti ti-alert-triangle"></i></div>
+          <div class="warning-box-content">
+            <strong>iOS Build Support</strong>'u sadece Mac kullanıcıları kursun — Windows/Linux'tan
+            iOS build alamazsın (Apple'ın kısıtlaması). Mac'tesen ekle. Konsol (PS5/Xbox/Switch)
+            modülleri yalnızca lisanslı geliştiricilere açıktır, normal kullanıcıya görünmez.
+          </div>
+        </div>
+
+        <h3>Visual Studio yerine alternatifler</h3>
+        <p>
+          Unity'nin C# kodu için bir IDE (kod editörü) gerekir. Standart Visual Studio Community,
+          ücretsiz ve Unity'ye entegredir — başlangıç için en iyi seçim. Alternatifler:
+        </p>
+        <ul class="check-list">
+          <li><strong>Visual Studio Code</strong> — Hafif, çapraz platform. Mac/Linux'ta tercih edilir. C# extension yüklemek gerekir.</li>
+          <li><strong>JetBrains Rider</strong> — Ücretli (yıllık ~149 USD, öğrencilere ücretsiz). Profesyoneller arasında popüler. Çok hızlı, akıllı tamamlama.</li>
+          <li><strong>Cursor / Windsurf</strong> — AI destekli editörler. Yeni nesil. Deneysel.</li>
+        </ul>
+        <p>Şimdilik Visual Studio Community ile kal. Sonra istersen Rider'a geçersin.</p>
+      </div>
+    </section>
+
+    <!-- 1.5 — ILK PROJE OLUSTURMA -->
+    <section class="topic" id="t1-5">
+      <div class="topic-header">
+        <span class="topic-number">1.5</span>
+        <h2 class="topic-title">İlk projeni oluştur — Template seçimi</h2>
+      </div>
+      <div class="topic-body">
+        <p>
+          Editor indi. Şimdi Unity Hub'ın <strong>Projects</strong> sekmesine geç ve <strong>New
+          Project</strong> tuşuna tıkla. Karşına template (şablon) ekranı gelir. Burası önemli;
+          template'ler farklı render boru hatlarını (render pipeline) önceden ayarlar.
+        </p>
+
+        <h3>Template karşılaştırması</h3>
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Template</th>
+              <th>Ne için?</th>
+              <th>Performans</th>
+              <th>Görsel</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>2D Core</strong></td>
+              <td>Klasik 2D oyunlar, puzzle, platformer</td>
+              <td>Çok hızlı</td>
+              <td>2D</td>
+            </tr>
+            <tr>
+              <td><strong>3D Core (Built-in)</strong></td>
+              <td>Eski projeler, mobil, Asset Store uyumu</td>
+              <td>Hızlı</td>
+              <td>Orta</td>
+            </tr>
+            <tr>
+              <td><strong>3D (URP)</strong> ⭐</td>
+              <td>Modern indie, mobil, VR — <em>varsayılan tercih</em></td>
+              <td>Çok hızlı</td>
+              <td>İyi-Çok iyi</td>
+            </tr>
+            <tr>
+              <td><strong>3D (HDRP)</strong></td>
+              <td>PC/konsol, foto-gerçekçi görseller</td>
+              <td>Ağır</td>
+              <td>Çok iyi</td>
+            </tr>
+            <tr>
+              <td><strong>2D Mobile</strong></td>
+              <td>Mobile-first 2D oyunlar</td>
+              <td>Çok hızlı</td>
+              <td>2D</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="info-box">
+          <div class="info-box-icon"><i class="ti ti-bulb"></i></div>
+          <div class="info-box-content">
+            <strong>URP nedir?</strong> Universal Render Pipeline — Unity'nin modern, hafif ve
+            optimize render boru hattıdır. Built-in'in yerini almaya yönelik. Mobil ve VR için
+            standarttır, masaüstünde de güzel görselleri ile öne çıkar. Bu rehberin bölüm 21'inde
+            URP/HDRP'yi derinlemesine işleyeceğiz.
+          </div>
+        </div>
+
+        <h3>Adım adım proje oluşturma</h3>
+        <ol class="step-list">
+          <li>Template: <strong>3D (URP)</strong> seç (yeni başlayan için ideal).</li>
+          <li>
+            Project name: <strong>IlkOyunum</strong>
+            <span class="step-note">Türkçe karakter kullanmaktan kaçın — proje yolu Türkçe karakter içerirse bazı build sistemleri sorun çıkarabilir.</span>
+          </li>
+          <li>
+            Location: Disk'inde özel bir Unity klasörü oluştur, örn. <code>D:\UnityProjeler\</code>
+            <span class="step-note">Asla "Belgeler" veya "Masaüstü" altına koyma — OneDrive senkronizasyonu projeyi bozabilir.</span>
+          </li>
+          <li>
+            <strong>Connect to Unity Cloud</strong> seçeneği — şimdilik kapalı bırak. İleride bulut
+            yedekleme istersen açarsın.
+          </li>
+          <li>
+            <strong>Create project</strong>. İlk açılış 2-5 dakika sürer (paketleri indirir ve
+            cache'ler).
+          </li>
+        </ol>
+
+        <p>
+          Editor açıldığında karşına <strong>SampleScene</strong> diye bir varsayılan sahne çıkar.
+          Bu sahnede bir Main Camera ve bir Directional Light vardır. Henüz bir şey eklemedik ama
+          editor hazır.
+        </p>
+
+        <div class="real-world-box">
+          <div class="real-world-header">
+            <div class="real-world-icon"><i class="ti ti-device-gamepad"></i></div>
+            <h3 class="real-world-title">Hangi büyük oyun hangi template ile başladı?</h3>
+          </div>
+          <div class="real-world-grid">
+            <div class="real-world-item">
+              <div class="real-world-game">Hollow Knight</div>
+              <div class="real-world-where">2D Core</div>
+              <p class="real-world-desc">2D atmosferik metroidvania. URP henüz yokken yapıldı, Built-in 2D ile çalıştı.</p>
+            </div>
+            <div class="real-world-item">
+              <div class="real-world-game">Genshin Impact</div>
+              <div class="real-world-where">3D Built-in → URP'ye geçti</div>
+              <p class="real-world-desc">Stilize anime grafik. Mobil + PC + PS5 platformları için URP'nin performansı kritik.</p>
+            </div>
+            <div class="real-world-item">
+              <div class="real-world-game">Among Us</div>
+              <div class="real-world-where">2D Mobile</div>
+              <p class="real-world-desc">Düşük poligonlu, basit 2D mobil oyun. Hız ve düşük bellek kullanımı önemliydi.</p>
+            </div>
+            <div class="real-world-item">
+              <div class="real-world-game">Subnautica</div>
+              <div class="real-world-where">3D Built-in (sonradan HDRP araştırıldı)</div>
+              <p class="real-world-desc">PC odaklı sualtı keşif. Sonraki sürümler URP/HDRP'ye geçişi araştırdı.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1.6 — EDITOR'UN ILK GORUNUSU -->
+    <section class="topic" id="t1-6">
+      <div class="topic-header">
+        <span class="topic-number">1.6</span>
+        <h2 class="topic-title">Editor'ün ilk görünüşü — Ne neresi?</h2>
+      </div>
+      <div class="topic-body">
+        <p>
+          İlk açılışta Unity Editor karmaşık görünür. Aslında 5 ana pencereden (panelden) oluşur ve
+          hepsinin net bir işi var. <em>Sonraki bölüm</em> her panelin derinlemesine anlatımıdır;
+          burada sadece kuş bakışı tanışıyoruz.
+        </p>
+
+        <div class="layout-diagram">
+          <div class="layout-row">
+            <div class="layout-cell" style="background: rgba(250, 125, 25, 0.1); border-color: var(--primary);">
+              <strong>Hierarchy</strong><br>
+              <small>Sahnedeki tüm GameObject'ler</small>
+            </div>
+            <div class="layout-cell" style="flex: 2; background: rgba(80, 227, 194, 0.1); border-color: var(--accent);">
+              <strong>Scene + Game View</strong><br>
+              <small>Sahnenin 3D editörü + oyun önizleme</small>
+            </div>
+            <div class="layout-cell" style="background: rgba(255, 200, 0, 0.1); border-color: #ffc800;">
+              <strong>Inspector</strong><br>
+              <small>Seçili objenin özellikleri</small>
+            </div>
+          </div>
+          <div class="layout-row">
+            <div class="layout-cell" style="background: rgba(124, 92, 255, 0.1); border-color: #7c5cff;">
+              <strong>Project</strong><br>
+              <small>Dosya tarayıcı — tüm asset'ler</small>
+            </div>
+            <div class="layout-cell" style="background: rgba(255, 100, 100, 0.1); border-color: #ff6464;">
+              <strong>Console</strong><br>
+              <small>Hata mesajları + log çıktısı</small>
+            </div>
+          </div>
+        </div>
+
+        <h3>5 panelin tek cümle özetleri</h3>
+        <ul class="check-list">
+          <li><strong>Hierarchy</strong> — Sahnende ne var? Tüm GameObject'lerin ağaç görünümü.</li>
+          <li><strong>Scene View</strong> — Sahneyi 3D olarak görüp düzenlediğin alan.</li>
+          <li><strong>Game View</strong> — Oyuncunun göreceği görüntü (kameradan).</li>
+          <li><strong>Inspector</strong> — Seçtiğin GameObject'in tüm özellikleri ve component'leri.</li>
+          <li><strong>Project</strong> — Disk'teki tüm dosyaların (model, ses, kod, sahne) listesi.</li>
+          <li><strong>Console</strong> — Log mesajları, uyarılar, hatalar.</li>
+        </ul>
+
+        <p>
+          Panellerin hepsi <strong>tab</strong> olarak yerleştirilmiş, sürükle-bırak ile yeniden
+          düzenlenebilirler. <em>Window → Layouts</em> menüsünden farklı layout'lar yükleyebilirsin.
+          Profesyoneller genelde "2 by 3" layout'unu sever.
+        </p>
+
+        <div class="warning-box">
+          <div class="warning-box-icon"><i class="ti ti-alert-triangle"></i></div>
+          <div class="warning-box-content">
+            <strong>Panel kaybettin mi?</strong> Endişelenme. <em>Window → General → [panel adı]</em>
+            menüsünden geri açabilirsin. Tüm layout'u sıfırlamak için <em>Window → Layouts →
+            Default</em>.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1.7 — VS BAGLANTI -->
+    <section class="topic" id="t1-7">
+      <div class="topic-header">
+        <span class="topic-number">1.7</span>
+        <h2 class="topic-title">Visual Studio bağlantısı — Kod yazmaya hazırlık</h2>
+      </div>
+      <div class="topic-body">
+        <p>
+          Unity'de oyun mantığını <strong>C#</strong> ile yazarsın. Editor'ün içinde kod yazılmaz;
+          kod dosyasına <em>çift tıklayınca</em> Visual Studio (veya seçtiğin IDE) açılır. Bunun
+          doğru çalışması için bir kez ayar yapmak gerek.
+        </p>
+
+        <h3>External Tools ayarı</h3>
+        <ol class="step-list">
+          <li>Editor menüsünden <code>Edit → Preferences</code> (Mac'te <code>Unity → Settings</code>).</li>
+          <li>Sol kenardan <strong>External Tools</strong> sekmesi.</li>
+          <li>
+            <strong>External Script Editor</strong> dropdown'ı: <em>Visual Studio Community 2022</em>
+            seç. Listede yoksa "Browse" → Visual Studio'nun devenv.exe yolunu göster.
+          </li>
+          <li>
+            <strong>Generate .csproj files for:</strong> Tüm kutucukları işaretle. Bu, Visual Studio'nun
+            tüm asset'leri ve dependency'leri görmesini sağlar.
+          </li>
+          <li>
+            <strong>Regenerate project files</strong> tuşuna bas. Birkaç saniye sürer.
+          </li>
+        </ol>
+
+        <p>
+          Şimdi bir test yapalım. <em>Project</em> panelinde <strong>Assets</strong> klasörüne
+          sağ tık → <code>Create → C# Script</code>. Ad olarak <code>HelloUnity</code> ver. Dosyaya
+          çift tıkla. Visual Studio açılmalı ve dosya içinde şu kod görünmeli:
+        </p>
+
+        <div class="cs-block">
+          <div class="cs-block-header">
+            <span class="cs-block-filename">HelloUnity.cs</span>
+          </div>
+<pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+
+<span class="kw">public class</span> <span class="type">HelloUnity</span> : <span class="type">MonoBehaviour</span>
+{
+    <span class="com">// Start is called before the first frame update</span>
+    <span class="kw">void</span> <span class="fn">Start</span>()
+    {
+        <span class="type">Debug</span>.<span class="fn">Log</span>(<span class="str">"Merhaba Unity!"</span>);
+    }
+
+    <span class="com">// Update is called once per frame</span>
+    <span class="kw">void</span> <span class="fn">Update</span>()
+    {
+
+    }
+}</code></pre>
+        </div>
+
+        <p>
+          Visual Studio'nun sağ tarafında <strong>IntelliSense</strong> aktif olmalı —
+          <code>Debug.</code> yazınca otomatik tamamlama açılır. Açılmıyorsa
+          <em>Window → Package Manager → Visual Studio Editor</em> paketinin yüklü olduğundan emin ol.
+        </p>
+
+        <div class="info-box">
+          <div class="info-box-icon"><i class="ti ti-info-circle"></i></div>
+          <div class="info-box-content">
+            <strong>MonoBehaviour ne?</strong> Unity'de bir C# class'ı sahnede çalışsın istiyorsan
+            MonoBehaviour'dan türetmesi gerekir. Start ve Update gibi Unity'nin sana otomatik
+            çağırdığı metodlar bu sayede çalışır. <em>Bölüm 05'te</em> tüm lifecycle'ı (Awake, Start,
+            Update, FixedUpdate, OnDestroy...) öğreneceksin.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1.8 — DONANIM -->
+    <section class="topic" id="t1-8">
+      <div class="topic-header">
+        <span class="topic-number">1.8</span>
+        <h2 class="topic-title">Donanım gereksinimleri — Bilgisayarın yeter mi?</h2>
+      </div>
+      <div class="topic-body">
+        <p>
+          Unity'nin resmi minimum gereksinimleri çok düşüktür ama gerçekçi olalım: rahat çalışabilmek
+          için biraz üzerine çıkmak gerekir. Aşağıda 3 farklı seviye:
+        </p>
+
+        <div class="u-compare">
+          <div class="u-compare-side lts">
+            <div class="u-compare-head">Minimum (zorlanırsın)</div>
+            <div class="u-compare-body">
+              <ul>
+                <li>CPU: 4 çekirdek, 2.5 GHz</li>
+                <li>RAM: 8 GB</li>
+                <li>GPU: DirectX 11 destekli, 2 GB VRAM</li>
+                <li>Disk: SSD, 50 GB boş</li>
+                <li>OS: Windows 10 / macOS 11 / Ubuntu 22</li>
+              </ul>
+              <p><strong>Ne yaparsın:</strong> 2D oyunlar, küçük 3D mobil. Editor yavaş açılır, derleme süreleri uzar.</p>
+            </div>
+          </div>
+          <div class="u-compare-side u6">
+            <div class="u-compare-head">Önerilen (rahat ederek)</div>
+            <div class="u-compare-body">
+              <ul>
+                <li>CPU: 8 çekirdek, 3.0+ GHz (Ryzen 5, i5-12th gen+)</li>
+                <li>RAM: 16-32 GB</li>
+                <li>GPU: RTX 3060 / RX 6600 sınıfı, 8 GB VRAM</li>
+                <li>Disk: NVMe SSD, 200 GB boş</li>
+                <li>OS: Windows 11 / macOS 14 / Ubuntu 24</li>
+              </ul>
+              <p><strong>Ne yaparsın:</strong> URP/HDRP, orta ölçek 3D, çok asset'li sahneler. Build alma 30 saniyede biter.</p>
+            </div>
+          </div>
+        </div>
+
+        <h3>Pratik tavsiyeler</h3>
+        <ul class="check-list">
+          <li><strong>SSD şart</strong> — HDD'de Unity açılışı dakikalarca sürer. SSD olmadan ciddi iş yapamazsın.</li>
+          <li><strong>RAM 16 GB minimum</strong> — Visual Studio + Unity + tarayıcı + Photoshop = 8 GB yetmez.</li>
+          <li><strong>İkinci monitör</strong> — Editor + Visual Studio yan yana yapabilmek için 2 ekran çok değerli (zorunlu değil).</li>
+          <li><strong>HDRP için güçlü GPU</strong> — 2D ve URP zayıf GPU'da da çalışır. HDRP foto-gerçekçi için RTX serisi tercih edilir.</li>
+        </ul>
+
+        <div class="info-box">
+          <div class="info-box-icon"><i class="ti ti-device-laptop"></i></div>
+          <div class="info-box-content">
+            <strong>Apple Silicon (M1/M2/M3) Mac'ler:</strong> Unity 2021.2+ tüm Apple Silicon
+            işlemcilerle native uyumludur. Mac kullanıyorsan M-serisi tercih et. Eski Intel
+            Mac'lerde Unity 6 yavaşlamış olabilir.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1.9 — SORUN GIDERME -->
+    <section class="topic" id="t1-9">
+      <div class="topic-header">
+        <span class="topic-number">1.9</span>
+        <h2 class="topic-title">Sık karşılaşılan kurulum sorunları</h2>
+      </div>
+      <div class="topic-body">
+
+        <div class="faq-item">
+          <h4>"Failed to activate license" hatası alıyorum</h4>
+          <p>Unity hesabınla başka bir cihazda zaten aktif olmuş olabilir. Hub → Preferences →
+          Licenses → "Return License" diyerek serbest bırak ve tekrar aktive et. Eğer internet
+          firewall arkasındaysan, IT'den <code>license.unity3d.com</code> ve <code>core.cloud.unity3d.com</code>
+          adreslerini whitelist'e eklemesini iste.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>Unity açılıyor ama proje açılışta donuyor</h4>
+          <p>Library klasörü bozulmuş olabilir. Projenin kök klasöründe <code>Library</code> diye
+          bir klasör vardır — kapatıp sil. Sonra Unity'den projeyi yeniden aç. Library otomatik
+          yeniden oluşur (5-10 dk sürebilir). Veri kaybı olmaz; Library sadece cache'dir.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>Visual Studio açılmıyor, sadece dosya editor'de açılıyor</h4>
+          <p>Edit → Preferences → External Tools → External Script Editor: Visual Studio'yu seçtin
+          mi kontrol et. Listede yoksa Visual Studio Installer'ı aç ve "Game development with Unity"
+          workload'unu yükle.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>IntelliSense (otomatik tamamlama) çalışmıyor</h4>
+          <p>Solution Explorer'da projeye sağ tık → "Reload Project". Hâlâ olmuyorsa Unity'de
+          Edit → Preferences → External Tools → "Regenerate project files" bas.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>"No Module Found: Android" hatası</h4>
+          <p>Android module yüklü değil. Hub → Installs → ilgili editor → ⚙️ → Add modules →
+          Android Build Support'u (SDK + NDK ile birlikte) yükle.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>Editor çok ağır çalışıyor, FPS düşük</h4>
+          <p>3 muhtemel neden: (1) URP scene'de çok sayıda real-time light var, (2) anti-virüs
+          Library klasörünü tarıyor — exclude et, (3) GPU sürücün eski — güncelle. Ayrıca
+          Game View'ı Maximize on Play kapatırsan editor sırasında daha hızlı olur.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1.10 — PRATIK PROJELER -->
+    <section class="practice-section">
+      <div class="practice-header">
+        <div class="practice-header-icon"><i class="ti ti-target"></i></div>
+        <div>
+          <h2>Pratik Projeler</h2>
+          <span>3 proje — her biri 5-15 dakika</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-header">
+          <span class="project-number">Proje 1</span>
+          <h3>Hello Unity — İlk Debug.Log mesajını yazdır</h3>
+          <div class="project-meta">
+            <span><i class="ti ti-clock"></i> 5 dakika</span>
+            <span><i class="ti ti-stack-2"></i> Zorluk: Çok Kolay</span>
+          </div>
+        </div>
+        <div class="project-card-body">
+          <div class="project-steps">
+            <ol>
+              <li>Yeni 3D (URP) proje aç, adı: <code>HelloUnity</code>.</li>
+              <li>Project panelinde Assets → sağ tık → Create → C# Script. Ad: <code>HelloWorld</code>.</li>
+              <li>HelloWorld.cs'i Visual Studio'da aç. Start metodunun içine <code>Debug.Log("Selam Unity!");</code> yaz.</li>
+              <li>Unity'ye dön. Hierarchy'de "Create Empty" — boş bir GameObject. Adı "Manager".</li>
+              <li>Manager'a sürükle-bırak ile HelloWorld script'ini Inspector'a at.</li>
+              <li>Play tuşuna bas. Console'da "Selam Unity!" görmelisin.</li>
+            </ol>
+          </div>
+          <div class="project-check">
+            <div class="project-check-title">Tamamlama Kontrolü</div>
+            <ul>
+              <li>Console'da yazı göründü</li>
+              <li>Script Manager GameObject'inin Inspector'ında bağlı</li>
+              <li>Play tuşuna basınca çalıştı</li>
+            </ul>
+          </div>
+          <div class="project-goal"><i class="ti ti-target"></i><span>Unity'nin script çalıştırma akışını anlamak — sahne objesine script bağlanması ve Play ile tetiklenmesi.</span></div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-header">
+          <span class="project-number">Proje 2</span>
+          <h3>İkinci sürümü kur — Unity 2022.3 LTS ekle</h3>
+          <div class="project-meta">
+            <span><i class="ti ti-clock"></i> 15 dakika (indirme dahil)</span>
+            <span><i class="ti ti-stack-2"></i> Zorluk: Kolay</span>
+          </div>
+        </div>
+        <div class="project-card-body">
+          <div class="project-steps">
+            <ol>
+              <li>Unity Hub → Installs → Install Editor.</li>
+              <li>En son 2022.3 LTS sürümünü seç (örn. 2022.3.55f1).</li>
+              <li>Modülleri seç: Visual Studio (eğer önceden kurulmadıysa), Android Build Support, WebGL Build Support.</li>
+              <li>Install. İndirme 15-30 dakika sürer.</li>
+              <li>Tamamlanınca Projects → New Project → şimdi sürüm dropdown'ında 2022.3 LTS de var. Test için bir 3D Core proje aç.</li>
+              <li>İlk proje (HelloUnity) hâlâ Unity 6 ile açılır; karıştırma yok.</li>
+            </ol>
+          </div>
+          <div class="project-check">
+            <div class="project-check-title">Tamamlama Kontrolü</div>
+            <ul>
+              <li>Hub → Installs'ta iki editor görünüyor</li>
+              <li>New Project ekranında her iki sürüm seçilebiliyor</li>
+              <li>Her iki sürümde de proje açılıyor</li>
+            </ul>
+          </div>
+          <div class="project-goal"><i class="ti ti-target"></i><span>Çok sürümlü Unity ortamı — modern özelliklerle hazır asset uyumu arasında köprü kurmak.</span></div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-header">
+          <span class="project-number">Proje 3</span>
+          <h3>Asset Store keşfi — İlk hazır asset'i indir</h3>
+          <div class="project-meta">
+            <span><i class="ti ti-clock"></i> 10 dakika</span>
+            <span><i class="ti ti-stack-2"></i> Zorluk: Çok Kolay</span>
+          </div>
+        </div>
+        <div class="project-card-body">
+          <div class="project-steps">
+            <ol>
+              <li>Tarayıcıda <code>assetstore.unity.com</code> aç. Unity hesabınla giriş yap.</li>
+              <li>Pricing: "Free" filtresini seç. Category: "3D".</li>
+              <li>Beğendiğin bir ücretsiz paket seç (örn. "Standard Assets", "Unity Particle Pack").</li>
+              <li>"Add to My Assets" — paket kütüphanene ekleniyor.</li>
+              <li>Unity Editor'e dön. Window → Package Manager. Sol üstte "My Assets" filtresine geç.</li>
+              <li>İndirdiğin paketi göreceksin. "Download" → bitince "Import" — paket projeye dahil olur.</li>
+            </ol>
+          </div>
+          <div class="project-check">
+            <div class="project-check-title">Tamamlama Kontrolü</div>
+            <ul>
+              <li>Asset Store hesabınla bağlı</li>
+              <li>En az bir paket "My Assets" listesinde</li>
+              <li>Paket projeye import edildi (Project panelinde görünüyor)</li>
+            </ul>
+          </div>
+          <div class="project-goal"><i class="ti ti-target"></i><span>Asset Store akışını öğrenmek — Unity'nin en büyük gücü, hazır içerik kütüphanesini kullanmak.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section class="quiz" id="bolum-quiz">
+  <header class="quiz-header">
+    <div class="quiz-header-icon"><i class="ti ti-help"></i></div>
+    <div class="quiz-header-text">
+      <h2>Bölüm Sonu Sınavı</h2>
+      <span>5 soru</span>
+    </div>
+  </header>
+
+  <article class="quiz-question" id="q1-1">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">01</span>
+      <h3 class="quiz-prompt-text">Unity Hub'ın asıl işlevi nedir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">A) Oyun motorunun kendisidir</button>
+      <button class="quiz-option" data-correct="true">B) Farklı Unity sürümlerini ve projeleri yöneten merkezi uygulama</button>
+      <button class="quiz-option" data-correct="false">C) C# kodu yazılan editör</button>
+      <button class="quiz-option" data-correct="false">D) Asset Store'un masaüstü uygulaması</button>
+    </div>
+    <div class="quiz-explanation" hidden>Hub, sürümleri ve projeleri yönetir; Editor (Unity'nin kendisi) ondan ayrı bir programdır.</div>
+  </article>
+
+  <article class="quiz-question" id="q1-2">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">02</span>
+      <h3 class="quiz-prompt-text">"LTS" kısaltması ne anlama gelir ve Unity 2022.3 LTS ne demektir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">A) Latest Technology Stack — en yeni teknoloji yığını</button>
+      <button class="quiz-option" data-correct="true">B) Long-Term Support — 2 yıl boyunca sadece bug fix alan, yeni özellik gelmeyen kararlı sürüm</button>
+      <button class="quiz-option" data-correct="false">C) Light Templating System — hafif şablon sistemi</button>
+      <button class="quiz-option" data-correct="false">D) Linux & Tablet Support — özel platform paketi</button>
+    </div>
+    <div class="quiz-explanation" hidden>LTS sürümler yayında olan projeler için tasarlanmıştır: stabilite ön planda, sürpriz değişiklik yok.</div>
+  </article>
+
+  <article class="quiz-question" id="q1-3">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">03</span>
+      <h3 class="quiz-prompt-text">3D (URP) template'i ne için en uygundur?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">A) Yalnızca foto-gerçekçi AAA görseller için</button>
+      <button class="quiz-option" data-correct="true">B) Modern indie, mobil ve VR projeleri için — hızlı ve modern</button>
+      <button class="quiz-option" data-correct="false">C) Sadece 2D oyunlar için</button>
+      <button class="quiz-option" data-correct="false">D) Eski mobil cihazlar için geri uyumluluk paketi</button>
+    </div>
+    <div class="quiz-explanation" hidden>URP modern, hafif ve çapraz platform — yeni başlayanlar için varsayılan tercih.</div>
+  </article>
+
+  <article class="quiz-question" id="q1-4">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">04</span>
+      <h3 class="quiz-prompt-text">Editor'ün hangi paneli sahnedeki tüm GameObject'lerin ağaç görünümünü gösterir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">A) Inspector</button>
+      <button class="quiz-option" data-correct="false">B) Project</button>
+      <button class="quiz-option" data-correct="true">C) Hierarchy</button>
+      <button class="quiz-option" data-correct="false">D) Console</button>
+    </div>
+    <div class="quiz-explanation" hidden>Hierarchy = sahnede ne var, Inspector = seçili olanın detayı, Project = diskteki dosyalar, Console = log'lar.</div>
+  </article>
+
+  <article class="quiz-question" id="q1-5">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">05</span>
+      <h3 class="quiz-prompt-text">Proje açılışta donuyor veya bozuk davranıyor. İlk denemen gereken çözüm nedir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">A) Unity'yi tamamen kaldırıp yeniden kur</button>
+      <button class="quiz-option" data-correct="false">B) Bilgisayarı formatla</button>
+      <button class="quiz-option" data-correct="true">C) Projenin kök klasöründeki Library klasörünü sil ve projeyi yeniden aç</button>
+      <button class="quiz-option" data-correct="false">D) Asset Store'dan tüm asset'leri yeniden indir</button>
+    </div>
+    <div class="quiz-explanation" hidden>Library cache klasörüdür — silinince yeniden oluşur, hiçbir veri kaybolmaz. Çoğu açılış sorunu bu yöntemle çözülür.</div>
+  </article>
+</section>
+
+    <!-- COMPLETE BUTTON -->
+    <section class="complete-section">
+      <h3 class="complete-title">🎉 Bölüm 1 Tamamlandı!</h3>
+      <p class="complete-msg">Unity'yi kurdun ve editöre ilk adımını attın. Artık proje oluşturabilir, sürüm seçebilir ve arayüzde gezinebilirsin. Bir sonraki bölümde editör arayüzünü detaylıca tanıyacağız.</p>
+      <button class="complete-btn" data-section="s1">
+        <i class="ti ti-circle-check"></i>
+        <span>Bu Bölümü Tamamladım</span>
+      </button>
+      <p class="complete-note">İlerlemen otomatik tarayıcına kaydedilir.</p>
+    </section>
+    <!-- Sayfa Gezinme -->
+    <nav class="page-nav" aria-label="Bölüm gezinme">
+      <a href="../index.html" class="page-nav-link prev">
+        <div class="page-nav-arrow"><i class="ti ti-home"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Ana Sayfa</div>
+          <div class="page-nav-title">UnityAkademi</div>
+        </div>
+      </a>
+      <a href="02-arayuz.html" class="page-nav-link next">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-right"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Sonraki Bölüm</div>
+          <div class="page-nav-title">2. Unity Arayüzü</div>
+        </div>
+      </a>
+    </nav>
+
+  </div>
+</main>
+<script src="../js/progress.js?v=11"></script>
+<script src="../js/quiz.js?v=11"></script>
+<script src="../js/toc.js?v=11"></script>
+<script src="../js/main.js?v=11"></script>
+</body>
+</html>

@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transform &amp; Vector3 — UnityAkademi</title>
+  <meta name="description" content="Pozisyon, rotasyon, ölçek — Unity&#x27;nin uzay matematiği. Vector3, Quaternion, World vs Local Space, Lerp/MoveTowards, ve script&#x27;ten Transform&#x27;a erişimin tüm yolları — Bölüm 06.">
+  <meta name="theme-color" content="#fa7d19">
+  <link rel="manifest" href="../manifest.json">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Transform &amp; Vector3">
+  <meta property="og:description" content="Pozisyon, rotasyon, ölçek — Unity&#x27;nin uzay matematiği. Vector3, Quaternion, World vs Local Space, Lerp/MoveTowards, ve script&#x27;ten Transform&#x27;a erişimin tüm yolları — Bölüm 06.">
+  <meta property="og:image" content="../og-image.svg">
+  <meta property="og:site_name" content="UnityAkademi">
+  <meta property="og:locale" content="tr_TR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Transform &amp; Vector3">
+  <meta name="twitter:description" content="Pozisyon, rotasyon, ölçek — Unity&#x27;nin uzay matematiği. Vector3, Quaternion, World vs Local Space, Lerp/MoveTowards, ve script&#x27;ten Transform&#x27;a erişimin tüm yolları — Bölüm 06.">
+  <meta name="twitter:image" content="../og-image.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="../css/variables.css?v=11">
+  <link rel="stylesheet" href="../css/reset.css?v=11">
+  <link rel="stylesheet" href="../css/layout.css?v=11">
+  <link rel="stylesheet" href="../css/components.css?v=11">
+  <link rel="stylesheet" href="../css/content.css?v=11">
+  <link rel="stylesheet" href="../css/visuals.css?v=11">
+  <link rel="stylesheet" href="../css/extras.css?v=11">
+  <link rel="stylesheet" href="../css/responsive.css?v=11">
+</head>
+<body>
+<button class="nav-hamburger" id="navHamburger" aria-label="Menüyü aç">
+  <i class="ti ti-menu-2"></i>
+</button>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a href="../index.html" class="sidebar-brand">
+      <div class="sidebar-brand-icon"><i class="ti ti-home-2"></i></div>
+      <div class="sidebar-brand-text">
+        <span class="sidebar-brand-name">Ana Sayfa</span>
+        <span class="sidebar-brand-sub">UnityAkademi</span>
+      </div>
+    </a>
+    <button class="mobile-toggle" aria-label="Menü"><i class="ti ti-x"></i></button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-group">
+      <div class="nav-group-title">Temeller</div>
+      <a href="01-kurulum.html" class="nav-link" data-section="s1"><i class="ti ti-download"></i><span class="nav-link-text">Kurulum & İlk Bakış</span><span class="nav-link-num">01</span></a>
+      <a href="02-arayuz.html" class="nav-link" data-section="s2"><i class="ti ti-layout-board"></i><span class="nav-link-text">Editor Arayüzü</span><span class="nav-link-num">02</span></a>
+      <a href="03-gameobject-component.html" class="nav-link" data-section="s3"><i class="ti ti-cube"></i><span class="nav-link-text">GameObject & Component</span><span class="nav-link-num">03</span></a>
+      <a href="04-csharp-temelleri.html" class="nav-link" data-section="s4"><i class="ti ti-code"></i><span class="nav-link-text">C# Temelleri</span><span class="nav-link-num">04</span></a>
+      <a href="05-monobehaviour-lifecycle.html" class="nav-link" data-section="s5"><i class="ti ti-refresh"></i><span class="nav-link-text">MonoBehaviour Lifecycle</span><span class="nav-link-num">05</span></a>
+      <a href="06-transform-vector.html" class="nav-link active" data-section="s6"><i class="ti ti-arrows-move"></i><span class="nav-link-text">Transform & Vector3</span><span class="nav-link-num">06</span></a>
+      <a href="07-input.html" class="nav-link" data-section="s7"><i class="ti ti-keyboard"></i><span class="nav-link-text">Input Sistemi</span><span class="nav-link-num">07</span></a>
+      <a href="08-physics.html" class="nav-link" data-section="s8"><i class="ti ti-atom"></i><span class="nav-link-text">Physics</span><span class="nav-link-num">08</span></a>
+      <a href="09-ui.html" class="nav-link" data-section="s9"><i class="ti ti-layout-grid"></i><span class="nav-link-text">UI Sistemi</span><span class="nav-link-num">09</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Görsel & Asset</div>
+      <a href="10-material-shader.html" class="nav-link" data-section="s10"><i class="ti ti-palette"></i><span class="nav-link-text">Material & Shader</span><span class="nav-link-num">10</span></a>
+      <a href="11-asset-import.html" class="nav-link" data-section="s11"><i class="ti ti-folder"></i><span class="nav-link-text">Asset Import</span><span class="nav-link-num">11</span></a>
+      <a href="12-animation.html" class="nav-link" data-section="s12"><i class="ti ti-bounce-right"></i><span class="nav-link-text">Animation</span><span class="nav-link-num">12</span></a>
+      <a href="13-particle-vfx.html" class="nav-link" data-section="s13"><i class="ti ti-sparkles"></i><span class="nav-link-text">Particle & VFX Graph</span><span class="nav-link-num">13</span></a>
+      <a href="14-lighting.html" class="nav-link" data-section="s14"><i class="ti ti-bulb"></i><span class="nav-link-text">Lighting</span><span class="nav-link-num">14</span></a>
+      <a href="15-audio.html" class="nav-link" data-section="s15"><i class="ti ti-volume"></i><span class="nav-link-text">Audio</span><span class="nav-link-num">15</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Sistemler</div>
+      <a href="16-probuilder.html" class="nav-link" data-section="s16"><i class="ti ti-3d-cube-sphere"></i><span class="nav-link-text">ProBuilder</span><span class="nav-link-num">16</span></a>
+      <a href="17-terrain.html" class="nav-link" data-section="s17"><i class="ti ti-mountain"></i><span class="nav-link-text">Terrain</span><span class="nav-link-num">17</span></a>
+      <a href="18-cinemachine.html" class="nav-link" data-section="s18"><i class="ti ti-camera"></i><span class="nav-link-text">Cinemachine</span><span class="nav-link-num">18</span></a>
+      <a href="19-timeline.html" class="nav-link" data-section="s19"><i class="ti ti-timeline"></i><span class="nav-link-text">Timeline</span><span class="nav-link-num">19</span></a>
+      <a href="20-navmesh.html" class="nav-link" data-section="s20"><i class="ti ti-route"></i><span class="nav-link-text">NavMesh & AI</span><span class="nav-link-num">20</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">İleri Seviye</div>
+      <a href="21-urp-hdrp.html" class="nav-link" data-section="s21"><i class="ti ti-bolt"></i><span class="nav-link-text">URP, HDRP & Unity 6</span><span class="nav-link-num">21</span></a>
+      <a href="22-new-input.html" class="nav-link" data-section="s22"><i class="ti ti-device-gamepad-2"></i><span class="nav-link-text">New Input System</span><span class="nav-link-num">22</span></a>
+      <a href="23-save-menu.html" class="nav-link" data-section="s23"><i class="ti ti-device-floppy"></i><span class="nav-link-text">Save & Menü</span><span class="nav-link-num">23</span></a>
+      <a href="24-build.html" class="nav-link" data-section="s24"><i class="ti ti-package-export"></i><span class="nav-link-text">Build & Yayınlama</span><span class="nav-link-num">24</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Profesyonel</div>
+      <a href="25-csharp-ileri.html" class="nav-link" data-section="s25"><i class="ti ti-brackets-contain"></i><span class="nav-link-text">C# İleri</span><span class="nav-link-num">25</span></a>
+      <a href="26-performance.html" class="nav-link" data-section="s26"><i class="ti ti-gauge"></i><span class="nav-link-text">Performance</span><span class="nav-link-num">26</span></a>
+      <a href="27-yol-haritasi.html" class="nav-link" data-section="s27"><i class="ti ti-map-2"></i><span class="nav-link-text">Yol Haritası</span><span class="nav-link-num">27</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Pratik</div>
+      <a href="projects.html" class="nav-link nav-link-extra" data-section="x-projects"><i class="ti ti-rocket"></i><span class="nav-link-text">Projeler</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Ek Kaynaklar</div>
+      <a href="sozluk.html" class="nav-link nav-link-extra" data-section="x-sozluk"><i class="ti ti-book-2"></i><span class="nav-link-text">Sözlük</span></a>
+      <a href="cheatsheet.html" class="nav-link nav-link-extra" data-section="x-cheatsheet"><i class="ti ti-list-details"></i><span class="nav-link-text">Cheat Sheet</span></a>
+      <a href="sss.html" class="nav-link nav-link-extra" data-section="x-sss"><i class="ti ti-help-circle"></i><span class="nav-link-text">SSS</span></a>
+      <a href="arama.html" class="nav-link nav-link-extra" data-section="x-arama"><i class="ti ti-search"></i><span class="nav-link-text">Arama</span></a>
+      <a href="sertifika.html" class="nav-link nav-link-extra" data-section="x-sertifika"><i class="ti ti-certificate"></i><span class="nav-link-text">Sertifika</span></a>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="kaynaklar.html" class="sidebar-btn"><i class="ti ti-books"></i><span>Kaynaklar</span></a>
+    <a href="iletisim.html" class="sidebar-btn"><i class="ti ti-mail"></i><span>İletişim</span></a>
+  </div>
+</aside>
+<main class="main">
+  <div class="main-content">
+<nav class="breadcrumb" aria-label="Sayfa konumu">
+      <a href="../index.html"><i class="ti ti-home"></i><span>Ana Sayfa</span></a>
+      <i class="ti ti-chevron-right"></i><span><i class="ti ti-school" style="font-size: 13px; opacity: 0.7; margin-right: 4px;"></i>Mekanikler</span>
+      <i class="ti ti-chevron-right"></i><span style="color: var(--primary-light);">Transform & Vector3</span>
+    </nav>
+
+<header class="page-header">
+  <div class="page-badge">Bölüm 06 · Temel Kavramlar</div>
+  <h1 class="page-title">Transform & Vector3 — Uzayda Nesnelerin Dili</h1>
+  <p class="page-desc">
+    Her <strong>GameObject</strong>'in vazgeçilmez Component'i: <strong>Transform</strong>. Pozisyon,
+    döndürme, ölçek — üç vektör ve bir hiyerarşi. Bu bölümde Unity'nin uzay anlayışını,
+    <strong>Vector3</strong>'ün matematiğini, <strong>World space</strong> ile <strong>Local space</strong>
+    arasındaki ince farkı, ve script'ten Transform'a dokunmanın tüm yollarını öğreneceksin.
+  </p>
+  <div class="page-meta">
+    <span class="meta-item">⏱ 35 dakika</span>
+    <span class="meta-item">🎯 Pozisyon/Rotasyon/Ölçek</span>
+    <span class="meta-item">📐 Vector3 matematiği</span>
+  </div>
+</header>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">6.1</span>
+    <h2 class="topic-title">Transform — Her GameObject'in Anayasası</h2>
+  </div>
+  <p>
+    Unity'de bir <strong>GameObject</strong> sahneye düştüğü an üç bilgiyi taşır: <em>nerede</em>,
+    <em>hangi açıda</em>, <em>ne kadar büyük</em>. Bu üç bilgiyi tutan tek Component
+    <strong>Transform</strong>'dur. Inspector'ı açtığında en üstte gördüğün, silinemeyen, kapatılamayan
+    o ilk satır.
+  </p>
+  <p>
+    Bir GameObject'ten her Component'i tek tek söküp atabilirsin — Rigidbody'yi, Collider'ı,
+    MeshRenderer'ı, hatta script'lerini. Ama Transform sökülmez. Çünkü Transform yoksa "nesne nerede?"
+    sorusunun cevabı da yoktur. Transform, GameObject'in <em>varoluş koşuludur</em>.
+  </p>
+
+  <div class="u-inspector">
+    <div class="u-inspector-header">
+      <div class="u-inspector-icon transform">↔</div>
+      <span>Transform</span>
+    </div>
+    <div class="u-inspector-body">
+      <div class="u-inspector-row">
+        <span class="u-inspector-label">Position</span>
+        <span class="u-inspector-value vector"><span class="x">X 2.5</span><span class="y">Y 0</span><span class="z">Z -1.3</span></span>
+      </div>
+      <div class="u-inspector-row">
+        <span class="u-inspector-label">Rotation</span>
+        <span class="u-inspector-value vector"><span class="x">X 0</span><span class="y">Y 45</span><span class="z">Z 0</span></span>
+      </div>
+      <div class="u-inspector-row">
+        <span class="u-inspector-label">Scale</span>
+        <span class="u-inspector-value vector"><span class="x">X 1</span><span class="y">Y 1</span><span class="z">Z 1</span></span>
+      </div>
+    </div>
+  </div>
+
+  <p>
+    Yukarıdaki Inspector görüntüsünde Transform'un üç satırını görüyorsun. Her satır bir
+    <strong>Vector3</strong> — üç sayıdan oluşan bir veri yapısı. Position'da bu üç sayı metre cinsinden
+    konumu, Rotation'da derece cinsinden açıyı, Scale'de oransal büyüklüğü temsil eder. Üçü de aynı
+    yapıya yaslandığı için Unity'de uzay matematiğinin dili tek bir tip üzerinden konuşulur:
+    <code>Vector3</code>.
+  </p>
+
+  <div class="info-box">
+    <div class="info-box-title">💡 Component zorunluluğu</div>
+    <p>
+      Unity Editor'ünde bir GameObject oluşturduğunda — örneğin sağ tık → Create Empty — sahnedeki yeni
+      nesneye otomatik olarak yalnızca Transform eklenir. Cube, Sphere gibi 3D primitive'ler için ek
+      olarak MeshFilter, MeshRenderer, Collider gelir; ama Transform her zaman varsayılan ve tektir.
+      Kod tarafında erişimi de aynı kolaylıkta: her MonoBehaviour'da <code>transform</code> özelliği
+      hazır gelir (büyük harf yok; küçük "t" ile).
+    </p>
+  </div>
+</section>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">6.2</span>
+    <h2 class="topic-title">Vector3 — Üç Sayının Hikayesi</h2>
+  </div>
+  <p>
+    <strong>Vector3</strong>, Unity'nin uzay matematiğinde temel taşıdır. Üç ondalık sayıdan
+    (<code>float</code>) oluşur: X, Y ve Z. Bu üç sayı bağlama göre farklı anlam taşır — pozisyon
+    için "noktanın koordinatları", yön için "ok ucunun göstereceği taraf", hız için "saniyedeki
+    hareket miktarı". Tip aynı kalır, anlam bağlamla değişir.
+  </p>
+
+  <div class="cs-block">
+    <div class="cs-block-header">
+      <span class="cs-block-filename">📄 Vector3Examples.cs</span>
+    </div>
+    <pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+
+<span class="kw">public class</span> <span class="type">Vector3Examples</span> : <span class="mb">MonoBehaviour</span>
+{
+    <span class="kw">void</span> <span class="fn">Start</span>()
+    {
+        <span class="com">// Yeni bir Vector3 oluşturmanın yolları</span>
+        <span class="type">Vector3</span> nokta = <span class="kw">new</span> <span class="type">Vector3</span>(<span class="num">2f</span>, <span class="num">0f</span>, <span class="num">-1f</span>);
+        <span class="type">Vector3</span> sifir = <span class="type">Vector3</span>.zero;        <span class="com">// (0, 0, 0)</span>
+        <span class="type">Vector3</span> bir   = <span class="type">Vector3</span>.one;         <span class="com">// (1, 1, 1)</span>
+        <span class="type">Vector3</span> ileri = <span class="type">Vector3</span>.forward;     <span class="com">// (0, 0, 1)</span>
+        <span class="type">Vector3</span> yukari = <span class="type">Vector3</span>.up;         <span class="com">// (0, 1, 0)</span>
+        <span class="type">Vector3</span> sag   = <span class="type">Vector3</span>.right;       <span class="com">// (1, 0, 0)</span>
+
+        <span class="com">// Tek bileşene erişim ve değiştirme</span>
+        <span class="type">Debug</span>.<span class="fn">Log</span>(nokta.x);   <span class="com">// 2</span>
+        <span class="type">Debug</span>.<span class="fn">Log</span>(nokta.y);   <span class="com">// 0</span>
+        <span class="type">Debug</span>.<span class="fn">Log</span>(nokta.z);   <span class="com">// -1</span>
+
+        <span class="com">// Vector3'ler arasında toplama, çıkarma, ölçeklendirme</span>
+        <span class="type">Vector3</span> toplam = nokta + ileri;     <span class="com">// (2, 0, 0)</span>
+        <span class="type">Vector3</span> iki_kat = nokta * <span class="num">2f</span>;       <span class="com">// (4, 0, -2)</span>
+        <span class="type">Vector3</span> fark = nokta - sag;          <span class="com">// (1, 0, -1)</span>
+    }
+}</code></pre>
+  </div>
+
+  <p>
+    Yukarıdaki kod parçasında Vector3'ün dilbilgisini görüyorsun: oluşturma, sabitler, bileşen
+    erişimi, aritmetik. <code>Vector3.zero</code>, <code>Vector3.one</code>, <code>Vector3.forward</code>
+    gibi <strong>statik sabitler</strong> her gün kullanacağın kısayollar — kendin <code>new Vector3(0, 0, 1)</code>
+    yazmak yerine <code>Vector3.forward</code> demek hem okunaklıdır hem de tutarlıdır.
+  </p>
+
+  <h3 class="subsection-title">Vector3 Sabitleri — Yön Tabelası</h3>
+  <div class="layout-diagram" style="grid-template-columns: repeat(3, 1fr);">
+    <div class="layout-cell">
+      <div class="cell-name">Vector3.right</div>
+      <div class="cell-value">(1, 0, 0)</div>
+      <div class="cell-note">+X ekseni — sağ</div>
+    </div>
+    <div class="layout-cell">
+      <div class="cell-name">Vector3.up</div>
+      <div class="cell-value">(0, 1, 0)</div>
+      <div class="cell-note">+Y ekseni — yukarı</div>
+    </div>
+    <div class="layout-cell">
+      <div class="cell-name">Vector3.forward</div>
+      <div class="cell-value">(0, 0, 1)</div>
+      <div class="cell-note">+Z ekseni — ileri</div>
+    </div>
+    <div class="layout-cell">
+      <div class="cell-name">Vector3.left</div>
+      <div class="cell-value">(-1, 0, 0)</div>
+      <div class="cell-note">−X ekseni — sol</div>
+    </div>
+    <div class="layout-cell">
+      <div class="cell-name">Vector3.down</div>
+      <div class="cell-value">(0, -1, 0)</div>
+      <div class="cell-note">−Y ekseni — aşağı</div>
+    </div>
+    <div class="layout-cell">
+      <div class="cell-name">Vector3.back</div>
+      <div class="cell-value">(0, 0, -1)</div>
+      <div class="cell-note">−Z ekseni — geri</div>
+    </div>
+  </div>
+
+  <div class="warning-box">
+    <div class="warning-box-title">⚠ Unity'nin koordinat sistemi sol-eldir (left-handed)</div>
+    <p>
+      Unity, OpenGL/Blender'dan farklı olarak <strong>left-handed</strong> bir koordinat sistemi kullanır.
+      Pratik etkisi: +Z senin için "ileri", +Y "yukarı", +X "sağ"dır. Eğer Blender'dan model alıyorsan
+      Z ile Y eksenleri yer değiştirebilir — bu çoğu zaman import sırasında otomatik çözülür ama bilmek
+      hata ayıklamayı kolaylaştırır.
+    </p>
+  </div>
+</section>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">6.3</span>
+    <h2 class="topic-title">Position — Nesneyi Hareket Ettir</h2>
+  </div>
+  <p>
+    Bir nesnenin sahnedeki konumunu değiştirmek istediğinde iki temel yol var: <strong>doğrudan
+    atama</strong> ve <strong>Translate ile artırma</strong>. İkisi de doğru sonucu üretir ama
+    semantikleri farklıdır. Doğrudan atama "git şu noktaya" demektir; Translate "şu kadar yer değiştir"
+    demektir.
+  </p>
+
+  <div class="cs-block">
+    <div class="cs-block-header">
+      <span class="cs-block-filename">📄 MoveExamples.cs</span>
+    </div>
+    <pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+
+<span class="kw">public class</span> <span class="type">MoveExamples</span> : <span class="mb">MonoBehaviour</span>
+{
+    <span class="kw">void</span> <span class="fn">Update</span>()
+    {
+        <span class="com">// 1) Doğrudan atama — "bu konuma git"</span>
+        transform.position = <span class="kw">new</span> <span class="type">Vector3</span>(<span class="num">0f</span>, <span class="num">1f</span>, <span class="num">5f</span>);
+
+        <span class="com">// 2) Mevcut konuma ekleyerek hareket — "ileri kay"</span>
+        transform.position += <span class="type">Vector3</span>.forward * <span class="type">Time</span>.deltaTime;
+
+        <span class="com">// 3) Translate — yukarıdakinin yerel uzaydaki kısayolu</span>
+        transform.<span class="fn">Translate</span>(<span class="type">Vector3</span>.forward * <span class="type">Time</span>.deltaTime);
+
+        <span class="com">// 4) Sadece bir bileşeni değiştir</span>
+        <span class="type">Vector3</span> p = transform.position;
+        p.y = <span class="num">3f</span>;
+        transform.position = p;
+    }
+}</code></pre>
+  </div>
+
+  <p>
+    Dördüncü örnekteki kalıbı dikkatle incele: <code>transform.position.y = 3f;</code> yazmak <em>derleme
+    hatası</em> verir. Çünkü <code>transform.position</code> bir <strong>struct</strong>
+    döndürür ve struct'lar değer-tipi olduğu için doğrudan üzerinde değişiklik yapamazsın. Önce
+    bir değişkene kopyalar, değiştirir, sonra geri atarsın. Bu Unity'de en sık karşılaşılan "neden
+    çalışmıyor?" tuzaklarından biridir.
+  </p>
+
+  <div class="info-box">
+    <div class="info-box-title">💡 Time.deltaTime — kare-bağımsız hareket</div>
+    <p>
+      <code>Time.deltaTime</code>, son kareyle bu kare arasında geçen süreyi saniye cinsinden verir.
+      60 FPS oynayan birinde değer ~0.0166, 30 FPS oynayan birinde ~0.0333 olur. Update içinde hareketi
+      her zaman <code>Time.deltaTime</code> ile çarp; aksi halde nesnenin hızı oynayanın bilgisayarına
+      göre değişir — 120Hz monitördeki oyuncu, 60Hz monitördeki oyuncudan iki kat hızlı koşar.
+    </p>
+  </div>
+</section>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">6.4</span>
+    <h2 class="topic-title">Rotation — Euler ve Quaternion</h2>
+  </div>
+  <p>
+    Döndürme, Unity'de iki farklı temsille hayat bulur. Inspector'da gördüğün üç sayı —
+    <code>X</code>, <code>Y</code>, <code>Z</code> derece cinsinden — <strong>Euler</strong>
+    açılarıdır. İnsan için sezgisel ama matematiksel olarak sorunlu. Motor içeride
+    <strong>Quaternion</strong> kullanır; dört sayılı, daha karmaşık ama "gimbal lock" denen
+    döndürme tıkanmasından muaf.
+  </p>
+
+  <div class="u-compare">
+    <div class="u-compare-side lts">
+      <div class="u-compare-head">Inspector (Euler) — İnsan Dili</div>
+      <div class="u-compare-body">
+        <ul>
+          <li><strong>X, Y, Z</strong> her biri derece cinsinden (0–360)</li>
+          <li>Sezgisel: "90° döndür" denilince zihinde canlandırması kolay</li>
+          <li>Inspector ekranında doğrudan yazılıp değiştirilebilir</li>
+          <li>İki Euler açısının toplamı her zaman beklenen sonucu vermez (gimbal lock)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="u-compare-side u6">
+      <div class="u-compare-head">Motor İçi (Quaternion) — Matematik</div>
+      <div class="u-compare-body">
+        <ul>
+          <li><strong>x, y, z, w</strong> dört bileşen</li>
+          <li>Karmaşık görünür ama interpolasyon (Slerp) için ideal</li>
+          <li>Gimbal lock üretmez — her döndürme tek ve geçerlidir</li>
+          <li><code>Quaternion.Euler(0,90,0)</code> ile Euler'den dönüştürülür</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-block">
+    <div class="cs-block-header">
+      <span class="cs-block-filename">📄 RotationExamples.cs</span>
+    </div>
+    <pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+
+<span class="kw">public class</span> <span class="type">RotationExamples</span> : <span class="mb">MonoBehaviour</span>
+{
+    <span class="kw">void</span> <span class="fn">Update</span>()
+    {
+        <span class="com">// Euler ile — "Y ekseninde 90 derece dönmüş ol"</span>
+        transform.eulerAngles = <span class="kw">new</span> <span class="type">Vector3</span>(<span class="num">0f</span>, <span class="num">90f</span>, <span class="num">0f</span>);
+
+        <span class="com">// Quaternion ile — aynı sonuç, motor diliyle</span>
+        transform.rotation = <span class="type">Quaternion</span>.<span class="fn">Euler</span>(<span class="num">0f</span>, <span class="num">90f</span>, <span class="num">0f</span>);
+
+        <span class="com">// Rotate — saniyede 90 derece (Y ekseni etrafında)</span>
+        transform.<span class="fn">Rotate</span>(<span class="num">0f</span>, <span class="num">90f</span> * <span class="type">Time</span>.deltaTime, <span class="num">0f</span>);
+
+        <span class="com">// LookAt — başka bir nesneye bakacak şekilde dön</span>
+        <span class="type">Transform</span> hedef = <span class="type">GameObject</span>.<span class="fn">Find</span>(<span class="str">"Player"</span>).transform;
+        transform.<span class="fn">LookAt</span>(hedef);
+
+        <span class="com">// Slerp — yumuşak (interpolated) dönüş</span>
+        <span class="type">Quaternion</span> hedefAci = <span class="type">Quaternion</span>.<span class="fn">Euler</span>(<span class="num">0f</span>, <span class="num">180f</span>, <span class="num">0f</span>);
+        transform.rotation = <span class="type">Quaternion</span>.<span class="fn">Slerp</span>(
+            transform.rotation,
+            hedefAci,
+            <span class="type">Time</span>.deltaTime * <span class="num">2f</span>
+        );
+    }
+}</code></pre>
+  </div>
+
+  <p>
+    <code>Slerp</code> (Spherical Linear Interpolation) Unity'de yumuşak dönüşler için yıldız fonksiyondur.
+    Üçüncü parametre 0 ile 1 arasında bir oran beklemez — her kare çağrıldığında "şu kadar yaklaş" der.
+    <code>Time.deltaTime * 2f</code> verirsen kare-bağımsız bir dönüş hızı elde edersin: ne kadar
+    yüksek FPS olursa olsun hedefe ulaşma süresi aynı kalır.
+  </p>
+</section>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">6.5</span>
+    <h2 class="topic-title">Scale — Boyutlandırma ve Mirror Etkisi</h2>
+  </div>
+  <p>
+    Ölçek, nesnenin orijinal boyutuna göre çarpan değer kullanır. <code>Vector3.one</code> yani
+    <code>(1,1,1)</code> "olduğu gibi"; <code>(2,2,2)</code> "iki katı"; <code>(0.5f, 1f, 1f)</code>
+    "sadece X'te yarısı". Üç eksende farklı değerler verirsen <strong>non-uniform scaling</strong>
+    yaparsın — fiziği ve normal map'leri bozabilir; eğer model orijinal olarak orantılıyken sahnede
+    ezilmesini istemiyorsan üç ekseni de aynı tutmak en güvenlisidir.
+  </p>
+
+  <div class="cs-block">
+    <div class="cs-block-header">
+      <span class="cs-block-filename">📄 ScaleExamples.cs</span>
+    </div>
+    <pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+
+<span class="kw">public class</span> <span class="type">ScaleExamples</span> : <span class="mb">MonoBehaviour</span>
+{
+    <span class="kw">void</span> <span class="fn">Start</span>()
+    {
+        <span class="com">// Iki katı büyüt</span>
+        transform.localScale = <span class="type">Vector3</span>.one * <span class="num">2f</span>;
+
+        <span class="com">// Sadece yüksekliği değiştir — yere yapışık kal</span>
+        transform.localScale = <span class="kw">new</span> <span class="type">Vector3</span>(<span class="num">1f</span>, <span class="num">0.5f</span>, <span class="num">1f</span>);
+
+        <span class="com">// Negatif scale ile ayna efekti — modelin tersini bas</span>
+        transform.localScale = <span class="kw">new</span> <span class="type">Vector3</span>(<span class="num">-1f</span>, <span class="num">1f</span>, <span class="num">1f</span>);
+    }
+}</code></pre>
+  </div>
+
+  <div class="warning-box">
+    <div class="warning-box-title">⚠ Negatif scale yan etkileri</div>
+    <p>
+      Bir eksende negatif ölçek (örn. <code>X = -1</code>) modeli aynalar ama aynı zamanda yüzey
+      normal'lerini ters çevirir; ışığın gördüğü yüzler farklı yorumlanır. Bazı shader'lar (özellikle
+      cull face ayarlı olanlar) modeli içten görmeye başlar. Karakter "yön değiştirme" için negatif
+      scale sık kullanılır ama 3D'de daima animasyonla veya 180° dönüşle yapmak daha güvenlidir;
+      negatif scale 2D sprite'larda sorunsuzdur.
+    </p>
+  </div>
+</section>
+
+<div class="mini-checkpoint">
+  <div class="mini-checkpoint-title">⚡ Mini-Checkpoint — Transform Refleksi</div>
+  <p>Bir sonraki bölüme geçmeden önce şu beş kavramı zihninde yerine oturt:</p>
+  <ol class="check-list">
+    <li><strong>transform</strong> her MonoBehaviour'da hazır gelir — yazılışı küçük "t" ile.</li>
+    <li><strong>Vector3</strong> üç float'lı bir struct — pozisyon, yön, hız, ölçek hepsinin dili.</li>
+    <li><strong>transform.position.y = 3f</strong> yazmak hata verir — önce kopyala, değiştir, geri ata.</li>
+    <li>Inspector'daki <strong>Rotation</strong> Euler; motor içinde <strong>Quaternion</strong> tutulur.</li>
+    <li>Update içinde her hareketi <strong>Time.deltaTime</strong> ile çarp — kare-bağımsız hareket için.</li>
+  </ol>
+</div>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">6.6</span>
+    <h2 class="topic-title">Vector3 İşlemleri — Hesabın Mutfağı</h2>
+  </div>
+  <p>
+    Vector3 sadece veri taşımaz, üzerinde matematik de yapar. İki nokta arasındaki mesafe, iki yön
+    arasındaki açı, bir hedefe doğru yumuşak hareket — hepsi <code>Vector3</code> sınıfının statik
+    metotlarıyla çözülür.
+  </p>
+
+  <div class="cs-block">
+    <div class="cs-block-header">
+      <span class="cs-block-filename">📄 VectorMath.cs</span>
+    </div>
+    <pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+
+<span class="kw">public class</span> <span class="type">VectorMath</span> : <span class="mb">MonoBehaviour</span>
+{
+    <span class="kw">public</span> <span class="type">Transform</span> hedef;
+    <span class="kw">public</span> <span class="kw">float</span> hiz = <span class="num">3f</span>;
+
+    <span class="kw">void</span> <span class="fn">Update</span>()
+    {
+        <span class="com">// İki nokta arası mesafe (metre)</span>
+        <span class="kw">float</span> mesafe = <span class="type">Vector3</span>.<span class="fn">Distance</span>(transform.position, hedef.position);
+
+        <span class="com">// Lerp — A'dan B'ye yumuşak geçiş (her karede biraz yaklaş)</span>
+        transform.position = <span class="type">Vector3</span>.<span class="fn">Lerp</span>(
+            transform.position,
+            hedef.position,
+            <span class="type">Time</span>.deltaTime * <span class="num">2f</span>
+        );
+
+        <span class="com">// MoveTowards — sabit hızda yaklaş, hedefte dur</span>
+        transform.position = <span class="type">Vector3</span>.<span class="fn">MoveTowards</span>(
+            transform.position,
+            hedef.position,
+            hiz * <span class="type">Time</span>.deltaTime
+        );
+
+        <span class="com">// Yön vektörü — A'dan B'ye doğru bir Vector3 üret</span>
+        <span class="type">Vector3</span> yon = (hedef.position - transform.position).<span class="fn">normalized</span>;
+
+        <span class="com">// Magnitude — bir vektörün uzunluğu</span>
+        <span class="kw">float</span> uzunluk = (hedef.position - transform.position).magnitude;
+    }
+}</code></pre>
+  </div>
+
+  <h3 class="subsection-title">Lerp ve MoveTowards Farkı</h3>
+  <p>
+    <code>Vector3.Lerp</code> ile <code>Vector3.MoveTowards</code> sık karıştırılır. İkisinin de
+    işi "A'dan B'ye yumuşak geçiş" gibi görünür ama davranışları farklıdır:
+  </p>
+
+  <div class="u-compare">
+    <div class="u-compare-side lts">
+      <div class="u-compare-head">Vector3.Lerp</div>
+      <div class="u-compare-body">
+        <ul>
+          <li>Her karede mesafenin <strong>oranını</strong> alır — başta hızlı, sonda yavaş</li>
+          <li>Hedefe matematiksel olarak hiç ulaşmaz; sonsuza dek yaklaşır</li>
+          <li>"Yumuşak takip" veya "ease-out" görünümü için ideal</li>
+          <li>Üçüncü parametre <code>0–1</code> arası bir oran beklenir; <code>Time.deltaTime * X</code> ile kullanılır</li>
+        </ul>
+      </div>
+    </div>
+    <div class="u-compare-side u6">
+      <div class="u-compare-head">Vector3.MoveTowards</div>
+      <div class="u-compare-body">
+        <ul>
+          <li>Sabit hızda mesafe kadar yer değiştirir — başta da sonda da aynı hız</li>
+          <li>Hedefe ulaşınca durur; "tam değer" garantili</li>
+          <li>Düşman AI, sabit yürüyen NPC için ideal</li>
+          <li>Üçüncü parametre <code>metre/saniye</code> türünden hızdır</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <div class="info-box-title">💡 Normalize ne demek?</div>
+    <p>
+      Bir vektörü <em>normalize etmek</em>, yönünü koruyarak uzunluğunu 1 yapmak demektir.
+      <code>(3, 0, 4)</code> uzunluğu 5 olan bir vektördür; normalize edilince <code>(0.6, 0, 0.8)</code>
+      olur — aynı yönü gösterir ama "birim vektör"dür. Yön hesaplarında neredeyse her zaman
+      normalize edilmiş vektörlerle çalışırsın çünkü yönü uzunlukla karıştırmamak istersin.
+    </p>
+  </div>
+</section>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">6.7</span>
+    <h2 class="topic-title">World Space vs Local Space — İki Uzay</h2>
+  </div>
+  <p>
+    Unity her Transform'u iki uzayda birden tutar: <strong>World Space</strong> (sahne kökeni
+    referans) ve <strong>Local Space</strong> (parent referans). Bir GameObject'in başka bir
+    GameObject'in çocuğu olduğu durumda bu iki uzay birbirinden ayrılır ve hangisinde
+    çalıştığını bilmek hata ayıklamanın yarısıdır.
+  </p>
+
+  <div class="layout-diagram">
+    <div class="layout-cell">
+      <div class="cell-name">position</div>
+      <div class="cell-note">World Space — sahnenin (0,0,0)'ına göre konum</div>
+    </div>
+    <div class="layout-cell">
+      <div class="cell-name">localPosition</div>
+      <div class="cell-note">Local Space — parent'a göre konum</div>
+    </div>
+    <div class="layout-cell">
+      <div class="cell-name">rotation</div>
+      <div class="cell-note">World Space — mutlak Quaternion açı</div>
+    </div>
+    <div class="layout-cell">
+      <div class="cell-name">localRotation</div>
+      <div class="cell-note">Local Space — parent'a göre Quaternion</div>
+    </div>
+    <div class="layout-cell">
+      <div class="cell-name">lossyScale</div>
+      <div class="cell-note">World Space — hiyerarşi çarpılmış ölçek (read-only)</div>
+    </div>
+    <div class="layout-cell">
+      <div class="cell-name">localScale</div>
+      <div class="cell-note">Local Space — parent'a göre ölçek</div>
+    </div>
+  </div>
+
+  <p>
+    Sahnede tek başına duran bir nesnede world ve local aynıdır. Ama bir araba modelini yaparken
+    "araba" parent, "tekerlek" child olduğunda iş değişir: tekerleğin <code>localPosition</code>'u
+    arabanın merkezine göre <code>(1.2, 0, 0.8)</code> olabilir; world position ise arabanın nerede
+    durduğuna bağlıdır. Araba 10 metre ileri kaydığında tekerleğin localPosition'u değişmez ama
+    world position'u 10 metre artar.
+  </p>
+
+  <div class="cs-block">
+    <div class="cs-block-header">
+      <span class="cs-block-filename">📄 SpaceExamples.cs</span>
+    </div>
+    <pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+
+<span class="kw">public class</span> <span class="type">SpaceExamples</span> : <span class="mb">MonoBehaviour</span>
+{
+    <span class="kw">void</span> <span class="fn">Start</span>()
+    {
+        <span class="com">// Parent'a göre yarım metre yukarı</span>
+        transform.localPosition = <span class="kw">new</span> <span class="type">Vector3</span>(<span class="num">0f</span>, <span class="num">0.5f</span>, <span class="num">0f</span>);
+
+        <span class="com">// Sahnede mutlak konum (parent'ı yok say)</span>
+        transform.position = <span class="kw">new</span> <span class="type">Vector3</span>(<span class="num">5f</span>, <span class="num">0f</span>, <span class="num">0f</span>);
+
+        <span class="com">// Translate — varsayılan olarak Local Space'te çalışır</span>
+        transform.<span class="fn">Translate</span>(<span class="type">Vector3</span>.forward * <span class="num">2f</span>);
+        <span class="com">// "Nesnenin kendi ileri yönünde 2 metre" anlamına gelir</span>
+
+        <span class="com">// Translate — World Space modunu açıkça belirt</span>
+        transform.<span class="fn">Translate</span>(<span class="type">Vector3</span>.forward * <span class="num">2f</span>, <span class="type">Space</span>.World);
+        <span class="com">// "Sahne ekseninde Z+ yönünde 2 metre"</span>
+    }
+}</code></pre>
+  </div>
+
+  <div class="warning-box">
+    <div class="warning-box-title">⚠ Yaygın hata — Translate ile yön karışıklığı</div>
+    <p>
+      <code>transform.Translate(Vector3.forward * 2f)</code> genelde "ileri 2 metre git" olarak okunur
+      ama gerçekte "kendi ileri yönünde 2 metre" demektir. Nesne 90° dönmüşse, "ileri"si artık world
+      Z değil, kendi local Z'sidir. Eğer her zaman sahnede +Z yönünde hareket istiyorsan
+      <code>Space.World</code> parametresini eklemelisin.
+    </p>
+  </div>
+</section>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">6.8</span>
+    <h2 class="topic-title">Pratik Kalıp — Transform Aramaları</h2>
+  </div>
+  <p>
+    Sahnedeki başka bir nesneyi script'inden bulup Transform'una erişmek için birkaç yol var. Her birinin
+    maliyeti ve doğru kullanım yeri farklıdır.
+  </p>
+
+  <div class="cs-block">
+    <div class="cs-block-header">
+      <span class="cs-block-filename">📄 TransformFind.cs</span>
+    </div>
+    <pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+
+<span class="kw">public class</span> <span class="type">TransformFind</span> : <span class="mb">MonoBehaviour</span>
+{
+    <span class="kw">public</span> <span class="type">Transform</span> oyuncuRef;   <span class="com">// Inspector'dan sürükle-bırak — EN İYİSİ</span>
+
+    <span class="kw">void</span> <span class="fn">Start</span>()
+    {
+        <span class="com">// 1) Inspector referansı — sıfır maliyet, en güvenli yol</span>
+        <span class="type">Vector3</span> p1 = oyuncuRef.position;
+
+        <span class="com">// 2) Find — isimle ara, YAVAŞ, sahnenin tamamını tarar</span>
+        <span class="type">Transform</span> bulunan = <span class="type">GameObject</span>.<span class="fn">Find</span>(<span class="str">"Player"</span>).transform;
+
+        <span class="com">// 3) FindWithTag — Tag'le ara, Find'den hızlı ama yine de yavaş</span>
+        <span class="type">Transform</span> tagli = <span class="type">GameObject</span>.<span class="fn">FindWithTag</span>(<span class="str">"Player"</span>).transform;
+
+        <span class="com">// 4) Child arama — parent'in çocuğunu isimle veya indeksle</span>
+        <span class="type">Transform</span> cocuk = transform.<span class="fn">Find</span>(<span class="str">"Tekerlek_Sol"</span>);
+        <span class="type">Transform</span> ilkCocuk = transform.<span class="fn">GetChild</span>(<span class="num">0</span>);
+
+        <span class="com">// 5) Parent'a erişim</span>
+        <span class="type">Transform</span> ust = transform.parent;
+    }
+}</code></pre>
+  </div>
+
+  <p>
+    Genel kural: <strong>Inspector referansı her şeyden iyidir</strong>. <code>public Transform x;</code>
+    yazıp Inspector'dan sürükleyip bıraktığında Unity sahneyi taramaz, bağlantı doğrudandır.
+    <code>Find</code> ve <code>FindWithTag</code> kolay ama her çağrıda sahne hiyerarşisinde gezinir;
+    Update içinde çağırılırsa performans yer. Bu metotları sadece Awake/Start'ta bir kere çağırıp
+    sonucu bir değişkende saklamak iyi bir alışkanlıktır.
+  </p>
+</section>
+
+<div class="real-world-box">
+  <div class="real-world-box-title">🎮 Gerçek hayattan örnek — Bir karakter kontrolcüsünün ilk satırları</div>
+  <p>
+    Üçüncü-şahıs bir oyun yaptığını düşün. Karakterin yapacağı ilk üç şey: ileri/geri hareket,
+    sola/sağa dönme, kameranın baktığı yöne göre yön ayarlama. Üçü de Transform üzerinden yapılır:
+  </p>
+  <div class="cs-block">
+    <pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+
+<span class="kw">public class</span> <span class="type">SimpleCharacter</span> : <span class="mb">MonoBehaviour</span>
+{
+    <span class="kw">public</span> <span class="kw">float</span> hiz = <span class="num">5f</span>;
+    <span class="kw">public</span> <span class="kw">float</span> donusHizi = <span class="num">120f</span>;
+
+    <span class="kw">void</span> <span class="fn">Update</span>()
+    {
+        <span class="kw">float</span> v = <span class="type">Input</span>.<span class="fn">GetAxis</span>(<span class="str">"Vertical"</span>);     <span class="com">// W/S, ileri-geri</span>
+        <span class="kw">float</span> h = <span class="type">Input</span>.<span class="fn">GetAxis</span>(<span class="str">"Horizontal"</span>);   <span class="com">// A/D, sol-sağ</span>
+
+        <span class="com">// Kendi ileri yönünde hareket — Local Space</span>
+        transform.<span class="fn">Translate</span>(<span class="type">Vector3</span>.forward * v * hiz * <span class="type">Time</span>.deltaTime);
+
+        <span class="com">// Y ekseni etrafında dön — A/D ile</span>
+        transform.<span class="fn">Rotate</span>(<span class="num">0f</span>, h * donusHizi * <span class="type">Time</span>.deltaTime, <span class="num">0f</span>);
+    }
+}</code></pre>
+  </div>
+  <p>
+    <strong>Neden çalışır?</strong> Karakter kendi ileri yönünde (local Z+) hareket eder; A/D ile
+    Y etrafında döndüğünde "ileri"si değişir; bir sonraki karede yeni ileri yönünde hareket eder.
+    Translate'in varsayılan Local Space davranışı bu basitliği mümkün kılar — eğer Space.World
+    deseydin karakter dönse bile hep aynı yönde giderdi.
+  </p>
+</div>
+
+<section class="practice-section">
+  <div class="topic-header">
+    <span class="topic-number">🛠</span>
+    <h2 class="topic-title">Pratik — Üç Mini Proje</h2>
+  </div>
+
+  <div class="project-card">
+    <div class="project-goal">🎯 Proje 1 — Sallanan Lamba</div>
+    <p>
+      Sahneye bir Cube (Lamba) ekle. Cube'a bir script bağla. Script her karede Lamba'yı
+      <code>Mathf.Sin(Time.time)</code> kullanarak Z ekseni etrafında ±15 derece arasında salla.
+    </p>
+    <div class="project-check">
+      <strong>Kontrol noktası:</strong> Play'e bastığında Cube saat sarkacı gibi gidip gelmeli.
+      İpucu: <code>transform.eulerAngles = new Vector3(0, 0, Mathf.Sin(Time.time) * 15f);</code>
+    </div>
+  </div>
+
+  <div class="project-card">
+    <div class="project-goal">🎯 Proje 2 — Hedefe Yaklaşan Top</div>
+    <p>
+      Sahnede iki Sphere oluştur: <em>Top</em> ve <em>Hedef</em>. Top'a bağladığın script'te
+      <code>public Transform hedef;</code> alanını Inspector'dan ata. Top, Update içinde
+      <code>Vector3.MoveTowards</code> ile saniyede 2 metre hızla Hedef'e yaklaşsın.
+    </p>
+    <div class="project-check">
+      <strong>Kontrol noktası:</strong> Top, Hedef'e ulaşınca durmalı. Mesafe sıfıra inince
+      <code>Debug.Log("Vardım!")</code> yazsın.
+    </div>
+  </div>
+
+  <div class="project-card">
+    <div class="project-goal">🎯 Proje 3 — Kendi Etrafında Dönen Gezegen</div>
+    <p>
+      Boş bir GameObject oluştur, adını <em>Gunes</em> koy. Onun çocuğu olarak bir Sphere ekle ve
+      <code>localPosition</code>'unu <code>(3, 0, 0)</code> yap (Gunes'in 3 metre sağına yerleşsin).
+      Gunes'e bir script bağla; Update içinde <code>transform.Rotate(0, 30 * Time.deltaTime, 0)</code>
+      çağır. Sphere otomatik olarak Gunes'in etrafında dönecek.
+    </p>
+    <div class="project-check">
+      <strong>Kontrol noktası:</strong> Sphere, Gunes'in etrafında saniyede 30° hızla yörünge çizmeli.
+      Bonus: ikinci bir Sphere ekleyip onu 5 metre uzağa koy, hızını değiştir — basit bir
+      güneş sistemi çıksın.
+    </div>
+  </div>
+</section>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">📝</span>
+    <h2 class="topic-title">Bölüm Quiz'i — Beş Soru</h2>
+  </div>
+
+  <section class="quiz" id="bolum-quiz">
+  <header class="quiz-header">
+    <div class="quiz-header-icon"><i class="ti ti-help"></i></div>
+    <div class="quiz-header-text">
+      <h2>Bölüm Sonu Sınavı</h2>
+      <span>5 soru</span>
+    </div>
+  </header>
+
+  <article class="quiz-question" id="q6-1">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">01</span>
+      <h3 class="quiz-prompt-text">Aşağıdakilerden hangisi derleme (compile) hatası verir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">transform.position = new Vector3(0, 1, 0);</button>
+      <button class="quiz-option" data-correct="true">transform.position.y = 3f;</button>
+      <button class="quiz-option" data-correct="false">Vector3 p = transform.position; p.y = 3f; transform.position = p;</button>
+      <button class="quiz-option" data-correct="false">transform.Translate(0, 1, 0);</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q6-2">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">02</span>
+      <h3 class="quiz-prompt-text"><code>Vector3.forward</code> hangi değere eşittir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">(1, 0, 0)</button>
+      <button class="quiz-option" data-correct="false">(0, 1, 0)</button>
+      <button class="quiz-option" data-correct="true">(0, 0, 1)</button>
+      <button class="quiz-option" data-correct="false">(0, 0, -1)</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q6-3">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">03</span>
+      <h3 class="quiz-prompt-text">Inspector'da gördüğümüz Rotation hangi cinstendir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Quaternion (x, y, z, w)</button>
+      <button class="quiz-option" data-correct="true">Euler açıları (derece cinsinden)</button>
+      <button class="quiz-option" data-correct="false">Radyan</button>
+      <button class="quiz-option" data-correct="false">Vector4</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q6-4">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">04</span>
+      <h3 class="quiz-prompt-text">Update içinde hareket yaparken neden <code>Time.deltaTime</code> ile çarparız?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Daha düzgün animasyon görünsün diye</button>
+      <button class="quiz-option" data-correct="true">Kare-bağımsız hareket için — FPS değişse de hız sabit kalsın</button>
+      <button class="quiz-option" data-correct="false">Bellek tüketimini azaltmak için</button>
+      <button class="quiz-option" data-correct="false">Time.deltaTime gereksizdir, çarpmaya gerek yoktur</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q6-5">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">05</span>
+      <h3 class="quiz-prompt-text"><code>Vector3.Lerp</code> ile <code>Vector3.MoveTowards</code> arasındaki temel fark nedir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Lerp 2D'de, MoveTowards 3D'de çalışır</button>
+      <button class="quiz-option" data-correct="true">Lerp oransal (başta hızlı sonda yavaş), MoveTowards sabit hızda yaklaşır</button>
+      <button class="quiz-option" data-correct="false">İkisi de aynıdır, sadece isim farkı vardır</button>
+      <button class="quiz-option" data-correct="false">Lerp hedefe ulaşır, MoveTowards ulaşmaz</button>
+    </div>
+  </article>
+</section>
+</section>
+
+<section class="complete-section">
+      <h3 class="complete-title">🎉 Bölüm 6 Tamamlandı!</h3>
+      <p class="complete-msg">Tebrikler — sahnedeki her şeyin nasıl konumlandığını, döndüğünü, ölçeklendiğini öğrendin. Vector3 artık sana yabancı değil; Quaternion'un nereden geldiğini biliyorsun; world ve local space ayrımına refleks geliştirdin. Bir sonraki bölümde <strong>Input System</strong>'a giriyoruz — klavye, fare ve gamepad'i nasıl okuyacağımızı, eski Input Manager'ın hâlâ neden işe yaradığını konuşacağız.</p>
+      <button class="complete-btn" data-section="s6">
+        <i class="ti ti-circle-check"></i>
+        <span>Bu Bölümü Tamamladım</span>
+      </button>
+      <p class="complete-note">İlerlemen otomatik tarayıcına kaydedilir.</p>
+    </section>
+    <!-- Sayfa Gezinme -->
+    <nav class="page-nav" aria-label="Bölüm gezinme">
+      <a href="05-monobehaviour-lifecycle.html" class="page-nav-link prev">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-left"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Önceki Bölüm</div>
+          <div class="page-nav-title">5. MonoBehaviour Lifecycle</div>
+        </div>
+      </a>
+      <a href="07-input.html" class="page-nav-link next">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-right"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Sonraki Bölüm</div>
+          <div class="page-nav-title">7. Input Sistemi</div>
+        </div>
+      </a>
+    </nav>
+
+  </div>
+</main>
+<script src="../js/progress.js?v=11"></script>
+<script src="../js/quiz.js?v=11"></script>
+<script src="../js/toc.js?v=11"></script>
+<script src="../js/main.js?v=11"></script>
+</body>
+</html>

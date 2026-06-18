@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Particle &amp; VFX Graph — UnityAkademi</title>
+  <meta name="description" content="Ateş, duman, kıvılcım, büyü efekti — Built-in Particle System ve VFX Graph ile parçacık sistemleri — Bölüm 13.">
+  <meta name="theme-color" content="#fa7d19">
+  <link rel="manifest" href="../manifest.json">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Particle &amp; VFX Graph">
+  <meta property="og:description" content="Ateş, duman, kıvılcım, büyü efekti — Built-in Particle System ve VFX Graph ile parçacık sistemleri — Bölüm 13.">
+  <meta property="og:image" content="../og-image.svg">
+  <meta property="og:site_name" content="UnityAkademi">
+  <meta property="og:locale" content="tr_TR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Particle &amp; VFX Graph">
+  <meta name="twitter:description" content="Ateş, duman, kıvılcım, büyü efekti — Built-in Particle System ve VFX Graph ile parçacık sistemleri — Bölüm 13.">
+  <meta name="twitter:image" content="../og-image.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="../css/variables.css?v=11">
+  <link rel="stylesheet" href="../css/reset.css?v=11">
+  <link rel="stylesheet" href="../css/layout.css?v=11">
+  <link rel="stylesheet" href="../css/components.css?v=11">
+  <link rel="stylesheet" href="../css/content.css?v=11">
+  <link rel="stylesheet" href="../css/visuals.css?v=11">
+  <link rel="stylesheet" href="../css/extras.css?v=11">
+  <link rel="stylesheet" href="../css/responsive.css?v=11">
+</head>
+<body>
+<button class="nav-hamburger" id="navHamburger" aria-label="Menüyü aç">
+  <i class="ti ti-menu-2"></i>
+</button>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a href="../index.html" class="sidebar-brand">
+      <div class="sidebar-brand-icon"><i class="ti ti-home-2"></i></div>
+      <div class="sidebar-brand-text">
+        <span class="sidebar-brand-name">Ana Sayfa</span>
+        <span class="sidebar-brand-sub">UnityAkademi</span>
+      </div>
+    </a>
+    <button class="mobile-toggle" aria-label="Menü"><i class="ti ti-x"></i></button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-group">
+      <div class="nav-group-title">Temeller</div>
+      <a href="01-kurulum.html" class="nav-link" data-section="s1"><i class="ti ti-download"></i><span class="nav-link-text">Kurulum & İlk Bakış</span><span class="nav-link-num">01</span></a>
+      <a href="02-arayuz.html" class="nav-link" data-section="s2"><i class="ti ti-layout-board"></i><span class="nav-link-text">Editor Arayüzü</span><span class="nav-link-num">02</span></a>
+      <a href="03-gameobject-component.html" class="nav-link" data-section="s3"><i class="ti ti-cube"></i><span class="nav-link-text">GameObject & Component</span><span class="nav-link-num">03</span></a>
+      <a href="04-csharp-temelleri.html" class="nav-link" data-section="s4"><i class="ti ti-code"></i><span class="nav-link-text">C# Temelleri</span><span class="nav-link-num">04</span></a>
+      <a href="05-monobehaviour-lifecycle.html" class="nav-link" data-section="s5"><i class="ti ti-refresh"></i><span class="nav-link-text">MonoBehaviour Lifecycle</span><span class="nav-link-num">05</span></a>
+      <a href="06-transform-vector.html" class="nav-link" data-section="s6"><i class="ti ti-arrows-move"></i><span class="nav-link-text">Transform & Vector3</span><span class="nav-link-num">06</span></a>
+      <a href="07-input.html" class="nav-link" data-section="s7"><i class="ti ti-keyboard"></i><span class="nav-link-text">Input Sistemi</span><span class="nav-link-num">07</span></a>
+      <a href="08-physics.html" class="nav-link" data-section="s8"><i class="ti ti-atom"></i><span class="nav-link-text">Physics</span><span class="nav-link-num">08</span></a>
+      <a href="09-ui.html" class="nav-link" data-section="s9"><i class="ti ti-layout-grid"></i><span class="nav-link-text">UI Sistemi</span><span class="nav-link-num">09</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Görsel & Asset</div>
+      <a href="10-material-shader.html" class="nav-link" data-section="s10"><i class="ti ti-palette"></i><span class="nav-link-text">Material & Shader</span><span class="nav-link-num">10</span></a>
+      <a href="11-asset-import.html" class="nav-link" data-section="s11"><i class="ti ti-folder"></i><span class="nav-link-text">Asset Import</span><span class="nav-link-num">11</span></a>
+      <a href="12-animation.html" class="nav-link" data-section="s12"><i class="ti ti-bounce-right"></i><span class="nav-link-text">Animation</span><span class="nav-link-num">12</span></a>
+      <a href="13-particle-vfx.html" class="nav-link active" data-section="s13"><i class="ti ti-sparkles"></i><span class="nav-link-text">Particle & VFX Graph</span><span class="nav-link-num">13</span></a>
+      <a href="14-lighting.html" class="nav-link" data-section="s14"><i class="ti ti-bulb"></i><span class="nav-link-text">Lighting</span><span class="nav-link-num">14</span></a>
+      <a href="15-audio.html" class="nav-link" data-section="s15"><i class="ti ti-volume"></i><span class="nav-link-text">Audio</span><span class="nav-link-num">15</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Sistemler</div>
+      <a href="16-probuilder.html" class="nav-link" data-section="s16"><i class="ti ti-3d-cube-sphere"></i><span class="nav-link-text">ProBuilder</span><span class="nav-link-num">16</span></a>
+      <a href="17-terrain.html" class="nav-link" data-section="s17"><i class="ti ti-mountain"></i><span class="nav-link-text">Terrain</span><span class="nav-link-num">17</span></a>
+      <a href="18-cinemachine.html" class="nav-link" data-section="s18"><i class="ti ti-camera"></i><span class="nav-link-text">Cinemachine</span><span class="nav-link-num">18</span></a>
+      <a href="19-timeline.html" class="nav-link" data-section="s19"><i class="ti ti-timeline"></i><span class="nav-link-text">Timeline</span><span class="nav-link-num">19</span></a>
+      <a href="20-navmesh.html" class="nav-link" data-section="s20"><i class="ti ti-route"></i><span class="nav-link-text">NavMesh & AI</span><span class="nav-link-num">20</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">İleri Seviye</div>
+      <a href="21-urp-hdrp.html" class="nav-link" data-section="s21"><i class="ti ti-bolt"></i><span class="nav-link-text">URP, HDRP & Unity 6</span><span class="nav-link-num">21</span></a>
+      <a href="22-new-input.html" class="nav-link" data-section="s22"><i class="ti ti-device-gamepad-2"></i><span class="nav-link-text">New Input System</span><span class="nav-link-num">22</span></a>
+      <a href="23-save-menu.html" class="nav-link" data-section="s23"><i class="ti ti-device-floppy"></i><span class="nav-link-text">Save & Menü</span><span class="nav-link-num">23</span></a>
+      <a href="24-build.html" class="nav-link" data-section="s24"><i class="ti ti-package-export"></i><span class="nav-link-text">Build & Yayınlama</span><span class="nav-link-num">24</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Profesyonel</div>
+      <a href="25-csharp-ileri.html" class="nav-link" data-section="s25"><i class="ti ti-brackets-contain"></i><span class="nav-link-text">C# İleri</span><span class="nav-link-num">25</span></a>
+      <a href="26-performance.html" class="nav-link" data-section="s26"><i class="ti ti-gauge"></i><span class="nav-link-text">Performance</span><span class="nav-link-num">26</span></a>
+      <a href="27-yol-haritasi.html" class="nav-link" data-section="s27"><i class="ti ti-map-2"></i><span class="nav-link-text">Yol Haritası</span><span class="nav-link-num">27</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Pratik</div>
+      <a href="projects.html" class="nav-link nav-link-extra" data-section="x-projects"><i class="ti ti-rocket"></i><span class="nav-link-text">Projeler</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Ek Kaynaklar</div>
+      <a href="sozluk.html" class="nav-link nav-link-extra" data-section="x-sozluk"><i class="ti ti-book-2"></i><span class="nav-link-text">Sözlük</span></a>
+      <a href="cheatsheet.html" class="nav-link nav-link-extra" data-section="x-cheatsheet"><i class="ti ti-list-details"></i><span class="nav-link-text">Cheat Sheet</span></a>
+      <a href="sss.html" class="nav-link nav-link-extra" data-section="x-sss"><i class="ti ti-help-circle"></i><span class="nav-link-text">SSS</span></a>
+      <a href="arama.html" class="nav-link nav-link-extra" data-section="x-arama"><i class="ti ti-search"></i><span class="nav-link-text">Arama</span></a>
+      <a href="sertifika.html" class="nav-link nav-link-extra" data-section="x-sertifika"><i class="ti ti-certificate"></i><span class="nav-link-text">Sertifika</span></a>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="kaynaklar.html" class="sidebar-btn"><i class="ti ti-books"></i><span>Kaynaklar</span></a>
+    <a href="iletisim.html" class="sidebar-btn"><i class="ti ti-mail"></i><span>İletişim</span></a>
+  </div>
+</aside>
+<main class="main">
+  <div class="main-content">
+<nav class="breadcrumb" aria-label="Sayfa konumu">
+      <a href="../index.html"><i class="ti ti-home"></i><span>Ana Sayfa</span></a>
+      <i class="ti ti-chevron-right"></i><span><i class="ti ti-school" style="font-size: 13px; opacity: 0.7; margin-right: 4px;"></i>Görsel & Asset</span>
+      <i class="ti ti-chevron-right"></i><span style="color: var(--primary-light);">Particle & VFX Graph</span>
+    </nav>
+
+<header class="page-header">
+  <h1>13. Particle & VFX Graph — Ateş, Duman ve Büyü</h1>
+  <p class="page-desc">Bir patlama, bir alev, bir büyü efekti, yağmur, kar, kıvılcımlar… Hepsi <strong>particle (parçacık)</strong> sistemiyle yapılır. Unity'de iki ayrı sistem var: <strong>Built-in Particle System</strong> (CPU, 2010'dan beri) ve <strong>VFX Graph</strong> (GPU, milyonlarca parçacık). Bu bölümde ikisini de adım adım çözüyoruz.</p>
+  <div class="page-meta">
+    <span class="u-ver-badge both">LTS + Unity 6</span>
+    <span class="page-time">⏱ ~70 dk</span>
+    <span class="page-level">🟡 Orta</span>
+  </div>
+</header>
+
+<section class="topic-section" id="t1">
+  <div class="topic-header">
+    <span class="topic-number">13.1</span>
+    <h2 class="topic-title">Particle Nedir? — Bin Tane Küçük Quad</h2>
+  </div>
+  <p>Bir <strong>parçacık (particle)</strong>, sahnede yaşayan minik bir görsel birimdir. Sayısı yüzlerce, binlerce, milyonlarcaya çıkabilir. Tek başına önemsizdir — bir nokta, küçük bir kare, ufak bir mesh. Ama topluca bakıldığında <em>davranışa</em> dönüşür: dağılan kıvılcımlar bir patlama olur, yukarı doğru süzülen yumuşak quad'lar bir duman olur.</p>
+
+  <div class="info-box">
+    <i class="ti ti-info-circle"></i>
+    <div>
+      <strong>Quad nedir?</strong> Quad, kameraya her zaman bakan iki üçgenli (= bir kare) küçük bir geometri parçasıdır. Particle sisteminde her parçacık aslında bir quad'tır; üstüne bir texture (alev, duman, kıvılcım dokusu) yapıştırılır.
+    </div>
+  </div>
+
+  <h3>Tek parçacığın özellikleri</h3>
+  <p>Bir particle yaşadığı süre boyunca şunlara sahiptir:</p>
+  <ul class="check-list">
+    <li><strong>Pozisyon (position):</strong> 3D uzaydaki yeri.</li>
+    <li><strong>Hız (velocity):</strong> Saniyede ne kadar hareket ediyor?</li>
+    <li><strong>Yaşam süresi (lifetime):</strong> Doğduğu andan öleceği ana kadar geçen saniye.</li>
+    <li><strong>Boyut (size):</strong> Ne kadar büyük? Zamana göre değişebilir.</li>
+    <li><strong>Renk (color):</strong> Hangi renk, ne kadar saydam? Zamana göre değişebilir.</li>
+    <li><strong>Rotasyon (rotation):</strong> Açısı kaç derece?</li>
+  </ul>
+
+  <p>Bir <strong>Particle System</strong>, bu küçük parçacıkları <em>spawn</em> (üretme), <em>simulate</em> (hareket ettirme) ve <em>render</em> (çizdirme) işlerini birlikte yapar.</p>
+</section>
+
+<section class="topic-section" id="t2">
+  <div class="topic-header">
+    <span class="topic-number">13.2</span>
+    <h2 class="topic-title">İki Sistem: Built-in vs VFX Graph</h2>
+  </div>
+  <p>Unity'de aynı amaca hizmet eden iki ayrı motor var. Aralarındaki fark, parçacıkların nerede hesaplandığıdır:</p>
+
+  <div class="u-compare">
+    <div class="u-compare-side lts">
+      <div class="u-compare-head">Built-in Particle System (Shuriken)</div>
+      <div class="u-compare-body">
+        <ul>
+          <li><strong>CPU'da</strong> çalışır.</li>
+          <li>2010'dan beri Unity'de var, çok stabil.</li>
+          <li><strong>Built-in / URP / HDRP</strong> her render pipeline'da çalışır.</li>
+          <li>Mobil için <em>en uygun</em> sistem.</li>
+          <li>Pratik üst sınır: ~10.000 parçacık (sahnede toplam).</li>
+          <li>Component-based: bir GameObject'e <code>ParticleSystem</code> component'i eklersin.</li>
+          <li>Animasyon eğrileri (curves), gradient'ler, modüller — hepsi Inspector'da.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="u-compare-side u6">
+      <div class="u-compare-head">VFX Graph</div>
+      <div class="u-compare-body">
+        <ul>
+          <li><strong>GPU'da</strong> çalışır (compute shader).</li>
+          <li>2019'da geldi, hâlâ aktif geliştiriliyor.</li>
+          <li>Yalnızca <strong>URP ve HDRP</strong> destekler (Built-in pipeline'da çalışmaz).</li>
+          <li>Mobilde dikkatli kullanılır (eski cihazlarda yok).</li>
+          <li>Milyonlarca parçacık aynı anda mümkün.</li>
+          <li>Asset-based: <code>.vfx</code> dosyası, node tabanlı grafiksel editör.</li>
+          <li>Shader Graph'a benzer node sistemi.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h3>Hangisini ne zaman?</h3>
+  <table class="u-table">
+    <thead><tr><th>Durum</th><th>Tercih</th></tr></thead>
+    <tbody>
+      <tr><td>Mobil oyun, basit efekt (kıvılcım, duman, sıçrayan parça)</td><td>Built-in</td></tr>
+      <tr><td>Karakter ayak izi tozu, hasar göstergesi</td><td>Built-in</td></tr>
+      <tr><td>Patlama, ateş, sis perdesi (kalite önemli, az sayı)</td><td>Built-in</td></tr>
+      <tr><td>Milyonlarca toz/yıldız (galaksi, kar fırtınası)</td><td>VFX Graph</td></tr>
+      <tr><td>Karmaşık simülasyon (turbulence, attractor, mesh-conform)</td><td>VFX Graph</td></tr>
+      <tr><td>Sinematik kalite, AAA görsel</td><td>VFX Graph</td></tr>
+    </tbody>
+  </table>
+
+  <p>Çoğu indie oyun için <strong>Built-in Particle System tek başına yeter</strong>. VFX Graph "büyük top silah", öğrenme eğrisi daha dik, ama gücü çok daha fazla. Önce Built-in'i kavrayacağız, sonra VFX Graph'a geçeceğiz.</p>
+</section>
+
+<section class="topic-section" id="t3">
+  <div class="topic-header">
+    <span class="topic-number">13.3</span>
+    <h2 class="topic-title">Built-in Particle System — İlk Bakış</h2>
+  </div>
+  <p>Hierarchy'de boş bir alana sağ tıkla → <code>Effects → Particle System</code>. Sahnede yukarıya doğru süzülen beyaz noktalar görürsün; varsayılan particle system bu. GameObject'i seç, Inspector'da <code>Particle System</code> component'ini açtığında <strong>15+ modül</strong>'le karşılaşırsın.</p>
+
+  <h3>Modül paneli</h3>
+  <p>Her modülün solunda bir <strong>checkbox</strong> var — onu açıp kapatarak modülü etkinleştirir/devre dışı bırakırsın. Modüller üstten alta sırayla işlenir:</p>
+
+  <div class="step-list">
+    <div class="step-item">
+      <div class="step-num">01</div>
+      <div class="step-body">
+        <h4>Main (ana modül)</h4>
+        <p>Her zaman açık. Başlangıç değerleri: lifetime, start size, start speed, start color, gravity, simulation space (Local / World).</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">02</div>
+      <div class="step-body">
+        <h4>Emission</h4>
+        <p>Saniyede kaç tane parçacık üretilecek? (Rate over Time / Distance) Veya bir anda kaç tane (Bursts)?</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">03</div>
+      <div class="step-body">
+        <h4>Shape</h4>
+        <p>Parçacıklar nereden çıkacak? Cone (huni), Sphere, Box, Circle, Mesh, Edge, Donut, Rectangle.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">04</div>
+      <div class="step-body">
+        <h4>Velocity over Lifetime, Limit Velocity, Inherit Velocity, Force over Lifetime</h4>
+        <p>Hareket modülleri. Parçacık doğduktan sonra hızı nasıl değişsin?</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">05</div>
+      <div class="step-body">
+        <h4>Color over Lifetime, Color by Speed</h4>
+        <p>Renk yaşa veya hıza göre değişir.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">06</div>
+      <div class="step-body">
+        <h4>Size over Lifetime, Size by Speed</h4>
+        <p>Boyut zamanla büyür veya küçülür.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">07</div>
+      <div class="step-body">
+        <h4>Rotation, Noise, Collision, Triggers, Sub Emitters</h4>
+        <p>İleri modüller. Çarpışma, alt-emitter spawn'lama, perlin noise turbulence.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">08</div>
+      <div class="step-body">
+        <h4>Texture Sheet Animation</h4>
+        <p>Bir texture'ı flipbook olarak kullanmak (alev animasyonu için).</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">09</div>
+      <div class="step-body">
+        <h4>Renderer</h4>
+        <p>Hangi material, hangi mesh (Billboard veya 3D), gölge ayarları, sıralama (sorting).</p>
+      </div>
+    </div>
+  </div>
+
+  <h3>Scene View'daki kontrol paneli</h3>
+  <p>Sahnede bir particle system seçtiğinde sağ alt köşede küçük bir <strong>Particle Effect</strong> paneli açılır: <code>Pause / Restart / Stop / Playback Speed / Playback Time</code>. Hazır animasyonu inceleyebilirsin.</p>
+</section>
+
+<section class="topic-section" id="t4">
+  <div class="topic-header">
+    <span class="topic-number">13.4</span>
+    <h2 class="topic-title">Main Modül — Başlangıç Değerleri</h2>
+  </div>
+  <p>Main modülü her parçacığın "doğum karnesi"dir. Burada belirlediğin değerler, parçacık <em>spawn</em> edildiği anda alır.</p>
+
+  <h3>En kritik alanlar</h3>
+  <ul class="check-list">
+    <li><strong>Duration:</strong> Sistem ne kadar süre boyunca parçacık üretecek? Örn. 5 saniye → 5 saniyenin sonunda durur.</li>
+    <li><strong>Looping:</strong> Açıksa sürekli tekrar eder. Patlama gibi tek seferlik efektler için <em>kapatılır</em>.</li>
+    <li><strong>Prewarm:</strong> Açıksa, sistem <em>başlamadan önce</em> bir Duration kadar simüle edilmiş gibi başlar (sahneye girdiğinde duman zaten doluymuş gibi). Looping olmadan çalışmaz.</li>
+    <li><strong>Start Delay:</strong> Sistem oynamaya başladıktan kaç saniye sonra parçacık çıksın?</li>
+    <li><strong>Start Lifetime:</strong> Her parçacık kaç saniye yaşayacak? (Sabit, Aralık, Eğri)</li>
+    <li><strong>Start Speed:</strong> Parçacık doğduğunda hangi hızla fırlasın?</li>
+    <li><strong>Start Size, Start Rotation, Start Color:</strong> Açıklayıcı.</li>
+    <li><strong>Gravity Modifier:</strong> Yer çekiminin etkisi. 0 = etkisiz, 1 = Physics.gravity'nin tamamı.</li>
+    <li><strong>Simulation Space:</strong> Local (sistemle hareket eder) veya World (havada asılı kalır). Ayağında "izi koşturmak" istiyorsan World, "bir aurayı taşımak" istiyorsan Local.</li>
+    <li><strong>Max Particles:</strong> Aynı anda sahnede en fazla kaç parçacık olabilir? Performans güvenliği.</li>
+  </ul>
+
+  <h3>Curve ve Random Between Two ile değer veriler</h3>
+  <p>Çoğu alan sağında küçük bir <strong>▼ ok</strong> ile dört modlu seçim sunar:</p>
+  <table class="u-table">
+    <thead><tr><th>Mod</th><th>Anlamı</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Constant</strong></td><td>Tek sabit değer (örn. <code>5</code>).</td></tr>
+      <tr><td><strong>Curve</strong></td><td>Sistem süresi (0–1) boyunca değişen bir eğri.</td></tr>
+      <tr><td><strong>Random Between Two Constants</strong></td><td>Aralık (örn. <code>2..5</code>) — her parçacık rastgele bir değer alır.</td></tr>
+      <tr><td><strong>Random Between Two Curves</strong></td><td>İki eğri arası rastgele alan.</td></tr>
+    </tbody>
+  </table>
+
+  <p>Tek bir ayar bile patladığında özellikle <em>Random Between Two Constants</em> hayat kurtarır: her kıvılcımın aynı hızda olması yapay görünür, biraz rastgelelik gerek.</p>
+</section>
+
+<section class="topic-section" id="t5">
+  <div class="topic-header">
+    <span class="topic-number">13.5</span>
+    <h2 class="topic-title">Emission & Shape — Ne Kadar, Nereden?</h2>
+  </div>
+  <p>Bu iki modül, particle sisteminin <strong>nereden</strong> ve <strong>ne sıklıkla</strong> parçacık ürettiğini belirler.</p>
+
+  <h3>Emission modülü</h3>
+  <p>İki ana parametre:</p>
+  <ul class="check-list">
+    <li><strong>Rate over Time:</strong> Saniyede kaç parçacık. <code>10</code> dersen, her saniye 10 yeni parçacık doğar.</li>
+    <li><strong>Rate over Distance:</strong> GameObject hareket ettikçe, kat ettiği her birim mesafe için kaç parçacık. Araba egzozu, koşan karakterin ayak izi tozu için ideal — sistem duruyorsa parçacık çıkmaz.</li>
+  </ul>
+
+  <h3>Bursts (patlamalar)</h3>
+  <p>Belirli bir <em>anda</em> bir grup parçacık üretmek için. Patlama efektleri için en uygun yöntem.</p>
+  <table class="u-table">
+    <thead><tr><th>Sütun</th><th>Anlam</th></tr></thead>
+    <tbody>
+      <tr><td>Time</td><td>Sistem başladıktan kaç saniye sonra patlasın?</td></tr>
+      <tr><td>Count</td><td>Kaç parçacık fırlatılsın?</td></tr>
+      <tr><td>Cycles</td><td>Kaç kez tekrar etsin? (∞ için Infinity)</td></tr>
+      <tr><td>Interval</td><td>Tekrarlar arası kaç saniye?</td></tr>
+      <tr><td>Probability</td><td>0–1 arası — patlamanın gerçekleşme olasılığı.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Shape modülü</h3>
+  <p>Parçacıkların hangi geometrik şekilden çıktığını belirler. En sık kullanılanlar:</p>
+
+  <div class="layout-diagram">
+    <div class="layout-cell">
+      <h4>Cone (huni)</h4>
+      <p>Varsayılan. Angle (açı) ile genişliğini ayarlarsın. Ateş, su jeti, alev makinesi için.</p>
+    </div>
+    <div class="layout-cell">
+      <h4>Sphere / Hemisphere</h4>
+      <p>Küre. Patlama, magic burst için. Hemisphere yarım küre — yere yakın patlamalar.</p>
+    </div>
+    <div class="layout-cell">
+      <h4>Box / Edge / Rectangle</h4>
+      <p>Kutu, kenar, dikdörtgen. Yağmur (büyük bir dikdörtgenden aşağı), düz bir patlama hattı için.</p>
+    </div>
+    <div class="layout-cell">
+      <h4>Mesh / Mesh Renderer / Skinned Mesh</h4>
+      <p>Bir mesh'in yüzeyinden parçacık çıkar. Bir kılıç boyunca ateş yalımı, bir karakterin tüm vücudundan ışıma — bunlar için.</p>
+    </div>
+    <div class="layout-cell">
+      <h4>Circle</h4>
+      <p>2D çember. Yer alev halkası, çevreyi saran enerji dalgası için.</p>
+    </div>
+    <div class="layout-cell">
+      <h4>Donut</h4>
+      <p>Halka. Mantar bulutu, halka şeklinde dalga (shockwave) için.</p>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <i class="ti ti-bulb"></i>
+    <div>
+      <strong>İpucu:</strong> Shape modülünde <code>Randomize Direction</code> ve <code>Spherize Direction</code> değerleri parçacıkların ne kadar dağılacağını/birleşeceğini kontrol eder. 0 = saf koni yönünde, 1 = tamamen rastgele.
+    </div>
+  </div>
+</section>
+
+<section class="topic-section" id="t6">
+  <div class="topic-header">
+    <span class="topic-number">13.6</span>
+    <h2 class="topic-title">Hareket Modülleri — Velocity, Force, Noise</h2>
+  </div>
+  <p>Parçacık doğduktan sonra hızı değişebilir. Hareket modülleri bunu sağlar.</p>
+
+  <h3>Velocity over Lifetime</h3>
+  <p>Parçacığın yaşam süresi boyunca eklenmesi gereken hız. <strong>Linear (X, Y, Z)</strong> ve <strong>Orbital</strong> (etrafında dönen) ayrı ayrı tanımlanır.</p>
+  <ul class="check-list">
+    <li>Yukarı süzülen bir duman: Linear Y = 1, X = Z = 0.</li>
+    <li>Etrafta uçuşan parçacık: Orbital Y = 5.</li>
+  </ul>
+
+  <h3>Limit Velocity over Lifetime</h3>
+  <p>Parçacığın <em>maksimum</em> hızını sınırla. Dampen değeri verirsen, sınırı aştığında hız bu oranda azaltılır. Sürtünme simülasyonu gibi.</p>
+
+  <h3>Force over Lifetime</h3>
+  <p>Sürekli ivme uygula. Yer çekiminden farklı: yön özelleştirilebilir, eğriyle değişebilir.</p>
+
+  <h3>Noise modülü</h3>
+  <p>Perlin noise tabanlı düzensiz hareket. Duman ve sis için olmazsa olmaz. <strong>Strength</strong> şiddetini, <strong>Frequency</strong> düzensizliğin sıklığını, <strong>Scroll Speed</strong> noise alanının kaymasını ayarlar.</p>
+
+  <div class="cs-block">
+<pre><code><span class="com">// Noise modülü yüksek strength + düşük frequency:</span>
+<span class="com">// büyük yumuşak salınımlar (alev hareketi)</span>
+
+<span class="com">// Düşük strength + yüksek frequency:</span>
+<span class="com">// hızlı titreşim (elektrik kıvılcımı)</span></code></pre>
+  </div>
+
+  <h3>Color over Lifetime</h3>
+  <p>Bir <strong>gradient</strong> tanımlarsın: parçacık doğduğunda sol uç renk, ölmek üzereyken sağ uç renk. Alpha (saydamlık) da gradient'tedir.</p>
+
+  <p>Klasik alev gradient'i: <strong>sıcak sarı → turuncu → koyu kırmızı → siyah (alpha 0)</strong>.</p>
+
+  <h3>Size over Lifetime</h3>
+  <p>Bir eğri tanımlarsın: yatay eksen yaşam yüzdesi, dikey eksen boyut çarpanı. Duman için klasik: küçükten başla, büyüyerek bitir.</p>
+</section>
+
+<div class="mini-checkpoint">
+  <h3><i class="ti ti-checks"></i> Mini Checkpoint — Burada Durup Düşün</h3>
+  <p>Bir <strong>kapı menteşesinden çıkan toz</strong> efektini yapacaksın. Hangi modülleri açar, hangi ayarları verirsin? (En az 4 modül adı + ayar verin.)</p>
+  <details>
+    <summary>Cevap için tıkla</summary>
+    <ul>
+      <li><strong>Main:</strong> Looping kapalı, Duration 0.5s, Start Lifetime 1–2s (random), Start Speed 0.3–0.6, Gravity Modifier −0.05 (yukarı süzülsün).</li>
+      <li><strong>Emission:</strong> Rate over Time = 0, Bursts: Time 0, Count 12.</li>
+      <li><strong>Shape:</strong> Sphere, Radius 0.05 (çok küçük bir kürede toplansın).</li>
+      <li><strong>Color over Lifetime:</strong> Gri-beyaz, alpha 0 → 0.5 → 0 (giriş-çıkış fade).</li>
+      <li><strong>Size over Lifetime:</strong> 0.3'ten 1.0'a büyüyen eğri.</li>
+      <li><strong>Renderer:</strong> Soft particle bir Smoke texture'ı, blend mode Alpha veya Additive (zayıf).</li>
+    </ul>
+  </details>
+</div>
+
+<section class="topic-section" id="t7">
+  <div class="topic-header">
+    <span class="topic-number">13.7</span>
+    <h2 class="topic-title">Renderer Modülü — Material ve Görüntü</h2>
+  </div>
+  <p>Renderer modülü, particle'ın <strong>nasıl çizildiğini</strong> kontrol eder. En çok kafa karıştıran modüldür çünkü buraya doğru material atamazsan parçacıklar ya pembe (eksik shader) ya yanlış görünür.</p>
+
+  <h3>Render Mode</h3>
+  <table class="u-table">
+    <thead><tr><th>Mode</th><th>Sonuç</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Billboard</strong></td><td>Her parçacık kameraya bakan bir quad. <em>En yaygın.</em></td></tr>
+      <tr><td><strong>Stretched Billboard</strong></td><td>Hız yönünde uzatılır. Kıvılcım, mermi izi için ideal.</td></tr>
+      <tr><td><strong>Horizontal Billboard</strong></td><td>Daima yatay düzlemde. Yerdeki gölgeler, kan birikintisi.</td></tr>
+      <tr><td><strong>Vertical Billboard</strong></td><td>Daima dik. Eski 2.5D oyunlardaki gibi.</td></tr>
+      <tr><td><strong>Mesh</strong></td><td>Her parçacık verdiğin 3D mesh. Kar yağışı için kar küresi, taş parçaları için debris.</td></tr>
+      <tr><td><strong>None</strong></td><td>Görünmez — simülasyon var ama çizilmez (debug için).</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Material — Hangi shader?</h3>
+  <p>Particle için doğru shader seçmek kritik. URP'de:</p>
+  <ul class="check-list">
+    <li><strong>Universal Render Pipeline/Particles/Unlit:</strong> En sık. Saydamlık, additive blend, alpha clipping destekler. Mobilde hızlı.</li>
+    <li><strong>Universal Render Pipeline/Particles/Lit:</strong> Aydınlatma alır (PBR). Daha pahalı; karakter etkilemiyorsa Unlit yeterli.</li>
+    <li><strong>Universal Render Pipeline/Particles/Simple Lit:</strong> Hafif aydınlatma. Mobil dostu orta yol.</li>
+  </ul>
+
+  <p>HDRP'de adlar farklıdır: <code>HDRP/Lit Particles</code>, <code>HDRP/Unlit Particles</code>.</p>
+
+  <h3>Blend Mode — Karışım Modu</h3>
+  <p>Material üzerinde belirlenir, ama Renderer modülünden de "Render Alignment"'ı etkiler. İki temel mod:</p>
+  <ul class="check-list">
+    <li><strong>Alpha (Transparent):</strong> Saydamlık. Duman, sis, su damlası.</li>
+    <li><strong>Additive:</strong> Üst üste eklenir, parlaklaşır. Ateş, ışık, büyü, kıvılcım, lazer.</li>
+  </ul>
+
+  <div class="warning-box">
+    <i class="ti ti-alert-triangle"></i>
+    <div>
+      <strong>Klasik hata:</strong> Particle pembe görünüyor → Material atanmamış veya yanlış pipeline'ın shader'ı atanmış. Built-in pipeline shader'ları URP'de pembe görünür. Doğru shader'a geç.
+    </div>
+  </div>
+
+  <h3>Sorting Layer ve Order in Layer</h3>
+  <p>2D oyunlarda particle'ın hangi katmanda çizileceğini belirler. UI önüne mi, arkasına mı?</p>
+</section>
+
+<section class="topic-section" id="t8">
+  <div class="topic-header">
+    <span class="topic-number">13.8</span>
+    <h2 class="topic-title">Texture Sheet Animation — Flipbook</h2>
+  </div>
+  <p>Tek bir texture içinde küçük kareler halinde dizilmiş bir <strong>animasyon (sprite sheet)</strong> kullanmak için bu modül açılır. Klasik kullanım: 4×4 = 16 kareli bir alev animasyonu.</p>
+
+  <h3>Tipik Ayar</h3>
+  <ul class="check-list">
+    <li><strong>Mode:</strong> Grid (Standart) — düzgün karelere bölünmüş texture.</li>
+    <li><strong>Tiles X:</strong> 4 — yatayda 4 kare.</li>
+    <li><strong>Tiles Y:</strong> 4 — dikeyde 4 kare.</li>
+    <li><strong>Animation:</strong> Whole Sheet — tüm 16 kareyi sırayla oyna.</li>
+    <li><strong>Time Mode:</strong> Lifetime — parçacığın yaşam süresince animasyon tamamlansın.</li>
+    <li><strong>Frame over Time:</strong> 0–16 eğrisi (genelde otomatik).</li>
+    <li><strong>Start Frame:</strong> 0–15 random — her parçacık farklı frame'de başlasın, aynı animasyon olmasın.</li>
+  </ul>
+
+  <p>Bu modül + Additive blend modu = canlı bir <strong>ateş efekti</strong>. Tek bir quad bile etkileyici bir alev olur.</p>
+</section>
+
+<section class="topic-section" id="t9">
+  <div class="topic-header">
+    <span class="topic-number">13.9</span>
+    <h2 class="topic-title">Sub Emitters — Bir Sistem İçinde Başka Sistemler</h2>
+  </div>
+  <p>Bir particle'ın yaşam evresinde (doğum, ölüm, çarpışma, trigger) <strong>başka bir particle system tetiklemek</strong> mümkündür. Bunun adı <em>Sub Emitter</em>'dır.</p>
+
+  <h3>Klasik kullanım: havai fişek</h3>
+  <ol class="step-list">
+    <li class="step-item"><div class="step-num">01</div><div class="step-body"><h4>Ana sistem</h4><p>Tek bir parçacık yukarı fırlar (havai fişek roketi).</p></div></li>
+    <li class="step-item"><div class="step-num">02</div><div class="step-body"><h4>Sub Emitter — Death</h4><p>Bu roket öldüğünde (lifetime bitince) çocuk bir sistem patlar: 50 renkli parçacık her yöne saçılır.</p></div></li>
+    <li class="step-item"><div class="step-num">03</div><div class="step-body"><h4>Sub Emitter — Trail</h4><p>Roket uçarken arkasında ince bir iz (kıvılcım) bırakır.</p></div></li>
+  </ol>
+
+  <h3>Sub Emitter ne zaman tetiklenir?</h3>
+  <ul class="check-list">
+    <li><strong>Birth:</strong> Her parçacık doğduğu anda.</li>
+    <li><strong>Death:</strong> Yaşam süresi dolduğunda.</li>
+    <li><strong>Collision:</strong> Bir collider'a çarptığında (Collision modülü açık olmalı).</li>
+    <li><strong>Trigger:</strong> Trigger collider'a girdiğinde.</li>
+    <li><strong>Manual:</strong> Script'ten <code>TriggerSubEmitter()</code> ile.</li>
+  </ul>
+
+  <h3>Hierarchy</h3>
+  <p>Sub Emitter'lar genelde ana sistem GameObject'inin <strong>child</strong>'ı olur. Inspector'da Sub Emitter modülünden referansı atarsın. Sahnedeki ParticleSystem ağacı şöyle görünür:</p>
+
+  <div class="cs-block">
+<pre><code><span class="com">// Hierarchy:</span>
+<span class="kw">- Fireworks</span>           <span class="com">// Ana sistem (rokit)</span>
+   <span class="kw">  ├ Explosion</span>      <span class="com">// Sub Emitter — Death</span>
+   <span class="kw">  └ Trail</span>          <span class="com">// Sub Emitter — Birth (sürekli)</span></code></pre>
+  </div>
+</section>
+
+<section class="topic-section" id="t10">
+  <div class="topic-header">
+    <span class="topic-number">13.10</span>
+    <h2 class="topic-title">Collision & Triggers</h2>
+  </div>
+  <p>Parçacıklar normalde sahnedeki collider'lardan habersizdir. <strong>Collision modülü</strong> açılınca tepki vermeye başlarlar.</p>
+
+  <h3>Collision Types</h3>
+  <table class="u-table">
+    <thead><tr><th>Tür</th><th>Maliyet</th><th>Kullanım</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Planes</strong></td><td>Çok ucuz</td><td>Sahnedeki düzlemleri sen tanımlarsın (yer, tavan). Toz, debris için yeter.</td></tr>
+      <tr><td><strong>World</strong></td><td>Daha pahalı</td><td>Sahnedeki tüm collider'lara çarpar. Kar, yağmur, kanama efekti için.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Bounce, Damping, Lifetime Loss</h3>
+  <ul class="check-list">
+    <li><strong>Bounce:</strong> 0 = yapışır, 1 = mükemmel zıplama.</li>
+    <li><strong>Dampen:</strong> Çarptığında hız ne kadar düşsün?</li>
+    <li><strong>Lifetime Loss:</strong> Çarpınca parçacık ne kadar "yaşlanır"? 1 = anında ölür (su damlası yere çarpınca yok olur).</li>
+    <li><strong>Send Collision Messages:</strong> Açılırsa <code>OnParticleCollision()</code> mesajı gider — script'le tepki verirsin.</li>
+  </ul>
+
+  <h3>Triggers — Bölge etkileşimi</h3>
+  <p>Bir parçacık belirli bir collider'ın <em>içine girdiğinde</em> tepki verme. Örnek: bir su perdesinden geçen kıvılcımlar sönsün.</p>
+
+  <div class="cs-block">
+<pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+
+<span class="kw">public class</span> <span class="type">CollisionListener</span> : <span class="type">MonoBehaviour</span>
+{
+    <span class="kw">private void</span> <span class="fn">OnParticleCollision</span>(<span class="type">GameObject</span> other)
+    {
+        <span class="type">Debug</span>.<span class="fn">Log</span>(<span class="str">"Parçacık çarptı: "</span> + other.name);
+        <span class="com">// hasarı, sesi, decal'ı burada tetikle</span>
+    }
+}</code></pre>
+  </div>
+</section>
+
+<section class="topic-section" id="t11">
+  <div class="topic-header">
+    <span class="topic-number">13.11</span>
+    <h2 class="topic-title">VFX Graph — GPU Gücüyle Tanışma</h2>
+  </div>
+  <p>Şimdi sıra <strong>VFX Graph</strong>'a geldi. GPU üzerinde milyonlarca parçacık çalıştırabilen, Shader Graph benzeri node tabanlı bir editör.</p>
+
+  <h3>Kurulum</h3>
+  <ol class="step-list">
+    <li class="step-item"><div class="step-num">01</div><div class="step-body"><h4>Render Pipeline kontrol</h4><p>VFX Graph yalnızca URP veya HDRP gerektirir. Built-in pipeline ile çalışmaz. Bkz. <a href="10-material-shader.html">Bölüm 10 — Material & Shader</a>.</p></div></li>
+    <li class="step-item"><div class="step-num">02</div><div class="step-body"><h4>Package Manager</h4><p><code>Window → Package Manager</code> → <strong>Visual Effect Graph</strong> paketini ara, Install.</p></div></li>
+    <li class="step-item"><div class="step-num">03</div><div class="step-body"><h4>Visual Effect oluştur</h4><p>Project pencerede sağ tık → <code>Create → Visual Effects → Visual Effect Graph</code>. <code>.vfx</code> uzantılı bir asset oluşur. Çift tık → grafik editör açılır.</p></div></li>
+    <li class="step-item"><div class="step-num">04</div><div class="step-body"><h4>Sahneye ekle</h4><p>Hierarchy'de sağ tık → <code>Effects → Visual Effect</code>. Inspector'da <em>Asset Template</em> alanına az önce yaptığın <code>.vfx</code> dosyasını sürükle.</p></div></li>
+  </ol>
+
+  <h3>Anatomy: 4 Context</h3>
+  <p>VFX Graph'da ana akış 4 "context" üzerinden ilerler:</p>
+
+  <div class="layout-diagram">
+    <div class="layout-cell">
+      <h4>1. Spawn</h4>
+      <p>Saniyede kaç parçacık üretilecek? Constant Spawn Rate, Burst, Periodic Burst…</p>
+    </div>
+    <div class="layout-cell">
+      <h4>2. Initialize</h4>
+      <p>Parçacık doğduğunda hangi özelliklerle başlayacak? Set Position, Set Velocity, Set Color, Set Lifetime…</p>
+    </div>
+    <div class="layout-cell">
+      <h4>3. Update</h4>
+      <p>Her frame'de uygulanan kuvvetler. Gravity, Drag, Force, Turbulence, Collision…</p>
+    </div>
+    <div class="layout-cell">
+      <h4>4. Output</h4>
+      <p>Çizdirme. Quad, Cube, Mesh, Strip… Hangi shader, hangi blend mode, hangi sort key?</p>
+    </div>
+  </div>
+
+  <h3>Built-in System ile karşılık tablosu</h3>
+  <table class="u-table">
+    <thead><tr><th>Built-in</th><th>VFX Graph karşılığı</th></tr></thead>
+    <tbody>
+      <tr><td>Emission modülü</td><td>Spawn context (Constant Spawn Rate node)</td></tr>
+      <tr><td>Shape modülü</td><td>Initialize context (Set Position: Cone / Sphere / Mesh)</td></tr>
+      <tr><td>Velocity over Lifetime</td><td>Update context (Add Velocity)</td></tr>
+      <tr><td>Color over Lifetime</td><td>Output context (Set Color over Life)</td></tr>
+      <tr><td>Renderer modülü</td><td>Output context (Output Particle Quad / Mesh)</td></tr>
+    </tbody>
+  </table>
+
+  <p>Mantık birebir aynı, sadece "modül listesi" yerine "node grafiği" var. Bağlantı okları işin akış sırasını anlatır.</p>
+</section>
+
+<section class="topic-section" id="t12">
+  <div class="topic-header">
+    <span class="topic-number">13.12</span>
+    <h2 class="topic-title">VFX Graph — İlk Grafik (Adım Adım)</h2>
+  </div>
+  <p>Sıfırdan bir "renkli kıvılcım fırtınası" yapacağız.</p>
+
+  <ol class="step-list">
+    <li class="step-item">
+      <div class="step-num">01</div>
+      <div class="step-body">
+        <h4>Yeni VFX Asset</h4>
+        <p>Project → sağ tık → <code>Create → Visual Effects → Visual Effect Graph</code>. <strong>"SparkStorm.vfx"</strong> diye adlandır. Çift tıkla editör açılır.</p>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num">02</div>
+      <div class="step-body">
+        <h4>Default node'lar</h4>
+        <p>Yeni grafikte zaten 4 context vardır: <code>Spawn → Initialize Particle → Update Particle → Output Particle Quad</code>. Önce mevcutları inceleriz.</p>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num">03</div>
+      <div class="step-body">
+        <h4>Spawn Rate</h4>
+        <p>Spawn context içinde <code>Constant Spawn Rate</code> bloku zaten var. Sağdaki Rate değerini <strong>500</strong> yap (saniyede 500 parçacık).</p>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num">04</div>
+      <div class="step-body">
+        <h4>Initialize — pozisyon ve hız</h4>
+        <p>Initialize context içinde mevcut <code>Set Position</code> bloğunu sil, yerine <strong>Set Position (Sphere)</strong> ekle. Radius = 0.2. Ardından <strong>Set Velocity Random</strong> ekle, min/max ile yönü farklı kıl. Set Lifetime Random ile 1–3 saniye yaşam ver.</p>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num">05</div>
+      <div class="step-body">
+        <h4>Update — yer çekimi ve drag</h4>
+        <p>Update context'e <strong>Gravity</strong> bloku ve <strong>Drag</strong> bloku ekle (hava sürtünmesi gibi).</p>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num">06</div>
+      <div class="step-body">
+        <h4>Output — renk ve boyut</h4>
+        <p>Output Particle Quad context'i: <strong>Set Color over Life</strong> bloku ekle (kırmızıdan sarıya gradient), <strong>Set Size over Life</strong> ile zamanla küçülsün. Main Texture alanına bir kıvılcım sprite'ı ata.</p>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num">07</div>
+      <div class="step-body">
+        <h4>Output blend mode</h4>
+        <p>Output context başlığına tıkla, Inspector'da <strong>Blend Mode = Additive</strong> yap. Kıvılcımlar parlak görünür.</p>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num">08</div>
+      <div class="step-body">
+        <h4>Save & test</h4>
+        <p>Editörde sol üstte <strong>Save</strong> butonuna bas (CTRL+S). Sahnedeki Visual Effect component'ini seç, Inspector'da Play yapar. Saniyede 500 kıvılcım dönerek dağılıyor olmalı.</p>
+      </div>
+    </li>
+  </ol>
+
+  <h3>Exposed Property — Inspector'a açma</h3>
+  <p>VFX Graph içinde Blackboard (sol panel)'da bir property tanımlayıp "Exposed" işaretlersen, dış dünyadan (Inspector veya script'ten) bu değeri değiştirebilirsin.</p>
+
+  <div class="cs-block">
+<pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+<span class="kw">using</span> <span class="type">UnityEngine.VFX</span>;
+
+<span class="kw">public class</span> <span class="type">SparkController</span> : <span class="type">MonoBehaviour</span>
+{
+    <span class="kw">public</span> <span class="type">VisualEffect</span> vfx;
+
+    <span class="kw">public void</span> <span class="fn">IncreaseRate</span>()
+    {
+        <span class="com">// Blackboard'da "SpawnRate" diye exposed bir float varsa:</span>
+        vfx.<span class="fn">SetFloat</span>(<span class="str">"SpawnRate"</span>, 2000f);
+    }
+
+    <span class="kw">public void</span> <span class="fn">ChangeColor</span>(<span class="type">Color</span> c)
+    {
+        vfx.<span class="fn">SetVector4</span>(<span class="str">"BaseColor"</span>, c);
+    }
+}</code></pre>
+  </div>
+</section>
+
+<section class="topic-section" id="t13">
+  <div class="topic-header">
+    <span class="topic-number">13.13</span>
+    <h2 class="topic-title">Performans — Doğru Sayı, Doğru Yöntem</h2>
+  </div>
+  <p>Particle, görsel olarak en zengin ama performans olarak en yıkıcı olabilecek sistemlerden biridir. Birkaç altın kural:</p>
+
+  <h3>Built-in için</h3>
+  <ul class="check-list">
+    <li><strong>Max Particles</strong>'ı her sistem için makul bir tavana ayarla. Mobilde tek sistemde 200, masaüstünde 1000 mantıklı bir başlangıç.</li>
+    <li><strong>Overdraw</strong>'a dikkat. Üst üste binen büyük saydam quad'lar GPU'yu yer. Boyutu küçük tut, sayıyı arttır — tersi değil.</li>
+    <li><strong>Soft Particles</strong>'ı (Renderer modülünde) yalnızca gerçekten gerekliyse aç — pahalı bir efekttir.</li>
+    <li><strong>Local Simulation Space</strong>, world'e göre genelde biraz daha ucuzdur (matris hesaplaması az).</li>
+    <li><strong>Light modülü</strong>'nü açma — her parçacığı ışık kaynağı yapmak çok pahalı.</li>
+  </ul>
+
+  <h3>VFX Graph için</h3>
+  <ul class="check-list">
+    <li>GPU'da çalıştığı için <strong>milyonlarca parçacık</strong> kaldırabilir, ama yine de <em>Capacity</em> ayarı önemli.</li>
+    <li>Mobilde <strong>compute shader</strong> desteğini kontrol et — eski iOS/Android cihazlarda VFX Graph çalışmayabilir.</li>
+    <li>Output context'te Mesh kullanırken polygon sayısını düşük tut.</li>
+  </ul>
+
+  <h3>Pool'lama — Tekrar Tekrar Spawn</h3>
+  <p>Mermi vurma, hasar göstergesi gibi sık tekrarlanan efektler için <strong>Particle System'leri Instantiate edip Destroy etmek</strong> bellek çöpü üretir. Yerine bir pool kullan:</p>
+
+  <div class="cs-block">
+<pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+<span class="kw">using</span> <span class="type">UnityEngine.Pool</span>;
+
+<span class="kw">public class</span> <span class="type">HitFxPool</span> : <span class="type">MonoBehaviour</span>
+{
+    <span class="kw">public</span> <span class="type">ParticleSystem</span> prefab;
+    <span class="kw">private</span> <span class="type">ObjectPool</span>&lt;<span class="type">ParticleSystem</span>&gt; pool;
+
+    <span class="kw">private void</span> <span class="fn">Awake</span>()
+    {
+        pool = <span class="kw">new</span> <span class="type">ObjectPool</span>&lt;<span class="type">ParticleSystem</span>&gt;(
+            <span class="fn">createFunc</span>: () =&gt; <span class="type">Instantiate</span>(prefab),
+            <span class="fn">actionOnGet</span>: ps =&gt; ps.gameObject.<span class="fn">SetActive</span>(<span class="kw">true</span>),
+            <span class="fn">actionOnRelease</span>: ps =&gt; ps.gameObject.<span class="fn">SetActive</span>(<span class="kw">false</span>),
+            <span class="fn">actionOnDestroy</span>: ps =&gt; <span class="type">Destroy</span>(ps.gameObject),
+            <span class="fn">defaultCapacity</span>: 10,
+            <span class="fn">maxSize</span>: 50
+        );
+    }
+
+    <span class="kw">public void</span> <span class="fn">Play</span>(<span class="type">Vector3</span> pos)
+    {
+        <span class="kw">var</span> ps = pool.<span class="fn">Get</span>();
+        ps.transform.position = pos;
+        ps.<span class="fn">Play</span>();
+        <span class="fn">Invoke</span>(<span class="kw">nameof</span>(<span class="fn">ReturnLater</span>), ps.main.duration);
+    }
+
+    <span class="kw">private void</span> <span class="fn">ReturnLater</span>() { <span class="com">/* pool.Release(ps); */</span> }
+}</code></pre>
+  </div>
+
+  <p><code>UnityEngine.Pool</code> namespace'i Unity 2021+ ile gelir; öncesi için kendi pool sınıfını yazmalısın.</p>
+</section>
+
+<div class="real-world-box">
+  <h3><i class="ti ti-world"></i> Gerçek Dünya — Bir Patlama Nasıl Yapılır?</h3>
+  <p>AAA bir oyunda gördüğün bir patlama <strong>tek bir particle system değil</strong>, üst üste binmiş <em>10–15 farklı katmandır</em>:</p>
+  <ul>
+    <li><strong>Flash:</strong> Anlık parlak ışık quad'ı (5 frame).</li>
+    <li><strong>Fireball:</strong> Hızlı genişleyen flipbook ateş topu (0.5s).</li>
+    <li><strong>Smoke Core:</strong> Yoğun siyah duman, yukarı süzülen büyük yumuşak quad'lar (3–5s).</li>
+    <li><strong>Smoke Edge:</strong> Açık gri, kenarda dağılan ikinci duman katmanı.</li>
+    <li><strong>Shockwave:</strong> Yere paralel genişleyen halka mesh.</li>
+    <li><strong>Embers:</strong> Yukarı süzülen kırmızı kıvılcımlar (Stretched Billboard).</li>
+    <li><strong>Debris:</strong> Mesh modunda küçük taş/metal parçaları (physics ile).</li>
+    <li><strong>Heat distortion:</strong> Refraction shader'lı bir quad (sıcaklık dalgalanması).</li>
+    <li><strong>Light flash:</strong> Geçici bir Point Light.</li>
+    <li><strong>Sound:</strong> Patlama + bas titreşim + sonradan gelen alev sesi.</li>
+  </ul>
+  <p>Her katman birer ParticleSystem child'ı olarak tek prefab altında toplanır. Pool'lanır. Bir <code>PlayExplosion(Vector3)</code> fonksiyonu tek satırda çağrılır.</p>
+</div>
+
+<section class="topic-section" id="t14">
+  <div class="topic-header">
+    <span class="topic-number">13.14</span>
+    <h2 class="topic-title">Script'ten Particle Kontrolü</h2>
+  </div>
+  <p>ParticleSystem'i çalışırken yönetmek için en sık kullanılan API'ler:</p>
+
+  <div class="cs-block">
+<pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+
+<span class="kw">public class</span> <span class="type">ParticleControl</span> : <span class="type">MonoBehaviour</span>
+{
+    <span class="kw">public</span> <span class="type">ParticleSystem</span> ps;
+
+    <span class="kw">private void</span> <span class="fn">Start</span>()
+    {
+        ps.<span class="fn">Play</span>();        <span class="com">// başlat</span>
+        ps.<span class="fn">Pause</span>();       <span class="com">// duraklat</span>
+        ps.<span class="fn">Stop</span>();        <span class="com">// durdur</span>
+        ps.<span class="fn">Clear</span>();       <span class="com">// tüm mevcut parçacıkları sil</span>
+
+        <span class="com">// Tek seferlik patlama (override count):</span>
+        ps.<span class="fn">Emit</span>(50);
+
+        <span class="com">// Modül erişimi (struct copy! geri set etmelisin):</span>
+        <span class="kw">var</span> main = ps.main;
+        main.startSpeed = 10f;
+        main.startColor = <span class="type">Color</span>.red;
+
+        <span class="kw">var</span> emission = ps.emission;
+        emission.rateOverTime = 100f;
+
+        <span class="kw">var</span> shape = ps.shape;
+        shape.angle = 25f;
+    }
+}</code></pre>
+  </div>
+
+  <div class="warning-box">
+    <i class="ti ti-alert-triangle"></i>
+    <div>
+      <strong>Önemli detay:</strong> <code>ps.main</code> bir <em>struct</em> döndürür (referans değil). Doğrudan <code>ps.main.startSpeed = 10f</code> yazarsan derlenir ama hiçbir şey değişmez. Önce yerel değişkene al, sonra ata: <code>var m = ps.main; m.startSpeed = 10f;</code>. Bu Unity'nin en yaygın hatasıdır.
+    </div>
+  </div>
+
+  <h3>VFX Graph kontrolü</h3>
+  <div class="cs-block">
+<pre><code><span class="kw">using</span> <span class="type">UnityEngine.VFX</span>;
+
+<span class="kw">public</span> <span class="type">VisualEffect</span> vfx;
+
+vfx.<span class="fn">Play</span>();
+vfx.<span class="fn">Stop</span>();
+vfx.<span class="fn">SendEvent</span>(<span class="str">"OnExplode"</span>);   <span class="com">// custom event tetikle</span>
+
+<span class="com">// Exposed property değiştir:</span>
+vfx.<span class="fn">SetFloat</span>(<span class="str">"SpawnRate"</span>, 1500f);
+vfx.<span class="fn">SetVector3</span>(<span class="str">"WindDirection"</span>, <span class="kw">new</span> <span class="type">Vector3</span>(1,0,0));
+vfx.<span class="fn">SetTexture</span>(<span class="str">"MainTex"</span>, myTexture);</code></pre>
+  </div>
+</section>
+
+<section class="practice-section">
+  <h2><i class="ti ti-tool"></i> Pratik — 3 Proje</h2>
+
+  <div class="project-card">
+    <div class="project-goal"><strong>Proje 1 — Ayak izi tozu (Built-in)</strong></div>
+    <p>Bir karakter koşarken arkasında küçük toz bulutu bırakacak. Karakter durduğunda toz çıkmasın.</p>
+    <ul class="project-check">
+      <li>Karakterin ayak seviyesinde child bir <code>ParticleSystem</code>.</li>
+      <li>Looping <strong>açık</strong>, Rate over Time = 0, <strong>Rate over Distance = 2</strong> (sadece hareket varken).</li>
+      <li>Shape: Cone, Angle 25°, yere doğru bakan.</li>
+      <li>Color: kahverengi/gri, alpha 0 → 0.4 → 0.</li>
+      <li>Size over Lifetime: küçükten 1.5'a büyüsün.</li>
+      <li>Simulation Space: <strong>World</strong> (toz havada asılı kalsın).</li>
+    </ul>
+  </div>
+
+  <div class="project-card">
+    <div class="project-goal"><strong>Proje 2 — Alev makinesi (Built-in + Sub Emitter)</strong></div>
+    <p>Karakter klipse basınca alev püskürten silahtan ateş yalımı çıkacak. Lifetime sonunda küçük bir duman emit edilecek.</p>
+    <ul class="project-check">
+      <li>Ana sistem: Cone shape, Angle 12°, Start Speed 12, Lifetime 1.2.</li>
+      <li>Color over Lifetime: sarı → turuncu → kırmızı → siyah (alpha 0).</li>
+      <li>Texture Sheet Animation: alev flipbook (4×4).</li>
+      <li>Renderer: URP/Particles/Unlit, Additive blend.</li>
+      <li>Sub Emitter — Death: küçük gri duman sistemi.</li>
+      <li>Script: <code>Fire1</code> tuşuna basınca <code>ps.Play()</code>, bırakınca <code>ps.Stop()</code>.</li>
+    </ul>
+  </div>
+
+  <div class="project-card">
+    <div class="project-goal"><strong>Proje 3 — Toplama efekti (VFX Graph)</strong></div>
+    <p>Oyuncu bir coin'i topladığında çevresinden parlak parçacıklar yukarı süzülerek toplanacak.</p>
+    <ul class="project-check">
+      <li>Yeni VFX Asset → "PickupBurst.vfx".</li>
+      <li>Spawn context: Single Burst, Count = 40.</li>
+      <li>Initialize: Set Position (Sphere, radius 0.3), Set Velocity Random (yukarı doğru ağırlıklı).</li>
+      <li>Update: hafif Gravity, Drag.</li>
+      <li>Output: Particle Quad, Additive, parlak altın rengi gradient.</li>
+      <li>Script'ten <code>vfx.Play()</code> çağır — coin OnTriggerEnter olduğunda.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="quiz" id="bolum-quiz">
+  <header class="quiz-header">
+    <div class="quiz-header-icon"><i class="ti ti-help"></i></div>
+    <div class="quiz-header-text">
+      <h2>Bölüm Sonu Sınavı</h2>
+      <span>5 soru</span>
+    </div>
+  </header>
+
+  <article class="quiz-question" id="q13-1">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">01</span>
+      <h3 class="quiz-prompt-text">Bir AAA oyunda milyonlarca toz zerreciği aynı anda görünmeli. Hangi sistem?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Built-in Particle System</button>
+      <button class="quiz-option" data-correct="true">VFX Graph</button>
+      <button class="quiz-option" data-correct="false">Animation Window</button>
+      <button class="quiz-option" data-correct="false">Sprite Renderer</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q13-2">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">02</span>
+      <h3 class="quiz-prompt-text">Bir patlama efekti yapıyorsun. Looping ayarı için doğru olan?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Looping açık olmalı — yoksa parçacık çıkmaz.</button>
+      <button class="quiz-option" data-correct="true">Looping <em>kapalı</em> olmalı — patlama tek seferliktir, sonsuza tekrarlamaz.</button>
+      <button class="quiz-option" data-correct="false">Looping önemli değil; Prewarm ile değişir.</button>
+      <button class="quiz-option" data-correct="false">Patlamada Emission tamamen kapatılır.</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q13-3">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">03</span>
+      <h3 class="quiz-prompt-text">Aşağıdaki kod neden çalışmaz? <code>ps.main.startSpeed = 10f;</code></h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">startSpeed read-only bir alan.</button>
+      <button class="quiz-option" data-correct="true"><code>ps.main</code> bir struct döndürür; doğrudan değiştirilemez, önce değişkene al.</button>
+      <button class="quiz-option" data-correct="false">Particle çalışırken modifiye edilemez.</button>
+      <button class="quiz-option" data-correct="false">Önce <code>ps.Stop()</code> çağırmak gerekir.</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q13-4">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">04</span>
+      <h3 class="quiz-prompt-text">Bir kıvılcımın yaşı boyunca renginin sarı → kırmızı → siyaha geçmesini sağlayan modül?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Renderer modülü</button>
+      <button class="quiz-option" data-correct="false">Main modülü → Start Color</button>
+      <button class="quiz-option" data-correct="true">Color over Lifetime</button>
+      <button class="quiz-option" data-correct="false">Texture Sheet Animation</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q13-5">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">05</span>
+      <h3 class="quiz-prompt-text">Sahnede aynı patlama efektini saniyede 10 kez kullanıyorsun. Doğru yaklaşım?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Her seferinde <code>Instantiate(prefab)</code> + <code>Destroy(go, 3f)</code>.</button>
+      <button class="quiz-option" data-correct="true">Bir <strong>pool</strong> kur; aynı sistemleri tekrar tekrar kullan.</button>
+      <button class="quiz-option" data-correct="false">Tek bir sistem yap, Max Particles'ı çok yüksek tut.</button>
+      <button class="quiz-option" data-correct="false">VFX Graph kullanılması zorunlu, başka yolu yok.</button>
+    </div>
+  </article>
+</section>
+
+<div class="faq-item">
+  <h3>Built-in mi VFX Graph mı, hangisini ilk öğreneyim?</h3>
+  <p>Built-in. Çoğu efekt için yetiyor, mobilde çalışıyor, Inspector tabanlı ve öğrenmesi hızlı. VFX Graph'a "ihtiyaç duyduğunda" geçersin — milyonlarca parçacık ya da node-based esneklik istediğinde.</p>
+</div>
+
+<div class="faq-item">
+  <h3>Particle pembe görünüyor, ne yapayım?</h3>
+  <p>Material atanmamış ya da yanlış pipeline'ın shader'ı atanmış. Renderer modülünde Material slot'una doğru shader'lı bir material koy: URP için <code>Universal Render Pipeline/Particles/Unlit</code>, HDRP için <code>HDRP/Unlit</code>.</p>
+</div>
+
+<div class="faq-item">
+  <h3>Particle System scene'de oynuyor ama Game view'de görünmüyor?</h3>
+  <p>Üç olası neden: (1) Camera bu layer'ı görmüyor (Culling Mask). (2) Renderer'da Sorting Layer/Order yanlış (UI önünde kalmış olabilir). (3) Particle GameObject inactive ya da çok uzakta — Game view'in Field of View'i dışında.</p>
+</div>
+
+<section class="complete-section">
+      <h3 class="complete-title">🎉 Bölüm 13 Tamamlandı!</h3>
+      <p class="complete-msg">Bu bölümün sonuna geldin. Ateş, duman, kıvılcım, büyü — artık hepsi senin elinde. Bir sonraki bölümde sahneye <strong>doğru ışığı</strong> nasıl koyacağımızı işleyeceğiz.</p>
+      <button class="complete-btn" data-section="s13">
+        <i class="ti ti-circle-check"></i>
+        <span>Bu Bölümü Tamamladım</span>
+      </button>
+      <p class="complete-note">İlerlemen otomatik tarayıcına kaydedilir.</p>
+    </section>
+    <!-- Sayfa Gezinme -->
+    <nav class="page-nav" aria-label="Bölüm gezinme">
+      <a href="12-animation.html" class="page-nav-link prev">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-left"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Önceki Bölüm</div>
+          <div class="page-nav-title">12. Animasyon</div>
+        </div>
+      </a>
+      <a href="14-lighting.html" class="page-nav-link next">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-right"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Sonraki Bölüm</div>
+          <div class="page-nav-title">14. Aydınlatma</div>
+        </div>
+      </a>
+    </nav>
+
+  </div>
+</main>
+<script src="../js/progress.js?v=11"></script>
+<script src="../js/quiz.js?v=11"></script>
+<script src="../js/toc.js?v=11"></script>
+<script src="../js/main.js?v=11"></script>
+</body>
+</html>

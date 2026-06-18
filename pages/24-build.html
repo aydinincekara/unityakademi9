@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build &amp;amp; Yayınlama — UnityAkademi</title>
+  <meta name="description" content="Build Profiles, Player Settings, Windows/macOS/WebGL/Android/iOS, IL2CPP vs Mono, mağaza yayını (Steam/Play/App Store/itch) — Bölüm 24.">
+  <meta name="theme-color" content="#fa7d19">
+  <link rel="manifest" href="../manifest.json">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Build &amp;amp; Yayınlama">
+  <meta property="og:description" content="Build Profiles, Player Settings, Windows/macOS/WebGL/Android/iOS, IL2CPP vs Mono, mağaza yayını (Steam/Play/App Store/itch) — Bölüm 24.">
+  <meta property="og:image" content="../og-image.svg">
+  <meta property="og:site_name" content="UnityAkademi">
+  <meta property="og:locale" content="tr_TR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Build &amp;amp; Yayınlama">
+  <meta name="twitter:description" content="Build Profiles, Player Settings, Windows/macOS/WebGL/Android/iOS, IL2CPP vs Mono, mağaza yayını (Steam/Play/App Store/itch) — Bölüm 24.">
+  <meta name="twitter:image" content="../og-image.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="../css/variables.css?v=11">
+  <link rel="stylesheet" href="../css/reset.css?v=11">
+  <link rel="stylesheet" href="../css/layout.css?v=11">
+  <link rel="stylesheet" href="../css/components.css?v=11">
+  <link rel="stylesheet" href="../css/content.css?v=11">
+  <link rel="stylesheet" href="../css/visuals.css?v=11">
+  <link rel="stylesheet" href="../css/extras.css?v=11">
+  <link rel="stylesheet" href="../css/responsive.css?v=11">
+</head>
+<body>
+<button class="nav-hamburger" id="navHamburger" aria-label="Menüyü aç">
+  <i class="ti ti-menu-2"></i>
+</button>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a href="../index.html" class="sidebar-brand">
+      <div class="sidebar-brand-icon"><i class="ti ti-home-2"></i></div>
+      <div class="sidebar-brand-text">
+        <span class="sidebar-brand-name">Ana Sayfa</span>
+        <span class="sidebar-brand-sub">UnityAkademi</span>
+      </div>
+    </a>
+    <button class="mobile-toggle" aria-label="Menü"><i class="ti ti-x"></i></button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-group">
+      <div class="nav-group-title">Temeller</div>
+      <a href="01-kurulum.html" class="nav-link" data-section="s1"><i class="ti ti-download"></i><span class="nav-link-text">Kurulum & İlk Bakış</span><span class="nav-link-num">01</span></a>
+      <a href="02-arayuz.html" class="nav-link" data-section="s2"><i class="ti ti-layout-board"></i><span class="nav-link-text">Editor Arayüzü</span><span class="nav-link-num">02</span></a>
+      <a href="03-gameobject-component.html" class="nav-link" data-section="s3"><i class="ti ti-cube"></i><span class="nav-link-text">GameObject & Component</span><span class="nav-link-num">03</span></a>
+      <a href="04-csharp-temelleri.html" class="nav-link" data-section="s4"><i class="ti ti-code"></i><span class="nav-link-text">C# Temelleri</span><span class="nav-link-num">04</span></a>
+      <a href="05-monobehaviour-lifecycle.html" class="nav-link" data-section="s5"><i class="ti ti-refresh"></i><span class="nav-link-text">MonoBehaviour Lifecycle</span><span class="nav-link-num">05</span></a>
+      <a href="06-transform-vector.html" class="nav-link" data-section="s6"><i class="ti ti-arrows-move"></i><span class="nav-link-text">Transform & Vector3</span><span class="nav-link-num">06</span></a>
+      <a href="07-input.html" class="nav-link" data-section="s7"><i class="ti ti-keyboard"></i><span class="nav-link-text">Input Sistemi</span><span class="nav-link-num">07</span></a>
+      <a href="08-physics.html" class="nav-link" data-section="s8"><i class="ti ti-atom"></i><span class="nav-link-text">Physics</span><span class="nav-link-num">08</span></a>
+      <a href="09-ui.html" class="nav-link" data-section="s9"><i class="ti ti-layout-grid"></i><span class="nav-link-text">UI Sistemi</span><span class="nav-link-num">09</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Görsel & Asset</div>
+      <a href="10-material-shader.html" class="nav-link" data-section="s10"><i class="ti ti-palette"></i><span class="nav-link-text">Material & Shader</span><span class="nav-link-num">10</span></a>
+      <a href="11-asset-import.html" class="nav-link" data-section="s11"><i class="ti ti-folder"></i><span class="nav-link-text">Asset Import</span><span class="nav-link-num">11</span></a>
+      <a href="12-animation.html" class="nav-link" data-section="s12"><i class="ti ti-bounce-right"></i><span class="nav-link-text">Animation</span><span class="nav-link-num">12</span></a>
+      <a href="13-particle-vfx.html" class="nav-link" data-section="s13"><i class="ti ti-sparkles"></i><span class="nav-link-text">Particle & VFX Graph</span><span class="nav-link-num">13</span></a>
+      <a href="14-lighting.html" class="nav-link" data-section="s14"><i class="ti ti-bulb"></i><span class="nav-link-text">Lighting</span><span class="nav-link-num">14</span></a>
+      <a href="15-audio.html" class="nav-link" data-section="s15"><i class="ti ti-volume"></i><span class="nav-link-text">Audio</span><span class="nav-link-num">15</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Sistemler</div>
+      <a href="16-probuilder.html" class="nav-link" data-section="s16"><i class="ti ti-3d-cube-sphere"></i><span class="nav-link-text">ProBuilder</span><span class="nav-link-num">16</span></a>
+      <a href="17-terrain.html" class="nav-link" data-section="s17"><i class="ti ti-mountain"></i><span class="nav-link-text">Terrain</span><span class="nav-link-num">17</span></a>
+      <a href="18-cinemachine.html" class="nav-link" data-section="s18"><i class="ti ti-camera"></i><span class="nav-link-text">Cinemachine</span><span class="nav-link-num">18</span></a>
+      <a href="19-timeline.html" class="nav-link" data-section="s19"><i class="ti ti-timeline"></i><span class="nav-link-text">Timeline</span><span class="nav-link-num">19</span></a>
+      <a href="20-navmesh.html" class="nav-link" data-section="s20"><i class="ti ti-route"></i><span class="nav-link-text">NavMesh & AI</span><span class="nav-link-num">20</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">İleri Seviye</div>
+      <a href="21-urp-hdrp.html" class="nav-link" data-section="s21"><i class="ti ti-bolt"></i><span class="nav-link-text">URP, HDRP & Unity 6</span><span class="nav-link-num">21</span></a>
+      <a href="22-new-input.html" class="nav-link" data-section="s22"><i class="ti ti-device-gamepad-2"></i><span class="nav-link-text">New Input System</span><span class="nav-link-num">22</span></a>
+      <a href="23-save-menu.html" class="nav-link" data-section="s23"><i class="ti ti-device-floppy"></i><span class="nav-link-text">Save & Menü</span><span class="nav-link-num">23</span></a>
+      <a href="24-build.html" class="nav-link active" data-section="s24"><i class="ti ti-package-export"></i><span class="nav-link-text">Build & Yayınlama</span><span class="nav-link-num">24</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Profesyonel</div>
+      <a href="25-csharp-ileri.html" class="nav-link" data-section="s25"><i class="ti ti-brackets-contain"></i><span class="nav-link-text">C# İleri</span><span class="nav-link-num">25</span></a>
+      <a href="26-performance.html" class="nav-link" data-section="s26"><i class="ti ti-gauge"></i><span class="nav-link-text">Performance</span><span class="nav-link-num">26</span></a>
+      <a href="27-yol-haritasi.html" class="nav-link" data-section="s27"><i class="ti ti-map-2"></i><span class="nav-link-text">Yol Haritası</span><span class="nav-link-num">27</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Pratik</div>
+      <a href="projects.html" class="nav-link nav-link-extra" data-section="x-projects"><i class="ti ti-rocket"></i><span class="nav-link-text">Projeler</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Ek Kaynaklar</div>
+      <a href="sozluk.html" class="nav-link nav-link-extra" data-section="x-sozluk"><i class="ti ti-book-2"></i><span class="nav-link-text">Sözlük</span></a>
+      <a href="cheatsheet.html" class="nav-link nav-link-extra" data-section="x-cheatsheet"><i class="ti ti-list-details"></i><span class="nav-link-text">Cheat Sheet</span></a>
+      <a href="sss.html" class="nav-link nav-link-extra" data-section="x-sss"><i class="ti ti-help-circle"></i><span class="nav-link-text">SSS</span></a>
+      <a href="arama.html" class="nav-link nav-link-extra" data-section="x-arama"><i class="ti ti-search"></i><span class="nav-link-text">Arama</span></a>
+      <a href="sertifika.html" class="nav-link nav-link-extra" data-section="x-sertifika"><i class="ti ti-certificate"></i><span class="nav-link-text">Sertifika</span></a>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="kaynaklar.html" class="sidebar-btn"><i class="ti ti-books"></i><span>Kaynaklar</span></a>
+    <a href="iletisim.html" class="sidebar-btn"><i class="ti ti-mail"></i><span>İletişim</span></a>
+  </div>
+</aside>
+<main class="main">
+  <div class="main-content">
+<nav class="breadcrumb" aria-label="Sayfa konumu">
+      <a href="../index.html"><i class="ti ti-home"></i><span>Ana Sayfa</span></a>
+      <i class="ti ti-chevron-right"></i><span><i class="ti ti-school" style="font-size: 13px; opacity: 0.7; margin-right: 4px;"></i>İleri Seviye</span>
+      <i class="ti ti-chevron-right"></i><span style="color: var(--primary-light);">Build & Yayın</span>
+    </nav>
+
+<header class="page-header">
+  <span class="chapter-pill">Bölüm 24</span>
+  <h1 class="page-title">Build &amp; Yayınlama — Oyununu Dünyaya Çıkar</h1>
+  <p class="page-subtitle">Build Profiles, Player Settings, Windows / macOS / WebGL / Android / iOS hedefleri, IL2CPP vs Mono, Code Stripping, Asset Bundles, mağaza yayını.</p>
+  <div class="page-meta">
+    <span>⏱ Okuma süresi: ~25 dk</span>
+    <span>📦 5 platform</span>
+    <span>🎯 Zorluk: Orta</span>
+  </div>
+</header>
+
+<section class="topic-section" id="build-nedir">
+  <div class="topic-header">
+    <span class="topic-number">24.1</span>
+    <h2 class="topic-title">📦 Build Nedir?</h2>
+  </div>
+  <p class="topic-text">
+    Unity Editor'da oynadığın oyun, sahnelerin + script'lerin + asset'lerin canlı bir derlemesidir. Editor olmadan bu sahneyi başkasına oynatmak için Unity, hedef platform için <em>tek bir paket</em> oluşturmalı: kod derlenir (.NET → IL2CPP veya Mono), shader'lar derlenir, sahne ve asset'ler serileştirilir, hepsi platform-spesifik bir dosya/klasör'e dönüşür. Bu işleme <strong>Build</strong> denir.
+  </p>
+  <p class="topic-text">
+    Platforma göre çıktı farklıdır:
+  </p>
+  <ul class="check-list">
+    <li><strong>Windows</strong> → <code>GameName.exe</code> + <code>GameName_Data/</code> klasörü.</li>
+    <li><strong>macOS</strong> → <code>GameName.app</code> bundle (klasör görünümlü tek dosya).</li>
+    <li><strong>Linux</strong> → <code>GameName.x86_64</code> + Data klasörü.</li>
+    <li><strong>WebGL</strong> → HTML + JS + WASM dosyaları (tarayıcı için).</li>
+    <li><strong>Android</strong> → <code>GameName.apk</code> veya <code>.aab</code> (Google Play için).</li>
+    <li><strong>iOS</strong> → Xcode projesi (sonra Xcode ile App Store'a build).</li>
+  </ul>
+  <div class="real-world-box">
+    <h3>🎮 Gerçek Dünyadan: Among Us Multi-Platform</h3>
+    <p><em>Among Us</em>, tek bir Unity projesinden Windows, macOS, Android, iOS, Switch, PlayStation, Xbox — neredeyse her platforma build edildi. Unity'nin gücü buradadır: aynı C# kodu, aynı sahne, farklı build hedefleri. <em>Cuphead</em> Switch'e gelirken Unity'nin çoklu platform build pipeline'ı sayesinde aynı yıl içinde 5 platforma çıktı. <em>Genshin Impact</em> PC, mobil ve PlayStation 4/5'i aynı Unity build sisteminden destekliyor.</p>
+  </div>
+</section>
+
+<section class="topic-section" id="build-profiles">
+  <div class="topic-header">
+    <span class="topic-number">24.2</span>
+    <h2 class="topic-title">📋 Build Profiles <span class="u-ver-badge u6 u6-new">Unity 6 YENİ</span></h2>
+  </div>
+  <p class="topic-text">
+    Unity 6 ile gelen en pratik yeniliklerden biri: <strong>Build Profiles</strong>. Eskiden Build Settings tek bir aktif platform tutuyordu; her değiştirdiğinde tüm asset'ler yeniden import oluyordu (yarım saat süren bir işlem). Build Profiles ile <em>her platform için ayrı profil</em> kayıtlı tutulur.
+  </p>
+  <ol class="step-list">
+    <li><strong>File → Build Profiles</strong> menüsünü aç.</li>
+    <li>Sol panelde mevcut platformlar (Windows, Android, WebGL, vs.) görünür.</li>
+    <li>"+" ile yeni custom profil oluştur: örn. <em>Android — Free Edition</em>, <em>Android — Paid Edition</em>, <em>Steam Beta</em>.</li>
+    <li>Her profil için sahne listesi, Player Settings, Scripting Define Symbols ayrı yönetilir.</li>
+    <li>"Switch Profile" tek tıkla aktif platform değişir, asset cache'i tutulduğu için yeniden import gerekmez.</li>
+  </ol>
+  <div class="info-box">
+    <strong>💡 Build Profile Use-Case'leri:</strong>
+    <ul>
+      <li><em>Demo vs Tam Sürüm</em> — Demo build sadece 3 sahne içersin.</li>
+      <li><em>Free vs Premium</em> — Free'de reklam, Premium'da temiz.</li>
+      <li><em>Test vs Production</em> — Debug log açık vs kapalı.</li>
+      <li><em>QA vs Yayın</em> — Cheat menüsü dev'de açık, release'de kapalı.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic-section" id="ilk-build">
+  <div class="topic-header">
+    <span class="topic-number">24.3</span>
+    <h2 class="topic-title">🚀 İlk Build — Windows Standalone</h2>
+  </div>
+  <ol class="step-list">
+    <li><strong>File → Build Profiles</strong> → Windows seç.</li>
+    <li><strong>Scene List</strong>: Build'e dahil edilecek sahneleri sırayla ekle. İlk sahne (index 0) açılışta yüklenir; genelde MainMenu.</li>
+    <li><strong>Target Platform</strong>: Windows. <strong>Architecture</strong>: x86_64 (Intel/AMD 64-bit).</li>
+    <li><strong>Compression</strong>: Default (uyumlu) veya LZ4HC (daha sıkı).</li>
+    <li><strong>Development Build</strong>: ☑ test sırasında (Profiler, Debug.Log için). Yayın için ☐.</li>
+    <li><strong>Player Settings</strong>'a tıkla, aşağıdaki bölümleri ayarla.</li>
+    <li><strong>Build</strong>'a bas → hedef klasör seç → Unity 30 saniye - 5 dakika içinde paketler.</li>
+    <li>Çıkış klasöründe <code>GameName.exe</code>'ye çift tıkla; oyun açılır.</li>
+  </ol>
+</section>
+
+<section class="topic-section" id="player-settings">
+  <div class="topic-header">
+    <span class="topic-number">24.4</span>
+    <h2 class="topic-title">⚙️ Player Settings — Detaylı Yapılandırma</h2>
+  </div>
+  <p class="topic-text">
+    Build Profiles içinde <em>Player Settings</em> butonu Project Settings → Player'a yönlendirir. Burada oyunun kimliği, görünümü, davranışı belirlenir.
+  </p>
+  <h3 class="topic-subtitle">Sekmesi: General (Tüm Platformlar)</h3>
+  <div class="u-inspector">
+    <div class="u-inspector-header">Player → Genel</div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Company Name</span><span class="u-inspector-value">"BenimStudyo"</span></div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Product Name</span><span class="u-inspector-value">"Karanlık Diyarlar"</span></div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Version</span><span class="u-inspector-value">1.0.0</span></div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Default Icon</span><span class="u-inspector-value">icon.png (1024x1024)</span></div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Default Cursor</span><span class="u-inspector-value">cursor.png</span></div>
+  </div>
+  <ul class="check-list">
+    <li><strong>Company / Product Name</strong> → <code>Application.companyName</code>, <code>Application.productName</code> ile çağrılabilir. PlayerPrefs ve save yolları bu isimleri içerir.</li>
+    <li><strong>Version</strong> → Steam, App Store gibi mağazalar bu numarayı bekler. Semantic versioning (Major.Minor.Patch) önerilir.</li>
+    <li><strong>Default Icon</strong> → 1024x1024 PNG, Unity otomatik küçültür. Platform-spesifik ikon override edilebilir.</li>
+  </ul>
+  <h3 class="topic-subtitle">Sekmesi: Resolution &amp; Presentation</h3>
+  <ul class="check-list">
+    <li><strong>Fullscreen Mode</strong> — Fullscreen Window (önerilen, alt+tab dostu), Exclusive Fullscreen (eski), Windowed.</li>
+    <li><strong>Default Screen Width / Height</strong> — Pencere başlangıç boyutu.</li>
+    <li><strong>Resizable Window</strong> — Kullanıcı pencereyi yeniden boyutlandırabilir mi?</li>
+    <li><strong>Run In Background</strong> — Oyun arka planda devam etsin mi (genelde ☑).</li>
+    <li><strong>Display Resolution Dialog</strong> — Açılışta ayar diyalogu (eski, modern oyunlarda yok).</li>
+  </ul>
+  <h3 class="topic-subtitle">Sekmesi: Splash Image</h3>
+  <p class="topic-text">
+    Açılışta görünen logo. Unity ücretsiz lisansta <em>"Made with Unity"</em> logosunu zorunlu tutar; Plus/Pro lisansta kaldırılabilir. Kendi logon eklenebilir (Splash Image bölümünde sırayla).
+  </p>
+</section>
+
+<section class="topic-section" id="il2cpp-mono">
+  <div class="topic-header">
+    <span class="topic-number">24.5</span>
+    <h2 class="topic-title">⚡ IL2CPP vs Mono — Scripting Backend</h2>
+  </div>
+  <p class="topic-text">
+    Unity, C# kodunu iki şekilde çalıştırabilir: <strong>Mono</strong> (Just-In-Time derleme) veya <strong>IL2CPP</strong> (Ahead-Of-Time C++ derleme).
+  </p>
+  <div class="u-compare">
+    <div class="u-compare-side lts">
+      <h4>🐢 Mono (Eski)</h4>
+      <ul class="check-list">
+        <li>C# → IL → JIT (runtime'da derle)</li>
+        <li>Build hızı: <strong>Çok hızlı</strong> (30 sn)</li>
+        <li>Runtime performansı: Orta</li>
+        <li>Boyut: Büyük (.NET runtime dahil)</li>
+        <li>iOS desteklemez (Apple yasaklı)</li>
+        <li><strong>Sadece Editor + Standalone</strong></li>
+      </ul>
+    </div>
+    <div class="u-compare-side u6">
+      <h4>🚀 IL2CPP (Modern)</h4>
+      <ul class="check-list">
+        <li>C# → IL → C++ → Native (AOT)</li>
+        <li>Build hızı: <strong>Yavaş</strong> (5-15 dk)</li>
+        <li>Runtime performansı: <strong>Yüksek</strong> (%20-40 hızlı)</li>
+        <li>Boyut: Daha küçük</li>
+        <li>Tüm platformlar desteklenir</li>
+        <li><strong>Production için standart</strong></li>
+      </ul>
+    </div>
+  </div>
+  <p class="topic-text">
+    <strong>Pratik kural</strong>: Geliştirme sırasında Mono (hızlı iterasyon), yayın için IL2CPP (performans + güvenlik). Apple iOS zaten IL2CPP'yi mecbur kılar. WebGL otomatik IL2CPP kullanır.
+  </p>
+  <p class="topic-text">
+    <strong>Code Stripping (Kod Kırpma)</strong> ayarı IL2CPP ile çalışır: kullanılmayan .NET kütüphanelerinin dahil edilmemesini sağlar. <em>Low</em>, <em>Medium</em>, <em>High</em>, <em>Minimal</em> seviyeleri. Yüksek seviye küçük boyut ama bazı reflection-kullanan kodlar bozulabilir.
+  </p>
+</section>
+
+<section class="topic-section" id="android-build">
+  <div class="topic-header">
+    <span class="topic-number">24.6</span>
+    <h2 class="topic-title">📱 Android Build</h2>
+  </div>
+  <ol class="step-list">
+    <li><strong>Build Profiles → Android</strong>. (İlk seferinde Android modülünü Unity Hub'tan kurman gerekir.)</li>
+    <li><strong>Player Settings → Other Settings</strong>:
+      <ul>
+        <li><em>Package Name</em>: <code>com.benimstudyo.karanlikdiyarlar</code> (Java paket adı tarzı, mağazada benzersiz olmalı).</li>
+        <li><em>Minimum API Level</em>: Android 7.0 (API 24) — pazarın %95'i.</li>
+        <li><em>Target API Level</em>: Google Play en güncel istiyor (API 34+).</li>
+        <li><em>Scripting Backend</em>: IL2CPP.</li>
+        <li><em>Target Architectures</em>: ARMv7 + ARM64 ☑ (modern Google Play 64-bit zorunlu).</li>
+      </ul>
+    </li>
+    <li><strong>Publishing Settings</strong>:
+      <ul>
+        <li><em>Keystore</em>: yeni oluştur (.keystore dosyası), şifre belirle.</li>
+        <li><em>Key Alias</em>: oyun ismine özel anahtar.</li>
+      </ul>
+    </li>
+    <li><strong>Build Output</strong>: APK (test için) veya AAB (Google Play için zorunlu).</li>
+    <li>Build → .apk dosyası bilgisayar üzerinden telefona aktar veya <code>adb install</code>.</li>
+  </ol>
+  <div class="warning-box">
+    <strong>🔑 Keystore'u Asla Kaybetme:</strong> Bir oyunu Google Play'de yayınladıktan sonra her güncelleme aynı keystore ile imzalanmalı. Keystore'u kaybetmek = uygulamanı sonsuza kadar güncelleyememek. Bulut yedeği al, şifreyi password manager'a kaydet.
+  </div>
+</section>
+
+<section class="topic-section" id="ios-build">
+  <div class="topic-header">
+    <span class="topic-number">24.7</span>
+    <h2 class="topic-title">🍎 iOS Build</h2>
+  </div>
+  <p class="topic-text">
+    iOS'a build için <strong>macOS bilgisayar ve Xcode</strong> gereklidir. Unity Windows'ta Xcode projesi üretemez (Xcode-only).
+  </p>
+  <ol class="step-list">
+    <li>Mac üzerinde Unity Hub'tan iOS Build Support modülü.</li>
+    <li><strong>Build Profiles → iOS</strong>. Player Settings → Other Settings:
+      <ul>
+        <li><em>Bundle Identifier</em>: com.benimstudyo.karanlikdiyarlar.</li>
+        <li><em>Target minimum iOS Version</em>: iOS 13 (modern pazar).</li>
+        <li><em>Target Device</em>: iPhone + iPad veya sadece iPhone.</li>
+      </ul>
+    </li>
+    <li>Build → Xcode projesi (.xcodeproj) klasörü üretilir.</li>
+    <li>Mac'te Xcode'da açılır.</li>
+    <li>Apple Developer hesabı (yıllık $99) ile Provisioning Profile, App Store Connect'te app oluştur.</li>
+    <li>Xcode'tan "Archive" → "Upload to App Store" → App Store Connect'te TestFlight ile beta test → Submit for Review.</li>
+  </ol>
+</section>
+
+<section class="topic-section" id="webgl-build">
+  <div class="topic-header">
+    <span class="topic-number">24.8</span>
+    <h2 class="topic-title">🌐 WebGL Build</h2>
+  </div>
+  <p class="topic-text">
+    Tarayıcıda doğrudan oynanabilen oyun. itch.io, kongregate, kendi websiten için ideal.
+  </p>
+  <ol class="step-list">
+    <li>Unity Hub'tan WebGL Build Support kur.</li>
+    <li><strong>Build Profiles → WebGL</strong>.</li>
+    <li>Player Settings → Publishing Settings:
+      <ul>
+        <li><em>Compression Format</em>: Brotli (en küçük) veya Gzip (yaygın destek).</li>
+        <li><em>Decompression Fallback</em>: ☑ (eski tarayıcılar için).</li>
+      </ul>
+    </li>
+    <li>Player Settings → Resolution: Default Canvas Width 960, Height 600 (responsive).</li>
+    <li>Build → index.html + Build/ + TemplateData/ üretilir.</li>
+    <li>Bunları bir web sunucusuna yükle (itch.io ZIP kabul eder), tarayıcıda aç.</li>
+  </ol>
+  <div class="info-box">
+    <strong>📊 WebGL Sınırları:</strong>
+    <ul>
+      <li>Threading sınırlı (Web Workers henüz tam destekli değil).</li>
+      <li>Yerel dosya sistemi yok — PlayerPrefs tarayıcı localStorage'a yazar.</li>
+      <li>İlk yükleme yavaş (oyun + asset'ler indirilmeli).</li>
+      <li>Mobil tarayıcılarda performans düşük.</li>
+      <li><strong>İdeal</strong>: kısa, hafif oyunlar (Browser jam, prototip, web portfolio).</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic-section" id="asset-bundles">
+  <div class="topic-header">
+    <span class="topic-number">24.9</span>
+    <h2 class="topic-title">📚 Asset Bundles &amp; Addressables</h2>
+  </div>
+  <p class="topic-text">
+    Build her şeyi içine alır → 5 GB exe. Çoğu içerik <em>oyun başlangıcında değil</em>, ilerleyen aşamalarda gerekiyor. Çözüm: bazı asset'leri ayrı paketlere böl, runtime'da indir.
+  </p>
+  <ul class="check-list">
+    <li><strong>Asset Bundles (klasik)</strong> — Eski sistem. Belirli asset'leri .bundle dosyasına paketle, runtime'da yükle.</li>
+    <li><strong>Addressables (modern, önerilen)</strong> — Asset'lere "address" (string adres) verirsin, runtime'da o adresle yüklersin. Otomatik bundle yönetimi, CDN entegrasyonu.</li>
+  </ul>
+  <div class="cs-block">
+<pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+<span class="kw">using</span> <span class="type">UnityEngine.AddressableAssets</span>;
+<span class="kw">using</span> <span class="type">UnityEngine.ResourceManagement.AsyncOperations</span>;
+
+<span class="kw">public class</span> <span class="type">LevelLoader</span> : <span class="type">MonoBehaviour</span>
+{
+    <span class="kw">public</span> <span class="type">AssetReferenceGameObject</span> bossPrefab;  <span class="com">// editor'de sürükle</span>
+
+    <span class="kw">private async void</span> <span class="fn">SpawnBoss</span>()
+    {
+        <span class="type">GameObject</span> obj = <span class="kw">await</span> bossPrefab.<span class="fn">InstantiateAsync</span>().<span class="attr">Task</span>;
+        obj.<span class="attr">transform</span>.<span class="attr">position</span> = <span class="kw">new</span> <span class="type">Vector3</span>(<span class="num">0</span>, <span class="num">5</span>, <span class="num">10</span>);
+    }
+}</code></pre>
+  </div>
+  <p class="topic-text">
+    Bu sayede boss prefab'ı binlerce poligonlu olsa bile build'in temel boyutunu büyütmez, sadece boss bölümüne gelindiğinde indirilir.
+  </p>
+</section>
+
+<section class="topic-section" id="build-debug">
+  <div class="topic-header">
+    <span class="topic-number">24.10</span>
+    <h2 class="topic-title">🐛 Build Sonrası Debug</h2>
+  </div>
+  <p class="topic-text">
+    Editor'da çalışan oyun, build'de bozulabilir. En yaygın nedenler:
+  </p>
+  <ul class="check-list">
+    <li><strong>Editor-only kod</strong>: <code>#if UNITY_EDITOR</code> ile sarılmamış editor referansları runtime'da hata verir.</li>
+    <li><strong>Asset path</strong>: <code>Resources.Load</code> path'i case-sensitive, mobilde tam eşleşmeli.</li>
+    <li><strong>Code stripping</strong>: Reflection kullanılan tipler kırpılabilir → <code>[Preserve]</code> attribute ile koru veya <code>link.xml</code> ekle.</li>
+    <li><strong>Platform-spesifik bug</strong>: Android'de file path yazma izni, iOS'ta thread sınırı, WebGL'de System.IO yetersizlikleri.</li>
+  </ul>
+  <h3 class="topic-subtitle">Log Görüntüleme</h3>
+  <ul class="check-list">
+    <li><strong>Standalone</strong>: <code>%appdata%\..\LocalLow\Company\Product\output_log.txt</code>.</li>
+    <li><strong>Android</strong>: <code>adb logcat -s Unity</code> ile real-time log.</li>
+    <li><strong>iOS</strong>: Xcode → Devices &amp; Simulators → Open Console.</li>
+    <li><strong>WebGL</strong>: Tarayıcı Developer Tools → Console.</li>
+  </ul>
+  <p class="topic-text">
+    Build içinde Profiler bağlamak için: <em>Development Build</em> ve <em>Autoconnect Profiler</em> ☑. Unity Editor Profiler penceresi build'e Wifi/USB üzerinden bağlanıp gerçek zamanlı performans verisi gösterir.
+  </p>
+</section>
+
+<section class="topic-section" id="magaza-yayini">
+  <div class="topic-header">
+    <span class="topic-number">24.11</span>
+    <h2 class="topic-title">🏪 Mağaza Yayını — Steam, App Store, Google Play</h2>
+  </div>
+  <h3 class="topic-subtitle">Steam (PC)</h3>
+  <ul class="check-list">
+    <li>$100 Steam Direct ücreti (oyun başına, geri ödemeli).</li>
+    <li>Steamworks SDK ile achievements, leaderboards, cloud save entegrasyonu.</li>
+    <li>Build'ini Steamworks'e upload et, Store Page hazırla, Review süreci 1-7 gün.</li>
+    <li>Trailer + screenshot + Türkçe/İngilizce metinler hazırla.</li>
+  </ul>
+  <h3 class="topic-subtitle">Google Play (Android)</h3>
+  <ul class="check-list">
+    <li>$25 tek seferlik developer hesap ücreti.</li>
+    <li>App Bundle (.aab) yükle, Google Play Console'da listing oluştur.</li>
+    <li>Privacy policy URL'i şart (Notion'da basit bir sayfa yeter).</li>
+    <li>İçerik derecelendirmesi (IARC) anketi.</li>
+    <li>İlk sürüm review 1-7 gün.</li>
+  </ul>
+  <h3 class="topic-subtitle">App Store (iOS)</h3>
+  <ul class="check-list">
+    <li>$99/yıl Apple Developer Program.</li>
+    <li>Xcode → Archive → App Store Connect upload.</li>
+    <li>TestFlight ile beta test (max 10,000 tester).</li>
+    <li>Submit for Review — 1-3 gün, daha katı (UI guideline'lar).</li>
+  </ul>
+  <h3 class="topic-subtitle">itch.io (Bağımsız)</h3>
+  <ul class="check-list">
+    <li>Ücretsiz, açılan saatte yayınlanabilir.</li>
+    <li>WebGL, Windows, Mac, Linux ZIP olarak yükle.</li>
+    <li>Game jam, prototip, indie portföy için ideal.</li>
+    <li>"İstediğin kadar öde" seçeneği, demo + tam sürüm ayrı.</li>
+  </ul>
+</section>
+
+<section class="topic-section" id="build-optimize">
+  <div class="topic-header">
+    <span class="topic-number">24.12</span>
+    <h2 class="topic-title">📉 Build Boyutunu Küçültme</h2>
+  </div>
+  <ul class="check-list">
+    <li><strong>Texture Compression</strong>: PNG → ASTC (Android), BC7 (PC). 4 kat küçülme.</li>
+    <li><strong>Audio Compression</strong>: WAV → Vorbis, müzik için Streaming.</li>
+    <li><strong>Code Stripping</strong>: Player Settings → Managed Stripping Level = High.</li>
+    <li><strong>Resources/</strong> klasörünü temizle — buradaki her şey build'e girer.</li>
+    <li>Kullanılmayan paketleri Package Manager'dan kaldır.</li>
+    <li><strong>Mesh Compression</strong>: Asset Import → Mesh Compression = Medium.</li>
+    <li><strong>Build Report</strong> (Window → Analysis → Build Report) ile en büyük asset'leri bul.</li>
+    <li>Editor-only asset'leri <code>StreamingAssets/</code> dışında tut.</li>
+  </ul>
+  <div class="info-box">
+    <strong>📊 Hedef Boyutlar:</strong>
+    <ul>
+      <li>Web/Indie oyun: 50-150 MB</li>
+      <li>Mobile casual: 50-200 MB (Google Play 150 MB üstü ek dosya gerektirir)</li>
+      <li>Mobile RPG: 500 MB - 2 GB (Addressables ile başlangıç küçük)</li>
+      <li>PC indie: 500 MB - 4 GB</li>
+      <li>AAA: 30 GB+</li>
+    </ul>
+  </div>
+</section>
+
+<div class="mini-checkpoint">
+  <strong>📦 Bölüm Kontrol Noktası:</strong> Build Profiles ile platform yönetimi. IL2CPP yayın için, Mono geliştirme için. Android keystore'u koru. iOS Xcode mecbur. WebGL kısa oyunlar. Asset Bundles/Addressables runtime asset yönetimi. Mağazalar farklı kurallar; Apple en katı, itch.io en serbest. Boyut için stripping + texture/audio compression + Resources/ temizliği.
+</div>
+
+<div class="practice-section">
+  <h2>🎯 Pratik Projeler</h2>
+
+  <div class="project-card">
+    <h3>Proje 1: İlk Windows Build</h3>
+    <p><strong>Hedef:</strong> Mevcut bir prototipini Windows'a build et, arkadaşına gönder.</p>
+    <ol class="step-list">
+      <li>File → Build Profiles → Windows seç.</li>
+      <li>Sahnelerin sıralamasını kontrol et (MainMenu önce, Level01 sonra).</li>
+      <li>Player Settings → Product Name, Version, Default Icon ayarla.</li>
+      <li>Build → bir klasör seç → exe + Data klasörü oluşsun.</li>
+      <li>Klasörü ZIP'le, arkadaşına gönder, exe'yi açtırt.</li>
+      <li>Bonus: Inno Setup veya Squirrel ile yükleyici (.msi) hazırla.</li>
+    </ol>
+  </div>
+
+  <div class="project-card">
+    <h3>Proje 2: WebGL Build + itch.io Yayını</h3>
+    <p><strong>Hedef:</strong> Aynı projeyi WebGL'e build et, itch.io'ya ücretsiz yükle.</p>
+    <ol class="step-list">
+      <li>Unity Hub → WebGL Build Support modülü kur.</li>
+      <li>Build Profiles → WebGL → Player Settings → Resolution: 960x600.</li>
+      <li>Publishing → Compression Format: Brotli.</li>
+      <li>Build → bir klasör seç → index.html oluşsun.</li>
+      <li>Tüm klasörü ZIP'le (index.html en üstte).</li>
+      <li>itch.io'ya kayıt ol → "Upload new project" → ZIP yükle → "This file will be played in browser" ☑.</li>
+      <li>Embed boyutu 960x600 ayarla, açıklama + screenshot ekle.</li>
+      <li>Oyunu paylaşılabilir URL'den arkadaşlara gönder.</li>
+    </ol>
+  </div>
+
+  <div class="project-card">
+    <h3>Proje 3: Android APK + Telefonda Test</h3>
+    <p><strong>Hedef:</strong> Oyunu Android telefonuna kur, dokunmatik kontrolleri test et.</p>
+    <ol class="step-list">
+      <li>Unity Hub → Android Build Support + JDK + NDK kur.</li>
+      <li>Telefonda Developer Options → USB Debugging ☑.</li>
+      <li>Build Profiles → Android → Player Settings → Package Name (com.benim.test123).</li>
+      <li>Min API Level 24, Target API Level 34, Scripting Backend IL2CPP, ARM64 ☑.</li>
+      <li>Build And Run (telefon USB'de bağlıyken) → otomatik APK telefona kurulur.</li>
+      <li>Dokunmatik UI çalışıyor mu? Performans 30 FPS mi 60 FPS mi?</li>
+      <li>Profiler → USB üzerinden bağlan → CPU/GPU kullanımını izle.</li>
+    </ol>
+  </div>
+</div>
+
+<section class="quiz" id="bolum-quiz">
+  <header class="quiz-header">
+    <div class="quiz-header-icon"><i class="ti ti-help"></i></div>
+    <div class="quiz-header-text">
+      <h2>Bölüm Sonu Sınavı</h2>
+      <span>5 soru</span>
+    </div>
+  </header>
+
+  <article class="quiz-question" id="q24-1">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">01</span>
+      <h3 class="quiz-prompt-text">Unity 6 Build Profiles ne sağlar?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Aynı anda 3 platforma build</button>
+      <button class="quiz-option" data-correct="true">Her platform/varyant için ayrı kayıtlı profil, platform geçişi hızlı</button>
+      <button class="quiz-option" data-correct="false">Bulut build yetkilendirmesi</button>
+      <button class="quiz-option" data-correct="false">Otomatik mağaza yayını</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q24-2">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">02</span>
+      <h3 class="quiz-prompt-text">iOS build'i Mac dışı bir platformda yapılabilir mi?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Evet, Unity Linux'tan da yapar</button>
+      <button class="quiz-option" data-correct="true">Hayır, Xcode sadece macOS'ta çalışır</button>
+      <button class="quiz-option" data-correct="false">Sadece Windows 11 Pro ile</button>
+      <button class="quiz-option" data-correct="false">Sadece Unity Cloud Build ile</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q24-3">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">03</span>
+      <h3 class="quiz-prompt-text">Yayın için hangi scripting backend önerilir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Mono — her zaman</button>
+      <button class="quiz-option" data-correct="true">IL2CPP — performans + güvenlik + tüm platform desteği</button>
+      <button class="quiz-option" data-correct="false">Custom .NET 8</button>
+      <button class="quiz-option" data-correct="false">JavaScript backend</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q24-4">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">04</span>
+      <h3 class="quiz-prompt-text">Android Keystore'u kaybetmek ne anlama gelir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Hiçbir şey, otomatik yenilenir</button>
+      <button class="quiz-option" data-correct="true">Google Play'de güncelleme yapılamaz, yeni uygulama olarak baştan yayınlanmalı</button>
+      <button class="quiz-option" data-correct="false">Telefonda silinir</button>
+      <button class="quiz-option" data-correct="false">Google bir gün içinde yenisini gönderir</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q24-5">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">05</span>
+      <h3 class="quiz-prompt-text">WebGL build için en uygun senaryo?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">200 GB açık dünya RPG</button>
+      <button class="quiz-option" data-correct="true">Browser jam, kısa portföy oyunu, hafif prototip</button>
+      <button class="quiz-option" data-correct="false">Real-time multiplayer FPS</button>
+      <button class="quiz-option" data-correct="false">VR oyunu</button>
+    </div>
+  </article>
+</section>
+
+<section class="complete-section">
+      <h3 class="complete-title">🎉 Bölüm 24 Tamamlandı!</h3>
+      <p class="complete-msg">Artık oyununu Windows, macOS, Linux, WebGL, Android ve iOS'a build edebilirsin. Mağaza süreçlerini, keystore yönetimini, Build Profiles ile iş akışını biliyorsun. Bir sonraki bölümde <strong>C# İleri</strong> konularına dalacağız: coroutine derinlikleri, event/delegate sistemleri, ScriptableObject mimarisi, async/await, LINQ.</p>
+      <button class="complete-btn" data-section="s24">
+        <i class="ti ti-circle-check"></i>
+        <span>Bu Bölümü Tamamladım</span>
+      </button>
+      <p class="complete-note">İlerlemen otomatik tarayıcına kaydedilir.</p>
+    </section>
+    <!-- Sayfa Gezinme -->
+    <nav class="page-nav" aria-label="Bölüm gezinme">
+      <a href="23-save-menu.html" class="page-nav-link prev">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-left"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Önceki Bölüm</div>
+          <div class="page-nav-title">23. Kayıt & Menü</div>
+        </div>
+      </a>
+      <a href="25-csharp-ileri.html" class="page-nav-link next">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-right"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Sonraki Bölüm</div>
+          <div class="page-nav-title">25. İleri C#</div>
+        </div>
+      </a>
+    </nav>
+
+  </div>
+</main>
+<script src="../js/progress.js?v=11"></script>
+<script src="../js/quiz.js?v=11"></script>
+<script src="../js/toc.js?v=11"></script>
+<script src="../js/main.js?v=11"></script>
+</body>
+</html>

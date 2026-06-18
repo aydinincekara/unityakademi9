@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UI Sistemi — UnityAkademi</title>
+  <meta name="description" content="Canvas, RectTransform, Button, Text, Slider, HUD, Pause menü ve UI Toolkit — Bölüm 09.">
+  <meta name="theme-color" content="#fa7d19">
+  <link rel="manifest" href="../manifest.json">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="UI Sistemi">
+  <meta property="og:description" content="Canvas, RectTransform, Button, Text, Slider, HUD, Pause menü ve UI Toolkit — Bölüm 09.">
+  <meta property="og:image" content="../og-image.svg">
+  <meta property="og:site_name" content="UnityAkademi">
+  <meta property="og:locale" content="tr_TR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="UI Sistemi">
+  <meta name="twitter:description" content="Canvas, RectTransform, Button, Text, Slider, HUD, Pause menü ve UI Toolkit — Bölüm 09.">
+  <meta name="twitter:image" content="../og-image.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="../css/variables.css?v=11">
+  <link rel="stylesheet" href="../css/reset.css?v=11">
+  <link rel="stylesheet" href="../css/layout.css?v=11">
+  <link rel="stylesheet" href="../css/components.css?v=11">
+  <link rel="stylesheet" href="../css/content.css?v=11">
+  <link rel="stylesheet" href="../css/visuals.css?v=11">
+  <link rel="stylesheet" href="../css/extras.css?v=11">
+  <link rel="stylesheet" href="../css/responsive.css?v=11">
+</head>
+<body>
+<button class="nav-hamburger" id="navHamburger" aria-label="Menüyü aç">
+  <i class="ti ti-menu-2"></i>
+</button>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a href="../index.html" class="sidebar-brand">
+      <div class="sidebar-brand-icon"><i class="ti ti-home-2"></i></div>
+      <div class="sidebar-brand-text">
+        <span class="sidebar-brand-name">Ana Sayfa</span>
+        <span class="sidebar-brand-sub">UnityAkademi</span>
+      </div>
+    </a>
+    <button class="mobile-toggle" aria-label="Menü"><i class="ti ti-x"></i></button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-group">
+      <div class="nav-group-title">Temeller</div>
+      <a href="01-kurulum.html" class="nav-link" data-section="s1"><i class="ti ti-download"></i><span class="nav-link-text">Kurulum & İlk Bakış</span><span class="nav-link-num">01</span></a>
+      <a href="02-arayuz.html" class="nav-link" data-section="s2"><i class="ti ti-layout-board"></i><span class="nav-link-text">Editor Arayüzü</span><span class="nav-link-num">02</span></a>
+      <a href="03-gameobject-component.html" class="nav-link" data-section="s3"><i class="ti ti-cube"></i><span class="nav-link-text">GameObject & Component</span><span class="nav-link-num">03</span></a>
+      <a href="04-csharp-temelleri.html" class="nav-link" data-section="s4"><i class="ti ti-code"></i><span class="nav-link-text">C# Temelleri</span><span class="nav-link-num">04</span></a>
+      <a href="05-monobehaviour-lifecycle.html" class="nav-link" data-section="s5"><i class="ti ti-refresh"></i><span class="nav-link-text">MonoBehaviour Lifecycle</span><span class="nav-link-num">05</span></a>
+      <a href="06-transform-vector.html" class="nav-link" data-section="s6"><i class="ti ti-arrows-move"></i><span class="nav-link-text">Transform & Vector3</span><span class="nav-link-num">06</span></a>
+      <a href="07-input.html" class="nav-link" data-section="s7"><i class="ti ti-keyboard"></i><span class="nav-link-text">Input Sistemi</span><span class="nav-link-num">07</span></a>
+      <a href="08-physics.html" class="nav-link" data-section="s8"><i class="ti ti-atom"></i><span class="nav-link-text">Physics</span><span class="nav-link-num">08</span></a>
+      <a href="09-ui.html" class="nav-link active" data-section="s9"><i class="ti ti-layout-grid"></i><span class="nav-link-text">UI Sistemi</span><span class="nav-link-num">09</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Görsel & Asset</div>
+      <a href="10-material-shader.html" class="nav-link" data-section="s10"><i class="ti ti-palette"></i><span class="nav-link-text">Material & Shader</span><span class="nav-link-num">10</span></a>
+      <a href="11-asset-import.html" class="nav-link" data-section="s11"><i class="ti ti-folder"></i><span class="nav-link-text">Asset Import</span><span class="nav-link-num">11</span></a>
+      <a href="12-animation.html" class="nav-link" data-section="s12"><i class="ti ti-bounce-right"></i><span class="nav-link-text">Animation</span><span class="nav-link-num">12</span></a>
+      <a href="13-particle-vfx.html" class="nav-link" data-section="s13"><i class="ti ti-sparkles"></i><span class="nav-link-text">Particle & VFX Graph</span><span class="nav-link-num">13</span></a>
+      <a href="14-lighting.html" class="nav-link" data-section="s14"><i class="ti ti-bulb"></i><span class="nav-link-text">Lighting</span><span class="nav-link-num">14</span></a>
+      <a href="15-audio.html" class="nav-link" data-section="s15"><i class="ti ti-volume"></i><span class="nav-link-text">Audio</span><span class="nav-link-num">15</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Sistemler</div>
+      <a href="16-probuilder.html" class="nav-link" data-section="s16"><i class="ti ti-3d-cube-sphere"></i><span class="nav-link-text">ProBuilder</span><span class="nav-link-num">16</span></a>
+      <a href="17-terrain.html" class="nav-link" data-section="s17"><i class="ti ti-mountain"></i><span class="nav-link-text">Terrain</span><span class="nav-link-num">17</span></a>
+      <a href="18-cinemachine.html" class="nav-link" data-section="s18"><i class="ti ti-camera"></i><span class="nav-link-text">Cinemachine</span><span class="nav-link-num">18</span></a>
+      <a href="19-timeline.html" class="nav-link" data-section="s19"><i class="ti ti-timeline"></i><span class="nav-link-text">Timeline</span><span class="nav-link-num">19</span></a>
+      <a href="20-navmesh.html" class="nav-link" data-section="s20"><i class="ti ti-route"></i><span class="nav-link-text">NavMesh & AI</span><span class="nav-link-num">20</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">İleri Seviye</div>
+      <a href="21-urp-hdrp.html" class="nav-link" data-section="s21"><i class="ti ti-bolt"></i><span class="nav-link-text">URP, HDRP & Unity 6</span><span class="nav-link-num">21</span></a>
+      <a href="22-new-input.html" class="nav-link" data-section="s22"><i class="ti ti-device-gamepad-2"></i><span class="nav-link-text">New Input System</span><span class="nav-link-num">22</span></a>
+      <a href="23-save-menu.html" class="nav-link" data-section="s23"><i class="ti ti-device-floppy"></i><span class="nav-link-text">Save & Menü</span><span class="nav-link-num">23</span></a>
+      <a href="24-build.html" class="nav-link" data-section="s24"><i class="ti ti-package-export"></i><span class="nav-link-text">Build & Yayınlama</span><span class="nav-link-num">24</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Profesyonel</div>
+      <a href="25-csharp-ileri.html" class="nav-link" data-section="s25"><i class="ti ti-brackets-contain"></i><span class="nav-link-text">C# İleri</span><span class="nav-link-num">25</span></a>
+      <a href="26-performance.html" class="nav-link" data-section="s26"><i class="ti ti-gauge"></i><span class="nav-link-text">Performance</span><span class="nav-link-num">26</span></a>
+      <a href="27-yol-haritasi.html" class="nav-link" data-section="s27"><i class="ti ti-map-2"></i><span class="nav-link-text">Yol Haritası</span><span class="nav-link-num">27</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Pratik</div>
+      <a href="projects.html" class="nav-link nav-link-extra" data-section="x-projects"><i class="ti ti-rocket"></i><span class="nav-link-text">Projeler</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Ek Kaynaklar</div>
+      <a href="sozluk.html" class="nav-link nav-link-extra" data-section="x-sozluk"><i class="ti ti-book-2"></i><span class="nav-link-text">Sözlük</span></a>
+      <a href="cheatsheet.html" class="nav-link nav-link-extra" data-section="x-cheatsheet"><i class="ti ti-list-details"></i><span class="nav-link-text">Cheat Sheet</span></a>
+      <a href="sss.html" class="nav-link nav-link-extra" data-section="x-sss"><i class="ti ti-help-circle"></i><span class="nav-link-text">SSS</span></a>
+      <a href="arama.html" class="nav-link nav-link-extra" data-section="x-arama"><i class="ti ti-search"></i><span class="nav-link-text">Arama</span></a>
+      <a href="sertifika.html" class="nav-link nav-link-extra" data-section="x-sertifika"><i class="ti ti-certificate"></i><span class="nav-link-text">Sertifika</span></a>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="kaynaklar.html" class="sidebar-btn"><i class="ti ti-books"></i><span>Kaynaklar</span></a>
+    <a href="iletisim.html" class="sidebar-btn"><i class="ti ti-mail"></i><span>İletişim</span></a>
+  </div>
+</aside>
+<main class="main">
+  <div class="main-content">
+<nav class="breadcrumb" aria-label="Sayfa konumu">
+      <a href="../index.html"><i class="ti ti-home"></i><span>Ana Sayfa</span></a>
+      <i class="ti ti-chevron-right"></i><span><i class="ti ti-school" style="font-size: 13px; opacity: 0.7; margin-right: 4px;"></i>Mekanikler</span>
+      <i class="ti ti-chevron-right"></i><span style="color: var(--primary-light);">UI Sistemi</span>
+    </nav>
+
+<header class="page-header">
+  <div class="page-badge">Bölüm 09 · Arayüz</div>
+  <h1 class="page-title">UI Sistemi — Canvas, Buton, Menü, HUD</h1>
+  <p class="page-desc">
+    Bir oyun "oyun" olmadan önce, oyuncuya bir <strong>ana menü</strong>, bir <strong>can barı</strong>,
+    bir <strong>pause ekranı</strong> sunmalı. Unity'de UI'ı yapmanın birden fazla yolu var: eski
+    <strong>uGUI / Canvas</strong> sistemi (hâlâ en yaygın) ve modern <strong>UI Toolkit</strong>.
+    Bu bölümde ikisini de tanıyacak, hangisini ne zaman kullanacağını öğreneceksin.
+  </p>
+  <div class="page-meta">
+    <span class="meta-item">⏱ 40 dakika</span>
+    <span class="meta-item">🖼 Canvas + UI Toolkit</span>
+    <span class="meta-item">🎯 TextMeshPro</span>
+  </div>
+</header>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">9.1</span>
+    <h2 class="topic-title">Unity'de 3 UI Sistemi — Bir Tarihçe</h2>
+  </div>
+  <p>
+    Unity'nin UI tarihi biraz karışık. Yıllar içinde üç farklı sistem var olmuş; üçü de hâlâ
+    çalışıyor. Hangisi ne zaman kullanılır?
+  </p>
+
+  <div class="step-list">
+    <div class="step-note">
+      <strong>IMGUI (Immediate Mode GUI)</strong> — Unity'nin en eski UI sistemi (2005). Sadece
+      script'ten çağrılır: <code>OnGUI() { GUI.Button(...) }</code>. Editör eklentileri için hâlâ
+      kullanılır, ama <strong>oyun içi UI için artık kullanılmaz</strong>. Çok yavaş, hantal, ölü.
+    </div>
+    <div class="step-note">
+      <strong>uGUI (Unity GUI / Canvas)</strong> — 2014'te gelen ikinci nesil. <strong>Canvas</strong>
+      ile çalışır, GameObject tabanlı, Inspector'da kurarsın. Hâlâ <strong>en yaygın</strong>
+      yöntem — internetteki tutorial'ların %90'ı bunu anlatır. Bu bölümün büyük kısmı buna ayrılmış.
+    </div>
+    <div class="step-note">
+      <strong>UI Toolkit</strong> <span class="u-ver-badge u6">U6</span> — Unity'nin yeni nesil UI
+      sistemi. UXML (HTML benzeri) ve USS (CSS benzeri) ile arayüz tanımlarsın. Daha performanslı,
+      data binding desteği daha iyi, ama henüz tüm uGUI özellikleri yok. Unity 6 ile öne çıkıyor.
+    </div>
+  </div>
+
+  <div class="info-box">
+    <h4>💡 "Yeni proje açtım, hangisini seçeyim?"</h4>
+    <p>
+      2026 itibarıyla pratik tavsiye: <strong>uGUI'yi öğren</strong>. Çünkü:
+    </p>
+    <ul>
+      <li>Tüm asset store paketleri uGUI bekliyor</li>
+      <li>Tutorial deryası uGUI üzerine</li>
+      <li>UI Toolkit hâlâ runtime'da bazı eksikleri var (örneğin world-space UI sınırlı)</li>
+      <li>uGUI bilen biri iş başvurularında daha güçlü</li>
+    </ul>
+    <p>
+      Ama editör eklentisi yazıyorsan veya <strong>data-driven</strong> bir uygulama yapıyorsan
+      (envanter, settings paneli) UI Toolkit dene — bu işte uGUI'den daha rahat.
+    </p>
+  </div>
+</section>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">9.2</span>
+    <h2 class="topic-title">Canvas — UI'ın Tuvali</h2>
+  </div>
+  <p>
+    Her uGUI elemanı (buton, yazı, görsel) bir <strong>Canvas</strong>'ın altında olmak zorundadır.
+    Canvas, UI'ın yaşadığı tuvaldir; nasıl çizileceğini, hangi koordinat sisteminde olacağını
+    belirler.
+  </p>
+
+  <h3>İlk Canvas'ı oluşturmak</h3>
+  <ol class="step-list">
+    <li>Hierarchy'de sağ tık → <strong>UI → Canvas</strong>.</li>
+    <li>Sahnede bir Canvas + bir EventSystem (otomatik) oluşur.</li>
+    <li>Scene view'da Canvas'ı seçtiğinde devasa bir dikdörtgen görürsün — bu UI'ın çizildiği yüzey.</li>
+  </ol>
+
+  <div class="info-box">
+    <h4>💡 EventSystem nedir, niye otomatik geldi?</h4>
+    <p>
+      <code>EventSystem</code>, UI üzerindeki tıklama, hover, sürükleme gibi olayları yöneten
+      koordinatördür. Canvas oluşturduğunda Unity bunu otomatik ekler. Sahnede <strong>tek bir tane</strong>
+      olmalı — birden fazla varsa ikincisini sil.
+    </p>
+  </div>
+
+  <h3>Canvas'ın 3 Render Mode'u</h3>
+
+  <div class="u-compare">
+    <div class="u-compare-side lts">
+      <div class="u-compare-head">Screen Space - Overlay</div>
+      <div class="u-compare-body">
+        <ul>
+          <li>UI ekrana <strong>doğrudan</strong> çizilir, kameradan bağımsız</li>
+          <li>Sahne içeriğinin <strong>üstünde</strong> olur</li>
+          <li>Pause menüsü, HUD, ana menü için</li>
+          <li><strong>Varsayılan</strong> ve en sık kullanılan mod</li>
+        </ul>
+      </div>
+    </div>
+    <div class="u-compare-side u6">
+      <div class="u-compare-head">Screen Space - Camera</div>
+      <div class="u-compare-body">
+        <ul>
+          <li>UI bir kameranın <strong>belli mesafesinde</strong> dizilir</li>
+          <li>Kamera efektleri (blur, distortion) UI'ı da etkiler</li>
+          <li>3D objeler UI'ın "önünde" veya "arkasında" olabilir</li>
+          <li>Inspector'a <strong>Render Camera</strong> alanı eklenir — bir kamera ata</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h4>Screen Space - World Space</h4>
+  <p>
+    Üçüncü mod: Canvas, sahnenin içinde 3D bir obje gibi yaşar. Karakterin başının üstündeki isim
+    etiketi, monitör ekranında gösterilen UI, VR'da etrafta uçuşan butonlar için kullanılır.
+    Kanvas'ın boyutu metre cinsindendir (çok büyük olur — Scale değerini 0.005 gibi düşürmen gerekir).
+  </p>
+
+  <div class="warning-box">
+    <h4>⚠ World Space'te yazılar çok büyük!</h4>
+    <p>
+      World Space Canvas oluşturduğunda 1 birim = 1 metre olur ve varsayılan boyut 100×100'dür —
+      yani 100 metrelik bir tabela. Hemen <strong>Scale</strong>'i 0.005 ya da 0.01'e indir,
+      Width/Height'ı normal sayılara (mesela 800×400) bırak.
+    </p>
+  </div>
+</section>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">9.3</span>
+    <h2 class="topic-title">RectTransform — UI'ın Transform'u</h2>
+  </div>
+  <p>
+    Bir Canvas'ın çocuğu olan her GameObject'in Transform'u <strong>RectTransform</strong> ile
+    değişir. Bu, normal Transform'tan farklı: pozisyon, döndürme ve ölçek dışında <strong>Anchor</strong>
+    ve <strong>Pivot</strong> kavramlarını eklemiştir.
+  </p>
+
+  <h3>Anchor — "ben ekranın neresine yapışayım?"</h3>
+  <p>
+    Bir UI elemanı için en kritik kavram. Telefonun farklı ekran boyutlarında butonun yerini
+    korumasını istiyorsan doğru anchor'lamalısın.
+  </p>
+
+  <div class="info-box">
+    <h4>💡 Anchor mantığı</h4>
+    <p>
+      Anchor, bir UI elemanının <strong>ebeveynine göre referans noktasıdır</strong>. Sahne boyutu
+      değiştiğinde eleman bu noktaya göre konumlanır.
+    </p>
+    <ul>
+      <li><strong>Top-Left</strong> — Sol üste yapış. Ekran büyürse eleman sol üstte kalır.</li>
+      <li><strong>Center</strong> — Ortaya yapış. Ekran büyüse de küçülse de ortada kalır.</li>
+      <li><strong>Bottom-Right</strong> — Sağ alta. HUD score'u için klasik.</li>
+      <li><strong>Stretch (her dört köşe)</strong> — Eleman tüm alanı kaplasın, ekran ile büyüsün/küçülsün.</li>
+    </ul>
+  </div>
+
+  <h3>Anchor seçmek</h3>
+  <ol class="step-list">
+    <li>UI elemanını seç.</li>
+    <li>Inspector'da RectTransform'un sol üstündeki <strong>Anchor Preset</strong> butonuna tıkla.</li>
+    <li>9 preset bir grid halinde açılır (top-left, top, top-right, left, center, right, bottom-left, bottom, bottom-right).</li>
+    <li>Sağda 3 ek satır var: <strong>stretch</strong> presetleri.</li>
+    <li>Tıklarken <strong>Shift</strong> basılı tutarsan pivot da değişir, <strong>Alt</strong>
+    basılı tutarsan pozisyon da preset'in noktasına atanır.</li>
+  </ol>
+
+  <h3>Pivot — "ben kendi içimde nereden tutuluyorum?"</h3>
+  <p>
+    Anchor "ebeveyne göre nereyim", Pivot ise "kendi kutum içinde nereden tutuluyorum". Pivot 0,0
+    sol alt köşesi, 1,1 sağ üst köşesi, 0.5,0.5 ise tam ortası demektir.
+  </p>
+  <p>
+    Pivot, rotasyon ve scale'in <strong>etrafında döndüğü</strong> noktadır. Örnek: bir can barı
+    sol kenardan azalsın istiyorsan Pivot'u (0, 0.5) yap.
+  </p>
+
+  <h3>Width, Height, Posizyon</h3>
+  <ul>
+    <li><strong>Width, Height</strong> — Anchor'lar tek noktaysa bu alanlar gösterilir.</li>
+    <li><strong>Left, Right, Top, Bottom</strong> — Anchor'lar stretch ise bunlar görünür: kenarlardan
+    boşluk verir.</li>
+    <li><strong>Pos X, Y</strong> — Anchor'a göre ofset.</li>
+  </ul>
+</section>
+
+<div class="mini-checkpoint">
+  <h4>⚡ Mini Checkpoint</h4>
+  <p>Şu ana kadar öğrendiklerin:</p>
+  <ul>
+    <li>Unity'de 3 UI sistemi var: <strong>IMGUI</strong> (eski, editörde), <strong>uGUI</strong>
+    (yaygın), <strong>UI Toolkit</strong> (yeni).</li>
+    <li>Tüm uGUI elemanları bir <strong>Canvas</strong>'ın altında olur.</li>
+    <li>Canvas'ın 3 modu: <strong>Screen Space-Overlay</strong>, <strong>Screen Space-Camera</strong>,
+    <strong>World Space</strong>.</li>
+    <li>UI elemanları normal Transform yerine <strong>RectTransform</strong> kullanır.</li>
+    <li><strong>Anchor</strong> = ebeveyne göre referans noktası. <strong>Pivot</strong> = kendi
+    içindeki tutma noktası.</li>
+  </ul>
+</div>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">9.4</span>
+    <h2 class="topic-title">UI Elementleri — Tek Tek</h2>
+  </div>
+  <p>
+    uGUI'de hazır UI bileşenleri var. Hierarchy → <strong>UI</strong> menüsünden ekleyebilirsin.
+  </p>
+
+  <h3>Text — TextMeshPro her zaman</h3>
+  <p>
+    Unity 2017'den beri <strong>TextMeshPro (TMP)</strong> dahili. Eski <code>Text</code> bileşeni
+    hâlâ var ama <strong>kullanma</strong>. TMP daha keskin yazı, daha çok özellik, daha iyi
+    performans verir.
+  </p>
+
+  <ol class="step-list">
+    <li>Hierarchy → sağ tık → <strong>UI → Text - TextMeshPro</strong>.</li>
+    <li>İlk eklediğinde Unity "TMP Essentials'ı import et" diye sorar — <strong>Import</strong>'a tıkla.</li>
+    <li>Inspector'da <strong>TextMeshPro - Text (UI)</strong> component'i göreceksin.</li>
+    <li>Önemli alanlar:
+      <ul>
+        <li><code>Text Input</code> — yazının kendisi</li>
+        <li><code>Font Asset</code> — yazı tipi (LiberationSans varsayılan)</li>
+        <li><code>Font Style</code> — Bold/Italic/Underline</li>
+        <li><code>Font Size</code> — boyut (px)</li>
+        <li><code>Color</code> + <code>Vertex Color</code> gradyan</li>
+        <li><code>Alignment</code> — Sol/orta/sağ + üst/orta/alt</li>
+      </ul>
+    </li>
+  </ol>
+
+  <h3>Image — Görseller</h3>
+  <p>
+    UI'a görsel koymak için <strong>Image</strong> component'i. Tek bir <code>Sprite</code> referansı
+    alır.
+  </p>
+
+  <ol class="step-list">
+    <li>Önce bir görsel asset hazırla: PNG'yi Project'e sürükle.</li>
+    <li>Görseli seç, Inspector'da <strong>Texture Type</strong>'ı <code>Sprite (2D and UI)</code>
+    yap, Apply'a bas.</li>
+    <li>Hierarchy → UI → Image yarat.</li>
+    <li>Inspector'da <strong>Source Image</strong> slotuna sprite'ını sürükle.</li>
+  </ol>
+
+  <h4>Image Type</h4>
+  <ul>
+    <li><strong>Simple</strong> — Aynen göster.</li>
+    <li><strong>Sliced</strong> — 9-slice. Sprite'ı 9 parçaya böler (4 köşe sabit, 4 kenar uzar, orta esner). Buton arka planları için.</li>
+    <li><strong>Tiled</strong> — Sprite'ı kafes gibi yan yana tekrarla.</li>
+    <li><strong>Filled</strong> — Sprite'ın bir kısmını göster. Can barı, mana barı için ideal.</li>
+  </ul>
+
+  <h3>Button — Tıklanabilir</h3>
+  <p>
+    Hierarchy → UI → Button - TextMeshPro. Otomatik olarak bir Image (arka plan) + alt nesnesi
+    Text (label) gelir.
+  </p>
+
+  <p>
+    Button bileşeninin önemli alanları:
+  </p>
+  <ul>
+    <li><strong>Interactable</strong> — Kapalıysa buton tıklanamaz (gri görünür).</li>
+    <li><strong>Transition</strong> — Normal/Highlighted/Pressed/Disabled durumlarında ne yapacağı:
+    Color Tint, Sprite Swap, Animation seçenekleri.</li>
+    <li><strong>Navigation</strong> — Klavye/gamepad ile butonlar arası geçiş.</li>
+    <li><strong>OnClick()</strong> — Tıklandığında çağrılacak metod listesi.</li>
+  </ul>
+
+  <h3>Button'a kod bağlamak — 2 yol</h3>
+
+  <p><strong>Yol 1: Inspector'dan</strong></p>
+  <ol class="step-list">
+    <li>OnClick() listesinin sağ altındaki + butonuna tıkla.</li>
+    <li>Açılan slot'a bir GameObject sürükle.</li>
+    <li>Sağdaki dropdown'dan o GameObject üzerindeki bir script'in public bir metodunu seç.</li>
+    <li>Butona tıklandığında o metod çağrılır.</li>
+  </ol>
+
+  <p><strong>Yol 2: Kodla</strong></p>
+
+  <div class="cs-block">
+    <div class="cs-block-header"><span class="cs-block-filename">MenuController.cs</span></div>
+    <pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+<span class="kw">using</span> <span class="type">UnityEngine.UI</span>;
+
+<span class="kw">public class</span> <span class="type">MenuController</span> : <span class="type">MonoBehaviour</span>
+{
+    <span class="attr">[SerializeField]</span> <span class="kw">private</span> <span class="type">Button</span> playButton;
+    <span class="attr">[SerializeField]</span> <span class="kw">private</span> <span class="type">Button</span> quitButton;
+
+    <span class="kw">void</span> <span class="mb">Start</span>()
+    {
+        playButton.onClick.<span class="fn">AddListener</span>(<span class="fn">OnPlayClicked</span>);
+        quitButton.onClick.<span class="fn">AddListener</span>(<span class="fn">OnQuitClicked</span>);
+    }
+
+    <span class="kw">void</span> <span class="fn">OnPlayClicked</span>()
+    {
+        <span class="type">Debug</span>.<span class="fn">Log</span>(<span class="str">"Play tıklandı"</span>);
+        <span class="com">// SceneManager.LoadScene("GameScene");</span>
+    }
+
+    <span class="kw">void</span> <span class="fn">OnQuitClicked</span>()
+    {
+        <span class="type">Application</span>.<span class="fn">Quit</span>();
+    }
+
+    <span class="kw">void</span> <span class="mb">OnDestroy</span>()
+    {
+        <span class="com">// Memory leak'i önle</span>
+        playButton.onClick.<span class="fn">RemoveListener</span>(<span class="fn">OnPlayClicked</span>);
+        quitButton.onClick.<span class="fn">RemoveListener</span>(<span class="fn">OnQuitClicked</span>);
+    }
+}</code></pre>
+  </div>
+
+  <h3>Slider — Kaydırma çubuğu</h3>
+  <p>
+    Hierarchy → UI → Slider. Bir Background (Image) + Fill Area + Handle alt yapısıyla gelir.
+  </p>
+  <ul>
+    <li><strong>Min Value, Max Value</strong> — Aralık (0-1 veya 0-100 gibi)</li>
+    <li><strong>Whole Numbers</strong> — Sadece tam sayı değerleri kabul eder</li>
+    <li><strong>Value</strong> — Şu anki değer</li>
+    <li><strong>Direction</strong> — Soldan sağa / sağdan sola / yukarıdan aşağıya</li>
+    <li><strong>OnValueChanged</strong> — Değer değiştiğinde çağrılan event (float parametreli)</li>
+  </ul>
+
+  <h4>Ses ayarı örneği</h4>
+
+  <div class="cs-block">
+    <div class="cs-block-header"><span class="cs-block-filename">VolumeSlider.cs</span></div>
+    <pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+<span class="kw">using</span> <span class="type">UnityEngine.UI</span>;
+
+<span class="kw">public class</span> <span class="type">VolumeSlider</span> : <span class="type">MonoBehaviour</span>
+{
+    <span class="attr">[SerializeField]</span> <span class="kw">private</span> <span class="type">Slider</span> slider;
+
+    <span class="kw">void</span> <span class="mb">Start</span>()
+    {
+        slider.value = <span class="type">AudioListener</span>.volume;
+        slider.onValueChanged.<span class="fn">AddListener</span>(<span class="fn">OnVolumeChanged</span>);
+    }
+
+    <span class="kw">void</span> <span class="fn">OnVolumeChanged</span>(<span class="kw">float</span> value)
+    {
+        <span class="type">AudioListener</span>.volume = value;
+    }
+}</code></pre>
+  </div>
+
+  <h3>Toggle, Dropdown, InputField, ScrollRect</h3>
+  <p>
+    Diğer yaygın bileşenler — hepsi UI → ... menüsünde:
+  </p>
+  <ul>
+    <li><strong>Toggle</strong> — Checkbox. <code>onValueChanged</code> bool ile çağrılır.</li>
+    <li><strong>Dropdown - TextMeshPro</strong> — Açılır liste. <code>options</code> listesine
+    string'ler eklersin.</li>
+    <li><strong>Input Field - TextMeshPro</strong> — Kullanıcının yazı girdiği alan.
+    <code>onEndEdit</code> kullanıcı Enter'a bastığında çağrılır.</li>
+    <li><strong>Scroll View</strong> — Kaydırılabilir liste. İçerisinde <code>Content</code> diye
+    bir RectTransform var; oraya item'lar koyarsın.</li>
+  </ul>
+</section>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">9.5</span>
+    <h2 class="topic-title">Canvas Scaler — Farklı Ekran Boyutları</h2>
+  </div>
+  <p>
+    Telefonda yaptığın oyun bilgisayarda da çalışsın istiyor musun? Veya 1080p'de hazırladığın UI
+    4K monitörde de doğru görünsün mü? Cevap: <strong>Canvas Scaler</strong>.
+  </p>
+
+  <p>
+    Bir Canvas oluşturduğunda altında otomatik olarak <strong>Canvas Scaler</strong> component'i
+    gelir. Buradaki <strong>UI Scale Mode</strong> alanı kritik.
+  </p>
+
+  <div class="step-list">
+    <div class="step-note">
+      <strong>Constant Pixel Size</strong> — UI hep aynı piksel boyutunda kalır. Telefonda da PC'de
+      de buton 200px. Ekran küçükse butonlar kaplar, büyükse minicik kalır. <strong>Önerilmez.</strong>
+    </div>
+    <div class="step-note">
+      <strong>Scale With Screen Size</strong> — UI ekran boyutuna göre büyür/küçülür. <strong>En
+      yaygın seçim</strong>.
+    </div>
+    <div class="step-note">
+      <strong>Constant Physical Size</strong> — UI hep aynı fiziksel boyutta (mm/inç). Çok yaygın değil.
+    </div>
+  </div>
+
+  <h3>Scale With Screen Size kurulumu</h3>
+  <ol class="step-list">
+    <li><strong>Reference Resolution</strong>: UI'ını hangi çözünürlük için tasarlıyorsun? 1920×1080 yaygın.</li>
+    <li><strong>Screen Match Mode</strong>:
+      <ul>
+        <li><code>Match Width Or Height</code> — En yaygın. Bir slider ile width/height arası seçim.</li>
+        <li><code>Expand</code> — UI küçülmez, kenarlardan büyür.</li>
+        <li><code>Shrink</code> — UI büyümez, kenarlardan küçülür.</li>
+      </ul>
+    </li>
+    <li><strong>Match</strong>: 0=Width'e göre, 1=Height'a göre, 0.5=ikisinin ortalaması.</li>
+  </ol>
+
+  <div class="info-box">
+    <h4>💡 Mobil oyun? Match=0.5 başla</h4>
+    <p>
+      Mobilde portrait (dikey) ve landscape (yatay) modlarına farklı reaksiyon vermesi gerekir. 0.5
+      ile başla, sonra test et: bazı UI'lar kayboluyorsa veya kenarlardan çıkıyorsa Match'i 0 veya
+      1'e doğru kaydır.
+    </p>
+  </div>
+</section>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">9.6</span>
+    <h2 class="topic-title">Layout Components — Otomatik Diziliş</h2>
+  </div>
+  <p>
+    UI elemanlarını manuel pozisyonlamak yorucu. Bir inventory yapıyorsan ve item sayısı değişebiliyorsa
+    her seferinde tek tek pozisyonlamak yerine <strong>Layout</strong> component'leri kullanırsın.
+  </p>
+
+  <h3>Horizontal Layout Group</h3>
+  <p>
+    Çocuk UI elemanlarını yan yana sıralar. Tipik kullanım: alt menü butonları, scroll bar item'ları.
+  </p>
+  <ul>
+    <li><strong>Padding</strong> — İç boşluk (Left, Right, Top, Bottom)</li>
+    <li><strong>Spacing</strong> — Çocuklar arası boşluk</li>
+    <li><strong>Child Alignment</strong> — Çocuklar nereye hizalansın</li>
+    <li><strong>Control Child Size</strong> — Çocukların boyutunu Layout mu yönetsin?</li>
+    <li><strong>Force Expand</strong> — Çocukları kaynağa göre eşit pay et</li>
+  </ul>
+
+  <h3>Vertical Layout Group</h3>
+  <p>Aynı mantık, alt alta sıralar. Ana menü butonları için klasik.</p>
+
+  <h3>Grid Layout Group</h3>
+  <p>
+    Cell Size verirsin, çocukları kafes düzeninde dizer. <strong>Inventory için en uygun</strong>:
+    her item slotu eşit boyutta, 6x6 grid gibi.
+  </p>
+  <ul>
+    <li><strong>Cell Size</strong> — Her hücrenin boyutu</li>
+    <li><strong>Constraint</strong> — Fixed Column Count (sütun sayısı sabit) veya Fixed Row Count</li>
+  </ul>
+
+  <h3>Content Size Fitter</h3>
+  <p>
+    Layout'la birlikte kullanılır. UI elemanının boyutunu içeriğine göre otomatik ayarlar. Örnek:
+    metin uzadıkça arka plan kutusunun da uzaması.
+  </p>
+
+  <div class="cs-block">
+    <div class="cs-block-header"><span class="cs-block-filename">InventoryGrid yapısı</span></div>
+    <pre><code><span class="com">Hierarchy:</span>
+Canvas
+├── InventoryPanel (Image — arka plan)
+│   ├── Title (TMP_Text "Inventory")
+│   └── GridContainer
+│       ├── (Grid Layout Group component)
+│       ├── (Content Size Fitter component, Vertical: Preferred)
+│       ├── Slot_01 (Image)
+│       │   └── Icon (Image)
+│       ├── Slot_02
+│       ├── Slot_03
+│       └── ...</code></pre>
+  </div>
+</section>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">9.7</span>
+    <h2 class="topic-title">HUD Örnekleri — Pratikte Sık Karşılaşacağın UI'lar</h2>
+  </div>
+
+  <h3>Can barı</h3>
+
+  <div class="cs-block">
+    <div class="cs-block-header"><span class="cs-block-filename">HealthBar.cs</span></div>
+    <pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+<span class="kw">using</span> <span class="type">UnityEngine.UI</span>;
+
+<span class="kw">public class</span> <span class="type">HealthBar</span> : <span class="type">MonoBehaviour</span>
+{
+    <span class="attr">[SerializeField]</span> <span class="kw">private</span> <span class="type">Image</span> fillImage;
+    <span class="attr">[SerializeField]</span> <span class="kw">private float</span> maxHealth = <span class="num">100f</span>;
+    <span class="kw">private float</span> currentHealth;
+
+    <span class="kw">void</span> <span class="mb">Start</span>()
+    {
+        currentHealth = maxHealth;
+        <span class="fn">UpdateBar</span>();
+    }
+
+    <span class="kw">public void</span> <span class="fn">TakeDamage</span>(<span class="kw">float</span> amount)
+    {
+        currentHealth = <span class="type">Mathf</span>.<span class="fn">Clamp</span>(currentHealth - amount, <span class="num">0f</span>, maxHealth);
+        <span class="fn">UpdateBar</span>();
+    }
+
+    <span class="kw">void</span> <span class="fn">UpdateBar</span>()
+    {
+        fillImage.fillAmount = currentHealth / maxHealth;
+    }
+}</code></pre>
+  </div>
+  <p>
+    Image'ın <strong>Image Type</strong>'ını <code>Filled</code>, Fill Method'unu
+    <code>Horizontal</code>, Origin'i <code>Left</code> yap. Sonra <code>fillAmount</code>'u 0-1
+    arası set ederek barın doluluğunu kontrol et.
+  </p>
+
+  <h3>Skor metni</h3>
+
+  <div class="cs-block">
+    <div class="cs-block-header"><span class="cs-block-filename">ScoreDisplay.cs</span></div>
+    <pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+<span class="kw">using</span> <span class="type">TMPro</span>;
+
+<span class="kw">public class</span> <span class="type">ScoreDisplay</span> : <span class="type">MonoBehaviour</span>
+{
+    <span class="attr">[SerializeField]</span> <span class="kw">private</span> <span class="type">TMP_Text</span> scoreText;
+    <span class="kw">private int</span> score = <span class="num">0</span>;
+
+    <span class="kw">public void</span> <span class="fn">AddScore</span>(<span class="kw">int</span> amount)
+    {
+        score += amount;
+        scoreText.text = <span class="str">$"Score: {score:N0}"</span>;
+    }
+}</code></pre>
+  </div>
+
+  <h3>Pause menüsü</h3>
+
+  <div class="cs-block">
+    <div class="cs-block-header"><span class="cs-block-filename">PauseMenu.cs</span></div>
+    <pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+
+<span class="kw">public class</span> <span class="type">PauseMenu</span> : <span class="type">MonoBehaviour</span>
+{
+    <span class="attr">[SerializeField]</span> <span class="kw">private</span> <span class="type">GameObject</span> pausePanel;
+    <span class="kw">private bool</span> isPaused = <span class="kw">false</span>;
+
+    <span class="kw">void</span> <span class="mb">Update</span>()
+    {
+        <span class="kw">if</span> (<span class="type">Input</span>.<span class="fn">GetKeyDown</span>(<span class="type">KeyCode</span>.Escape))
+        {
+            <span class="kw">if</span> (isPaused) <span class="fn">Resume</span>();
+            <span class="kw">else</span> <span class="fn">Pause</span>();
+        }
+    }
+
+    <span class="kw">public void</span> <span class="fn">Pause</span>()
+    {
+        pausePanel.<span class="fn">SetActive</span>(<span class="kw">true</span>);
+        <span class="type">Time</span>.timeScale = <span class="num">0f</span>;
+        isPaused = <span class="kw">true</span>;
+    }
+
+    <span class="kw">public void</span> <span class="fn">Resume</span>()
+    {
+        pausePanel.<span class="fn">SetActive</span>(<span class="kw">false</span>);
+        <span class="type">Time</span>.timeScale = <span class="num">1f</span>;
+        isPaused = <span class="kw">false</span>;
+    }
+}</code></pre>
+  </div>
+
+  <div class="warning-box">
+    <h4>⚠ Time.timeScale = 0 — bunu unutma!</h4>
+    <p>
+      <code>Time.timeScale</code>'i 0 yaparsan tüm <code>Time.deltaTime</code> bazlı hareketler
+      durur. Bu pause efektinin temelidir. Resume'a basınca tekrar 1 yap. Ses ayrı bir konu:
+      <code>AudioListener.pause = true</code> ile sesleri de durdurabilirsin.
+    </p>
+  </div>
+</section>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">9.8</span>
+    <h2 class="topic-title">UI Toolkit — Modern Yaklaşım <span class="u-ver-badge u6">U6</span></h2>
+  </div>
+  <p>
+    UI Toolkit, Unity'nin web teknolojilerinden esinlenen yeni UI sistemi. Üç dosya türüyle çalışır:
+  </p>
+
+  <div class="step-list">
+    <div class="step-note">
+      <strong>UXML (.uxml)</strong> — HTML benzeri, UI'ın yapısını tanımlar. Elemanlar nested
+      şekilde yazılır.
+    </div>
+    <div class="step-note">
+      <strong>USS (.uss)</strong> — CSS benzeri stil dosyası. Renkler, fontlar, padding, margin
+      buradan.
+    </div>
+    <div class="step-note">
+      <strong>C# script</strong> — UI'ı çalıştıran, eventleri bağlayan kod.
+    </div>
+  </div>
+
+  <h3>UI Toolkit ne zaman kullanılır?</h3>
+  <ul>
+    <li><strong>Editör eklentileri</strong> — Custom Inspector, custom window yazıyorsan UI Toolkit
+    en iyi seçim.</li>
+    <li><strong>Settings panelleri</strong> — Data binding desteği iyi, formlar için ideal.</li>
+    <li><strong>Karmaşık list/tree yapıları</strong> — uGUI'de çok sayıda obje yaratırken, UI Toolkit
+    tek bir element'le binlerce satır gösterebilir (virtualization).</li>
+  </ul>
+
+  <h3>Basit bir UXML örneği</h3>
+
+  <div class="cs-block">
+    <div class="cs-block-header"><span class="cs-block-filename">MainMenu.uxml</span></div>
+    <pre><code><span class="com">&lt;!-- HTML benzeri yapı --&gt;</span>
+&lt;<span class="kw">UXML</span> <span class="attr">xmlns:ui</span>=<span class="str">"UnityEngine.UIElements"</span>&gt;
+    &lt;<span class="kw">ui:VisualElement</span> <span class="attr">class</span>=<span class="str">"menu-root"</span>&gt;
+        &lt;<span class="kw">ui:Label</span> <span class="attr">text</span>=<span class="str">"OYUN ADI"</span> <span class="attr">class</span>=<span class="str">"title"</span> /&gt;
+        &lt;<span class="kw">ui:Button</span> <span class="attr">text</span>=<span class="str">"Başla"</span> <span class="attr">name</span>=<span class="str">"play-btn"</span> /&gt;
+        &lt;<span class="kw">ui:Button</span> <span class="attr">text</span>=<span class="str">"Ayarlar"</span> <span class="attr">name</span>=<span class="str">"settings-btn"</span> /&gt;
+        &lt;<span class="kw">ui:Button</span> <span class="attr">text</span>=<span class="str">"Çıkış"</span> <span class="attr">name</span>=<span class="str">"quit-btn"</span> /&gt;
+    &lt;/<span class="kw">ui:VisualElement</span>&gt;
+&lt;/<span class="kw">UXML</span>&gt;</code></pre>
+  </div>
+
+  <div class="cs-block">
+    <div class="cs-block-header"><span class="cs-block-filename">MainMenu.uss</span></div>
+    <pre><code><span class="com">/* CSS benzeri stil */</span>
+.menu-root {
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(8, 8, 13);
+    padding: 40px;
+}
+.title {
+    font-size: 48px;
+    color: rgb(250, 125, 25);
+    margin-bottom: 30px;
+}
+Button {
+    width: 200px;
+    height: 50px;
+    margin: 5px;
+    background-color: rgb(40, 40, 60);
+    color: white;
+    border-radius: 8px;
+}
+Button:hover {
+    background-color: rgb(250, 125, 25);
+}</code></pre>
+  </div>
+
+  <div class="cs-block">
+    <div class="cs-block-header"><span class="cs-block-filename">MainMenuController.cs</span></div>
+    <pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+<span class="kw">using</span> <span class="type">UnityEngine.UIElements</span>;
+
+<span class="kw">public class</span> <span class="type">MainMenuController</span> : <span class="type">MonoBehaviour</span>
+{
+    <span class="kw">void</span> <span class="mb">OnEnable</span>()
+    {
+        <span class="kw">var</span> root = <span class="fn">GetComponent</span>&lt;<span class="type">UIDocument</span>&gt;().rootVisualElement;
+
+        root.<span class="fn">Q</span>&lt;<span class="type">Button</span>&gt;(<span class="str">"play-btn"</span>).clicked += <span class="fn">OnPlay</span>;
+        root.<span class="fn">Q</span>&lt;<span class="type">Button</span>&gt;(<span class="str">"settings-btn"</span>).clicked += <span class="fn">OnSettings</span>;
+        root.<span class="fn">Q</span>&lt;<span class="type">Button</span>&gt;(<span class="str">"quit-btn"</span>).clicked += <span class="fn">OnQuit</span>;
+    }
+
+    <span class="kw">void</span> <span class="fn">OnPlay</span>() { <span class="type">Debug</span>.<span class="fn">Log</span>(<span class="str">"Play!"</span>); }
+    <span class="kw">void</span> <span class="fn">OnSettings</span>() { <span class="type">Debug</span>.<span class="fn">Log</span>(<span class="str">"Settings"</span>); }
+    <span class="kw">void</span> <span class="fn">OnQuit</span>() { <span class="type">Application</span>.<span class="fn">Quit</span>(); }
+}</code></pre>
+  </div>
+
+  <div class="info-box">
+    <h4>💡 UI Builder — görsel editör</h4>
+    <p>
+      UXML'i elle yazmak zor. Unity bunun için <strong>UI Builder</strong> diye bir görsel editör
+      sunar: <code>Window → UI Toolkit → UI Builder</code>. Drag&amp;drop ile UI tasarlarsın, arka
+      planda UXML üretir. Bu kısım Visual Studio Code'da CSS tasarlamak gibi.
+    </p>
+  </div>
+</section>
+
+<div class="real-world-box">
+  <h4>🎮 Gerçek dünya — Cities: Skylines ve UI miktarı</h4>
+  <p>
+    Cities: Skylines (Colossal Order, 2015), Unity ile yapılmış en başarılı strateji oyunlarından.
+    Şehir simülasyonu olduğu için inanılmaz miktarda UI'a sahip: yol araçları, bina menüleri,
+    bütçe paneli, nüfus istatistikleri, ısı/su haritaları, vergi ayarları... Yüzlerce buton, onlarca
+    panel.
+  </p>
+  <p>
+    Geliştiriciler 2015'te uGUI ile başladılar; çünkü o sırada başka seçenek yoktu. Modlar
+    eklendikçe ve oyuncular yüzlerce eklentinin UI'ı bir arada çalışmasını istedi — uGUI'nin
+    sınırlarına dayandılar. Cities: Skylines II (2023) tamamen sıfırdan, UI için <strong>Coherent
+    GameFace</strong> (HTML+CSS bazlı bir orta katman) ile yazıldı. Buradan çıkaracağın ders:
+    küçük projelerde uGUI yetiyor; <strong>çok büyük UI'lı projeler için modern web-benzeri
+    yaklaşımlar</strong> (UI Toolkit dahil) tercih ediliyor.
+  </p>
+</div>
+
+<div class="practice-section">
+  <h3>🛠 Pratik — 3 Mini Proje</h3>
+
+  <div class="project-card">
+    <div class="project-goal">
+      <strong>Proje 1 — Ana Menü</strong>
+      <p>3 butonlu klasik ana menü: Başla, Ayarlar, Çıkış.</p>
+    </div>
+    <ul class="project-check">
+      <li>Yeni Canvas, Render Mode: Screen Space - Overlay.</li>
+      <li>Canvas Scaler: Scale With Screen Size, Reference: 1920×1080.</li>
+      <li>Ortaya bir Vertical Layout Group'lu Panel.</li>
+      <li>İçine 3 buton (Başla, Ayarlar, Çıkış) - TextMeshPro versiyonu.</li>
+      <li>Panel'in üstüne bir başlık TMP Text: "OYUN ADI".</li>
+      <li>Bir <code>MenuController</code> script'i yaz, butonların onClick'lerini Inspector'dan ata.</li>
+      <li>Başla butonu Debug.Log("Game Start"), Çıkış Application.Quit() çağırsın.</li>
+    </ul>
+  </div>
+
+  <div class="project-card">
+    <div class="project-goal">
+      <strong>Proje 2 — HUD: Can Barı + Skor + Süre</strong>
+      <p>Oyun içi temel HUD elemanları.</p>
+    </div>
+    <ul class="project-check">
+      <li>Sol üstte can barı: Image (Filled, Horizontal, Origin Left), kırmızı renk.</li>
+      <li>Sağ üstte skor: TMP Text "Score: 0". Anchor Top-Right.</li>
+      <li>Üst ortada zamanlayıcı: TMP Text "00:00". Anchor Top-Center.</li>
+      <li><code>HUDController</code> script: <code>health</code>, <code>score</code>,
+      <code>time</code> alanları. Her frame UI'ı günceller.</li>
+      <li>Test için Space'e basınca skor +10, H'ye basınca can -10.</li>
+      <li>Süre <code>Time.timeSinceLevelLoad</code> ile her saniye güncellensin (format: <code>$"{minutes:00}:{seconds:00}"</code>).</li>
+    </ul>
+  </div>
+
+  <div class="project-card">
+    <div class="project-goal">
+      <strong>Proje 3 — Pause Menüsü + Ayarlar</strong>
+      <p>Esc ile pause açılan, ses ayarı içeren menü.</p>
+    </div>
+    <ul class="project-check">
+      <li>İki ayrı Panel: <code>PausePanel</code> ve <code>SettingsPanel</code>. Başlangıçta ikisi de inaktif.</li>
+      <li>Pause panel'de 3 buton: Devam, Ayarlar, Ana Menü.</li>
+      <li>Settings panel'de bir Slider (ses) + bir Back butonu.</li>
+      <li>Slider'ın <code>onValueChanged</code>'i <code>AudioListener.volume</code>'a bağlansın.</li>
+      <li>Esc'e basınca <code>Time.timeScale = 0</code> ve PausePanel aktif olsun.</li>
+      <li>Ayarlar butonuna basınca PausePanel kapansın, SettingsPanel açılsın.</li>
+      <li>Back butonu tam tersi.</li>
+      <li><strong>Bonus:</strong> Devam butonuna basınca <code>Time.timeScale = 1</code> ve PausePanel kapansın.</li>
+    </ul>
+  </div>
+</div>
+
+<section class="quiz" id="bolum-quiz">
+  <header class="quiz-header">
+    <div class="quiz-header-icon"><i class="ti ti-help"></i></div>
+    <div class="quiz-header-text">
+      <h2>Bölüm Sonu Sınavı</h2>
+      <span>5 soru</span>
+    </div>
+  </header>
+
+  <article class="quiz-question" id="q9-1">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">01</span>
+      <h3 class="quiz-prompt-text">Oyun içi pause menüsü için en uygun Canvas Render Mode hangisidir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="true">Screen Space - Overlay</button>
+      <button class="quiz-option" data-correct="false">Screen Space - Camera</button>
+      <button class="quiz-option" data-correct="false">World Space</button>
+      <button class="quiz-option" data-correct="false">Camera Overlay</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q9-2">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">02</span>
+      <h3 class="quiz-prompt-text">Bir butonun ekran sağ alt köşesinde, ekran boyutu değişse bile aynı yerde kalmasını sağlayan ayar nedir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Pos X = ekran genişliği</button>
+      <button class="quiz-option" data-correct="true">Anchor'ı Bottom-Right yapmak</button>
+      <button class="quiz-option" data-correct="false">Pivot'u (1,0) yapmak</button>
+      <button class="quiz-option" data-correct="false">Canvas Scaler'ı Constant Pixel Size yapmak</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q9-3">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">03</span>
+      <h3 class="quiz-prompt-text">Can barını şişeden boşalan su gibi azaltmak için Image Type ne olmalı?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Simple</button>
+      <button class="quiz-option" data-correct="false">Sliced</button>
+      <button class="quiz-option" data-correct="false">Tiled</button>
+      <button class="quiz-option" data-correct="true">Filled</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q9-4">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">04</span>
+      <h3 class="quiz-prompt-text">Pause menüsünü açtığımızda oyundaki tüm hareketleri durduran tek satırlık çözüm nedir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">SetActive(false)</button>
+      <button class="quiz-option" data-correct="true">Time.timeScale = 0f</button>
+      <button class="quiz-option" data-correct="false">Application.Quit()</button>
+      <button class="quiz-option" data-correct="false">Physics.simulate = false</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q9-5">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">05</span>
+      <h3 class="quiz-prompt-text">UI Toolkit ile uGUI arasındaki ana fark hangisi <em>doğru</em>dur?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">UI Toolkit, GameObject tabanlı; uGUI değil</button>
+      <button class="quiz-option" data-correct="true">UI Toolkit HTML/CSS benzeri UXML+USS dosyaları kullanır</button>
+      <button class="quiz-option" data-correct="false">uGUI sadece editör eklentisi için kullanılır</button>
+      <button class="quiz-option" data-correct="false">UI Toolkit Canvas component'i gerektirir</button>
+    </div>
+  </article>
+</section>
+
+<section class="complete-section">
+      <h3 class="complete-title">🎉 Bölüm 9 Tamamlandı!</h3>
+      <p class="complete-msg">Artık Unity'de UI yapabiliyorsun: Canvas, RectTransform, Anchor, butonlar, slider'lar, layout grupları, HUD'lar ve Pause menüleri. Bonus olarak UI Toolkit'i de tanıdın. Bir sonraki bölümde <strong>Material &amp; Shader</strong> dünyasına gireceğiz — objelerinin nasıl göründüğünü kontrol edeceksin.</p>
+      <button class="complete-btn" data-section="s9">
+        <i class="ti ti-circle-check"></i>
+        <span>Bu Bölümü Tamamladım</span>
+      </button>
+      <p class="complete-note">İlerlemen otomatik tarayıcına kaydedilir.</p>
+    </section>
+    <!-- Sayfa Gezinme -->
+    <nav class="page-nav" aria-label="Bölüm gezinme">
+      <a href="08-physics.html" class="page-nav-link prev">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-left"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Önceki Bölüm</div>
+          <div class="page-nav-title">8. Fizik & Çarpışma</div>
+        </div>
+      </a>
+      <a href="10-material-shader.html" class="page-nav-link next">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-right"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Sonraki Bölüm</div>
+          <div class="page-nav-title">10. Material & Shader</div>
+        </div>
+      </a>
+    </nav>
+
+  </div>
+</main>
+<script src="../js/progress.js?v=11"></script>
+<script src="../js/quiz.js?v=11"></script>
+<script src="../js/toc.js?v=11"></script>
+<script src="../js/main.js?v=11"></script>
+</body>
+</html>

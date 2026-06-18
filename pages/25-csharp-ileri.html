@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C# İleri — UnityAkademi</title>
+  <meta name="description" content="Coroutine derinlikleri, delegate/event, ScriptableObject mimari (Event Channel), async/await, generics (ObjectPool), LINQ, interfaces, extension methods — Bölüm 25.">
+  <meta name="theme-color" content="#fa7d19">
+  <link rel="manifest" href="../manifest.json">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="C# İleri">
+  <meta property="og:description" content="Coroutine derinlikleri, delegate/event, ScriptableObject mimari (Event Channel), async/await, generics (ObjectPool), LINQ, interfaces, extension methods — Bölüm 25.">
+  <meta property="og:image" content="../og-image.svg">
+  <meta property="og:site_name" content="UnityAkademi">
+  <meta property="og:locale" content="tr_TR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="C# İleri">
+  <meta name="twitter:description" content="Coroutine derinlikleri, delegate/event, ScriptableObject mimari (Event Channel), async/await, generics (ObjectPool), LINQ, interfaces, extension methods — Bölüm 25.">
+  <meta name="twitter:image" content="../og-image.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="../css/variables.css?v=11">
+  <link rel="stylesheet" href="../css/reset.css?v=11">
+  <link rel="stylesheet" href="../css/layout.css?v=11">
+  <link rel="stylesheet" href="../css/components.css?v=11">
+  <link rel="stylesheet" href="../css/content.css?v=11">
+  <link rel="stylesheet" href="../css/visuals.css?v=11">
+  <link rel="stylesheet" href="../css/extras.css?v=11">
+  <link rel="stylesheet" href="../css/responsive.css?v=11">
+</head>
+<body>
+<button class="nav-hamburger" id="navHamburger" aria-label="Menüyü aç">
+  <i class="ti ti-menu-2"></i>
+</button>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a href="../index.html" class="sidebar-brand">
+      <div class="sidebar-brand-icon"><i class="ti ti-home-2"></i></div>
+      <div class="sidebar-brand-text">
+        <span class="sidebar-brand-name">Ana Sayfa</span>
+        <span class="sidebar-brand-sub">UnityAkademi</span>
+      </div>
+    </a>
+    <button class="mobile-toggle" aria-label="Menü"><i class="ti ti-x"></i></button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-group">
+      <div class="nav-group-title">Temeller</div>
+      <a href="01-kurulum.html" class="nav-link" data-section="s1"><i class="ti ti-download"></i><span class="nav-link-text">Kurulum & İlk Bakış</span><span class="nav-link-num">01</span></a>
+      <a href="02-arayuz.html" class="nav-link" data-section="s2"><i class="ti ti-layout-board"></i><span class="nav-link-text">Editor Arayüzü</span><span class="nav-link-num">02</span></a>
+      <a href="03-gameobject-component.html" class="nav-link" data-section="s3"><i class="ti ti-cube"></i><span class="nav-link-text">GameObject & Component</span><span class="nav-link-num">03</span></a>
+      <a href="04-csharp-temelleri.html" class="nav-link" data-section="s4"><i class="ti ti-code"></i><span class="nav-link-text">C# Temelleri</span><span class="nav-link-num">04</span></a>
+      <a href="05-monobehaviour-lifecycle.html" class="nav-link" data-section="s5"><i class="ti ti-refresh"></i><span class="nav-link-text">MonoBehaviour Lifecycle</span><span class="nav-link-num">05</span></a>
+      <a href="06-transform-vector.html" class="nav-link" data-section="s6"><i class="ti ti-arrows-move"></i><span class="nav-link-text">Transform & Vector3</span><span class="nav-link-num">06</span></a>
+      <a href="07-input.html" class="nav-link" data-section="s7"><i class="ti ti-keyboard"></i><span class="nav-link-text">Input Sistemi</span><span class="nav-link-num">07</span></a>
+      <a href="08-physics.html" class="nav-link" data-section="s8"><i class="ti ti-atom"></i><span class="nav-link-text">Physics</span><span class="nav-link-num">08</span></a>
+      <a href="09-ui.html" class="nav-link" data-section="s9"><i class="ti ti-layout-grid"></i><span class="nav-link-text">UI Sistemi</span><span class="nav-link-num">09</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Görsel & Asset</div>
+      <a href="10-material-shader.html" class="nav-link" data-section="s10"><i class="ti ti-palette"></i><span class="nav-link-text">Material & Shader</span><span class="nav-link-num">10</span></a>
+      <a href="11-asset-import.html" class="nav-link" data-section="s11"><i class="ti ti-folder"></i><span class="nav-link-text">Asset Import</span><span class="nav-link-num">11</span></a>
+      <a href="12-animation.html" class="nav-link" data-section="s12"><i class="ti ti-bounce-right"></i><span class="nav-link-text">Animation</span><span class="nav-link-num">12</span></a>
+      <a href="13-particle-vfx.html" class="nav-link" data-section="s13"><i class="ti ti-sparkles"></i><span class="nav-link-text">Particle & VFX Graph</span><span class="nav-link-num">13</span></a>
+      <a href="14-lighting.html" class="nav-link" data-section="s14"><i class="ti ti-bulb"></i><span class="nav-link-text">Lighting</span><span class="nav-link-num">14</span></a>
+      <a href="15-audio.html" class="nav-link" data-section="s15"><i class="ti ti-volume"></i><span class="nav-link-text">Audio</span><span class="nav-link-num">15</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Sistemler</div>
+      <a href="16-probuilder.html" class="nav-link" data-section="s16"><i class="ti ti-3d-cube-sphere"></i><span class="nav-link-text">ProBuilder</span><span class="nav-link-num">16</span></a>
+      <a href="17-terrain.html" class="nav-link" data-section="s17"><i class="ti ti-mountain"></i><span class="nav-link-text">Terrain</span><span class="nav-link-num">17</span></a>
+      <a href="18-cinemachine.html" class="nav-link" data-section="s18"><i class="ti ti-camera"></i><span class="nav-link-text">Cinemachine</span><span class="nav-link-num">18</span></a>
+      <a href="19-timeline.html" class="nav-link" data-section="s19"><i class="ti ti-timeline"></i><span class="nav-link-text">Timeline</span><span class="nav-link-num">19</span></a>
+      <a href="20-navmesh.html" class="nav-link" data-section="s20"><i class="ti ti-route"></i><span class="nav-link-text">NavMesh & AI</span><span class="nav-link-num">20</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">İleri Seviye</div>
+      <a href="21-urp-hdrp.html" class="nav-link" data-section="s21"><i class="ti ti-bolt"></i><span class="nav-link-text">URP, HDRP & Unity 6</span><span class="nav-link-num">21</span></a>
+      <a href="22-new-input.html" class="nav-link" data-section="s22"><i class="ti ti-device-gamepad-2"></i><span class="nav-link-text">New Input System</span><span class="nav-link-num">22</span></a>
+      <a href="23-save-menu.html" class="nav-link" data-section="s23"><i class="ti ti-device-floppy"></i><span class="nav-link-text">Save & Menü</span><span class="nav-link-num">23</span></a>
+      <a href="24-build.html" class="nav-link" data-section="s24"><i class="ti ti-package-export"></i><span class="nav-link-text">Build & Yayınlama</span><span class="nav-link-num">24</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Profesyonel</div>
+      <a href="25-csharp-ileri.html" class="nav-link active" data-section="s25"><i class="ti ti-brackets-contain"></i><span class="nav-link-text">C# İleri</span><span class="nav-link-num">25</span></a>
+      <a href="26-performance.html" class="nav-link" data-section="s26"><i class="ti ti-gauge"></i><span class="nav-link-text">Performance</span><span class="nav-link-num">26</span></a>
+      <a href="27-yol-haritasi.html" class="nav-link" data-section="s27"><i class="ti ti-map-2"></i><span class="nav-link-text">Yol Haritası</span><span class="nav-link-num">27</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Pratik</div>
+      <a href="projects.html" class="nav-link nav-link-extra" data-section="x-projects"><i class="ti ti-rocket"></i><span class="nav-link-text">Projeler</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Ek Kaynaklar</div>
+      <a href="sozluk.html" class="nav-link nav-link-extra" data-section="x-sozluk"><i class="ti ti-book-2"></i><span class="nav-link-text">Sözlük</span></a>
+      <a href="cheatsheet.html" class="nav-link nav-link-extra" data-section="x-cheatsheet"><i class="ti ti-list-details"></i><span class="nav-link-text">Cheat Sheet</span></a>
+      <a href="sss.html" class="nav-link nav-link-extra" data-section="x-sss"><i class="ti ti-help-circle"></i><span class="nav-link-text">SSS</span></a>
+      <a href="arama.html" class="nav-link nav-link-extra" data-section="x-arama"><i class="ti ti-search"></i><span class="nav-link-text">Arama</span></a>
+      <a href="sertifika.html" class="nav-link nav-link-extra" data-section="x-sertifika"><i class="ti ti-certificate"></i><span class="nav-link-text">Sertifika</span></a>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="kaynaklar.html" class="sidebar-btn"><i class="ti ti-books"></i><span>Kaynaklar</span></a>
+    <a href="iletisim.html" class="sidebar-btn"><i class="ti ti-mail"></i><span>İletişim</span></a>
+  </div>
+</aside>
+<main class="main">
+  <div class="main-content">
+<nav class="breadcrumb" aria-label="Sayfa konumu">
+      <a href="../index.html"><i class="ti ti-home"></i><span>Ana Sayfa</span></a>
+      <i class="ti ti-chevron-right"></i><span><i class="ti ti-school" style="font-size: 13px; opacity: 0.7; margin-right: 4px;"></i>İleri Seviye</span>
+      <i class="ti ti-chevron-right"></i><span style="color: var(--primary-light);">C# İleri</span>
+    </nav>
+
+<header class="page-header">
+  <span class="chapter-pill">Bölüm 25</span>
+  <h1 class="page-title">C# İleri — Coroutine, Event, ScriptableObject, async/await, LINQ</h1>
+  <p class="page-subtitle">Coroutine derinlikleri, delegate &amp; event sistemleri, ScriptableObject ile veri mimarisi, async/await, generics, LINQ — profesyonel Unity kodu için araç kutusu.</p>
+  <div class="page-meta">
+    <span>⏱ Okuma süresi: ~32 dk</span>
+    <span>💻 12 ileri kavram</span>
+    <span>🎯 Zorluk: İleri</span>
+  </div>
+</header>
+
+<section class="topic-section" id="neden-ileri">
+  <div class="topic-header">
+    <span class="topic-number">25.1</span>
+    <h2 class="topic-title">🎓 Neden İleri C#?</h2>
+  </div>
+  <p class="topic-text">
+    Temel MonoBehaviour bilgisi ile küçük oyunlar yapılır. Ama bir oyun büyüdükçe — onlarca düşman, karmaşık envanter, kayıt yükleme, ağ — kodun da büyür. İyi mimari olmadan 50 dosyalı proje çığ gibi karmaşıklaşır.
+  </p>
+  <p class="topic-text">
+    Bu bölümde kodu modüler, yeniden kullanılabilir, test edilebilir yapan C# araçlarına bakıyoruz. Bunlar Unity'ye özgü değil — saf C# özellikleri — ama Unity'de profesyonelce kullanmanın yolları farklı.
+  </p>
+  <div class="real-world-box">
+    <h3>🎮 Gerçek Dünyadan: Cuphead'in 8000+ Coroutine'i</h3>
+    <p><em>Cuphead</em>'in geliştirici ekibi (Studio MDHR), her bossun saldırı düzenini koroutine'lerle yazdı. Her saldırı bir IEnumerator → fazlar arası geçiş, animasyon eşitlemesi, fizik atışları zamanlamalı. 30+ boss, her birinde onlarca saldırı → toplam 8000+ coroutine. Unity'nin coroutine sistemi bu boyutta yazılmış AAA-kalitesi kodun belkemiği oldu.</p>
+  </div>
+</section>
+
+<section class="topic-section" id="coroutine-derin">
+  <div class="topic-header">
+    <span class="topic-number">25.2</span>
+    <h2 class="topic-title">⏳ Coroutine — Derinlemesine</h2>
+  </div>
+  <p class="topic-text">
+    Coroutine, <em>zamana yayılmış</em> bir fonksiyon. Normal fonksiyon başlar-biter bir frame'de; coroutine birden fazla frame'e yayılır, "bekle, devam et" yapabilir.
+  </p>
+  <div class="cs-block">
+<pre><code><span class="kw">private</span> <span class="type">IEnumerator</span> <span class="fn">FadeOut</span>(<span class="kw">float</span> duration)
+{
+    <span class="kw">float</span> elapsed = <span class="num">0</span>;
+    <span class="kw">var</span> color = sprite.<span class="attr">color</span>;
+    <span class="kw">while</span> (elapsed &lt; duration)
+    {
+        elapsed += <span class="type">Time</span>.<span class="attr">deltaTime</span>;
+        color.<span class="attr">a</span> = <span class="num">1</span> - (elapsed / duration);
+        sprite.<span class="attr">color</span> = color;
+        <span class="kw">yield return null</span>;  <span class="com">// bir frame bekle</span>
+    }
+    sprite.<span class="attr">gameObject</span>.<span class="fn">SetActive</span>(<span class="kw">false</span>);
+}
+
+<span class="com">// Başlatma:</span>
+<span class="fn">StartCoroutine</span>(<span class="fn">FadeOut</span>(<span class="num">2f</span>));</code></pre>
+  </div>
+  <h3 class="topic-subtitle">yield Return Türleri</h3>
+  <ul class="check-list">
+    <li><code>yield return null;</code> — Bir frame bekle (sonraki Update'te devam).</li>
+    <li><code>yield return new WaitForSeconds(2f);</code> — 2 saniye bekle.</li>
+    <li><code>yield return new WaitForSecondsRealtime(2f);</code> — TimeScale=0 olsa bile gerçek 2 saniye.</li>
+    <li><code>yield return new WaitForEndOfFrame();</code> — Frame sonunda (ekran çizildikten sonra).</li>
+    <li><code>yield return new WaitForFixedUpdate();</code> — Sonraki FixedUpdate'i bekle.</li>
+    <li><code>yield return new WaitUntil(() =&gt; player.health &lt;= 0);</code> — Koşul sağlanana kadar.</li>
+    <li><code>yield return new WaitWhile(() =&gt; isPaused);</code> — Koşul yanlış olana kadar.</li>
+    <li><code>yield return StartCoroutine(OtherRoutine());</code> — Diğer coroutine bitene kadar.</li>
+  </ul>
+  <h3 class="topic-subtitle">Coroutine Durdurma</h3>
+  <div class="cs-block">
+<pre><code><span class="kw">private</span> <span class="type">Coroutine</span> activeRoutine;
+
+<span class="kw">private void</span> <span class="fn">StartFade</span>()
+{
+    <span class="kw">if</span> (activeRoutine != <span class="kw">null</span>) <span class="fn">StopCoroutine</span>(activeRoutine);
+    activeRoutine = <span class="fn">StartCoroutine</span>(<span class="fn">FadeOut</span>(<span class="num">2f</span>));
+}
+
+<span class="kw">private void</span> <span class="fn">OnDisable</span>()
+{
+    <span class="com">// GameObject deaktive olunca tüm coroutine'leri durdur</span>
+    <span class="fn">StopAllCoroutines</span>();
+}</code></pre>
+  </div>
+  <div class="warning-box">
+    <strong>⚠️ Coroutine'in Tuzakları:</strong>
+    <ul>
+      <li>GameObject deaktive olursa coroutine otomatik durur, MonoBehaviour silinirse de.</li>
+      <li>Coroutine, çağıran MonoBehaviour'a aittir — başka MB'da çalışmaz.</li>
+      <li>WaitForSeconds çoğu zaman ufak garbage üretir; cache'le: <code>private static WaitForSeconds wait1 = new WaitForSeconds(1f);</code></li>
+      <li>Çok sayıda coroutine = performans yükü. 1000+ aktif coroutine için Job System veya async düşün.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic-section" id="delegate-event">
+  <div class="topic-header">
+    <span class="topic-number">25.3</span>
+    <h2 class="topic-title">📡 Delegate &amp; Event — Loose Coupling</h2>
+  </div>
+  <p class="topic-text">
+    Bir sistem "olay olduğunda haber ver" mantığı ister. <strong>Delegate</strong> ve <strong>event</strong>, sınıfların birbirine doğrudan referans olmadan iletişim kurmasını sağlar.
+  </p>
+  <h3 class="topic-subtitle">Basit Delegate</h3>
+  <div class="cs-block">
+<pre><code><span class="kw">public delegate void</span> <span class="type">EnemyDiedHandler</span>(<span class="type">Vector3</span> position, <span class="kw">int</span> xp);
+
+<span class="kw">public class</span> <span class="type">Enemy</span> : <span class="type">MonoBehaviour</span>
+{
+    <span class="kw">public</span> <span class="type">EnemyDiedHandler</span> OnDied;
+
+    <span class="kw">private void</span> <span class="fn">Die</span>()
+    {
+        OnDied?.<span class="fn">Invoke</span>(transform.<span class="attr">position</span>, <span class="num">50</span>);
+        <span class="type">Destroy</span>(gameObject);
+    }
+}
+
+<span class="com">// Abone:</span>
+<span class="kw">private void</span> <span class="fn">Start</span>()
+{
+    enemy.OnDied += <span class="fn">HandleEnemyDeath</span>;
+}
+
+<span class="kw">private void</span> <span class="fn">HandleEnemyDeath</span>(<span class="type">Vector3</span> pos, <span class="kw">int</span> xp)
+{
+    <span class="fn">SpawnXpGem</span>(pos, xp);
+}</code></pre>
+  </div>
+  <h3 class="topic-subtitle">event Anahtar Sözcüğü</h3>
+  <p class="topic-text">
+    <code>event</code> ile işaretlenmiş delegate'i sadece <em>tanımlandığı sınıf</em> Invoke edebilir; dış sınıflar sadece += / -= ile abone olur. Bu koruyucudur.
+  </p>
+  <div class="cs-block">
+<pre><code><span class="kw">public class</span> <span class="type">PlayerHealth</span> : <span class="type">MonoBehaviour</span>
+{
+    <span class="kw">public event</span> <span class="type">System.Action</span>&lt;<span class="kw">int</span>, <span class="kw">int</span>&gt; OnHealthChanged;
+    <span class="kw">public event</span> <span class="type">System.Action</span> OnDied;
+
+    <span class="kw">private int</span> currentHealth = <span class="num">100</span>;
+    <span class="kw">private int</span> maxHealth = <span class="num">100</span>;
+
+    <span class="kw">public void</span> <span class="fn">TakeDamage</span>(<span class="kw">int</span> dmg)
+    {
+        currentHealth -= dmg;
+        OnHealthChanged?.<span class="fn">Invoke</span>(currentHealth, maxHealth);
+        <span class="kw">if</span> (currentHealth &lt;= <span class="num">0</span>) OnDied?.<span class="fn">Invoke</span>();
+    }
+}
+
+<span class="com">// HealthBar UI dinler:</span>
+playerHealth.OnHealthChanged += (current, max) =&gt; healthBar.<span class="attr">fillAmount</span> = (<span class="kw">float</span>)current / max;
+playerHealth.OnDied += () =&gt; gameOverScreen.<span class="fn">SetActive</span>(<span class="kw">true</span>);</code></pre>
+  </div>
+  <p class="topic-text">
+    <code>System.Action</code> = <em>return değeri void olan delegate</em>. <code>Action&lt;int&gt;</code> = bir int parametre alan; <code>Action&lt;int,int&gt;</code> = iki int.
+  </p>
+  <p class="topic-text">
+    <code>System.Func&lt;T1,T2,TResult&gt;</code> = return değeri olan delegate (LINQ, predicates için).
+  </p>
+  <div class="info-box">
+    <strong>📌 Unsubscribe Önemi:</strong> Eklediğin handler'ı <code>OnDestroy</code>'da kaldır:
+    <div class="cs-block"><pre><code><span class="kw">private void</span> <span class="fn">OnDestroy</span>()
+{
+    <span class="kw">if</span> (player != <span class="kw">null</span>) player.OnHealthChanged -= <span class="fn">HandleHealthChanged</span>;
+}</code></pre></div>
+    Yoksa silinmiş MonoBehaviour'a event giderse <em>MissingReferenceException</em> ya da memory leak.
+  </div>
+</section>
+
+<section class="topic-section" id="unity-events">
+  <div class="topic-header">
+    <span class="topic-number">25.4</span>
+    <h2 class="topic-title">🪝 UnityEvent — Inspector'dan Bağlanan Event</h2>
+  </div>
+  <p class="topic-text">
+    <code>System.Action</code> kodda harika ama <em>Inspector</em>'dan görmek istiyorsan: <code>UnityEvent</code>. Button.OnClick gibi.
+  </p>
+  <div class="cs-block">
+<pre><code><span class="kw">using</span> <span class="type">UnityEngine.Events</span>;
+
+<span class="kw">public class</span> <span class="type">Door</span> : <span class="type">MonoBehaviour</span>
+{
+    <span class="kw">public</span> <span class="type">UnityEvent</span> OnOpened;
+    <span class="kw">public</span> <span class="type">UnityEvent</span>&lt;<span class="kw">string</span>&gt; OnPlayerSpoke;
+
+    <span class="kw">public void</span> <span class="fn">Open</span>()
+    {
+        OnOpened?.<span class="fn">Invoke</span>();
+    }
+}</code></pre>
+  </div>
+  <p class="topic-text">
+    Inspector'da Door GameObject'inde OnOpened alanı görünür. "+" basıp sahnedeki bir AudioSource'u sürükle, "Play" metodunu seç → kapı açılınca ses çalsın. <strong>Kod yazmadan bağlantı.</strong>
+  </p>
+  <p class="topic-text">
+    UnityEvent vs Action karşılaştırması:
+  </p>
+  <ul class="check-list">
+    <li><strong>UnityEvent</strong> — Inspector'dan görsel bağlantı, designer dostu, biraz daha yavaş.</li>
+    <li><strong>Action</strong> — Sadece kodla bağlanır, hızlı, designer'a görünmez.</li>
+    <li>Hibrit: hem UnityEvent hem Action ekle, ihtiyaca göre.</li>
+  </ul>
+</section>
+
+<section class="topic-section" id="scriptableobject-mimari">
+  <div class="topic-header">
+    <span class="topic-number">25.5</span>
+    <h2 class="topic-title">📋 ScriptableObject Mimarisi</h2>
+  </div>
+  <p class="topic-text">
+    ScriptableObject (SO), MonoBehaviour'un sahne-bağımsız kuzenidir. Asset dosyası olarak yaşar, sahneye dahil değildir, ama runtime'da çağrılır. Veri için <em>kraldır</em>.
+  </p>
+  <h3 class="topic-subtitle">Veri Tabanı Olarak SO</h3>
+  <div class="cs-block">
+<pre><code>[<span class="type">CreateAssetMenu</span>(menuName = <span class="str">"Game/Item Data"</span>)]
+<span class="kw">public class</span> <span class="type">ItemData</span> : <span class="type">ScriptableObject</span>
+{
+    <span class="kw">public string</span> itemName;
+    <span class="kw">public</span> <span class="type">Sprite</span> icon;
+    <span class="kw">public int</span> maxStack;
+    <span class="kw">public</span> <span class="type">ItemRarity</span> rarity;
+    [<span class="type">TextArea</span>] <span class="kw">public string</span> description;
+    <span class="kw">public int</span> goldValue;
+}
+
+<span class="kw">public enum</span> <span class="type">ItemRarity</span> { Common, Rare, Epic, Legendary }</code></pre>
+  </div>
+  <p class="topic-text">
+    Project penceresinde sağ tık → Create → Game → Item Data ile asset oluştur. Designer hiç kod görmeden envanter eşyaları tasarlar.
+  </p>
+  <h3 class="topic-subtitle">Event Channel Pattern</h3>
+  <p class="topic-text">
+    SO'ları event yayıncısı olarak kullanmak Unity topluluğunun en popüler tasarım kalıplarından biridir. Sahne sınırını aşan haberleşme:
+  </p>
+  <div class="cs-block">
+<pre><code>[<span class="type">CreateAssetMenu</span>(menuName = <span class="str">"Game/Event Channel/Void"</span>)]
+<span class="kw">public class</span> <span class="type">VoidEventChannel</span> : <span class="type">ScriptableObject</span>
+{
+    <span class="kw">public event</span> <span class="type">System.Action</span> OnEventRaised;
+    <span class="kw">public void</span> <span class="fn">Raise</span>() =&gt; OnEventRaised?.<span class="fn">Invoke</span>();
+}
+
+[<span class="type">CreateAssetMenu</span>(menuName = <span class="str">"Game/Event Channel/Int"</span>)]
+<span class="kw">public class</span> <span class="type">IntEventChannel</span> : <span class="type">ScriptableObject</span>
+{
+    <span class="kw">public event</span> <span class="type">System.Action</span>&lt;<span class="kw">int</span>&gt; OnEventRaised;
+    <span class="kw">public void</span> <span class="fn">Raise</span>(<span class="kw">int</span> value) =&gt; OnEventRaised?.<span class="fn">Invoke</span>(value);
+}
+
+<span class="com">// Kullanım:</span>
+<span class="kw">public class</span> <span class="type">PlayerHealth</span> : <span class="type">MonoBehaviour</span>
+{
+    [<span class="type">SerializeField</span>] <span class="kw">private</span> <span class="type">IntEventChannel</span> healthChangedChannel;
+
+    <span class="kw">public void</span> <span class="fn">TakeDamage</span>(<span class="kw">int</span> d)
+    {
+        currentHealth -= d;
+        healthChangedChannel.<span class="fn">Raise</span>(currentHealth);
+    }
+}
+
+<span class="com">// HealthBarUI (farklı sahnede bile olabilir):</span>
+<span class="kw">public class</span> <span class="type">HealthBarUI</span> : <span class="type">MonoBehaviour</span>
+{
+    [<span class="type">SerializeField</span>] <span class="kw">private</span> <span class="type">IntEventChannel</span> healthChangedChannel;
+
+    <span class="kw">private void</span> <span class="fn">OnEnable</span>() =&gt; healthChangedChannel.OnEventRaised += <span class="fn">UpdateBar</span>;
+    <span class="kw">private void</span> <span class="fn">OnDisable</span>() =&gt; healthChangedChannel.OnEventRaised -= <span class="fn">UpdateBar</span>;
+
+    <span class="kw">private void</span> <span class="fn">UpdateBar</span>(<span class="kw">int</span> h) { <span class="com">// fill amount güncelle</span> }
+}</code></pre>
+  </div>
+  <p class="topic-text">
+    Player ve UI birbirini tanımıyor — sadece aynı SO event channel'a referansları var. <em>Sahne yüklendiğinde otomatik bağlanır</em>. Test, refactor, yeni sahneye taşıma çok kolay. Bu mimariyle 2-3 yıllık büyük projelerin kodu temiz kalır.
+  </p>
+</section>
+
+<section class="topic-section" id="async-await">
+  <div class="topic-header">
+    <span class="topic-number">25.6</span>
+    <h2 class="topic-title">⚡ async / await — Modern Asenkron</h2>
+  </div>
+  <p class="topic-text">
+    Coroutine yıllarca Unity'nin standardıydı; ama .NET dünyasının çoğu (web requests, file IO, database) <code>async/await</code> ile çalışır. Unity 2017+'tan beri async desteklenir.
+  </p>
+  <div class="cs-block">
+<pre><code><span class="kw">using</span> <span class="type">System.Threading.Tasks</span>;
+<span class="kw">using</span> <span class="type">UnityEngine.Networking</span>;
+
+<span class="kw">public class</span> <span class="type">LeaderboardClient</span> : <span class="type">MonoBehaviour</span>
+{
+    <span class="kw">private async void</span> <span class="fn">Start</span>()
+    {
+        <span class="kw">string</span> json = <span class="kw">await</span> <span class="fn">FetchLeaderboard</span>();
+        <span class="type">Debug</span>.<span class="fn">Log</span>(json);
+    }
+
+    <span class="kw">private async</span> <span class="type">Task</span>&lt;<span class="kw">string</span>&gt; <span class="fn">FetchLeaderboard</span>()
+    {
+        <span class="kw">using</span> (<span class="kw">var</span> req = <span class="type">UnityWebRequest</span>.<span class="fn">Get</span>(<span class="str">"https://example.com/scores"</span>))
+        {
+            <span class="kw">var</span> op = req.<span class="fn">SendWebRequest</span>();
+            <span class="kw">while</span> (!op.<span class="attr">isDone</span>) <span class="kw">await</span> <span class="type">Task</span>.<span class="fn">Yield</span>();
+            <span class="kw">return</span> req.<span class="attr">downloadHandler</span>.<span class="attr">text</span>;
+        }
+    }
+}</code></pre>
+  </div>
+  <h3 class="topic-subtitle">Coroutine vs async</h3>
+  <div class="u-compare">
+    <div class="u-compare-side lts">
+      <h4>🌀 Coroutine</h4>
+      <ul class="check-list">
+        <li>Unity native</li>
+        <li>Sadece MonoBehaviour'da</li>
+        <li>StopCoroutine ile durur</li>
+        <li>GameObject deaktif → durur</li>
+        <li>Sahne içi animasyon için ideal</li>
+        <li>Return değeri yok</li>
+      </ul>
+    </div>
+    <div class="u-compare-side u6">
+      <h4>⚡ async/await</h4>
+      <ul class="check-list">
+        <li>.NET standardı</li>
+        <li>Her sınıfta çalışır</li>
+        <li>CancellationToken ile durur</li>
+        <li>GameObject deaktif → DEVAM EDER (!)</li>
+        <li>Web/IO için ideal</li>
+        <li>Task&lt;T&gt; return edilir</li>
+      </ul>
+    </div>
+  </div>
+  <div class="warning-box">
+    <strong>⚠️ async'in tehlikesi:</strong> GameObject silinince async fonksiyon devam eder. <code>this</code> null olsa bile sonraki satırda hata. Çözüm: <code>CancellationToken</code> kullan, <code>OnDestroy</code>'da iptal et. Veya <strong>UniTask</strong> (Unity için optimize edilmiş async kütüphanesi) — GameObject yaşam döngüsüne entegre.
+  </div>
+</section>
+
+<section class="topic-section" id="generics">
+  <div class="topic-header">
+    <span class="topic-number">25.7</span>
+    <h2 class="topic-title">🧩 Generics — Tip Bağımsız Kod</h2>
+  </div>
+  <p class="topic-text">
+    Generic'ler aynı kodu farklı tipler için yazmanı sağlar. <code>List&lt;T&gt;</code>, <code>Dictionary&lt;K,V&gt;</code> bunlardan yararlanır.
+  </p>
+  <div class="cs-block">
+<pre><code><span class="kw">public class</span> <span class="type">ObjectPool</span>&lt;<span class="type">T</span>&gt; <span class="kw">where</span> <span class="type">T</span> : <span class="type">MonoBehaviour</span>
+{
+    <span class="kw">private</span> <span class="type">Queue</span>&lt;<span class="type">T</span>&gt; pool = <span class="kw">new</span> <span class="type">Queue</span>&lt;<span class="type">T</span>&gt;();
+    <span class="kw">private</span> <span class="type">T</span> prefab;
+    <span class="kw">private</span> <span class="type">Transform</span> parent;
+
+    <span class="kw">public</span> <span class="fn">ObjectPool</span>(<span class="type">T</span> prefab, <span class="kw">int</span> initialSize, <span class="type">Transform</span> parent = <span class="kw">null</span>)
+    {
+        <span class="kw">this</span>.prefab = prefab;
+        <span class="kw">this</span>.parent = parent;
+        <span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">0</span>; i &lt; initialSize; i++) <span class="fn">Return</span>(<span class="fn">Create</span>());
+    }
+
+    <span class="kw">private</span> <span class="type">T</span> <span class="fn">Create</span>() =&gt; <span class="type">GameObject</span>.<span class="fn">Instantiate</span>(prefab, parent);
+
+    <span class="kw">public</span> <span class="type">T</span> <span class="fn">Get</span>()
+    {
+        <span class="type">T</span> item = pool.<span class="attr">Count</span> &gt; <span class="num">0</span> ? pool.<span class="fn">Dequeue</span>() : <span class="fn">Create</span>();
+        item.<span class="attr">gameObject</span>.<span class="fn">SetActive</span>(<span class="kw">true</span>);
+        <span class="kw">return</span> item;
+    }
+
+    <span class="kw">public void</span> <span class="fn">Return</span>(<span class="type">T</span> item)
+    {
+        item.<span class="attr">gameObject</span>.<span class="fn">SetActive</span>(<span class="kw">false</span>);
+        pool.<span class="fn">Enqueue</span>(item);
+    }
+}
+
+<span class="com">// Kullanım:</span>
+<span class="kw">var</span> bulletPool = <span class="kw">new</span> <span class="type">ObjectPool</span>&lt;<span class="type">Bullet</span>&gt;(bulletPrefab, <span class="num">20</span>);
+<span class="kw">var</span> enemyPool = <span class="kw">new</span> <span class="type">ObjectPool</span>&lt;<span class="type">Enemy</span>&gt;(enemyPrefab, <span class="num">50</span>);
+<span class="type">Bullet</span> b = bulletPool.<span class="fn">Get</span>();</code></pre>
+  </div>
+  <p class="topic-text">
+    Tek bir ObjectPool kodu, hem Bullet hem Enemy hem PowerUp için çalışır. <code>where T : MonoBehaviour</code> <em>constraint</em>'i T'nin MB olduğunu garanti eder, böylece gameObject özelliğini kullanabilirsin.
+  </p>
+  <p class="topic-text">
+    Unity 2021+ ile <code>UnityEngine.Pool.ObjectPool&lt;T&gt;</code> built-in geliyor — yukarıdakine benzer ama optimize edilmiş.
+  </p>
+</section>
+
+<section class="topic-section" id="linq">
+  <div class="topic-header">
+    <span class="topic-number">25.8</span>
+    <h2 class="topic-title">🔍 LINQ — Sorgu Dili</h2>
+  </div>
+  <p class="topic-text">
+    LINQ (Language-Integrated Query), koleksiyonlar üzerinde SQL-benzeri sorgular yazmana izin verir. Kod kısalır, niyet okunur.
+  </p>
+  <div class="cs-block">
+<pre><code><span class="kw">using</span> <span class="type">System.Linq</span>;
+
+<span class="kw">public class</span> <span class="type">EnemyManager</span> : <span class="type">MonoBehaviour</span>
+{
+    <span class="kw">public</span> <span class="type">List</span>&lt;<span class="type">Enemy</span>&gt; allEnemies;
+
+    <span class="com">// Hayatta olan düşmanlar:</span>
+    <span class="kw">public</span> <span class="type">List</span>&lt;<span class="type">Enemy</span>&gt; <span class="fn">GetAlive</span>() =&gt;
+        allEnemies.<span class="fn">Where</span>(e =&gt; e.<span class="attr">health</span> &gt; <span class="num">0</span>).<span class="fn">ToList</span>();
+
+    <span class="com">// En yakın düşman:</span>
+    <span class="kw">public</span> <span class="type">Enemy</span> <span class="fn">GetClosest</span>(<span class="type">Vector3</span> from) =&gt;
+        allEnemies.<span class="fn">OrderBy</span>(e =&gt; <span class="type">Vector3</span>.<span class="fn">Distance</span>(from, e.<span class="attr">transform</span>.<span class="attr">position</span>))
+                  .<span class="fn">FirstOrDefault</span>();
+
+    <span class="com">// En zayıf 3 düşman:</span>
+    <span class="kw">public</span> <span class="type">List</span>&lt;<span class="type">Enemy</span>&gt; <span class="fn">GetWeakest</span>(<span class="kw">int</span> n) =&gt;
+        allEnemies.<span class="fn">OrderBy</span>(e =&gt; e.<span class="attr">health</span>).<span class="fn">Take</span>(n).<span class="fn">ToList</span>();
+
+    <span class="com">// Toplam XP:</span>
+    <span class="kw">public int</span> <span class="fn">TotalXpReward</span>() =&gt;
+        allEnemies.<span class="fn">Where</span>(e =&gt; e.<span class="attr">isDefeated</span>).<span class="fn">Sum</span>(e =&gt; e.<span class="attr">xpReward</span>);
+
+    <span class="com">// Tür bazında grupla:</span>
+    <span class="kw">public var</span> <span class="fn">ByType</span>() =&gt;
+        allEnemies.<span class="fn">GroupBy</span>(e =&gt; e.<span class="attr">enemyType</span>);
+
+    <span class="com">// Hepsi öldü mü?</span>
+    <span class="kw">public bool</span> <span class="fn">AllDead</span>() =&gt; allEnemies.<span class="fn">All</span>(e =&gt; e.<span class="attr">health</span> &lt;= <span class="num">0</span>);
+
+    <span class="com">// En az 1 boss var mı?</span>
+    <span class="kw">public bool</span> <span class="fn">AnyBoss</span>() =&gt; allEnemies.<span class="fn">Any</span>(e =&gt; e.<span class="attr">isBoss</span>);
+}</code></pre>
+  </div>
+  <div class="warning-box">
+    <strong>⚠️ LINQ ve Performans:</strong> LINQ her sorguda küçük garbage üretir (enumerator, lambda capture). Update içinde 1000 kere çağırma. <em>Soğuk yol</em> (cold path) ve <em>start-time hesaplama</em> için harika; <em>her frame</em> sıkı döngülerde for kullan.
+  </div>
+</section>
+
+<section class="topic-section" id="interfaces">
+  <div class="topic-header">
+    <span class="topic-number">25.9</span>
+    <h2 class="topic-title">🔌 Interfaces — Davranış Sözleşmeleri</h2>
+  </div>
+  <p class="topic-text">
+    Bir interface, sınıfların uygulamak zorunda olduğu metodları listeler. "Sözleşme" gibi düşün.
+  </p>
+  <div class="cs-block">
+<pre><code><span class="kw">public interface</span> <span class="type">IDamageable</span>
+{
+    <span class="kw">void</span> <span class="fn">TakeDamage</span>(<span class="kw">int</span> amount);
+    <span class="kw">int</span> CurrentHealth { <span class="kw">get</span>; }
+}
+
+<span class="kw">public interface</span> <span class="type">IInteractable</span>
+{
+    <span class="kw">void</span> <span class="fn">Interact</span>(<span class="type">Player</span> player);
+}
+
+<span class="kw">public class</span> <span class="type">Enemy</span> : <span class="type">MonoBehaviour</span>, <span class="type">IDamageable</span>
+{
+    <span class="kw">public int</span> CurrentHealth { <span class="kw">get</span>; <span class="kw">private set</span>; } = <span class="num">100</span>;
+
+    <span class="kw">public void</span> <span class="fn">TakeDamage</span>(<span class="kw">int</span> amount)
+    {
+        CurrentHealth -= amount;
+        <span class="kw">if</span> (CurrentHealth &lt;= <span class="num">0</span>) <span class="type">Destroy</span>(gameObject);
+    }
+}
+
+<span class="kw">public class</span> <span class="type">DestructibleCrate</span> : <span class="type">MonoBehaviour</span>, <span class="type">IDamageable</span>
+{
+    <span class="kw">public int</span> CurrentHealth { <span class="kw">get</span>; <span class="kw">private set</span>; } = <span class="num">50</span>;
+    <span class="kw">public void</span> <span class="fn">TakeDamage</span>(<span class="kw">int</span> a) { <span class="com">// fıçı kır</span> }
+}
+
+<span class="com">// Mermi her şeyle çalışır:</span>
+<span class="kw">private void</span> <span class="fn">OnCollisionEnter</span>(<span class="type">Collision</span> col)
+{
+    <span class="kw">if</span> (col.<span class="attr">gameObject</span>.<span class="fn">TryGetComponent</span>&lt;<span class="type">IDamageable</span>&gt;(<span class="kw">out var</span> dmg))
+    {
+        dmg.<span class="fn">TakeDamage</span>(<span class="num">20</span>);
+    }
+}</code></pre>
+  </div>
+  <p class="topic-text">
+    Mermi, Enemy mi DestructibleCrate mi ya da gelecekte yazacağın bir tank mı umurunda değil — <code>IDamageable</code> uyguluyorsa hasar verir. <strong>Açık-kapalı prensibi</strong> (Open-Closed Principle): kod yeni davranışa açık, eski koda dokunmadan eklenebilir.
+  </p>
+</section>
+
+<section class="topic-section" id="extension-methods">
+  <div class="topic-header">
+    <span class="topic-number">25.10</span>
+    <h2 class="topic-title">🧪 Extension Methods — Tipleri Genişlet</h2>
+  </div>
+  <p class="topic-text">
+    Mevcut bir tipe <em>yeni metod</em> ekle, kodunda değişiklik yapmadan:
+  </p>
+  <div class="cs-block">
+<pre><code><span class="kw">public static class</span> <span class="type">Vector3Extensions</span>
+{
+    <span class="kw">public static</span> <span class="type">Vector3</span> <span class="fn">WithY</span>(<span class="kw">this</span> <span class="type">Vector3</span> v, <span class="kw">float</span> y)
+        =&gt; <span class="kw">new</span> <span class="type">Vector3</span>(v.<span class="attr">x</span>, y, v.<span class="attr">z</span>);
+
+    <span class="kw">public static</span> <span class="type">Vector3</span> <span class="fn">Flatten</span>(<span class="kw">this</span> <span class="type">Vector3</span> v)
+        =&gt; <span class="kw">new</span> <span class="type">Vector3</span>(v.<span class="attr">x</span>, <span class="num">0</span>, v.<span class="attr">z</span>);
+}
+
+<span class="com">// Kullanım:</span>
+transform.<span class="attr">position</span> = transform.<span class="attr">position</span>.<span class="fn">WithY</span>(<span class="num">5</span>);  <span class="com">// y'yi 5 yap, x z aynı</span>
+<span class="type">Vector3</span> flatDir = (target - player).<span class="fn">Flatten</span>().<span class="attr">normalized</span>;  <span class="com">// y'siz yön</span></code></pre>
+  </div>
+  <p class="topic-text">
+    <code>this Vector3 v</code> imzası "bu metodu Vector3 üzerinde çağırılabilir hâle getir" anlamına gelir. Kendi yardımcı sınıfını yazmak yerine kod doğal okunur.
+  </p>
+</section>
+
+<div class="mini-checkpoint">
+  <strong>🎓 Bölüm Kontrol Noktası:</strong> Coroutine zamana yayılmış fonksiyon, yield return ile durum kontrol. Delegate/event loose coupling. UnityEvent Inspector dostu. ScriptableObject sahne dışı veri + Event Channel pattern. async/await modern asenkron, dikkat: OnDestroy iptal. Generics tip bağımsız (ObjectPool). LINQ sorgular için, hot path'te dikkat. Interface davranış sözleşmesi. Extension method tip genişletme.
+</div>
+
+<div class="practice-section">
+  <h2>🎯 Pratik Projeler</h2>
+
+  <div class="project-card">
+    <h3>Proje 1: SO Event Channel ile Health Sistemi</h3>
+    <p><strong>Hedef:</strong> Player ve HealthBar UI'sı doğrudan referans olmadan birbirini güncellesin.</p>
+    <ol class="step-list">
+      <li>IntEventChannel : ScriptableObject oluştur (yukarıdaki kodu kopyala).</li>
+      <li>"PlayerHealthChanged" adında bir asset oluştur.</li>
+      <li>PlayerHealth script'inde [SerializeField] healthChannel; TakeDamage'de healthChannel.Raise(current).</li>
+      <li>HealthBarUI script'inde aynı channel'a abone ol, OnEnable/OnDisable'da add/remove.</li>
+      <li>Her ikisinin de Inspector'da aynı SO asset'i atayın.</li>
+      <li>Test: TakeDamage çağrıldığında HealthBar otomatik güncelleniyor mu? Birbirinin referansı yok!</li>
+    </ol>
+  </div>
+
+  <div class="project-card">
+    <h3>Proje 2: ObjectPool ile Mermi Sistemi</h3>
+    <p><strong>Hedef:</strong> Düşmanların ateşlediği mermiler Instantiate/Destroy yerine pool'dan gelsin.</p>
+    <ol class="step-list">
+      <li>Bullet script'i: rigidbody ile ileri hareket, 3 sn sonra Return.</li>
+      <li>BulletPool : MonoBehaviour, içinde UnityEngine.Pool.ObjectPool&lt;Bullet&gt; veya kendin yazdığın generic pool.</li>
+      <li>Enemy.Shoot() = pool.Get() → konum ata → mermiyi ateşle.</li>
+      <li>Bullet 3 sn sonra: pool.Return(this).</li>
+      <li>Profiler ile GC.Alloc karşılaştır: pool vs Instantiate/Destroy.</li>
+    </ol>
+  </div>
+
+  <div class="project-card">
+    <h3>Proje 3: IDamageable Interface'i ile Universal Saldırı</h3>
+    <p><strong>Hedef:</strong> Kılıç, mermi, patlayıcı — hepsi aynı interface üzerinden hasar versin; düşman, fıçı, ahşap kapı — hepsi aynı interface'e uysun.</p>
+    <ol class="step-list">
+      <li>IDamageable interface'i: TakeDamage(int), CurrentHealth.</li>
+      <li>Enemy, DestructibleCrate, WoodDoor — hepsi IDamageable uygulasın.</li>
+      <li>Bullet.OnCollisionEnter: TryGetComponent&lt;IDamageable&gt; ile hasar.</li>
+      <li>Sword.OnTriggerEnter: aynı şekilde.</li>
+      <li>Explosion: Physics.OverlapSphere → her objeyi IDamageable mı kontrol et → varsa hasar.</li>
+      <li>Yeni bir hasar verici (LightningBolt) eklerken sadece collision kodu yaz; düşman tarafını değiştirme.</li>
+    </ol>
+  </div>
+</div>
+
+<section class="quiz" id="bolum-quiz">
+  <header class="quiz-header">
+    <div class="quiz-header-icon"><i class="ti ti-help"></i></div>
+    <div class="quiz-header-text">
+      <h2>Bölüm Sonu Sınavı</h2>
+      <span>5 soru</span>
+    </div>
+  </header>
+
+  <article class="quiz-question" id="q25-1">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">01</span>
+      <h3 class="quiz-prompt-text">Coroutine GameObject deaktif olunca ne olur?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Hiçbir şey, devam eder</button>
+      <button class="quiz-option" data-correct="true">Otomatik durur</button>
+      <button class="quiz-option" data-correct="false">Hata fırlatır</button>
+      <button class="quiz-option" data-correct="false">Başka GameObject'e taşınır</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q25-2">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">02</span>
+      <h3 class="quiz-prompt-text">ScriptableObject Event Channel mimarisinin en büyük avantajı?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Daha hızlı çalışır</button>
+      <button class="quiz-option" data-correct="true">Sınıflar arasında loose coupling, refactor ve sahne taşıma kolaylığı</button>
+      <button class="quiz-option" data-correct="false">Bellek kullanımı sıfır</button>
+      <button class="quiz-option" data-correct="false">Otomatik save işlemi</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q25-3">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">03</span>
+      <h3 class="quiz-prompt-text">async metodda GameObject silinince ne riski var?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Coroutine gibi otomatik durur</button>
+      <button class="quiz-option" data-correct="true">Devam eder, this null olabilir → MissingReferenceException</button>
+      <button class="quiz-option" data-correct="false">Editor çöker</button>
+      <button class="quiz-option" data-correct="false">Memory'de leak olur ama hata yok</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q25-4">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">04</span>
+      <h3 class="quiz-prompt-text">LINQ'i Update içinde her frame kullanmak neden problemli?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Editor'de çalışmaz</button>
+      <button class="quiz-option" data-correct="true">Garbage Allocation oluşturup GC tetikler, frame stuttering yapar</button>
+      <button class="quiz-option" data-correct="false">Sadece List ile çalışır</button>
+      <button class="quiz-option" data-correct="false">Mobil'de derlenemez</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q25-5">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">05</span>
+      <h3 class="quiz-prompt-text">Interface ne işe yarar?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Sınıfa varsayılan metod ekler</button>
+      <button class="quiz-option" data-correct="true">Farklı sınıfların aynı metodları uygulamasını zorunlu kılarak loose coupling sağlar</button>
+      <button class="quiz-option" data-correct="false">Inspector'da değişken gösterir</button>
+      <button class="quiz-option" data-correct="false">Performans iyileştirir</button>
+    </div>
+  </article>
+</section>
+
+<section class="complete-section">
+      <h3 class="complete-title">🎉 Bölüm 25 Tamamlandı!</h3>
+      <p class="complete-msg">Profesyonel C# araç kutunun anahtarları senin. Coroutine derinlikleri, event/delegate ile loose coupling, ScriptableObject mimarisi, async/await, generic'ler, LINQ, interface'ler, extension method'lar. Sıradaki bölümde <strong>Performance Optimization</strong>'a geçiyoruz: Profiler, GPU instancing, Job System, Burst Compiler ile FPS'ini ikiye katla.</p>
+      <button class="complete-btn" data-section="s25">
+        <i class="ti ti-circle-check"></i>
+        <span>Bu Bölümü Tamamladım</span>
+      </button>
+      <p class="complete-note">İlerlemen otomatik tarayıcına kaydedilir.</p>
+    </section>
+    <!-- Sayfa Gezinme -->
+    <nav class="page-nav" aria-label="Bölüm gezinme">
+      <a href="24-build.html" class="page-nav-link prev">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-left"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Önceki Bölüm</div>
+          <div class="page-nav-title">24. Build & Yayın</div>
+        </div>
+      </a>
+      <a href="26-performance.html" class="page-nav-link next">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-right"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Sonraki Bölüm</div>
+          <div class="page-nav-title">26. Performans</div>
+        </div>
+      </a>
+    </nav>
+
+  </div>
+</main>
+<script src="../js/progress.js?v=11"></script>
+<script src="../js/quiz.js?v=11"></script>
+<script src="../js/toc.js?v=11"></script>
+<script src="../js/main.js?v=11"></script>
+</body>
+</html>

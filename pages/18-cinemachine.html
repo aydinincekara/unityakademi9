@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cinemachine — UnityAkademi</title>
+  <meta name="description" content="Sinematik kamera sistemi: Virtual Camera, Brain, Follow &amp;amp; LookAt, Blend, Noise, Impulse, Confiner, FreeLook, Spline Dolly — Bölüm 18.">
+  <meta name="theme-color" content="#fa7d19">
+  <link rel="manifest" href="../manifest.json">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Cinemachine">
+  <meta property="og:description" content="Sinematik kamera sistemi: Virtual Camera, Brain, Follow &amp;amp; LookAt, Blend, Noise, Impulse, Confiner, FreeLook, Spline Dolly — Bölüm 18.">
+  <meta property="og:image" content="../og-image.svg">
+  <meta property="og:site_name" content="UnityAkademi">
+  <meta property="og:locale" content="tr_TR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cinemachine">
+  <meta name="twitter:description" content="Sinematik kamera sistemi: Virtual Camera, Brain, Follow &amp;amp; LookAt, Blend, Noise, Impulse, Confiner, FreeLook, Spline Dolly — Bölüm 18.">
+  <meta name="twitter:image" content="../og-image.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="../css/variables.css?v=11">
+  <link rel="stylesheet" href="../css/reset.css?v=11">
+  <link rel="stylesheet" href="../css/layout.css?v=11">
+  <link rel="stylesheet" href="../css/components.css?v=11">
+  <link rel="stylesheet" href="../css/content.css?v=11">
+  <link rel="stylesheet" href="../css/visuals.css?v=11">
+  <link rel="stylesheet" href="../css/extras.css?v=11">
+  <link rel="stylesheet" href="../css/responsive.css?v=11">
+</head>
+<body>
+<button class="nav-hamburger" id="navHamburger" aria-label="Menüyü aç">
+  <i class="ti ti-menu-2"></i>
+</button>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a href="../index.html" class="sidebar-brand">
+      <div class="sidebar-brand-icon"><i class="ti ti-home-2"></i></div>
+      <div class="sidebar-brand-text">
+        <span class="sidebar-brand-name">Ana Sayfa</span>
+        <span class="sidebar-brand-sub">UnityAkademi</span>
+      </div>
+    </a>
+    <button class="mobile-toggle" aria-label="Menü"><i class="ti ti-x"></i></button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-group">
+      <div class="nav-group-title">Temeller</div>
+      <a href="01-kurulum.html" class="nav-link" data-section="s1"><i class="ti ti-download"></i><span class="nav-link-text">Kurulum & İlk Bakış</span><span class="nav-link-num">01</span></a>
+      <a href="02-arayuz.html" class="nav-link" data-section="s2"><i class="ti ti-layout-board"></i><span class="nav-link-text">Editor Arayüzü</span><span class="nav-link-num">02</span></a>
+      <a href="03-gameobject-component.html" class="nav-link" data-section="s3"><i class="ti ti-cube"></i><span class="nav-link-text">GameObject & Component</span><span class="nav-link-num">03</span></a>
+      <a href="04-csharp-temelleri.html" class="nav-link" data-section="s4"><i class="ti ti-code"></i><span class="nav-link-text">C# Temelleri</span><span class="nav-link-num">04</span></a>
+      <a href="05-monobehaviour-lifecycle.html" class="nav-link" data-section="s5"><i class="ti ti-refresh"></i><span class="nav-link-text">MonoBehaviour Lifecycle</span><span class="nav-link-num">05</span></a>
+      <a href="06-transform-vector.html" class="nav-link" data-section="s6"><i class="ti ti-arrows-move"></i><span class="nav-link-text">Transform & Vector3</span><span class="nav-link-num">06</span></a>
+      <a href="07-input.html" class="nav-link" data-section="s7"><i class="ti ti-keyboard"></i><span class="nav-link-text">Input Sistemi</span><span class="nav-link-num">07</span></a>
+      <a href="08-physics.html" class="nav-link" data-section="s8"><i class="ti ti-atom"></i><span class="nav-link-text">Physics</span><span class="nav-link-num">08</span></a>
+      <a href="09-ui.html" class="nav-link" data-section="s9"><i class="ti ti-layout-grid"></i><span class="nav-link-text">UI Sistemi</span><span class="nav-link-num">09</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Görsel & Asset</div>
+      <a href="10-material-shader.html" class="nav-link" data-section="s10"><i class="ti ti-palette"></i><span class="nav-link-text">Material & Shader</span><span class="nav-link-num">10</span></a>
+      <a href="11-asset-import.html" class="nav-link" data-section="s11"><i class="ti ti-folder"></i><span class="nav-link-text">Asset Import</span><span class="nav-link-num">11</span></a>
+      <a href="12-animation.html" class="nav-link" data-section="s12"><i class="ti ti-bounce-right"></i><span class="nav-link-text">Animation</span><span class="nav-link-num">12</span></a>
+      <a href="13-particle-vfx.html" class="nav-link" data-section="s13"><i class="ti ti-sparkles"></i><span class="nav-link-text">Particle & VFX Graph</span><span class="nav-link-num">13</span></a>
+      <a href="14-lighting.html" class="nav-link" data-section="s14"><i class="ti ti-bulb"></i><span class="nav-link-text">Lighting</span><span class="nav-link-num">14</span></a>
+      <a href="15-audio.html" class="nav-link" data-section="s15"><i class="ti ti-volume"></i><span class="nav-link-text">Audio</span><span class="nav-link-num">15</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Sistemler</div>
+      <a href="16-probuilder.html" class="nav-link" data-section="s16"><i class="ti ti-3d-cube-sphere"></i><span class="nav-link-text">ProBuilder</span><span class="nav-link-num">16</span></a>
+      <a href="17-terrain.html" class="nav-link" data-section="s17"><i class="ti ti-mountain"></i><span class="nav-link-text">Terrain</span><span class="nav-link-num">17</span></a>
+      <a href="18-cinemachine.html" class="nav-link active" data-section="s18"><i class="ti ti-camera"></i><span class="nav-link-text">Cinemachine</span><span class="nav-link-num">18</span></a>
+      <a href="19-timeline.html" class="nav-link" data-section="s19"><i class="ti ti-timeline"></i><span class="nav-link-text">Timeline</span><span class="nav-link-num">19</span></a>
+      <a href="20-navmesh.html" class="nav-link" data-section="s20"><i class="ti ti-route"></i><span class="nav-link-text">NavMesh & AI</span><span class="nav-link-num">20</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">İleri Seviye</div>
+      <a href="21-urp-hdrp.html" class="nav-link" data-section="s21"><i class="ti ti-bolt"></i><span class="nav-link-text">URP, HDRP & Unity 6</span><span class="nav-link-num">21</span></a>
+      <a href="22-new-input.html" class="nav-link" data-section="s22"><i class="ti ti-device-gamepad-2"></i><span class="nav-link-text">New Input System</span><span class="nav-link-num">22</span></a>
+      <a href="23-save-menu.html" class="nav-link" data-section="s23"><i class="ti ti-device-floppy"></i><span class="nav-link-text">Save & Menü</span><span class="nav-link-num">23</span></a>
+      <a href="24-build.html" class="nav-link" data-section="s24"><i class="ti ti-package-export"></i><span class="nav-link-text">Build & Yayınlama</span><span class="nav-link-num">24</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Profesyonel</div>
+      <a href="25-csharp-ileri.html" class="nav-link" data-section="s25"><i class="ti ti-brackets-contain"></i><span class="nav-link-text">C# İleri</span><span class="nav-link-num">25</span></a>
+      <a href="26-performance.html" class="nav-link" data-section="s26"><i class="ti ti-gauge"></i><span class="nav-link-text">Performance</span><span class="nav-link-num">26</span></a>
+      <a href="27-yol-haritasi.html" class="nav-link" data-section="s27"><i class="ti ti-map-2"></i><span class="nav-link-text">Yol Haritası</span><span class="nav-link-num">27</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Pratik</div>
+      <a href="projects.html" class="nav-link nav-link-extra" data-section="x-projects"><i class="ti ti-rocket"></i><span class="nav-link-text">Projeler</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Ek Kaynaklar</div>
+      <a href="sozluk.html" class="nav-link nav-link-extra" data-section="x-sozluk"><i class="ti ti-book-2"></i><span class="nav-link-text">Sözlük</span></a>
+      <a href="cheatsheet.html" class="nav-link nav-link-extra" data-section="x-cheatsheet"><i class="ti ti-list-details"></i><span class="nav-link-text">Cheat Sheet</span></a>
+      <a href="sss.html" class="nav-link nav-link-extra" data-section="x-sss"><i class="ti ti-help-circle"></i><span class="nav-link-text">SSS</span></a>
+      <a href="arama.html" class="nav-link nav-link-extra" data-section="x-arama"><i class="ti ti-search"></i><span class="nav-link-text">Arama</span></a>
+      <a href="sertifika.html" class="nav-link nav-link-extra" data-section="x-sertifika"><i class="ti ti-certificate"></i><span class="nav-link-text">Sertifika</span></a>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="kaynaklar.html" class="sidebar-btn"><i class="ti ti-books"></i><span>Kaynaklar</span></a>
+    <a href="iletisim.html" class="sidebar-btn"><i class="ti ti-mail"></i><span>İletişim</span></a>
+  </div>
+</aside>
+<main class="main">
+  <div class="main-content">
+<nav class="breadcrumb" aria-label="Sayfa konumu">
+      <a href="../index.html"><i class="ti ti-home"></i><span>Ana Sayfa</span></a>
+      <i class="ti ti-chevron-right"></i><span><i class="ti ti-school" style="font-size: 13px; opacity: 0.7; margin-right: 4px;"></i>Sistemler</span>
+      <i class="ti ti-chevron-right"></i><span style="color: var(--primary-light);">Cinemachine</span>
+    </nav>
+
+<header class="page-header">
+  <span class="chapter-pill">Bölüm 18</span>
+  <h1 class="page-title">Cinemachine — Sinematik Kamera Sistemi</h1>
+  <p class="page-subtitle">Virtual Camera, Brain, Follow &amp; LookAt, Blend, FreeLook, Dolly Track, Confiner ve Impulse — kameranın bir kod satırı bile yazmadan profesyonel olduğu sistem.</p>
+  <div class="page-meta">
+    <span>⏱ Okuma süresi: ~26 dk</span>
+    <span>🎬 6 örnek kurulum</span>
+    <span>🎯 Zorluk: Orta</span>
+  </div>
+</header>
+
+<section class="topic-section" id="cinemachine-nedir">
+  <div class="topic-header">
+    <span class="topic-number">18.1</span>
+    <h2 class="topic-title">📷 Cinemachine Nedir?</h2>
+  </div>
+  <p class="topic-text">
+    Bir oyunda kamera, oyuncunun gözüdür. Eğer kamera tek bir <code>transform.position</code> ataması ile karakterin arkasına yapıştırılırsa sonuç şu olur: titreyen, duvarların içine giren, dönüşlerde zıplayan, hiçbir <strong>sinematik his</strong> bırakmayan bir deneyim. Cinemachine, Unity'nin bu sorunu kökten çözen <strong>resmi kamera paketi</strong>dir. Tek bir kamera bileşeniyle takip, hedef alma, çarpışmadan kaçınma, yumuşak geçiş, sallantı, raya bağlı hareket, alan kısıtlama ve daha fazlasını verir — ve hepsi <strong>Inspector'dan</strong>.
+  </p>
+  <p class="topic-text">
+    Cinemachine 2017'de Unity Asset Store'da yayımlandı, kısa sürede endüstri standardı haline geldi. <strong>Hearthstone, Ori and the Will of the Wisps, Cuphead, Genshin Impact</strong> gibi oyunlar kamerası için Cinemachine kullanır. Unity 6 ile birlikte gelen <strong>Cinemachine 3.x</strong> sürümünde paket sıfırdan yeniden yazıldı: API daha temiz, <em>CinemachineCamera</em> sınıfı (eski <em>CinemachineVirtualCamera</em>) yerini aldı, Body/Aim modülleri artık <strong>ayrı bileşen</strong> olarak ekleniyor — yani bir vcam'in iç yapısı tek bir dev component yerine, mini bir GameObject hiyerarşisi.
+  </p>
+  <div class="real-world-box">
+    <h3>🎮 Gerçek Dünyadan: God of War (2018)</h3>
+    <p>Santa Monica Studio, oyunun tamamını <strong>tek bir kesintisiz kamera çekimi</strong> olarak tasarladı — Kratos'un omzundan başlayıp Atreus'a, oradan diyalog yakın çekimine, sonra savaş geniş açısına geçen kamera <strong>asla kesilmedi</strong>. Bu, motor seviyesinde sınırsız kamera karışımı (blend) gerektirdi. Unity'de aynı etkiyi yaratmak için Cinemachine'in <em>Blend List</em> ve <em>Priority</em> sistemini kullanırsınız: her sahne için bir vcam, en yüksek öncelikli olan aktif olur ve aralarındaki geçiş otomatik yumuşatılır. Tek satır kod yok.</p>
+  </div>
+</section>
+
+<section class="topic-section" id="kurulum">
+  <div class="topic-header">
+    <span class="topic-number">18.2</span>
+    <h2 class="topic-title">📦 Paket Kurulumu</h2>
+  </div>
+  <p class="topic-text">Unity 6'da Cinemachine ön-tanımlı gelmez; Package Manager'dan eklemek gerekir:</p>
+  <ol class="step-list">
+    <li><strong>Window → Package Manager</strong>'ı aç.</li>
+    <li>Sol üstte <strong>Packages: Unity Registry</strong>'yi seç (varsayılan <em>In Project</em>'tir).</li>
+    <li>Arama kutusuna <code>Cinemachine</code> yaz.</li>
+    <li>Sağ alttan <strong>Install</strong>'a bas. Unity 6'da <strong>3.1.x</strong> sürümü gelir.</li>
+    <li>Yüklenince <strong>GameObject → Cinemachine</strong> menüsü aktif olur.</li>
+  </ol>
+  <div class="info-box">
+    <strong>💡 Sürüm Notu:</strong> Eğer önceden 2.x ile yazılmış bir proje açıyorsanız Unity, otomatik <strong>Upgrade Wizard</strong> önerir. Eski <code>CinemachineVirtualCamera</code> componentleri yeni <code>CinemachineCamera</code>'ya dönüştürülür. Aşağıdaki içerik <strong>Unity 6 / Cinemachine 3.x</strong> üzerinden anlatılır.
+  </div>
+</section>
+
+<section class="topic-section" id="brain-vcam">
+  <div class="topic-header">
+    <span class="topic-number">18.3</span>
+    <h2 class="topic-title">🧠 Brain &amp; Virtual Camera Mimarisi</h2>
+  </div>
+  <p class="topic-text">
+    Cinemachine'in en yanıltıcı tarafı şudur: <strong>Sahnede tek bir gerçek kamera vardır.</strong> Bütün vcam'ler ise <em>sahne yönetmenleri</em> gibi davranır — pozisyon, rotasyon ve lens ayarlarını <strong>Main Camera</strong>'ya empoze ederler. Bunu yöneten bileşen <code>CinemachineBrain</code>'dir.
+  </p>
+  <div class="u-inspector camera">
+    <div class="u-inspector-header">CinemachineBrain (Main Camera üzerinde)</div>
+    <div class="u-inspector-row"><span class="u-inspector-label">World Up Override</span><span class="u-inspector-value">None</span></div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Show Debug Text</span><span class="u-inspector-value">☐ False</span></div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Default Blend</span><span class="u-inspector-value">Ease In Out / 2 sn</span></div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Custom Blends</span><span class="u-inspector-value">None</span></div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Update Method</span><span class="u-inspector-value">Smart Update</span></div>
+  </div>
+  <p class="topic-text">
+    Brain her frame'de tüm aktif vcam'leri <strong>Priority</strong>'ye göre sıralar. En yüksek olan <strong>Live Camera</strong> olur ve gerçek kamerayı kontrol eder. Priority değişirse (örn. Inspector'dan 10 → 15) <strong>Default Blend</strong>'de tanımlı zaman aralığında yumuşak geçiş yapılır.
+  </p>
+  <h3 class="topic-subtitle">CinemachineCamera (vcam)</h3>
+  <p class="topic-text">
+    <strong>GameObject → Cinemachine → Cinemachine Camera</strong> menüsünden eklendiğinde sahneye:
+  </p>
+  <ul class="check-list">
+    <li><code>CinemachineCamera</code> ana bileşeni (kök GameObject)</li>
+    <li>Bir <strong>child GameObject</strong>: <em>Follow</em> davranışı için (örn. <code>CinemachineFollow</code>)</li>
+    <li>Bir <strong>child GameObject</strong>: <em>Aim</em> davranışı için (örn. <code>CinemachineRotationComposer</code>)</li>
+  </ul>
+  <p class="topic-text">
+    eklenir. Unity 6 öncesinde Body/Aim tek bileşende seçiliyor; şimdi her biri ayrı bir <strong>CinemachineComponentBase</strong> türevi.
+  </p>
+  <div class="u-inspector camera">
+    <div class="u-inspector-header">CinemachineCamera</div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Priority</span><span class="u-inspector-value">10</span></div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Output Channel</span><span class="u-inspector-value">Default</span></div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Follow</span><span class="u-inspector-value">Player (Transform)</span></div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Look At</span><span class="u-inspector-value">Player (Transform)</span></div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Standby Update</span><span class="u-inspector-value">Round Robin</span></div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Blend Hint</span><span class="u-inspector-value">None</span></div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Lens</span><span class="u-inspector-value">Field of View 60</span></div>
+  </div>
+</section>
+
+<section class="topic-section" id="follow-lookat">
+  <div class="topic-header">
+    <span class="topic-number">18.4</span>
+    <h2 class="topic-title">🎯 Follow &amp; Look At</h2>
+  </div>
+  <p class="topic-text">
+    Bu iki alan, vcam'in en kritik referanslarıdır:
+  </p>
+  <ul class="check-list">
+    <li><strong>Follow</strong> — Kameranın <em>pozisyonunu</em> nereye göre hesaplayacağını belirler. Body bileşeni (Transposer, Orbital, vs.) bu hedefe göre çalışır.</li>
+    <li><strong>Look At</strong> — Kameranın <em>rotasyonunu</em> nereye bakacak şekilde hesaplayacağını belirler. Aim bileşeni (Rotation Composer, POV, vs.) bu hedefi kullanır.</li>
+  </ul>
+  <p class="topic-text">
+    Çoğu durumda ikisi aynı objedir (oyuncu). Ama bir <em>chase</em> kamerasında Follow=Araç, Look At=Önündeki Waypoint olabilir. Bir omuz üstü (over-the-shoulder) kamerada Follow=Karakter, Look At=Karakterin önündeki Aim Point.
+  </p>
+  <div class="mini-checkpoint">
+    <strong>💡 Kontrol Noktası:</strong> Follow ve Look At <code>Transform</code> tipindedir — yani referans verdiğin GameObject sahnede yoksa, vcam çalışmaz. Karakteri runtime'da Instantiate ediyorsan, Spawn'dan sonra <code>vcam.Follow = player.transform;</code> ile bağlamalısın.
+  </div>
+</section>
+
+<section class="topic-section" id="body-algorithms">
+  <div class="topic-header">
+    <span class="topic-number">18.5</span>
+    <h2 class="topic-title">🚶 Body — Pozisyon Algoritmaları</h2>
+  </div>
+  <p class="topic-text">
+    Body, kameranın Follow hedefine göre <strong>nerede</strong> duracağını belirler. Cinemachine 3.x'te bunlar ayrı bileşenlerdir:
+  </p>
+  <ul class="check-list">
+    <li><strong>CinemachineFollow</strong> — En yaygın. Hedeften sabit bir <em>Follow Offset</em> uzaklıkta kalır. <em>Damping</em> ile yumuşatma. 3rd-person, top-down, isometric için ideal.</li>
+    <li><strong>CinemachinePositionComposer</strong> — Hedefi <strong>ekran üzerinde</strong> belirli bir noktada tutar (örn. ekranın sol alt çeyreğinde). 2D platformer ve side-scroller için.</li>
+    <li><strong>CinemachineThirdPersonFollow</strong> — Karakterin omzunun üzerinden takip. Shoulder Offset (sol/sağ omuz), Camera Distance, çarpışma yarıçapı. Resident Evil 4, The Last of Us tarzı.</li>
+    <li><strong>CinemachineOrbitalFollow</strong> — Hedefin etrafında <em>orbit</em> halkası. Mouse veya stick ile döndürülür. RPG, action-adventure için.</li>
+    <li><strong>CinemachineHardLockToTarget</strong> — Kamera hedefin pozisyonuyla <strong>bire bir aynı</strong>. FPS karakter kafasına monte için.</li>
+    <li><strong>CinemachineSplineDolly</strong> — Önceden çizilmiş bir <em>Spline</em> (eğri ray) üzerinde hareket. Sinematikler için.</li>
+  </ul>
+  <h3 class="topic-subtitle">CinemachineFollow Detayları</h3>
+  <div class="u-inspector camera">
+    <div class="u-inspector-header">CinemachineFollow</div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Tracking Target</span><span class="u-inspector-value">Player</span></div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Follow Offset</span><span class="u-inspector-value">X 0   Y 3   Z -6</span></div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Tracking</span><span class="u-inspector-value">Damping X 1, Y 1, Z 1</span></div>
+    <div class="u-inspector-row"><span class="u-inspector-label">Binding Mode</span><span class="u-inspector-value">Lock To Target With World Up</span></div>
+  </div>
+  <p class="topic-text">
+    <strong>Binding Mode</strong> kritik bir parametredir. Hedef döndüğünde kamera onunla birlikte döner mi?
+  </p>
+  <ul class="check-list">
+    <li><em>Lock To Target</em> — Hedef döner, kamera arkasında kalır (otomobil chase kamerası).</li>
+    <li><em>Lock To Target With World Up</em> — Hedef sağa-sola döner kamera takip eder, ama hedef yukarı-aşağı eğildiğinde kamera düz kalır (3rd-person karakter).</li>
+    <li><em>Lock To Target No Roll</em> — Roll (yana yatma) kameraya aktarılmaz.</li>
+    <li><em>World Space</em> — Kamera hedeften bağımsız, dünya koordinatlarında sabit yöne bakar (top-down RPG).</li>
+    <li><em>Simple Follow With World Up</em> — Kamera hedef nereye giderse oraya bakar ama yana dönmez (klasik chase).</li>
+  </ul>
+</section>
+
+<section class="topic-section" id="aim-algorithms">
+  <div class="topic-header">
+    <span class="topic-number">18.6</span>
+    <h2 class="topic-title">👁 Aim — Rotasyon Algoritmaları</h2>
+  </div>
+  <p class="topic-text">
+    Aim, kameranın <strong>nereye baktığını</strong> belirler. Önemli olanlar:
+  </p>
+  <ul class="check-list">
+    <li><strong>CinemachineRotationComposer</strong> — En çok kullanılan. Hedefi <em>ekranda belirli bir noktada</em> tutar (örn. ekranın üst orta noktasında). <em>Dead Zone</em> ve <em>Soft Zone</em> kavramları burada işler.</li>
+    <li><strong>CinemachineGroupFraming</strong> — Birden fazla hedefi <strong>aynı kareye sığdırır</strong>. Boss savaşı, takım sahneleri, çift karakterli platformer için altın değerinde.</li>
+    <li><strong>CinemachinePOV</strong> — Mouse/stick ile <em>özgürce dönen</em> kamera. FPS için ana seçim.</li>
+    <li><strong>CinemachineHardLookAt</strong> — Anında hedefe kilitli rotasyon. Yumuşatma yok.</li>
+    <li><strong>CinemachineSameAsFollowTarget</strong> — Rotasyon Follow hedefiyle aynı (karakter neye bakıyorsa, kamera oraya).</li>
+  </ul>
+  <h3 class="topic-subtitle">Dead Zone &amp; Soft Zone</h3>
+  <p class="topic-text">
+    Rotation Composer'ın ekran üzerinde 3 bölgesi vardır:
+  </p>
+  <ul class="check-list">
+    <li><strong>Dead Zone</strong> (yeşil kutu) — Hedef bu alanda olduğu sürece kamera <strong>hiç dönmez</strong>. Küçük titreşimleri filtreler.</li>
+    <li><strong>Soft Zone</strong> (sarı kutu) — Hedef bu alana girdiğinde kamera <em>yumuşak dönme</em> yapar (Damping ile).</li>
+    <li><strong>Hard Edge</strong> (kırmızı sınır) — Hedef bu sınırı aşmaya çalıştığında kamera <strong>anında</strong> döner. Hedef ekrandan çıkmaz.</li>
+  </ul>
+  <div class="info-box">
+    <strong>🎬 Sinemacı Notu:</strong> İyi bir 3rd-person kamerada hedef <em>asla ekranın tam merkezinde</em> değildir. Genelde alt orta, ya da üçte birlik noktada. Bu, <strong>kompozisyonun temel kuralı</strong> "rule of thirds" (üçler kuralı)'dur. Rotation Composer'ın Screen Position parametresini <code>(0.5, 0.33)</code> yaparsanız hedef ekranın alt üçte birinde durur ve manzaranın geri kalanı görünür.
+  </div>
+</section>
+
+<section class="topic-section" id="priority-blend">
+  <div class="topic-header">
+    <span class="topic-number">18.7</span>
+    <h2 class="topic-title">🎞 Priority &amp; Blend — Sahneler Arası Geçiş</h2>
+  </div>
+  <p class="topic-text">
+    Cinemachine'in en büyüleyici yanı: <strong>kamera değişimi tek satır kod gerektirmez</strong>. Tek yapmanız gereken hedef vcam'in Priority'sini yükseltmek.
+  </p>
+  <div class="cs-block">
+<pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+<span class="kw">using</span> <span class="type">Unity.Cinemachine</span>;
+
+<span class="kw">public class</span> <span class="type">CameraSwitcher</span> : <span class="type">MonoBehaviour</span>
+{
+    [<span class="type">SerializeField</span>] <span class="kw">private</span> <span class="type">CinemachineCamera</span> playerCam;
+    [<span class="type">SerializeField</span>] <span class="kw">private</span> <span class="type">CinemachineCamera</span> bossCam;
+
+    <span class="kw">private void</span> <span class="fn">OnTriggerEnter</span>(<span class="type">Collider</span> other)
+    {
+        <span class="kw">if</span> (other.<span class="fn">CompareTag</span>(<span class="str">"Player"</span>))
+        {
+            bossCam.<span class="attr">Priority</span> = <span class="num">20</span>;   <span class="com">// boss kamerası öne geçer</span>
+            playerCam.<span class="attr">Priority</span> = <span class="num">5</span>;   <span class="com">// arkada kalır</span>
+        }
+    }
+}</code></pre>
+  </div>
+  <p class="topic-text">
+    Trigger'a girdiğin an Brain, bossCam'in priority'sinin daha yüksek olduğunu görür ve <strong>Default Blend</strong>'de tanımlı eğri/süreyle yumuşak geçiş yapar.
+  </p>
+  <h3 class="topic-subtitle">Blend Tipleri</h3>
+  <ul class="check-list">
+    <li><strong>Cut</strong> — Anında geçiş, sertçe. Eylem sahnelerinde, jump-cut.</li>
+    <li><strong>Ease In Out</strong> — Yavaş başlar, hızlanır, yavaş biter. <em>Varsayılan</em>. Doğal his.</li>
+    <li><strong>Ease In</strong> — Yavaş başlar, sonunda hızlanır.</li>
+    <li><strong>Ease Out</strong> — Hızlı başlar, sonunda yavaşlar.</li>
+    <li><strong>Hard In</strong> / <strong>Hard Out</strong> — Sert hızlanma/yavaşlama, dramatik etki.</li>
+    <li><strong>Linear</strong> — Sabit hızda. Robotik his.</li>
+    <li><strong>Custom</strong> — Kendi Animation Curve'ünüzü çizin.</li>
+  </ul>
+  <h3 class="topic-subtitle">Custom Blends (Özel Eşleşmeler)</h3>
+  <p class="topic-text">
+    CinemachineBrain'in <strong>Custom Blends</strong> alanına bir <em>Blender Settings</em> asset'i eklerseniz, belirli vcam çiftleri arasında <strong>özel blend</strong> tanımlayabilirsiniz. Örn:
+  </p>
+  <ul class="check-list">
+    <li>PlayerCam → BossCam: <strong>Cut</strong> (savaş başlasın, sert geçiş)</li>
+    <li>BossCam → VictoryCam: <strong>Ease In Out, 3 sn</strong> (zafer dramatik olsun)</li>
+    <li>Diğer tüm geçişler: Default (Ease In Out 2 sn)</li>
+  </ul>
+</section>
+
+<section class="topic-section" id="noise">
+  <div class="topic-header">
+    <span class="topic-number">18.8</span>
+    <h2 class="topic-title">📳 Noise — Sallantılı Kamera (Camera Shake)</h2>
+  </div>
+  <p class="topic-text">
+    <strong>CinemachineBasicMultiChannelPerlin</strong> bileşeni, kameraya <em>Perlin Noise</em> tabanlı pozisyon ve rotasyon dalgalanması ekler. Patlamalarda, hasar geri bildiriminde, koşan karakterin nefesinde — <strong>her yerde</strong> kullanılır.
+  </p>
+  <ol class="step-list">
+    <li>vcam'i seç → <strong>Add Extension</strong> (Inspector altı) → <em>CinemachineBasicMultiChannelPerlin</em>.</li>
+    <li>Yeni eklenen child bileşende <strong>Noise Profile</strong> alanına bir profile sürükle (paket içinde <em>Handheld_normal_mild</em>, <em>Handheld_telephoto_mild</em>, <em>6D Shake</em> hazır).</li>
+    <li><strong>Amplitude Gain</strong> = noise'un şiddeti (0 = kapalı, 1 = normal, 5 = depremde gibi).</li>
+    <li><strong>Frequency Gain</strong> = noise'un hızı (1 = normal, 0.3 = ağır nefes, 3 = panik).</li>
+  </ol>
+  <h3 class="topic-subtitle">Runtime'da Kamera Sarsıntısı</h3>
+  <div class="cs-block">
+<pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+<span class="kw">using</span> <span class="type">Unity.Cinemachine</span>;
+<span class="kw">using</span> <span class="type">System.Collections</span>;
+
+<span class="kw">public class</span> <span class="type">CameraShaker</span> : <span class="type">MonoBehaviour</span>
+{
+    [<span class="type">SerializeField</span>] <span class="kw">private</span> <span class="type">CinemachineCamera</span> vcam;
+    <span class="kw">private</span> <span class="type">CinemachineBasicMultiChannelPerlin</span> noise;
+
+    <span class="kw">private void</span> <span class="fn">Awake</span>()
+    {
+        noise = vcam.<span class="fn">GetComponentInChildren</span>&lt;<span class="type">CinemachineBasicMultiChannelPerlin</span>&gt;();
+    }
+
+    <span class="kw">public void</span> <span class="fn">Shake</span>(<span class="kw">float</span> intensity, <span class="kw">float</span> duration)
+    {
+        <span class="fn">StartCoroutine</span>(<span class="fn">ShakeRoutine</span>(intensity, duration));
+    }
+
+    <span class="kw">private</span> <span class="type">IEnumerator</span> <span class="fn">ShakeRoutine</span>(<span class="kw">float</span> intensity, <span class="kw">float</span> duration)
+    {
+        noise.<span class="attr">AmplitudeGain</span> = intensity;
+        <span class="kw">yield return new</span> <span class="type">WaitForSeconds</span>(duration);
+        noise.<span class="attr">AmplitudeGain</span> = <span class="num">0f</span>;
+    }
+}</code></pre>
+  </div>
+  <p class="topic-text">
+    Patlama anında <code>shaker.Shake(3f, 0.4f);</code> çağırırsanız 0.4 saniye boyunca güçlü bir sarsıntı olur, sonra durur. Combat sistemlerinin "game feel" katmanı budur.
+  </p>
+</section>
+
+<section class="topic-section" id="impulse">
+  <div class="topic-header">
+    <span class="topic-number">18.9</span>
+    <h2 class="topic-title">💥 Impulse — Olay Tabanlı Sarsıntı</h2>
+  </div>
+  <p class="topic-text">
+    Noise her zaman aktif bir sallantıdır. <strong>Impulse</strong> ise <em>olaya bağlı</em> şok dalgasıdır: patlama, çarpma, düşme. Cinemachine Impulse iki parçadan oluşur:
+  </p>
+  <ul class="check-list">
+    <li><strong>CinemachineImpulseSource</strong> — Sahnede titreşim üretecek noktaya (örn. bombanın üstüne) eklenir. Bir <em>Raw Signal</em> ve şiddet/yarıçap parametreleri ile gelir.</li>
+    <li><strong>CinemachineImpulseListener</strong> — vcam'e eklenir. Yakındaki Source'lardan gelen sinyalleri dinler, mesafeye göre <em>düşen şiddet</em> ile kameraya uygular.</li>
+  </ul>
+  <div class="cs-block">
+<pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+<span class="kw">using</span> <span class="type">Unity.Cinemachine</span>;
+
+<span class="kw">public class</span> <span class="type">Explosion</span> : <span class="type">MonoBehaviour</span>
+{
+    [<span class="type">SerializeField</span>] <span class="kw">private</span> <span class="type">CinemachineImpulseSource</span> impulseSource;
+
+    <span class="kw">public void</span> <span class="fn">Detonate</span>()
+    {
+        impulseSource.<span class="fn">GenerateImpulse</span>(<span class="num">2f</span>);  <span class="com">// şiddet katsayısı</span>
+        <span class="type">Destroy</span>(gameObject, <span class="num">1f</span>);
+    }
+}</code></pre>
+  </div>
+  <p class="topic-text">
+    Avantajı: 100 metre uzaktaki patlama, yakındaki kadar sarsıntı yaratmaz. Mesafe kareyle ters orantılı düşer — fizik gibi davranır.
+  </p>
+</section>
+
+<section class="topic-section" id="confiner">
+  <div class="topic-header">
+    <span class="topic-number">18.10</span>
+    <h2 class="topic-title">🚧 Confiner — Kamera Alanını Sınırlama</h2>
+  </div>
+  <p class="topic-text">
+    2D platformer veya top-down RPG'de kameranın <strong>haritadan dışarı çıkmaması</strong> gerekir. Cinemachine'in <strong>Confiner2D</strong> ve <strong>Confiner3D</strong> uzantıları bu işi yapar.
+  </p>
+  <h3 class="topic-subtitle">CinemachineConfiner2D Kurulumu</h3>
+  <ol class="step-list">
+    <li>Sahnede bir empty GameObject oluştur, adını <code>CameraBounds</code> koy.</li>
+    <li>Üzerine <strong>PolygonCollider2D</strong> ekle ve harita sınırlarını çizecek şekilde poligonu düzenle (<em>Edit Collider</em> butonuna bas).</li>
+    <li><strong>Is Trigger</strong> = ☑ (gerçek çarpışma yaratmasın).</li>
+    <li>vcam'i seç → <strong>Add Extension → CinemachineConfiner2D</strong>.</li>
+    <li>Bounding Shape 2D alanına PolygonCollider2D'yi sürükle.</li>
+    <li><strong>Damping</strong> = 0.5 (kenara çarptığında ne kadar yumuşak duracak).</li>
+    <li>Inspector'da <strong>Invalidate Bounding Shape Cache</strong>'e bas (eğer çokgeni değiştirdiysen tekrar).</li>
+  </ol>
+  <p class="topic-text">
+    Sonuç: kamera oyuncuyu takip eder, ama poligonun kenarına gelince <strong>orada durur</strong> — oyuncu kenara doğru gitmeye devam etse bile.
+  </p>
+  <div class="mini-checkpoint">
+    <strong>💡 Kontrol Noktası:</strong> Confiner2D <em>composite</em> şekillerle de çalışır — yani PolygonCollider2D'ye birden fazla "path" eklerseniz (örn. her oda için bir kapalı çokgen), kamera o odalar arasında geçer. Bu, <em>Hollow Knight</em> tarzı oda-tabanlı haritada kullanılır.
+  </div>
+</section>
+
+<section class="topic-section" id="freelook">
+  <div class="topic-header">
+    <span class="topic-number">18.11</span>
+    <h2 class="topic-title">🌀 FreeLook — 3 Halkalı Orbit Kamerası</h2>
+  </div>
+  <p class="topic-text">
+    Klasik 3rd-person aksiyon (Zelda, Genshin, GTA) kamerası: oyuncu sağ stick ile kamerayı karakterin <strong>çevresinde döndürür</strong>; yukarı kaldırınca tepeden bakar, aşağı indirince yerden bakar. Cinemachine 3.x'te bunu <strong>CinemachineOrbitalFollow</strong> + <strong>CinemachineInputAxisController</strong> kombinasyonu sağlar.
+  </p>
+  <ol class="step-list">
+    <li><strong>GameObject → Cinemachine → Free Look Camera</strong> ile hazır prefab eklenir.</li>
+    <li>Sahneye gelen vcam'de 3 ana parametre:
+      <ul>
+        <li><strong>Top Rig</strong> — Kameranın üst yüksekliği ve yarıçapı.</li>
+        <li><strong>Middle Rig</strong> — Orta seviye (varsayılan görüş).</li>
+        <li><strong>Bottom Rig</strong> — Alt seviye, hedefin altından bakış.</li>
+      </ul>
+    </li>
+    <li>Input bağlantısı: Unity 6'da <strong>Input System</strong> paketi ile <code>Look</code> action'unu vcam'e bağla — CinemachineInputAxisController otomatik dinler.</li>
+    <li><strong>Horizontal Axis Recentering</strong> = ☑ (oyuncu stick'i bıraktığında kamera otomatik karakter arkasına döner).</li>
+  </ol>
+  <p class="topic-text">
+    Recentering süresi (örn. 2 saniye bekleyip 1 saniyede merkeze gelsin) hassas ayarla oyunun karakteriyle uyumlu olmalıdır: hızlı oyun = hızlı recentering, keşif oyunu = yavaş.
+  </p>
+</section>
+
+<section class="topic-section" id="dolly">
+  <div class="topic-header">
+    <span class="topic-number">18.12</span>
+    <h2 class="topic-title">🛤 Spline Dolly — Raya Bağlı Sinematik Kamera</h2>
+  </div>
+  <p class="topic-text">
+    Sinematik kesimlerde kameranın <strong>belirli bir yörüngeyi</strong> izlemesi istenir: tepeden vadiye süzülen drone planı, karakterin etrafında dönen kamera, vs. <strong>CinemachineSplineDolly</strong> bu işi Unity 6'nın yeni <em>Splines</em> paketi ile yapar.
+  </p>
+  <ol class="step-list">
+    <li><strong>GameObject → Spline → Draw Spline Tool</strong> ile sahneye bir eğri çiz.</li>
+    <li>Eğrinin noktalarını taşıyarak yörüngeyi şekillendir (Bezier handles ile yumuşatma).</li>
+    <li>vcam'in Body bileşenini <strong>CinemachineSplineDolly</strong> olarak değiştir (Add Component menüsünden).</li>
+    <li><strong>Spline</strong> alanına yeni çizdiğin spline'ı sürükle.</li>
+    <li><strong>Position On Spline</strong> (0 → 1 arası) ile kameranın ray üzerindeki konumunu animasyonla.</li>
+    <li><strong>Automatic Dolly</strong>'i etkinleştirirsen kamera, Look At hedefine en yakın spline noktasını otomatik bulur.</li>
+  </ol>
+  <p class="topic-text">
+    Bölüm 19'da göreceğin <strong>Timeline</strong> ile birleştirirsen: Position On Spline'ı 5 saniyede 0 → 1 animasyonlarsın, sinematik tamam.
+  </p>
+</section>
+
+<section class="topic-section" id="state-driven-clearshot">
+  <div class="topic-header">
+    <span class="topic-number">18.13</span>
+    <h2 class="topic-title">🤖 State-Driven &amp; ClearShot Kameraları</h2>
+  </div>
+  <p class="topic-text">
+    İleri seviye iki vcam türü:
+  </p>
+  <ul class="check-list">
+    <li><strong>CinemachineStateDrivenCamera</strong> — Bir <strong>Animator</strong>'a bağlanır ve karakterin animasyon state'ine göre <em>farklı vcam</em> aktif eder. Karakter Idle → A vcam, Run → B vcam, Aim → C vcam.</li>
+    <li><strong>CinemachineClearShot</strong> — Birden fazla aday vcam'in arasından <strong>hedefi en net gören</strong>i otomatik seçer. <em>Resident Evil</em> tarzı sabit kameralar arasında geçişte kullanılır.</li>
+  </ul>
+  <p class="topic-text">
+    ClearShot her vcam için <code>Shot Quality</code> skoru hesaplar (görüş açısı, oklüzyon, mesafe) — en yüksek olanı aktif eder. Karakter bir köşeyi dönerken kameralar arasında <strong>kendiliğinden geçiş</strong> olur.
+  </p>
+</section>
+
+<section class="topic-section" id="unity6-yeni">
+  <div class="topic-header">
+    <span class="topic-number">18.14</span>
+    <h2 class="topic-title">⚡ Unity 6 / Cinemachine 3.x — Yeni Neler Var?</h2>
+  </div>
+  <p class="topic-text">
+    Cinemachine 3.x'in 2.x'ten farkları:
+  </p>
+  <div class="u-compare">
+    <div class="u-compare-side lts">
+      <h4>Cinemachine 2.x (Eski)</h4>
+      <ul class="check-list">
+        <li><code>CinemachineVirtualCamera</code> tek bileşen</li>
+        <li>Body / Aim seçici menüden seçilir, aynı component içinde</li>
+        <li><code>CinemachineFreeLook</code> ayrı bir sınıf</li>
+        <li>Eski <em>Cinemachine Path</em> sistemi</li>
+        <li>Eski Input (axis name'leri)</li>
+      </ul>
+    </div>
+    <div class="u-compare-side u6">
+      <h4>Cinemachine 3.x (Unity 6) <span class="u-ver-badge u6 u6-new">YENİ</span></h4>
+      <ul class="check-list">
+        <li><code>CinemachineCamera</code> ana sınıf</li>
+        <li>Body / Aim ayrı child bileşenler (<code>CinemachineFollow</code>, <code>CinemachineRotationComposer</code>)</li>
+        <li>FreeLook artık <code>OrbitalFollow</code> + <code>InputAxisController</code></li>
+        <li>Yeni <strong>Splines</strong> paketi ile <code>SplineDolly</code></li>
+        <li>Yeni Input System entegrasyonu (Action-based)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="info-box">
+    <strong>📦 Namespace Değişikliği:</strong> Eski <code>using Cinemachine;</code> artık <code>using Unity.Cinemachine;</code> oldu. Eski API'lerle yazılmış öğretici/asset'leri yeni projeye taşırken bu noktayı kontrol edin.
+  </div>
+</section>
+
+<div class="mini-checkpoint">
+  <strong>🎬 Bölüm Kontrol Noktası:</strong> CinemachineCamera = sahne yönetmeni, CinemachineBrain = ana kamera operatörü. Priority en yüksek olan vcam Live olur. Follow = pozisyon hedefi, Look At = rotasyon hedefi. Body algoritmaları (Follow, Orbital, ThirdPersonFollow, SplineDolly) pozisyonu, Aim algoritmaları (RotationComposer, POV, GroupFraming) rotasyonu hesaplar.
+</div>
+
+<div class="practice-section">
+  <h2>🎯 Pratik Projeler</h2>
+
+  <div class="project-card">
+    <h3>Proje 1: 3rd-Person Karakter Kamerası</h3>
+    <p><strong>Hedef:</strong> Karakteri arkadan takip eden, mouse ile etrafında dönebilen, çarpışmadan kaçınan profesyonel bir kamera kur.</p>
+    <ol class="step-list">
+      <li>Sahnede bir Capsule karakter ve zemin oluştur.</li>
+      <li>GameObject → Cinemachine → Cinemachine Camera ile yeni bir vcam ekle.</li>
+      <li>Follow ve LookAt'e karakteri sürükle.</li>
+      <li>Body'yi <strong>CinemachineThirdPersonFollow</strong> yap:
+        <ul>
+          <li>Shoulder Offset: (0.5, 1.2, 0)</li>
+          <li>Camera Distance: 4</li>
+          <li>Camera Collision Filter: Default (zemin/duvar layer'ı)</li>
+        </ul>
+      </li>
+      <li>Aim'i <strong>CinemachineRotationComposer</strong> yap, Screen Position (0.5, 0.4).</li>
+      <li>Mouse ile dönme için <strong>CinemachineInputAxisController</strong> ekle, Input System'den Look action'unu bağla.</li>
+      <li>Test et: Karakter koşarken kamera arkasında kalıyor mu? Duvara yaklaşınca kamera duvarın içinden geçmiyor mu?</li>
+    </ol>
+  </div>
+
+  <div class="project-card">
+    <h3>Proje 2: Boss Sahnesine Yumuşak Geçiş</h3>
+    <p><strong>Hedef:</strong> Oyuncu boss arenasına girdiğinde kamera otomatik geniş açıya geçsin, boss yenildikten sonra normal kameraya dönsün.</p>
+    <ol class="step-list">
+      <li>Mevcut PlayerCam'i bırak (Priority = 10).</li>
+      <li>Yeni bir <strong>BossCam</strong> oluştur: Follow = Boss, LookAt = Boss + Player'ın aynı kareye sığması için <em>CinemachineGroupFraming</em> kullan.</li>
+      <li>BossCam'in başlangıç Priority'sini 5 yap (PlayerCam'in altında).</li>
+      <li>Aynı kareye sığma için: bir empty GameObject "BossGroup" oluştur, <code>CinemachineTargetGroup</code> bileşeni ekle, Members listesine Boss ve Player'ı ata.</li>
+      <li>BossCam'in LookAt'ine BossGroup'u ver.</li>
+      <li>Bir trigger collider ile <code>CameraSwitcher</code> scripti yaz: OnTriggerEnter'da BossCam.Priority = 20.</li>
+      <li>Boss ölünce <code>BossCam.Priority = 5</code> ile tekrar düşür — kamera oyuncuya geri döner.</li>
+      <li>CinemachineBrain'in Default Blend'ini <em>Ease In Out, 1.5 sn</em> yap.</li>
+    </ol>
+  </div>
+
+  <div class="project-card">
+    <h3>Proje 3: Patlama Kamera Sarsıntısı (Impulse)</h3>
+    <p><strong>Hedef:</strong> Sahnede bir patlama efektine yaklaşan karakter güçlü sarsıntı hissetsin, uzaktayken hissetmesin.</p>
+    <ol class="step-list">
+      <li>Bir küre oluştur ("Bomb"), üzerine <strong>CinemachineImpulseSource</strong> ekle.</li>
+      <li>Raw Signal alanına paketle gelen <em>6D Shake</em> profile'ını sürükle.</li>
+      <li>Impulse Channel: Default. Time Envelope: Attack 0, Sustain 0.3, Decay 0.5.</li>
+      <li>Spatial Range &gt; Dissipation Distance: 30 (30 metre uzakta etkisi sıfırlanır).</li>
+      <li>vcam'e <strong>CinemachineImpulseListener</strong> ekle (Add Extension menüsünden), Gain = 1.</li>
+      <li><code>Explosion</code> scripti yaz: SPACE tuşuna basılınca <code>impulseSource.GenerateImpulse(2f);</code> tetikle.</li>
+      <li>Test et: Karakter bomba yakınındayken sarsıntı güçlü, uzaktayken hafif olmalı.</li>
+    </ol>
+  </div>
+</div>
+
+<section class="quiz" id="bolum-quiz">
+  <header class="quiz-header">
+    <div class="quiz-header-icon"><i class="ti ti-help"></i></div>
+    <div class="quiz-header-text">
+      <h2>Bölüm Sonu Sınavı</h2>
+      <span>5 soru</span>
+    </div>
+  </header>
+
+  <article class="quiz-question" id="q18-1">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">01</span>
+      <h3 class="quiz-prompt-text">Cinemachine'de sahnedeki "gerçek" kamera kaçtır?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Her vcam ayrı bir gerçek kameradır.</button>
+      <button class="quiz-option" data-correct="true">Sadece bir tane vardır (Main Camera + CinemachineBrain), vcam'ler ona empoze eder.</button>
+      <button class="quiz-option" data-correct="false">Aktif olan vcam Main Camera'yı silip kendi kamerasını yaratır.</button>
+      <button class="quiz-option" data-correct="false">Hiç kamera yoktur, Cinemachine kendi render yapar.</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q18-2">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">02</span>
+      <h3 class="quiz-prompt-text">İki vcam arasında hangisi "Live" (aktif) olur?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Hierarchy'de en üstte olan.</button>
+      <button class="quiz-option" data-correct="false">En son eklenen.</button>
+      <button class="quiz-option" data-correct="true">Priority değeri en yüksek olan.</button>
+      <button class="quiz-option" data-correct="false">Karaktere en yakın olan.</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q18-3">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">03</span>
+      <h3 class="quiz-prompt-text">2D platformer'da kameranın harita dışına çıkmasını engellemek için hangi extension kullanılır?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">CinemachineCollider</button>
+      <button class="quiz-option" data-correct="true">CinemachineConfiner2D</button>
+      <button class="quiz-option" data-correct="false">CinemachineFollowZoom</button>
+      <button class="quiz-option" data-correct="false">CinemachineHardLockToTarget</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q18-4">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">04</span>
+      <h3 class="quiz-prompt-text">Patlamada sürekli değil, <em>tek seferlik</em> kamera sarsıntısı için hangisi doğru?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">CinemachineBasicMultiChannelPerlin sürekli açık tut.</button>
+      <button class="quiz-option" data-correct="true">CinemachineImpulseSource + CinemachineImpulseListener kombinasyonu.</button>
+      <button class="quiz-option" data-correct="false">Transform.position'ı Random.insideUnitSphere ile kaydır.</button>
+      <button class="quiz-option" data-correct="false">Camera.main.shakeAmount = 5; yaz.</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q18-5">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">05</span>
+      <h3 class="quiz-prompt-text">Cinemachine 3.x'te (Unity 6) Body bileşeni nasıl seçilir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">CinemachineVirtualCamera'nın Body dropdown'ından.</button>
+      <button class="quiz-option" data-correct="true">CinemachineCamera'nın child GameObject'inde CinemachineFollow / OrbitalFollow / vs. ayrı bileşen olarak.</button>
+      <button class="quiz-option" data-correct="false">Animator state'e bağlanır.</button>
+      <button class="quiz-option" data-correct="false">Camera component'ine eklenir.</button>
+    </div>
+  </article>
+</section>
+
+<section class="complete-section">
+      <h3 class="complete-title">🎉 Bölüm 18 Tamamlandı!</h3>
+      <p class="complete-msg">Kamera artık karaktere yapışmış statik bir gözden çok daha fazlası. Cinemachine'in vcam'leri, blend sistemi, Impulse, FreeLook ve Spline Dolly ile <strong>sinematik kalitede</strong> kamera çekebilirsin. Bir sonraki bölümde <strong>Timeline</strong> ile bu kameraları zamanda koreografi yapacağız — sinematik ara sahneler ve scripted moment'lar için.</p>
+      <button class="complete-btn" data-section="s18">
+        <i class="ti ti-circle-check"></i>
+        <span>Bu Bölümü Tamamladım</span>
+      </button>
+      <p class="complete-note">İlerlemen otomatik tarayıcına kaydedilir.</p>
+    </section>
+    <!-- Sayfa Gezinme -->
+    <nav class="page-nav" aria-label="Bölüm gezinme">
+      <a href="17-terrain.html" class="page-nav-link prev">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-left"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Önceki Bölüm</div>
+          <div class="page-nav-title">17. Terrain</div>
+        </div>
+      </a>
+      <a href="19-timeline.html" class="page-nav-link next">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-right"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Sonraki Bölüm</div>
+          <div class="page-nav-title">19. Timeline</div>
+        </div>
+      </a>
+    </nav>
+
+  </div>
+</main>
+<script src="../js/progress.js?v=11"></script>
+<script src="../js/quiz.js?v=11"></script>
+<script src="../js/toc.js?v=11"></script>
+<script src="../js/main.js?v=11"></script>
+</body>
+</html>

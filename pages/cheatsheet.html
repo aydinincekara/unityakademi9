@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cheat Sheet — UnityAkademi</title>
+  <meta name="description" content="MonoBehaviour callback sırası, kısayollar, naming conventions">
+  <meta name="theme-color" content="#fa7d19">
+  <link rel="manifest" href="../manifest.json">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Cheat Sheet">
+  <meta property="og:description" content="MonoBehaviour callback sırası, kısayollar, naming conventions">
+  <meta property="og:image" content="../og-image.svg">
+  <meta property="og:site_name" content="UnityAkademi">
+  <meta property="og:locale" content="tr_TR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cheat Sheet">
+  <meta name="twitter:description" content="MonoBehaviour callback sırası, kısayollar, naming conventions">
+  <meta name="twitter:image" content="../og-image.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="../css/variables.css?v=11">
+  <link rel="stylesheet" href="../css/reset.css?v=11">
+  <link rel="stylesheet" href="../css/layout.css?v=11">
+  <link rel="stylesheet" href="../css/components.css?v=11">
+  <link rel="stylesheet" href="../css/content.css?v=11">
+  <link rel="stylesheet" href="../css/visuals.css?v=11">
+  <link rel="stylesheet" href="../css/extras.css?v=11">
+  <link rel="stylesheet" href="../css/responsive.css?v=11">
+</head>
+<body>
+<button class="nav-hamburger" id="navHamburger" aria-label="Menüyü aç">
+  <i class="ti ti-menu-2"></i>
+</button>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a href="../index.html" class="sidebar-brand">
+      <div class="sidebar-brand-icon"><i class="ti ti-home-2"></i></div>
+      <div class="sidebar-brand-text">
+        <span class="sidebar-brand-name">Ana Sayfa</span>
+        <span class="sidebar-brand-sub">UnityAkademi</span>
+      </div>
+    </a>
+    <button class="mobile-toggle" aria-label="Menü"><i class="ti ti-x"></i></button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-group">
+      <div class="nav-group-title">Temeller</div>
+      <a href="01-kurulum.html" class="nav-link" data-section="s1"><i class="ti ti-download"></i><span class="nav-link-text">Kurulum & İlk Bakış</span><span class="nav-link-num">01</span></a>
+      <a href="02-arayuz.html" class="nav-link" data-section="s2"><i class="ti ti-layout-board"></i><span class="nav-link-text">Editor Arayüzü</span><span class="nav-link-num">02</span></a>
+      <a href="03-gameobject-component.html" class="nav-link" data-section="s3"><i class="ti ti-cube"></i><span class="nav-link-text">GameObject & Component</span><span class="nav-link-num">03</span></a>
+      <a href="04-csharp-temelleri.html" class="nav-link" data-section="s4"><i class="ti ti-code"></i><span class="nav-link-text">C# Temelleri</span><span class="nav-link-num">04</span></a>
+      <a href="05-monobehaviour-lifecycle.html" class="nav-link" data-section="s5"><i class="ti ti-refresh"></i><span class="nav-link-text">MonoBehaviour Lifecycle</span><span class="nav-link-num">05</span></a>
+      <a href="06-transform-vector.html" class="nav-link" data-section="s6"><i class="ti ti-arrows-move"></i><span class="nav-link-text">Transform & Vector3</span><span class="nav-link-num">06</span></a>
+      <a href="07-input.html" class="nav-link" data-section="s7"><i class="ti ti-keyboard"></i><span class="nav-link-text">Input Sistemi</span><span class="nav-link-num">07</span></a>
+      <a href="08-physics.html" class="nav-link" data-section="s8"><i class="ti ti-atom"></i><span class="nav-link-text">Physics</span><span class="nav-link-num">08</span></a>
+      <a href="09-ui.html" class="nav-link" data-section="s9"><i class="ti ti-layout-grid"></i><span class="nav-link-text">UI Sistemi</span><span class="nav-link-num">09</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Görsel & Asset</div>
+      <a href="10-material-shader.html" class="nav-link" data-section="s10"><i class="ti ti-palette"></i><span class="nav-link-text">Material & Shader</span><span class="nav-link-num">10</span></a>
+      <a href="11-asset-import.html" class="nav-link" data-section="s11"><i class="ti ti-folder"></i><span class="nav-link-text">Asset Import</span><span class="nav-link-num">11</span></a>
+      <a href="12-animation.html" class="nav-link" data-section="s12"><i class="ti ti-bounce-right"></i><span class="nav-link-text">Animation</span><span class="nav-link-num">12</span></a>
+      <a href="13-particle-vfx.html" class="nav-link" data-section="s13"><i class="ti ti-sparkles"></i><span class="nav-link-text">Particle & VFX Graph</span><span class="nav-link-num">13</span></a>
+      <a href="14-lighting.html" class="nav-link" data-section="s14"><i class="ti ti-bulb"></i><span class="nav-link-text">Lighting</span><span class="nav-link-num">14</span></a>
+      <a href="15-audio.html" class="nav-link" data-section="s15"><i class="ti ti-volume"></i><span class="nav-link-text">Audio</span><span class="nav-link-num">15</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Sistemler</div>
+      <a href="16-probuilder.html" class="nav-link" data-section="s16"><i class="ti ti-3d-cube-sphere"></i><span class="nav-link-text">ProBuilder</span><span class="nav-link-num">16</span></a>
+      <a href="17-terrain.html" class="nav-link" data-section="s17"><i class="ti ti-mountain"></i><span class="nav-link-text">Terrain</span><span class="nav-link-num">17</span></a>
+      <a href="18-cinemachine.html" class="nav-link" data-section="s18"><i class="ti ti-camera"></i><span class="nav-link-text">Cinemachine</span><span class="nav-link-num">18</span></a>
+      <a href="19-timeline.html" class="nav-link" data-section="s19"><i class="ti ti-timeline"></i><span class="nav-link-text">Timeline</span><span class="nav-link-num">19</span></a>
+      <a href="20-navmesh.html" class="nav-link" data-section="s20"><i class="ti ti-route"></i><span class="nav-link-text">NavMesh & AI</span><span class="nav-link-num">20</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">İleri Seviye</div>
+      <a href="21-urp-hdrp.html" class="nav-link" data-section="s21"><i class="ti ti-bolt"></i><span class="nav-link-text">URP, HDRP & Unity 6</span><span class="nav-link-num">21</span></a>
+      <a href="22-new-input.html" class="nav-link" data-section="s22"><i class="ti ti-device-gamepad-2"></i><span class="nav-link-text">New Input System</span><span class="nav-link-num">22</span></a>
+      <a href="23-save-menu.html" class="nav-link" data-section="s23"><i class="ti ti-device-floppy"></i><span class="nav-link-text">Save & Menü</span><span class="nav-link-num">23</span></a>
+      <a href="24-build.html" class="nav-link" data-section="s24"><i class="ti ti-package-export"></i><span class="nav-link-text">Build & Yayınlama</span><span class="nav-link-num">24</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Profesyonel</div>
+      <a href="25-csharp-ileri.html" class="nav-link" data-section="s25"><i class="ti ti-brackets-contain"></i><span class="nav-link-text">C# İleri</span><span class="nav-link-num">25</span></a>
+      <a href="26-performance.html" class="nav-link" data-section="s26"><i class="ti ti-gauge"></i><span class="nav-link-text">Performance</span><span class="nav-link-num">26</span></a>
+      <a href="27-yol-haritasi.html" class="nav-link" data-section="s27"><i class="ti ti-map-2"></i><span class="nav-link-text">Yol Haritası</span><span class="nav-link-num">27</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Pratik</div>
+      <a href="projects.html" class="nav-link nav-link-extra" data-section="x-projects"><i class="ti ti-rocket"></i><span class="nav-link-text">Projeler</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Ek Kaynaklar</div>
+      <a href="sozluk.html" class="nav-link nav-link-extra" data-section="x-sozluk"><i class="ti ti-book-2"></i><span class="nav-link-text">Sözlük</span></a>
+      <a href="cheatsheet.html" class="nav-link nav-link-extra active" data-section="x-cheatsheet"><i class="ti ti-list-details"></i><span class="nav-link-text">Cheat Sheet</span></a>
+      <a href="sss.html" class="nav-link nav-link-extra" data-section="x-sss"><i class="ti ti-help-circle"></i><span class="nav-link-text">SSS</span></a>
+      <a href="arama.html" class="nav-link nav-link-extra" data-section="x-arama"><i class="ti ti-search"></i><span class="nav-link-text">Arama</span></a>
+      <a href="sertifika.html" class="nav-link nav-link-extra" data-section="x-sertifika"><i class="ti ti-certificate"></i><span class="nav-link-text">Sertifika</span></a>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="kaynaklar.html" class="sidebar-btn"><i class="ti ti-books"></i><span>Kaynaklar</span></a>
+    <a href="iletisim.html" class="sidebar-btn"><i class="ti ti-mail"></i><span>İletişim</span></a>
+  </div>
+</aside>
+<main class="main">
+  <div class="main-content">
+    <nav class="breadcrumb">
+      <a href="../index.html"><i class="ti ti-home"></i> Ana Sayfa</a>
+      <i class="ti ti-chevron-right"></i><span style="color: var(--primary-light);">Cheat Sheet</span>
+    </nav>
+
+    <header class="helper-page-header">
+      <h1><i class="ti ti-list-details"></i> Cheat Sheet — Hızlı Başvuru</h1>
+      <p>Unity'de en sık ihtiyaç duyacağın bilgileri tek sayfada toplayan referans. Çalışırken yanında açık tut.</p>
+    </header>
+
+    <div class="simple-page">
+
+      <!-- SCENE VIEW KISAYOLLARI -->
+      <section class="cheat-section">
+        <h2 class="cheat-section-title"><i class="ti ti-3d-cube-sphere"></i> Scene View Navigasyonu</h2>
+        <div class="cheat-grid">
+          <div class="cheat-card">
+            <div class="cheat-row"><kbd>Sağ tık + WASD</kbd><span>FPS-style uçma (yön)</span></div>
+            <div class="cheat-row"><kbd>Sağ tık + Q/E</kbd><span>Aşağı / yukarı</span></div>
+            <div class="cheat-row"><kbd>Sağ tık + Shift</kbd><span>Daha hızlı uçma</span></div>
+            <div class="cheat-row"><kbd>Sağ tık + scroll</kbd><span>Hız ayarı (uçarken)</span></div>
+            <div class="cheat-row"><kbd>Alt + Sol drag</kbd><span>Orbit (hedef etrafında dönme)</span></div>
+            <div class="cheat-row"><kbd>Alt + Sağ drag / Scroll</kbd><span>Zoom</span></div>
+            <div class="cheat-row"><kbd>Alt + Orta drag</kbd><span>Pan (kaydırma)</span></div>
+            <div class="cheat-row"><kbd>F</kbd><span>Seçili objeye odaklan</span></div>
+            <div class="cheat-row"><kbd>Shift + F</kbd><span>Seçili objeye kilitlenmiş takip</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRANSFORM ARAÇLARI -->
+      <section class="cheat-section">
+        <h2 class="cheat-section-title"><i class="ti ti-arrows-move"></i> Transform Araçları</h2>
+        <div class="cheat-grid">
+          <div class="cheat-card">
+            <div class="cheat-row"><kbd>Q</kbd><span>Hand (pan) aracı</span></div>
+            <div class="cheat-row"><kbd>W</kbd><span>Move (taşıma)</span></div>
+            <div class="cheat-row"><kbd>E</kbd><span>Rotate (döndürme)</span></div>
+            <div class="cheat-row"><kbd>R</kbd><span>Scale (ölçek)</span></div>
+            <div class="cheat-row"><kbd>T</kbd><span>Rect (UI/2D)</span></div>
+            <div class="cheat-row"><kbd>Y</kbd><span>Move + Rotate + Scale birleşik</span></div>
+            <div class="cheat-row"><kbd>Ctrl + sürükle</kbd><span>Snap (grid'e oturt)</span></div>
+            <div class="cheat-row"><kbd>V + sürükle</kbd><span>Vertex snap (köşeyi köşeye)</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GENEL KISAYOLLAR -->
+      <section class="cheat-section">
+        <h2 class="cheat-section-title"><i class="ti ti-layout-grid"></i> Genel Editor Kısayolları</h2>
+        <div class="cheat-grid">
+          <div class="cheat-card">
+            <div class="cheat-row"><kbd>Ctrl + S</kbd><span>Sahneyi kaydet</span></div>
+            <div class="cheat-row"><kbd>Ctrl + Shift + S</kbd><span>Sahneyi farklı kaydet</span></div>
+            <div class="cheat-row"><kbd>Ctrl + N</kbd><span>Yeni sahne</span></div>
+            <div class="cheat-row"><kbd>Ctrl + P</kbd><span>Play / Stop</span></div>
+            <div class="cheat-row"><kbd>Ctrl + Shift + P</kbd><span>Pause</span></div>
+            <div class="cheat-row"><kbd>Ctrl + Alt + P</kbd><span>Step (1 frame ilerle)</span></div>
+            <div class="cheat-row"><kbd>Ctrl + D</kbd><span>Duplicate (kopyala)</span></div>
+            <div class="cheat-row"><kbd>Ctrl + Z / Y</kbd><span>Undo / Redo</span></div>
+            <div class="cheat-row"><kbd>Ctrl + Shift + N</kbd><span>Yeni GameObject (Empty)</span></div>
+            <div class="cheat-row"><kbd>Ctrl + Shift + F</kbd><span>Align with View (kamerayı obje hizala)</span></div>
+            <div class="cheat-row"><kbd>F2</kbd><span>Seçili objeyi yeniden adlandır</span></div>
+            <div class="cheat-row"><kbd>Ctrl + Tab</kbd><span>Window picker (Project, Game, Console...)</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ANIMATOR & TIMELINE -->
+      <section class="cheat-section">
+        <h2 class="cheat-section-title"><i class="ti ti-bounce-right"></i> Animator &amp; Timeline</h2>
+        <div class="cheat-grid">
+          <div class="cheat-card">
+            <div class="cheat-row"><kbd>Animator → Right click</kbd><span>Create State / Sub-State Machine</span></div>
+            <div class="cheat-row"><kbd>Make Transition</kbd><span>State'ler arası geçiş çiz</span></div>
+            <div class="cheat-row"><kbd>Parameter (+)</kbd><span>Float / Int / Bool / Trigger</span></div>
+            <div class="cheat-row"><kbd>animator.SetFloat("Speed", v)</kbd><span>Parametre güncelle</span></div>
+            <div class="cheat-row"><kbd>animator.SetTrigger("Attack")</kbd><span>Tek atış event</span></div>
+            <div class="cheat-row"><kbd>Timeline → Add Track</kbd><span>Animation / Audio / Activation / Signal</span></div>
+            <div class="cheat-row"><kbd>K (Timeline)</kbd><span>Keyframe ekle</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MONOBEHAVIOUR LIFECYCLE -->
+      <section class="cheat-section">
+        <h2 class="cheat-section-title"><i class="ti ti-refresh"></i> MonoBehaviour Yaşam Döngüsü (Sırası)</h2>
+        <div class="cheat-grid">
+          <div class="cheat-card">
+            <div class="cheat-row"><code>Awake()</code><span>Obje oluşur oluşmaz, en başta. Referans atama.</span></div>
+            <div class="cheat-row"><code>OnEnable()</code><span>Component aktif olduğunda (her enable'da).</span></div>
+            <div class="cheat-row"><code>Start()</code><span>İlk frame'den önce, bir kez. Diğer Awake'ler bittikten sonra.</span></div>
+            <div class="cheat-row"><code>FixedUpdate()</code><span>Sabit aralıklı (default 0.02s). Physics burada.</span></div>
+            <div class="cheat-row"><code>Update()</code><span>Her frame. Input, hareket burada.</span></div>
+            <div class="cheat-row"><code>LateUpdate()</code><span>Update sonrası. Kamera takibi burada.</span></div>
+            <div class="cheat-row"><code>OnGUI()</code><span>Eski IMGUI. Modern UI için kullanma.</span></div>
+            <div class="cheat-row"><code>OnDisable()</code><span>Component pasif edildiğinde.</span></div>
+            <div class="cheat-row"><code>OnDestroy()</code><span>Obje yok edildiğinde. Event unsubscribe burada.</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PBR DEĞERLERİ -->
+      <section class="cheat-section">
+        <h2 class="cheat-section-title"><i class="ti ti-paint"></i> PBR Tipik Değerleri (URP / HDRP)</h2>
+        <div class="cheat-grid">
+          <div class="cheat-card">
+            <table class="cheat-table">
+              <thead><tr><th>Malzeme</th><th>Metallic</th><th>Smoothness</th></tr></thead>
+              <tbody>
+                <tr><td>Tahta</td><td>0.0</td><td>0.1-0.3</td></tr>
+                <tr><td>Plastik (mat)</td><td>0.0</td><td>0.2-0.4</td></tr>
+                <tr><td>Plastik (parlak)</td><td>0.0</td><td>0.6-0.8</td></tr>
+                <tr><td>Cilalı seramik</td><td>0.0</td><td>0.85</td></tr>
+                <tr><td>Cam / berrak</td><td>0.0</td><td>0.95+</td></tr>
+                <tr><td>Krom / çelik</td><td>1.0</td><td>0.9</td></tr>
+                <tr><td>Altın / bakır</td><td>1.0</td><td>0.85</td></tr>
+                <tr><td>Paslanmış demir</td><td>0.7</td><td>0.3</td></tr>
+                <tr><td>Deri</td><td>0.0</td><td>0.3-0.5</td></tr>
+                <tr><td>Kumaş</td><td>0.0</td><td>0.1-0.2</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ASSET NAMING -->
+      <section class="cheat-section">
+        <h2 class="cheat-section-title"><i class="ti ti-text-size"></i> Asset Adlandırma Konvansiyonu</h2>
+        <div class="cheat-grid">
+          <div class="cheat-card">
+            <table class="cheat-table">
+              <thead><tr><th>Prefix</th><th>Asset Türü</th><th>Örnek</th></tr></thead>
+              <tbody>
+                <tr><td><code>T_</code></td><td>Texture (Albedo)</td><td>T_Wall_Albedo</td></tr>
+                <tr><td><code>T_*_N</code></td><td>Normal Map</td><td>T_Wall_N</td></tr>
+                <tr><td><code>T_*_MRO</code></td><td>Metallic / Roughness / Occlusion</td><td>T_Wall_MRO</td></tr>
+                <tr><td><code>M_</code></td><td>Material</td><td>M_RedBrick</td></tr>
+                <tr><td><code>SG_</code></td><td>Shader Graph</td><td>SG_Toon</td></tr>
+                <tr><td><code>Mesh_</code></td><td>3D Mesh / FBX</td><td>Mesh_TreeOak</td></tr>
+                <tr><td><code>P_</code></td><td>Prefab</td><td>P_PlayerCharacter</td></tr>
+                <tr><td><code>SO_</code></td><td>ScriptableObject</td><td>SO_ItemSword</td></tr>
+                <tr><td><code>SFX_</code> / <code>MUS_</code></td><td>Sound effect / Music</td><td>SFX_Footstep</td></tr>
+                <tr><td><code>VFX_</code></td><td>Particle / VFX Graph</td><td>VFX_Explosion</td></tr>
+                <tr><td><code>AC_</code> / <code>AS_</code></td><td>Animator Controller / Animation State</td><td>AC_Player</td></tr>
+                <tr><td><code>UI_</code></td><td>UI element / Canvas</td><td>UI_MainMenu</td></tr>
+              </tbody>
+            </table>
+            <p style="margin:12px 0 0;color:var(--text-secondary);font-size:14px;">
+              <i class="ti ti-info-circle"></i> Türkçe karakter, boşluk, özel karakter <strong>asla</strong>. Sadece ASCII harf, rakam, alt çizgi.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- BUILD TÜRLERİ -->
+      <section class="cheat-section">
+        <h2 class="cheat-section-title"><i class="ti ti-package-export"></i> Build Türleri</h2>
+        <div class="cheat-grid">
+          <div class="cheat-card">
+            <table class="cheat-table">
+              <thead><tr><th>Tür</th><th>Amaç</th><th>Boyut / Hız</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Development</strong></td><td>Debug, Profiler, Script Debugging açık</td><td>Büyük / Hızlı build</td></tr>
+                <tr><td><strong>Release</strong> (Development kapalı)</td><td>Final yayın</td><td>Küçük / Yavaş build</td></tr>
+                <tr><td><strong>IL2CPP</strong></td><td>C# → C++ → native. Mobil &amp; konsol şart.</td><td>Hızlı runtime / Yavaş derleme</td></tr>
+                <tr><td><strong>Mono</strong></td><td>Hızlı iterasyon, sadece masaüstü</td><td>Hızlı derleme / Orta runtime</td></tr>
+                <tr><td><strong>Strip Engine Code</strong></td><td>Kullanılmayan motoru çıkar</td><td>%30-50 küçülme</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- COROUTINE YIELD TÜRLERİ -->
+      <section class="cheat-section">
+        <h2 class="cheat-section-title"><i class="ti ti-hourglass"></i> Coroutine Yield Türleri</h2>
+        <div class="cheat-grid">
+          <div class="cheat-card">
+            <div class="cheat-row"><code>yield return null</code><span>1 frame bekle (Update sonrası)</span></div>
+            <div class="cheat-row"><code>yield return new WaitForSeconds(2f)</code><span>2 saniye bekle (Time.timeScale etkisi var)</span></div>
+            <div class="cheat-row"><code>yield return new WaitForSecondsRealtime(2f)</code><span>2 saniye gerçek zamanda (pause'tan etkilenmez)</span></div>
+            <div class="cheat-row"><code>yield return new WaitForEndOfFrame()</code><span>Render bittikten sonra (screenshot için ideal)</span></div>
+            <div class="cheat-row"><code>yield return new WaitForFixedUpdate()</code><span>Bir sonraki FixedUpdate'i bekle</span></div>
+            <div class="cheat-row"><code>yield return new WaitUntil(() =&gt; x &gt; 5)</code><span>Şart sağlanana kadar bekle</span></div>
+            <div class="cheat-row"><code>yield return new WaitWhile(() =&gt; x &lt; 5)</code><span>Şart bozulana kadar bekle</span></div>
+            <div class="cheat-row"><code>yield return StartCoroutine(Other())</code><span>Diğer coroutine bitene kadar bekle</span></div>
+            <div class="cheat-row"><code>yield return req.SendWebRequest()</code><span>UnityWebRequest bekle</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SIK KULLANILAN API'LAR -->
+      <section class="cheat-section">
+        <h2 class="cheat-section-title"><i class="ti ti-code"></i> Sık Kullanılan C# API'leri</h2>
+        <div class="cheat-grid">
+          <div class="cheat-card">
+            <div class="cheat-row"><code>transform.position</code><span>World pozisyon (Vector3)</span></div>
+            <div class="cheat-row"><code>transform.Translate(Vector3.forward * speed * Time.deltaTime)</code><span>Yerel ileri hareket</span></div>
+            <div class="cheat-row"><code>transform.Rotate(Vector3.up * 90 * Time.deltaTime)</code><span>Y ekseninde dön</span></div>
+            <div class="cheat-row"><code>Vector3.Lerp(a, b, t)</code><span>İki nokta arası interpolasyon (t: 0-1)</span></div>
+            <div class="cheat-row"><code>Quaternion.Slerp(a, b, t)</code><span>İki rotasyon arası küresel interpolasyon</span></div>
+            <div class="cheat-row"><code>Quaternion.LookRotation(target - transform.position)</code><span>Hedefe bak</span></div>
+            <div class="cheat-row"><code>Vector3.Distance(a, b)</code><span>İki nokta mesafesi (sqrt'lu — yavaş)</span></div>
+            <div class="cheat-row"><code>(a - b).sqrMagnitude</code><span>Mesafe<sup>2</sup> (sqrt'suz — hızlı, karşılaştırma için)</span></div>
+            <div class="cheat-row"><code>Physics.Raycast(origin, dir, out hit, 10f)</code><span>Işın at, ilk çarpışmayı bul</span></div>
+            <div class="cheat-row"><code>Instantiate(prefab, pos, rot)</code><span>Prefab'tan kopya üret</span></div>
+            <div class="cheat-row"><code>Destroy(obj, 2f)</code><span>2 saniye sonra yok et</span></div>
+            <div class="cheat-row"><code>GetComponent&lt;Rigidbody&gt;()</code><span>Component al (CACHE et, Update'te kullanma)</span></div>
+            <div class="cheat-row"><code>FindObjectOfType&lt;Manager&gt;()</code><span>Sahnede ilk olanı bul (YAVAŞ — bir kez kullan)</span></div>
+            <div class="cheat-row"><code>Time.deltaTime</code><span>Son frame süresi (saniye)</span></div>
+            <div class="cheat-row"><code>Time.timeScale = 0</code><span>Pause (FixedUpdate / WaitForSeconds durur)</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- KONSOL / DEBUG -->
+      <section class="cheat-section">
+        <h2 class="cheat-section-title"><i class="ti ti-terminal-2"></i> Debug &amp; Konsol</h2>
+        <div class="cheat-grid">
+          <div class="cheat-card">
+            <div class="cheat-row"><code>Debug.Log("msg")</code><span>Console'a yaz</span></div>
+            <div class="cheat-row"><code>Debug.LogWarning("msg")</code><span>Sarı uyarı</span></div>
+            <div class="cheat-row"><code>Debug.LogError("msg")</code><span>Kırmızı hata</span></div>
+            <div class="cheat-row"><code>Debug.DrawRay(origin, dir * 10, Color.red, 2f)</code><span>Scene view'da ışın çiz (2 sn)</span></div>
+            <div class="cheat-row"><code>Debug.DrawLine(a, b, Color.green)</code><span>Scene view'da çizgi çiz</span></div>
+            <div class="cheat-row"><code>Debug.Break()</code><span>Editor'ı duraklat (breakpoint gibi)</span></div>
+            <div class="cheat-row"><code>Application.persistentDataPath</code><span>Save dosyaları için cross-platform yol</span></div>
+            <div class="cheat-row"><code>Application.dataPath</code><span>Assets klasörü (read-only build'de)</span></div>
+            <div class="cheat-row"><code>Window → Analysis → Profiler</code><span>CPU / GPU / Memory profil</span></div>
+            <div class="cheat-row"><code>Window → Analysis → Frame Debugger</code><span>Bir frame'in tüm draw call'ları</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5 ALTIN KURAL -->
+      <section class="cheat-section">
+        <h2 class="cheat-section-title"><i class="ti ti-star"></i> 7 Altın Kural</h2>
+        <div class="cheat-grid">
+          <div class="cheat-card">
+            <ol style="margin:0;padding-left:24px;color:var(--text-secondary);line-height:1.9;">
+              <li><strong>Sık Ctrl+S yap.</strong> Unity çökme bahanesi bilmez.</li>
+              <li><strong>Asset isimlerinde Türkçe karakter ve boşluk yok.</strong> Sadece İngilizce harf, rakam, alt çizgi.</li>
+              <li><strong>Prefix sistemini ilk günden uygula.</strong> Sonra düzeltmek 10x zordur.</li>
+              <li><strong>GetComponent'i Update'te değil, Awake/Start'ta cache'le.</strong> Yoksa GC ve performans patlar.</li>
+              <li><strong>Optimizasyon öncesi Profiler kullan.</strong> Tahmin et =/= bil. Önce ölç, sonra optimize et.</li>
+              <li><strong>Prefab değişikliklerini Apply All ile kaydet.</strong> Sahnedeki kopya, prefab'ı override eder.</li>
+              <li><strong>Version control (Git + Git LFS) kullan.</strong> Unity sahne dosyaları büyük ve binary'dir; LFS şart.</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <nav class="page-nav">
+      <a href="../index.html" class="page-nav-link">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-left"></i></div>
+        <div class="page-nav-body"><div class="page-nav-label">Geri</div><div class="page-nav-title">Ana Sayfa</div></div>
+      </a>
+      <a href="sss.html" class="page-nav-link next">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-right"></i></div>
+        <div class="page-nav-body"><div class="page-nav-label">Devam</div><div class="page-nav-title">SSS</div></div>
+      </a>
+    </nav>
+
+  </div>
+</main>
+<script src="../js/progress.js?v=11"></script>
+<script src="../js/quiz.js?v=11"></script>
+<script src="../js/toc.js?v=11"></script>
+<script src="../js/main.js?v=11"></script>
+</body>
+</html>

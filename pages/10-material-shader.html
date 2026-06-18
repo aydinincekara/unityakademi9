@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Material &amp; Shader — UnityAkademi</title>
+  <meta name="description" content="Mesh, Material, Shader üçlüsü; Built-in/URP/HDRP; URP Lit alanları; Shader Graph; texture import — Bölüm 10.">
+  <meta name="theme-color" content="#fa7d19">
+  <link rel="manifest" href="../manifest.json">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Material &amp; Shader">
+  <meta property="og:description" content="Mesh, Material, Shader üçlüsü; Built-in/URP/HDRP; URP Lit alanları; Shader Graph; texture import — Bölüm 10.">
+  <meta property="og:image" content="../og-image.svg">
+  <meta property="og:site_name" content="UnityAkademi">
+  <meta property="og:locale" content="tr_TR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Material &amp; Shader">
+  <meta name="twitter:description" content="Mesh, Material, Shader üçlüsü; Built-in/URP/HDRP; URP Lit alanları; Shader Graph; texture import — Bölüm 10.">
+  <meta name="twitter:image" content="../og-image.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="../css/variables.css?v=11">
+  <link rel="stylesheet" href="../css/reset.css?v=11">
+  <link rel="stylesheet" href="../css/layout.css?v=11">
+  <link rel="stylesheet" href="../css/components.css?v=11">
+  <link rel="stylesheet" href="../css/content.css?v=11">
+  <link rel="stylesheet" href="../css/visuals.css?v=11">
+  <link rel="stylesheet" href="../css/extras.css?v=11">
+  <link rel="stylesheet" href="../css/responsive.css?v=11">
+</head>
+<body>
+<button class="nav-hamburger" id="navHamburger" aria-label="Menüyü aç">
+  <i class="ti ti-menu-2"></i>
+</button>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a href="../index.html" class="sidebar-brand">
+      <div class="sidebar-brand-icon"><i class="ti ti-home-2"></i></div>
+      <div class="sidebar-brand-text">
+        <span class="sidebar-brand-name">Ana Sayfa</span>
+        <span class="sidebar-brand-sub">UnityAkademi</span>
+      </div>
+    </a>
+    <button class="mobile-toggle" aria-label="Menü"><i class="ti ti-x"></i></button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-group">
+      <div class="nav-group-title">Temeller</div>
+      <a href="01-kurulum.html" class="nav-link" data-section="s1"><i class="ti ti-download"></i><span class="nav-link-text">Kurulum & İlk Bakış</span><span class="nav-link-num">01</span></a>
+      <a href="02-arayuz.html" class="nav-link" data-section="s2"><i class="ti ti-layout-board"></i><span class="nav-link-text">Editor Arayüzü</span><span class="nav-link-num">02</span></a>
+      <a href="03-gameobject-component.html" class="nav-link" data-section="s3"><i class="ti ti-cube"></i><span class="nav-link-text">GameObject & Component</span><span class="nav-link-num">03</span></a>
+      <a href="04-csharp-temelleri.html" class="nav-link" data-section="s4"><i class="ti ti-code"></i><span class="nav-link-text">C# Temelleri</span><span class="nav-link-num">04</span></a>
+      <a href="05-monobehaviour-lifecycle.html" class="nav-link" data-section="s5"><i class="ti ti-refresh"></i><span class="nav-link-text">MonoBehaviour Lifecycle</span><span class="nav-link-num">05</span></a>
+      <a href="06-transform-vector.html" class="nav-link" data-section="s6"><i class="ti ti-arrows-move"></i><span class="nav-link-text">Transform & Vector3</span><span class="nav-link-num">06</span></a>
+      <a href="07-input.html" class="nav-link" data-section="s7"><i class="ti ti-keyboard"></i><span class="nav-link-text">Input Sistemi</span><span class="nav-link-num">07</span></a>
+      <a href="08-physics.html" class="nav-link" data-section="s8"><i class="ti ti-atom"></i><span class="nav-link-text">Physics</span><span class="nav-link-num">08</span></a>
+      <a href="09-ui.html" class="nav-link" data-section="s9"><i class="ti ti-layout-grid"></i><span class="nav-link-text">UI Sistemi</span><span class="nav-link-num">09</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Görsel & Asset</div>
+      <a href="10-material-shader.html" class="nav-link active" data-section="s10"><i class="ti ti-palette"></i><span class="nav-link-text">Material & Shader</span><span class="nav-link-num">10</span></a>
+      <a href="11-asset-import.html" class="nav-link" data-section="s11"><i class="ti ti-folder"></i><span class="nav-link-text">Asset Import</span><span class="nav-link-num">11</span></a>
+      <a href="12-animation.html" class="nav-link" data-section="s12"><i class="ti ti-bounce-right"></i><span class="nav-link-text">Animation</span><span class="nav-link-num">12</span></a>
+      <a href="13-particle-vfx.html" class="nav-link" data-section="s13"><i class="ti ti-sparkles"></i><span class="nav-link-text">Particle & VFX Graph</span><span class="nav-link-num">13</span></a>
+      <a href="14-lighting.html" class="nav-link" data-section="s14"><i class="ti ti-bulb"></i><span class="nav-link-text">Lighting</span><span class="nav-link-num">14</span></a>
+      <a href="15-audio.html" class="nav-link" data-section="s15"><i class="ti ti-volume"></i><span class="nav-link-text">Audio</span><span class="nav-link-num">15</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Sistemler</div>
+      <a href="16-probuilder.html" class="nav-link" data-section="s16"><i class="ti ti-3d-cube-sphere"></i><span class="nav-link-text">ProBuilder</span><span class="nav-link-num">16</span></a>
+      <a href="17-terrain.html" class="nav-link" data-section="s17"><i class="ti ti-mountain"></i><span class="nav-link-text">Terrain</span><span class="nav-link-num">17</span></a>
+      <a href="18-cinemachine.html" class="nav-link" data-section="s18"><i class="ti ti-camera"></i><span class="nav-link-text">Cinemachine</span><span class="nav-link-num">18</span></a>
+      <a href="19-timeline.html" class="nav-link" data-section="s19"><i class="ti ti-timeline"></i><span class="nav-link-text">Timeline</span><span class="nav-link-num">19</span></a>
+      <a href="20-navmesh.html" class="nav-link" data-section="s20"><i class="ti ti-route"></i><span class="nav-link-text">NavMesh & AI</span><span class="nav-link-num">20</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">İleri Seviye</div>
+      <a href="21-urp-hdrp.html" class="nav-link" data-section="s21"><i class="ti ti-bolt"></i><span class="nav-link-text">URP, HDRP & Unity 6</span><span class="nav-link-num">21</span></a>
+      <a href="22-new-input.html" class="nav-link" data-section="s22"><i class="ti ti-device-gamepad-2"></i><span class="nav-link-text">New Input System</span><span class="nav-link-num">22</span></a>
+      <a href="23-save-menu.html" class="nav-link" data-section="s23"><i class="ti ti-device-floppy"></i><span class="nav-link-text">Save & Menü</span><span class="nav-link-num">23</span></a>
+      <a href="24-build.html" class="nav-link" data-section="s24"><i class="ti ti-package-export"></i><span class="nav-link-text">Build & Yayınlama</span><span class="nav-link-num">24</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Profesyonel</div>
+      <a href="25-csharp-ileri.html" class="nav-link" data-section="s25"><i class="ti ti-brackets-contain"></i><span class="nav-link-text">C# İleri</span><span class="nav-link-num">25</span></a>
+      <a href="26-performance.html" class="nav-link" data-section="s26"><i class="ti ti-gauge"></i><span class="nav-link-text">Performance</span><span class="nav-link-num">26</span></a>
+      <a href="27-yol-haritasi.html" class="nav-link" data-section="s27"><i class="ti ti-map-2"></i><span class="nav-link-text">Yol Haritası</span><span class="nav-link-num">27</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Pratik</div>
+      <a href="projects.html" class="nav-link nav-link-extra" data-section="x-projects"><i class="ti ti-rocket"></i><span class="nav-link-text">Projeler</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Ek Kaynaklar</div>
+      <a href="sozluk.html" class="nav-link nav-link-extra" data-section="x-sozluk"><i class="ti ti-book-2"></i><span class="nav-link-text">Sözlük</span></a>
+      <a href="cheatsheet.html" class="nav-link nav-link-extra" data-section="x-cheatsheet"><i class="ti ti-list-details"></i><span class="nav-link-text">Cheat Sheet</span></a>
+      <a href="sss.html" class="nav-link nav-link-extra" data-section="x-sss"><i class="ti ti-help-circle"></i><span class="nav-link-text">SSS</span></a>
+      <a href="arama.html" class="nav-link nav-link-extra" data-section="x-arama"><i class="ti ti-search"></i><span class="nav-link-text">Arama</span></a>
+      <a href="sertifika.html" class="nav-link nav-link-extra" data-section="x-sertifika"><i class="ti ti-certificate"></i><span class="nav-link-text">Sertifika</span></a>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="kaynaklar.html" class="sidebar-btn"><i class="ti ti-books"></i><span>Kaynaklar</span></a>
+    <a href="iletisim.html" class="sidebar-btn"><i class="ti ti-mail"></i><span>İletişim</span></a>
+  </div>
+</aside>
+<main class="main">
+  <div class="main-content">
+<nav class="breadcrumb" aria-label="Sayfa konumu">
+      <a href="../index.html"><i class="ti ti-home"></i><span>Ana Sayfa</span></a>
+      <i class="ti ti-chevron-right"></i><span><i class="ti ti-school" style="font-size: 13px; opacity: 0.7; margin-right: 4px;"></i>Görsel & Asset</span>
+      <i class="ti ti-chevron-right"></i><span style="color: var(--primary-light);">Material & Shader</span>
+    </nav>
+
+<header class="page-header">
+  <div class="page-badge">Bölüm 10 · Görsel</div>
+  <h1 class="page-title">Material & Shader — Objelerinin Görünüşünü Kontrol Et</h1>
+  <p class="page-desc">
+    Bir küp gri ve mat. Diğeri parlıyor, üçüncüsü pas içinde, dördüncüsü cam gibi şeffaf. Aynı küp,
+    farklı görünüm. Aradaki sihir <strong>Material</strong> ve onun çağırdığı <strong>Shader</strong>'da
+    saklı. Bu bölümde Unity'nin render pipeline'larını, Standard ve URP shader'larını, Shader Graph'ı
+    ve material'ı runtime'da değiştirmenin yollarını öğreneceksin.
+  </p>
+  <div class="page-meta">
+    <span class="meta-item">⏱ 35 dakika</span>
+    <span class="meta-item">🎨 URP + Built-in</span>
+    <span class="meta-item">✨ Shader Graph</span>
+  </div>
+</header>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">10.1</span>
+    <h2 class="topic-title">Mesh, Material, Shader — Üçlü İlişki</h2>
+  </div>
+  <p>
+    Bir 3D objenin sahnede göründüğü iki şeye bağlıdır:
+  </p>
+  <ul>
+    <li><strong>Mesh</strong> — Objenin şekli, geometrisi (vertex'ler ve üçgenler). Bir küpün
+    8 köşesi ve 12 üçgeni vardır.</li>
+    <li><strong>Material</strong> — Objenin yüzeyinin nasıl boyandığı (renk, doku, parlaklık,
+    saydamlık).</li>
+  </ul>
+  <p>
+    Bu iki bilgiyi GPU'ya çevirip ekrana piksel piksel boyayan kişi <strong>Shader</strong>'dır.
+    Shader, GPU'da çalışan küçük bir programdır. Sen doğrudan shader yazmazsın (çok zor); onun
+    yerine Unity'nin hazır shader'larını kullanır, ayarlarını <strong>Material</strong> üzerinden
+    yaparsın.
+  </p>
+
+  <div class="info-box">
+    <h4>💡 Analoji: Resim çerçevesi gibi düşün</h4>
+    <ul>
+      <li><strong>Mesh</strong> = çerçevenin kendisi (kare, dikdörtgen, oval)</li>
+      <li><strong>Material</strong> = içindeki tablo (Mona Lisa, manzara, soyut)</li>
+      <li><strong>Shader</strong> = tabloyu boyayan sanatçı (Da Vinci farklı, Picasso farklı)</li>
+    </ul>
+  </div>
+
+  <h3>Mesh Renderer + Mesh Filter component'leri</h3>
+  <p>
+    Bir 3D obje yarattığında (örneğin Cube) Inspector'da bu iki bileşeni otomatik görürsün:
+  </p>
+  <ul>
+    <li><strong>Mesh Filter</strong> — Hangi mesh'i kullanacağı (Cube, Sphere, ya da senin import
+    ettiğin model)</li>
+    <li><strong>Mesh Renderer</strong> — O mesh'i hangi material(ler) ile çizeceği</li>
+  </ul>
+
+  <div class="u-inspector">
+    <div class="u-inspector-header">
+      <span class="u-inspector-icon mesh">▦</span>
+      <span>Mesh Renderer</span>
+    </div>
+    <div class="u-inspector-body">
+      <div class="u-inspector-row">
+        <span class="u-inspector-label">Materials</span>
+        <span class="u-inspector-value">Element 0: Default-Material</span>
+      </div>
+      <div class="u-inspector-row">
+        <span class="u-inspector-label">Lighting</span>
+        <span class="u-inspector-value">Cast Shadows: On</span>
+      </div>
+      <div class="u-inspector-row">
+        <span class="u-inspector-label">Probes</span>
+        <span class="u-inspector-value">Light Probes: Blend Probes</span>
+      </div>
+      <div class="u-inspector-row">
+        <span class="u-inspector-label">Additional Settings</span>
+        <span class="u-inspector-value">Motion Vectors: Per Object</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="warning-box">
+    <h4>⚠ Materials bir <strong>liste</strong>!</h4>
+    <p>
+      Mesh Renderer'ın Materials alanı bir listedir, tek bir material değil. Bir model birden fazla
+      "submesh"e sahip olabilir (örneğin bir karakterin gövdesi ile saçı ayrı material) — her submesh
+      farklı bir material kullanır. Genelde sadece 1 element olur ama "neden 2'sini de değiştirmem
+      gerekti?" dediğinde cevap budur.
+    </p>
+  </div>
+</section>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">10.2</span>
+    <h2 class="topic-title">Render Pipeline'lar — Built-in, URP, HDRP</h2>
+  </div>
+  <p>
+    Unity'de bir kafa karışıklığı: aynı oyun motorunda <strong>üç farklı render pipeline</strong>
+    var. Hangisini seçtiğin shader'larını, lighting'ini, post-processing'ini etkiler.
+  </p>
+
+  <div class="step-list">
+    <div class="step-note">
+      <strong>Built-in Render Pipeline (BiRP)</strong> — Unity'nin yıllardır kullandığı klasik
+      pipeline. Yeni projede artık varsayılan değil. Çoğu eski asset/tutorial hâlâ buna göre. Mobil
+      ve düşük spec'li platformlarda hâlâ uygun.
+    </div>
+    <div class="step-note">
+      <strong>Universal Render Pipeline (URP)</strong> <span class="u-ver-badge u6">U6</span> —
+      Unity 6'da yeni projeler için <strong>varsayılan</strong>. Mobil, konsol, PC için optimize.
+      Performans + görsel kalite dengesi. Çoğu yeni proje URP ile başlamalı.
+    </div>
+    <div class="step-note">
+      <strong>High Definition Render Pipeline (HDRP)</strong> — Foto-gerçekçi grafikler için.
+      AAA-tarzı PC ve konsol oyunları için. Mobilde kullanılmaz. Daha fazla VRAM ve CPU gerektirir.
+    </div>
+  </div>
+
+  <div class="info-box">
+    <h4>💡 Hangi pipeline'da olduğunu nasıl anlarsın?</h4>
+    <p>
+      <code>Edit → Project Settings → Graphics</code>'i aç. En üstte <strong>Scriptable Render
+      Pipeline Settings</strong> alanı var. Buradaki asset'in adı sana hangi pipeline olduğunu
+      söyler: <code>UniversalRenderPipelineAsset</code>, <code>HDRenderPipelineAsset</code>, ya da
+      boş (=Built-in).
+    </p>
+  </div>
+
+  <h3>Pipeline'lar arasında material uyuşmazlığı</h3>
+  <p>
+    En büyük tuzaklardan biri: bir pipeline'da yaratılmış material başka bir pipeline'da
+    <strong>çalışmaz</strong>. Built-in'in <code>Standard</code> shader'ı URP'de yoktur. URP'nin
+    <code>Lit</code> shader'ı Built-in'de yoktur. Material açtığında <strong>"Standard" yerine "Lit"
+    veya başka isim</strong> görmen normaldir.
+  </p>
+
+  <div class="warning-box">
+    <h4>⚠ Pembe material — yaygın hata</h4>
+    <p>
+      Bir asset store paketi indirdin, sahneye attın, her şey pembe çıktı. Sebebi: shader uyumsuzluğu.
+      Material, asset'in beklediği shader'ı bulamadığında Unity bir "missing shader" gösterir ve
+      objeyi pembe (magenta) çizer. Çözüm:
+    </p>
+    <ul>
+      <li>Material'ı seç, Inspector'da <strong>Shader</strong> dropdown'ından URP'nin
+      eşdeğerini seç (<code>Universal Render Pipeline/Lit</code>).</li>
+      <li>Toplu çevirme için: <code>Window → Rendering → Render Pipeline Converter</code>.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">10.3</span>
+    <h2 class="topic-title">Material Yaratmak ve Uygulamak</h2>
+  </div>
+
+  <h3>Adım adım</h3>
+  <ol class="step-list">
+    <li>Project penceresinde bir klasöre sağ tık → <strong>Create → Material</strong>.</li>
+    <li>Yeni .mat dosyası oluşur, isim ver (örn: "M_Rusted_Metal").</li>
+    <li>Asset seçili iken Inspector'da Shader dropdown'ı görürsün — varsayılan
+    <code>Universal Render Pipeline/Lit</code> (URP'desen).</li>
+    <li>Sahnedeki bir objeye uygulamak için: material'ı asset penceresinden sahnedeki objenin
+    üstüne <strong>sürükle</strong>.</li>
+    <li>Ya da: objeyi seç, Inspector'da Mesh Renderer'ın Materials → Element 0'a material'ı sürükle.</li>
+  </ol>
+
+  <h3>İsimlendirme — Best practice</h3>
+  <p>
+    Profesyonel projelerde asset'lerin önüne tip prefix'i konur:
+  </p>
+  <ul>
+    <li><code>M_</code> Material — örn: M_Brick_Red</li>
+    <li><code>T_</code> Texture — örn: T_Brick_BaseColor</li>
+    <li><code>SM_</code> Static Mesh — örn: SM_Wall</li>
+    <li><code>SK_</code> Skeletal Mesh — örn: SK_Hero</li>
+    <li><code>P_</code> Prefab — örn: P_EnemySpawner</li>
+  </ul>
+  <p>
+    Bu prefix'ler Unity tarafından zorunlu değil ama büyük projede ekibe aramayı kolaylaştırır
+    ("M_" yazınca sadece material'lar gelir).
+  </p>
+</section>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">10.4</span>
+    <h2 class="topic-title">URP Lit Shader — Alan Alan İnceleme</h2>
+  </div>
+  <p>
+    URP'nin en yaygın shader'ı <strong>Universal Render Pipeline/Lit</strong>. Çoğu PBR
+    (Physically-Based Rendering) tabanlı material için yeterli. Alanlarını tanıyalım.
+  </p>
+
+  <h3>Workflow Mode</h3>
+  <p>
+    Üstte <strong>Workflow Mode</strong> seçici: <code>Metallic</code> veya <code>Specular</code>.
+    Modern oyun asset'lerinin %95'i Metallic'tedir. Bu seçim alttaki alanları değiştirir.
+  </p>
+
+  <h3>Surface Type</h3>
+  <ul>
+    <li><strong>Opaque</strong> — Yarı şeffaf değil. En hızlı. Çoğu material için.</li>
+    <li><strong>Transparent</strong> — Cam, su, parıltı için. Daha pahalı ve sıralama (sorting)
+    problemlerine yol açabilir.</li>
+  </ul>
+  <p>
+    Transparent seçersen alt seçenekler açılır:
+  </p>
+  <ul>
+    <li><strong>Blending Mode</strong> — Alpha, Premultiply, Additive, Multiply</li>
+    <li><strong>Alpha Clipping</strong> — Pixel'in alpha'sı eşikten düşükse hiç çizme (yaprak, çit)</li>
+  </ul>
+
+  <h3>Surface Inputs — Asıl ayarlar</h3>
+
+  <h4>Base Map (Albedo)</h4>
+  <p>
+    Yüzeyin temel rengi. Solunda bir texture slotu (sürüklediğin görsel), sağında bir renk seçici.
+    Texture varsa, color seçici onun üstüne bir <strong>çarpan</strong> olarak çalışır (beyaz =
+    değişiklik yok, kırmızı = kırmızı tint).
+  </p>
+
+  <h4>Metallic Map / Metallic değer</h4>
+  <p>
+    Yüzey ne kadar "metal" gibi davranıyor:
+  </p>
+  <ul>
+    <li><strong>0</strong> — Dielectric (cam, plastik, tahta, kumaş). Renkleri kendi base color'ından.</li>
+    <li><strong>1</strong> — Tam metal (altın, demir, krom). Renkleri yansıttıkları ortamdan alır.</li>
+    <li>Arası genelde gerçekçi değildir — ya 0 ya 1 olmalı (kirli/paslı metal istisnası).</li>
+  </ul>
+
+  <h4>Smoothness</h4>
+  <p>
+    Yüzey ne kadar parlak: 0 = mat (taş, kumaş), 1 = ayna gibi pürüzsüz (cila, gloss). Smoothness
+    arttıkça yansıtılan ışık daha sıkı bir noktaya odaklanır → "spec highlight" daha küçük ve parlak
+    olur.
+  </p>
+
+  <h4>Normal Map</h4>
+  <p>
+    Yüzeyin yalancı pürüzlülüğü. Mavi-mor renkli bir görseldir, mesh'in geometrisini değiştirmeden
+    "kabarık görünmesini" sağlar. Bir tuğla duvarda asıl mesh düz bir Plane, ama Normal Map sayesinde
+    tuğlalar derinlik kazanır.
+  </p>
+
+  <div class="info-box">
+    <h4>💡 Normal Map yanlış görünüyorsa</h4>
+    <p>
+      Bazen Normal Map "ters" görünür — kabarıklıklar çukur, çukurlar kabarık. Bu DirectX vs OpenGL
+      formatları arasındaki Y-axis farkından kaynaklanır. Texture'ın import settings'inde
+      <strong>Flip Green Channel</strong>'ı işaretle, sorun çözülür.
+    </p>
+  </div>
+
+  <h4>Height Map / Parallax</h4>
+  <p>
+    Normal Map'in bir adım ötesi: pikselleri görsel olarak yer değiştirir, derinlik etkisi yaratır.
+    Pahalı, ihtiyatlı kullan.
+  </p>
+
+  <h4>Occlusion Map</h4>
+  <p>
+    Yüzeyin doğal gölgeli yerlerini (AO - Ambient Occlusion) önceden kaydeden bir grayscale texture.
+    Tuğla aralarının doğal karanlığı gibi.
+  </p>
+
+  <h4>Emission</h4>
+  <p>
+    Yüzey kendi <strong>ışık yayar</strong>: LED ekran, lava, neon tabela. Renk seçer ve şiddeti
+    ayarlarsın. <strong>Bloom</strong> post-processing'i ile birleşince çok güzel parlama efekti
+    verir.
+  </p>
+
+  <h3>Tiling ve Offset</h3>
+  <p>
+    Asıl ayarların altında <strong>Tiling (X, Y)</strong> ve <strong>Offset (X, Y)</strong> var.
+    Tiling = texture kaç kere tekrarlansın. Bir yer karosu için Tiling 4,4 vermek karoyu 16 kez
+    tekrarlar. Offset = texture'ı kaydır.
+  </p>
+</section>
+
+<div class="mini-checkpoint">
+  <h4>⚡ Mini Checkpoint</h4>
+  <p>Şu ana kadar öğrendiklerin:</p>
+  <ul>
+    <li><strong>Mesh</strong> = şekil, <strong>Material</strong> = yüzey ayarları, <strong>Shader</strong> = GPU programı.</li>
+    <li>3 render pipeline: <strong>Built-in</strong>, <strong>URP</strong> (varsayılan), <strong>HDRP</strong>.</li>
+    <li>Pipeline değiştirince eski material'lar pembe olabilir → shader değişimi gerek.</li>
+    <li>URP Lit shader'ın temel alanları: <strong>Base Map</strong>, <strong>Metallic</strong>,
+    <strong>Smoothness</strong>, <strong>Normal Map</strong>, <strong>Emission</strong>.</li>
+    <li>İsimlendirme: <code>M_</code> (material), <code>T_</code> (texture), <code>SM_</code> (mesh).</li>
+  </ul>
+</div>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">10.5</span>
+    <h2 class="topic-title">Material'ı Kodla Değiştirmek</h2>
+  </div>
+  <p>
+    Runtime'da material parametrelerini değiştirmek isteyebilirsin: oyuncu zarar aldığında ekranı
+    kırmızıya boya, bir item'ı yan sönsün, bir buton hover'da parlasın. Bunun için
+    <code>Renderer.material</code> üzerinden ulaşırsın.
+  </p>
+
+  <h3>Önemli: material vs sharedMaterial</h3>
+
+  <div class="u-compare">
+    <div class="u-compare-side lts">
+      <div class="u-compare-head">renderer.material</div>
+      <div class="u-compare-body">
+        <ul>
+          <li>İlk erişimde <strong>kopya</strong> oluşturur</li>
+          <li>Sadece bu obje etkilenir, kardeşler etkilenmez</li>
+          <li>Memory'de yeni instance — bellek artışı</li>
+          <li>Object yok olunca cleanup gerekir</li>
+          <li>Bu tek obje için ayar değiştireceksen</li>
+        </ul>
+      </div>
+    </div>
+    <div class="u-compare-side u6">
+      <div class="u-compare-head">renderer.sharedMaterial</div>
+      <div class="u-compare-body">
+        <ul>
+          <li>Asset'in <strong>kendisi</strong>ne erişir, kopyalamaz</li>
+          <li>Tüm aynı material'ı kullanan objeler etkilenir</li>
+          <li>Bellek artmaz</li>
+          <li>Editor'da <strong>asset'i kalıcı değiştirir</strong> (dikkat!)</li>
+          <li>Şu an etrafta sahnedeki <strong>tüm</strong> aynı tip objelerin rengini değiştirmek istersen</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h3>Renk değiştirme örneği</h3>
+
+  <div class="cs-block">
+    <div class="cs-block-header"><span class="cs-block-filename">ColorChanger.cs</span></div>
+    <pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+
+<span class="kw">public class</span> <span class="type">ColorChanger</span> : <span class="type">MonoBehaviour</span>
+{
+    <span class="kw">private</span> <span class="type">Renderer</span> rend;
+
+    <span class="kw">void</span> <span class="mb">Awake</span>()
+    {
+        rend = <span class="fn">GetComponent</span>&lt;<span class="type">Renderer</span>&gt;();
+    }
+
+    <span class="kw">public void</span> <span class="fn">SetColor</span>(<span class="type">Color</span> c)
+    {
+        <span class="com">// URP Lit shader'da renk property adı _BaseColor</span>
+        rend.material.<span class="fn">SetColor</span>(<span class="str">"_BaseColor"</span>, c);
+    }
+
+    <span class="kw">public void</span> <span class="fn">FlashRed</span>()
+    {
+        <span class="fn">SetColor</span>(<span class="type">Color</span>.red);
+        <span class="fn">Invoke</span>(<span class="kw">nameof</span>(<span class="fn">ResetColor</span>), <span class="num">0.2f</span>);
+    }
+
+    <span class="kw">void</span> <span class="fn">ResetColor</span>()
+    {
+        <span class="fn">SetColor</span>(<span class="type">Color</span>.white);
+    }
+}</code></pre>
+  </div>
+
+  <div class="warning-box">
+    <h4>⚠ Property ismi pipeline'a göre değişir</h4>
+    <p>
+      Built-in Standard shader'da renk property'sinin adı <code>_Color</code>'dur. URP Lit'te
+      <code>_BaseColor</code>. HDRP'de yine farklı. <strong>Yanlış isim verirsen Unity hiç hata
+      vermez</strong>, sadece etki olmaz. Doğru adı görmek için: material'ı seç, Inspector → debug
+      mode (üç noktalı menü) → tüm property isimleri listelenir.
+    </p>
+  </div>
+
+  <h3>MaterialPropertyBlock — performanslı yöntem</h3>
+  <p>
+    Çok sayıda objenin material'ını ayrı ayrı değiştirmek için <code>renderer.material</code>
+    kullanırsan her biri için yeni material instance'ı oluşur — memory ve <strong>draw call</strong>
+    artar. Bunun yerine <strong>MaterialPropertyBlock</strong> kullan:
+  </p>
+
+  <div class="cs-block">
+    <div class="cs-block-header"><span class="cs-block-filename">FastColorize.cs</span></div>
+    <pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+
+<span class="kw">public class</span> <span class="type">FastColorize</span> : <span class="type">MonoBehaviour</span>
+{
+    <span class="kw">static</span> <span class="kw">readonly int</span> ColorID = <span class="type">Shader</span>.<span class="fn">PropertyToID</span>(<span class="str">"_BaseColor"</span>);
+
+    <span class="kw">private</span> <span class="type">Renderer</span> rend;
+    <span class="kw">private</span> <span class="type">MaterialPropertyBlock</span> mpb;
+
+    <span class="kw">void</span> <span class="mb">Awake</span>()
+    {
+        rend = <span class="fn">GetComponent</span>&lt;<span class="type">Renderer</span>&gt;();
+        mpb = <span class="kw">new</span> <span class="type">MaterialPropertyBlock</span>();
+    }
+
+    <span class="kw">public void</span> <span class="fn">SetColor</span>(<span class="type">Color</span> c)
+    {
+        rend.<span class="fn">GetPropertyBlock</span>(mpb);
+        mpb.<span class="fn">SetColor</span>(ColorID, c);
+        rend.<span class="fn">SetPropertyBlock</span>(mpb);
+    }
+}</code></pre>
+  </div>
+
+  <p>
+    Avantajları:
+  </p>
+  <ul>
+    <li>Material instance oluşmaz, bellek artmaz.</li>
+    <li><code>Shader.PropertyToID</code> string lookup'u önler — sıkı bir döngüde çok daha hızlı.</li>
+    <li>GPU instancing ile uyumlu (binlerce obje tek draw call'da).</li>
+  </ul>
+</section>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">10.6</span>
+    <h2 class="topic-title">Shader Graph — Görsel Shader Yazmak <span class="u-ver-badge u6">U6</span></h2>
+  </div>
+  <p>
+    Hazır shader'lar yetmiyor, kendi shader'ını yazmak istiyorsun. Geleneksel yöntem: HLSL kodu
+    yazmak. Modern yöntem: <strong>Shader Graph</strong>. Bir grafik editörde düğümleri (node)
+    bağlarsın, Unity arka planda shader kodu üretir.
+  </p>
+
+  <h3>Shader Graph başlatma</h3>
+  <ol class="step-list">
+    <li>Project'te bir klasöre sağ tık → <strong>Create → Shader Graph → URP → Lit Shader Graph</strong>.</li>
+    <li>Yeni asset oluşur, çift tıkla — Shader Graph editörü açılır.</li>
+    <li>Sol üstte <strong>Master Stack</strong> görürsün: Vertex ve Fragment çıkışları.</li>
+    <li>Soluna düğümler bağlarsın; Vertex'e geometri verisi, Fragment'a renk/parlaklık.</li>
+  </ol>
+
+  <h3>İlk Shader Graph: dalgalanan deniz</h3>
+  <ol class="step-list">
+    <li>Sağ tık → <strong>Create Node → Math → Range → Mapping</strong> ya da Search bar'a "Time"
+    yaz.</li>
+    <li>Bir <strong>Time</strong> node ekle — sürekli artan bir saat.</li>
+    <li>Bir <strong>Position</strong> node ekle — vertex'in dünyadaki konumu.</li>
+    <li>Position.x'i Time ile topla.</li>
+    <li>Sonucu <strong>Sine</strong> node'undan geçir.</li>
+    <li><strong>Multiply</strong> ile küçük bir sayıyla çarp (0.2 gibi).</li>
+    <li>Çıkışı <strong>Position</strong> output'una Y kanalı olarak bağla.</li>
+    <li>Save Asset → bir material yarat → bu shader'ı seç → bir Plane'e uygula.</li>
+    <li>Play'e bas — Plane dalgalanır.</li>
+  </ol>
+
+  <div class="info-box">
+    <h4>💡 Shader Graph kullanım alanları</h4>
+    <ul>
+      <li><strong>Stilize görseller</strong> — toon shading, cel shading, hatchwork</li>
+      <li><strong>Animasyonlu efektler</strong> — kaynayan lava, rüzgârda dalgalanan bayrak</li>
+      <li><strong>Procedural texture</strong> — Noise node'larıyla doku üretmek</li>
+      <li><strong>Sahne efektleri</strong> — dissolve (eriyerek kaybolma), hologram, parlama</li>
+    </ul>
+  </div>
+
+  <h3>VFX Graph farklı bir şey</h3>
+  <p>
+    Karıştırılır: <strong>Shader Graph</strong> bir yüzeyin <strong>nasıl görüneceği</strong> için.
+    <strong>VFX Graph</strong> ise <strong>partikül efektleri</strong> içindir — duman, kıvılcım,
+    patlama. VFX Graph'ı Bölüm 13'te işleyeceğiz.
+  </p>
+</section>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">10.7</span>
+    <h2 class="topic-title">Texture İmport Ayarları</h2>
+  </div>
+  <p>
+    Bir PNG'yi Project'e sürüklediğinde Unity onu otomatik import eder. Ama ayarlar varsayılan
+    değerle gelir; texture'ın amacına göre değiştirmen lazım.
+  </p>
+
+  <h3>Texture Type</h3>
+  <ul>
+    <li><strong>Default</strong> — Genel kullanım. Material'lara bağlanan dokular.</li>
+    <li><strong>Normal Map</strong> — Normal map seçtiğinde Unity onu özel formatta saklar (daha iyi sıkıştırma).</li>
+    <li><strong>Sprite (2D and UI)</strong> — UI Image veya 2D SpriteRenderer için.</li>
+    <li><strong>Cursor</strong> — İmleç ikonu.</li>
+    <li><strong>Cookie</strong> — Işık projeksiyonu (spotlight cookie gibi).</li>
+    <li><strong>Lightmap</strong> — Baked light bilgisi.</li>
+    <li><strong>Single Channel</strong> — Sadece R, G, A veya B kanalı. Maskeler için.</li>
+  </ul>
+
+  <h3>Max Size — yeterlilik prensibi</h3>
+  <p>
+    Varsayılan 2048 px. Ama küçük bir ikon, ufak bir oyuncağın texture'ı bu kadar büyük olmamalı.
+    Tipik rehber:
+  </p>
+  <ul>
+    <li>UI iconları, küçük objeler: <strong>256 / 512</strong></li>
+    <li>Karakterler, orta boy objeler: <strong>1024 / 2048</strong></li>
+    <li>Büyük yüzeyler (zemin, ana kahraman, çevre): <strong>2048 / 4096</strong></li>
+    <li>Sky / cubemap: <strong>4096+</strong></li>
+  </ul>
+
+  <h3>Compression — VRAM tasarrufu</h3>
+  <p>
+    Varsayılan "Normal Quality" çoğu zaman yeterli. Mobil'de "Low Quality"; çok kritik bir asset'te
+    (kahramanın yüzü) "High Quality". Sıkıştırılmamış (Uncompressed) sadece çok özel durumlarda.
+  </p>
+
+  <div class="warning-box">
+    <h4>⚠ "Power of two" kuralı</h4>
+    <p>
+      Texture boyutları 2'nin kuvveti olmalı: 256, 512, 1024, 2048, 4096. Olmayan bir boyut
+      (örneğin 1000×500) verirsen Unity sıkıştırmayı tam yapamaz veya boyutu otomatik 1024×512'ye
+      pad eder. Texture'ları üretirken bunu unutma.
+    </p>
+  </div>
+</section>
+
+<div class="real-world-box">
+  <h4>🎮 Gerçek dünya — Genshin Impact ve Anime Shading</h4>
+  <p>
+    Genshin Impact (miHoYo, 2020) Unity ile yapılmış muazzam bir başarı: dünya genelinde milyarlarca
+    dolar gelir. Görsel imzası ise stilize <strong>anime/cel-shading</strong> tarzıydı —
+    karakterlerin gölgeleri sert geçişli, ten dokusu pürüzsüz, vurgu noktaları sanatçı tarafından
+    boyanmış gibi.
+  </p>
+  <p>
+    Bunu standart Lit shader ile yapamazsın çünkü o, gerçekçi PBR yapar. Genshin ekibi tamamen
+    kendi <strong>custom shader</strong>'larını yazmış: cel-shading rampaları, rim light'ları, saçı
+    sertçe ayıran efektler. Bugün benzer bir görünüm için Shader Graph + ramp texture + custom
+    light direction node'ları kullanabilirsin. Asset Store'da "Anime Shader" araması yapınca
+    onlarca paket çıkıyor. Önemli ders: <strong>doğru shader, doğru art direction'la birleşince oyun
+    karakter kazanır</strong> — teknik bir konu değil, sanatsal bir karar.
+  </p>
+</div>
+
+<div class="practice-section">
+  <h3>🛠 Pratik — 3 Mini Proje</h3>
+
+  <div class="project-card">
+    <div class="project-goal">
+      <strong>Proje 1 — Material Galerisi</strong>
+      <p>5 farklı material yarat ve karşılaştır.</p>
+    </div>
+    <ul class="project-check">
+      <li>Sahnede 5 küre yan yana koy.</li>
+      <li>Her birine farklı material ata:
+        <ul>
+          <li><strong>Mat plastik</strong> — Metallic: 0, Smoothness: 0.2, kırmızı</li>
+          <li><strong>Cila tahta</strong> — Metallic: 0, Smoothness: 0.7, kahverengi</li>
+          <li><strong>Krom metal</strong> — Metallic: 1, Smoothness: 0.95, gri</li>
+          <li><strong>Paslı metal</strong> — Metallic: 0.8, Smoothness: 0.3, turuncu-kahve</li>
+          <li><strong>Parlayan neon</strong> — Emission: kırmızı, intensity 3</li>
+        </ul>
+      </li>
+      <li>Bir Directional Light ekle ve render farkını gözle.</li>
+      <li><strong>Bonus:</strong> Post Processing → Bloom ekle, emission'lı küre parıldasın.</li>
+    </ul>
+  </div>
+
+  <div class="project-card">
+    <div class="project-goal">
+      <strong>Proje 2 — Hasar Flash Efekti</strong>
+      <p>Vurulan düşmanın 0.2 saniye kırmızıya parlaması.</p>
+    </div>
+    <ul class="project-check">
+      <li>Bir küp yarat (düşman). Material ata.</li>
+      <li><code>DamageFlash</code> script'i yaz: <code>FlashRed()</code> public metodu.</li>
+      <li><code>FlashRed</code>: orijinal rengi sakla → kırmızıya boya → 0.2sn sonra orijinale dön (Coroutine kullan).</li>
+      <li>Test için <code>Update</code>'te Space tuşuna basınca <code>FlashRed</code>'i çağır.</li>
+      <li><strong>Bonus:</strong> MaterialPropertyBlock kullanarak yeniden yaz, performans farkını profile et.</li>
+    </ul>
+  </div>
+
+  <div class="project-card">
+    <div class="project-goal">
+      <strong>Proje 3 — Dissolve Shader Graph</strong>
+      <p>Bir objenin "eriyerek" kaybolduğu efekt.</p>
+    </div>
+    <ul class="project-check">
+      <li>Shader Graph yarat: URP/Lit Shader Graph.</li>
+      <li>Bir <strong>Noise (Simple)</strong> node ekle, UV girişine objenin UV koordinatlarını ver.</li>
+      <li><strong>Float property</strong> ekle: "Dissolve" (0-1 aralığı).</li>
+      <li>Noise çıkışını Dissolve'dan çıkar → <strong>Step</strong> node'undan geçir.</li>
+      <li>Çıkışı master stack'in <strong>Alpha Clip Threshold</strong>'una bağla.</li>
+      <li>Shader'dan bir material yarat, bir küpe uygula.</li>
+      <li>Material Inspector'da Dissolve slider'ını 0'dan 1'e götür — küp eriyerek kaybolur.</li>
+      <li><strong>Bonus:</strong> Kenarda parlayan bir "edge" katmanı ekle (Step yerine Smoothstep, ikinci bir Step ile farkı renklendir).</li>
+    </ul>
+  </div>
+</div>
+
+<section class="quiz" id="bolum-quiz">
+  <header class="quiz-header">
+    <div class="quiz-header-icon"><i class="ti ti-help"></i></div>
+    <div class="quiz-header-text">
+      <h2>Bölüm Sonu Sınavı</h2>
+      <span>5 soru</span>
+    </div>
+  </header>
+
+  <article class="quiz-question" id="q10-1">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">01</span>
+      <h3 class="quiz-prompt-text">Bir objenin yüzey rengini belirleyen bileşen hangisidir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Mesh</button>
+      <button class="quiz-option" data-correct="true">Material</button>
+      <button class="quiz-option" data-correct="false">Mesh Filter</button>
+      <button class="quiz-option" data-correct="false">Light</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q10-2">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">02</span>
+      <h3 class="quiz-prompt-text">Sahnedeki objeler pembe görünüyor. En olası sebep nedir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Lighting bake'i yapılmamış</button>
+      <button class="quiz-option" data-correct="true">Material'ın shader'ı bulunamıyor (pipeline uyumsuzluğu)</button>
+      <button class="quiz-option" data-correct="false">Camera background'u pembe</button>
+      <button class="quiz-option" data-correct="false">Texture import edilmemiş</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q10-3">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">03</span>
+      <h3 class="quiz-prompt-text">URP Lit shader'da yüzey rengi property'sinin adı nedir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">_Color</button>
+      <button class="quiz-option" data-correct="true">_BaseColor</button>
+      <button class="quiz-option" data-correct="false">_Albedo</button>
+      <button class="quiz-option" data-correct="false">_MainColor</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q10-4">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">04</span>
+      <h3 class="quiz-prompt-text">Yüzeyi "ayna gibi" parlatmak için Metallic ve Smoothness değerleri ne olmalı?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Metallic: 0, Smoothness: 0</button>
+      <button class="quiz-option" data-correct="false">Metallic: 1, Smoothness: 0</button>
+      <button class="quiz-option" data-correct="true">Metallic: 1, Smoothness: 0.95+</button>
+      <button class="quiz-option" data-correct="false">Metallic: 0.5, Smoothness: 0.5</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q10-5">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">05</span>
+      <h3 class="quiz-prompt-text">100 düşmanın her birine farklı renk vermek için en performanslı yöntem hangisidir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Her birine ayrı material instance (renderer.material)</button>
+      <button class="quiz-option" data-correct="false">Hepsine aynı sharedMaterial</button>
+      <button class="quiz-option" data-correct="true">Her birine MaterialPropertyBlock kullan</button>
+      <button class="quiz-option" data-correct="false">Her frame Update'te renk değiştir</button>
+    </div>
+  </article>
+</section>
+
+<section class="complete-section">
+      <h3 class="complete-title">🎉 Bölüm 10 Tamamlandı!</h3>
+      <p class="complete-msg">Material, Shader, Render Pipeline kavramlarını öğrendin. URP Lit shader'ın tüm alanlarını biliyorsun, runtime'da material değiştirmeyi performanslı yapıyorsun, Shader Graph'a giriş yaptın. Sırada <strong>Asset Import</strong> var — 3D modelleri, sesleri, animasyonları Unity'ye nasıl getiririz?</p>
+      <button class="complete-btn" data-section="s10">
+        <i class="ti ti-circle-check"></i>
+        <span>Bu Bölümü Tamamladım</span>
+      </button>
+      <p class="complete-note">İlerlemen otomatik tarayıcına kaydedilir.</p>
+    </section>
+    <!-- Sayfa Gezinme -->
+    <nav class="page-nav" aria-label="Bölüm gezinme">
+      <a href="09-ui.html" class="page-nav-link prev">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-left"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Önceki Bölüm</div>
+          <div class="page-nav-title">9. UI Sistemi (Canvas)</div>
+        </div>
+      </a>
+      <a href="11-asset-import.html" class="page-nav-link next">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-right"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Sonraki Bölüm</div>
+          <div class="page-nav-title">11. Asset Import</div>
+        </div>
+      </a>
+    </nav>
+
+  </div>
+</main>
+<script src="../js/progress.js?v=11"></script>
+<script src="../js/quiz.js?v=11"></script>
+<script src="../js/toc.js?v=11"></script>
+<script src="../js/main.js?v=11"></script>
+</body>
+</html>

@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editor Arayüzü — UnityAkademi</title>
+  <meta name="description" content="Unity Editor&#x27;ün 6 ana paneli — Hierarchy, Scene, Game, Inspector, Project, Console — derinlemesine — Bölüm 02.">
+  <meta name="theme-color" content="#fa7d19">
+  <link rel="manifest" href="../manifest.json">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Editor Arayüzü">
+  <meta property="og:description" content="Unity Editor&#x27;ün 6 ana paneli — Hierarchy, Scene, Game, Inspector, Project, Console — derinlemesine — Bölüm 02.">
+  <meta property="og:image" content="../og-image.svg">
+  <meta property="og:site_name" content="UnityAkademi">
+  <meta property="og:locale" content="tr_TR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Editor Arayüzü">
+  <meta name="twitter:description" content="Unity Editor&#x27;ün 6 ana paneli — Hierarchy, Scene, Game, Inspector, Project, Console — derinlemesine — Bölüm 02.">
+  <meta name="twitter:image" content="../og-image.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="../css/variables.css?v=11">
+  <link rel="stylesheet" href="../css/reset.css?v=11">
+  <link rel="stylesheet" href="../css/layout.css?v=11">
+  <link rel="stylesheet" href="../css/components.css?v=11">
+  <link rel="stylesheet" href="../css/content.css?v=11">
+  <link rel="stylesheet" href="../css/visuals.css?v=11">
+  <link rel="stylesheet" href="../css/extras.css?v=11">
+  <link rel="stylesheet" href="../css/responsive.css?v=11">
+</head>
+<body>
+<button class="nav-hamburger" id="navHamburger" aria-label="Menüyü aç">
+  <i class="ti ti-menu-2"></i>
+</button>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a href="../index.html" class="sidebar-brand">
+      <div class="sidebar-brand-icon"><i class="ti ti-home-2"></i></div>
+      <div class="sidebar-brand-text">
+        <span class="sidebar-brand-name">Ana Sayfa</span>
+        <span class="sidebar-brand-sub">UnityAkademi</span>
+      </div>
+    </a>
+    <button class="mobile-toggle" aria-label="Menü"><i class="ti ti-x"></i></button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-group">
+      <div class="nav-group-title">Temeller</div>
+      <a href="01-kurulum.html" class="nav-link" data-section="s1"><i class="ti ti-download"></i><span class="nav-link-text">Kurulum & İlk Bakış</span><span class="nav-link-num">01</span></a>
+      <a href="02-arayuz.html" class="nav-link active" data-section="s2"><i class="ti ti-layout-board"></i><span class="nav-link-text">Editor Arayüzü</span><span class="nav-link-num">02</span></a>
+      <a href="03-gameobject-component.html" class="nav-link" data-section="s3"><i class="ti ti-cube"></i><span class="nav-link-text">GameObject & Component</span><span class="nav-link-num">03</span></a>
+      <a href="04-csharp-temelleri.html" class="nav-link" data-section="s4"><i class="ti ti-code"></i><span class="nav-link-text">C# Temelleri</span><span class="nav-link-num">04</span></a>
+      <a href="05-monobehaviour-lifecycle.html" class="nav-link" data-section="s5"><i class="ti ti-refresh"></i><span class="nav-link-text">MonoBehaviour Lifecycle</span><span class="nav-link-num">05</span></a>
+      <a href="06-transform-vector.html" class="nav-link" data-section="s6"><i class="ti ti-arrows-move"></i><span class="nav-link-text">Transform & Vector3</span><span class="nav-link-num">06</span></a>
+      <a href="07-input.html" class="nav-link" data-section="s7"><i class="ti ti-keyboard"></i><span class="nav-link-text">Input Sistemi</span><span class="nav-link-num">07</span></a>
+      <a href="08-physics.html" class="nav-link" data-section="s8"><i class="ti ti-atom"></i><span class="nav-link-text">Physics</span><span class="nav-link-num">08</span></a>
+      <a href="09-ui.html" class="nav-link" data-section="s9"><i class="ti ti-layout-grid"></i><span class="nav-link-text">UI Sistemi</span><span class="nav-link-num">09</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Görsel & Asset</div>
+      <a href="10-material-shader.html" class="nav-link" data-section="s10"><i class="ti ti-palette"></i><span class="nav-link-text">Material & Shader</span><span class="nav-link-num">10</span></a>
+      <a href="11-asset-import.html" class="nav-link" data-section="s11"><i class="ti ti-folder"></i><span class="nav-link-text">Asset Import</span><span class="nav-link-num">11</span></a>
+      <a href="12-animation.html" class="nav-link" data-section="s12"><i class="ti ti-bounce-right"></i><span class="nav-link-text">Animation</span><span class="nav-link-num">12</span></a>
+      <a href="13-particle-vfx.html" class="nav-link" data-section="s13"><i class="ti ti-sparkles"></i><span class="nav-link-text">Particle & VFX Graph</span><span class="nav-link-num">13</span></a>
+      <a href="14-lighting.html" class="nav-link" data-section="s14"><i class="ti ti-bulb"></i><span class="nav-link-text">Lighting</span><span class="nav-link-num">14</span></a>
+      <a href="15-audio.html" class="nav-link" data-section="s15"><i class="ti ti-volume"></i><span class="nav-link-text">Audio</span><span class="nav-link-num">15</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Sistemler</div>
+      <a href="16-probuilder.html" class="nav-link" data-section="s16"><i class="ti ti-3d-cube-sphere"></i><span class="nav-link-text">ProBuilder</span><span class="nav-link-num">16</span></a>
+      <a href="17-terrain.html" class="nav-link" data-section="s17"><i class="ti ti-mountain"></i><span class="nav-link-text">Terrain</span><span class="nav-link-num">17</span></a>
+      <a href="18-cinemachine.html" class="nav-link" data-section="s18"><i class="ti ti-camera"></i><span class="nav-link-text">Cinemachine</span><span class="nav-link-num">18</span></a>
+      <a href="19-timeline.html" class="nav-link" data-section="s19"><i class="ti ti-timeline"></i><span class="nav-link-text">Timeline</span><span class="nav-link-num">19</span></a>
+      <a href="20-navmesh.html" class="nav-link" data-section="s20"><i class="ti ti-route"></i><span class="nav-link-text">NavMesh & AI</span><span class="nav-link-num">20</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">İleri Seviye</div>
+      <a href="21-urp-hdrp.html" class="nav-link" data-section="s21"><i class="ti ti-bolt"></i><span class="nav-link-text">URP, HDRP & Unity 6</span><span class="nav-link-num">21</span></a>
+      <a href="22-new-input.html" class="nav-link" data-section="s22"><i class="ti ti-device-gamepad-2"></i><span class="nav-link-text">New Input System</span><span class="nav-link-num">22</span></a>
+      <a href="23-save-menu.html" class="nav-link" data-section="s23"><i class="ti ti-device-floppy"></i><span class="nav-link-text">Save & Menü</span><span class="nav-link-num">23</span></a>
+      <a href="24-build.html" class="nav-link" data-section="s24"><i class="ti ti-package-export"></i><span class="nav-link-text">Build & Yayınlama</span><span class="nav-link-num">24</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Profesyonel</div>
+      <a href="25-csharp-ileri.html" class="nav-link" data-section="s25"><i class="ti ti-brackets-contain"></i><span class="nav-link-text">C# İleri</span><span class="nav-link-num">25</span></a>
+      <a href="26-performance.html" class="nav-link" data-section="s26"><i class="ti ti-gauge"></i><span class="nav-link-text">Performance</span><span class="nav-link-num">26</span></a>
+      <a href="27-yol-haritasi.html" class="nav-link" data-section="s27"><i class="ti ti-map-2"></i><span class="nav-link-text">Yol Haritası</span><span class="nav-link-num">27</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Pratik</div>
+      <a href="projects.html" class="nav-link nav-link-extra" data-section="x-projects"><i class="ti ti-rocket"></i><span class="nav-link-text">Projeler</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Ek Kaynaklar</div>
+      <a href="sozluk.html" class="nav-link nav-link-extra" data-section="x-sozluk"><i class="ti ti-book-2"></i><span class="nav-link-text">Sözlük</span></a>
+      <a href="cheatsheet.html" class="nav-link nav-link-extra" data-section="x-cheatsheet"><i class="ti ti-list-details"></i><span class="nav-link-text">Cheat Sheet</span></a>
+      <a href="sss.html" class="nav-link nav-link-extra" data-section="x-sss"><i class="ti ti-help-circle"></i><span class="nav-link-text">SSS</span></a>
+      <a href="arama.html" class="nav-link nav-link-extra" data-section="x-arama"><i class="ti ti-search"></i><span class="nav-link-text">Arama</span></a>
+      <a href="sertifika.html" class="nav-link nav-link-extra" data-section="x-sertifika"><i class="ti ti-certificate"></i><span class="nav-link-text">Sertifika</span></a>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="kaynaklar.html" class="sidebar-btn"><i class="ti ti-books"></i><span>Kaynaklar</span></a>
+    <a href="iletisim.html" class="sidebar-btn"><i class="ti ti-mail"></i><span>İletişim</span></a>
+  </div>
+</aside>
+<main class="main">
+  <div class="main-content">
+    <header class="page-header">
+      <nav class="breadcrumb" aria-label="Sayfa konumu">
+      <a href="../index.html"><i class="ti ti-home"></i><span>Ana Sayfa</span></a>
+      <i class="ti ti-chevron-right"></i><span><i class="ti ti-school" style="font-size: 13px; opacity: 0.7; margin-right: 4px;"></i>Temeller</span>
+      <i class="ti ti-chevron-right"></i><span style="color: var(--primary-light);">Editor Arayüzü</span>
+    </nav>
+      <div class="page-meta">
+        <span class="page-num">Bölüm 02</span>
+        <span class="page-category">Temeller</span>
+        <span class="u-ver-badge both"><i class="ti ti-check"></i> 2022.3 LTS + Unity 6</span>
+      </div>
+      <h1 class="page-title">Editor Arayüzü — 6 pencerenin gizli dili</h1>
+      <p class="page-lead">
+        Unity Editor ilk açıldığında karmaşık görünür: pencereler, sekmeler, butonlar, ikonlar. Ama altyapısı çok basit — sadece 6 ana pencere ve birkaç toolbar. Her birinin spesifik bir işi var. Bu bölümde her pencereyi tek tek inceleyeceğiz, kısayollarını öğreneceğiz, kendi layout'unu nasıl kuracağını göreceksin. Bu sayfayı bitirdiğinde Editor'de "ne nerede?" diye düşünmeden hareket ediyor olacaksın.
+      </p>
+    </header>
+
+    <aside class="quick-path">
+      <div class="quick-path-title"><i class="ti ti-bolt"></i>Bu Bölümde</div>
+      <ol class="quick-path-list">
+        <li>Default Layout — ilk açılışta ne görüyorsun?</li>
+        <li>Hierarchy — sahnenin ağacı</li>
+        <li>Scene View — 3B uzayda dolaşma</li>
+        <li>Game View — oyuncunun gözü</li>
+        <li>Inspector — Unity'nin kalbi</li>
+        <li>Project ve Console — asset'ler ve hatalar</li>
+        <li>Toolbar, Layout sistemi, kısayollar</li>
+      </ol>
+    </aside>
+
+    <section class="topic-section">
+      <div class="topic-header">
+        <span class="topic-number">2.1</span>
+        <h2 class="topic-title">Default Layout — Ekranda neler var?</h2>
+      </div>
+      <div class="topic-body">
+        <p>Unity Editor ilk açıldığında <strong>Default</strong> layout devreye girer. Bu, Unity'nin "yeni başlayanların görmesini istediği" düzendir. Sağ üstteki <strong>Layout</strong> dropdown'dan 5 hazır layout vardır (Default, Tall, Wide, 2 by 3, 4 Split) ama Default kapsamlı bir başlangıçtır.</p>
+
+        <h3>Pencerelerin yerleşimi</h3>
+        <div class="u-inspector">
+          <div class="u-inspector-header"><i class="ti ti-layout-2"></i>Default Layout — Pencere Konumları</div>
+          <div class="u-inspector-body">
+            <div class="u-inspector-row">
+              <span class="u-inspector-icon mesh"><i class="ti ti-arrow-left"></i></span>
+              <span class="u-inspector-label">Sol kenar</span>
+              <span class="u-inspector-value"><strong>Hierarchy</strong> — sahnedeki tüm GameObject'ler</span>
+            </div>
+            <div class="u-inspector-row">
+              <span class="u-inspector-icon camera"><i class="ti ti-arrows-vertical"></i></span>
+              <span class="u-inspector-label">Orta üst</span>
+              <span class="u-inspector-value"><strong>Scene</strong> ve <strong>Game</strong> sekmeleri yan yana — düzenleme ve oynama görünümleri</span>
+            </div>
+            <div class="u-inspector-row">
+              <span class="u-inspector-icon script"><i class="ti ti-arrow-right"></i></span>
+              <span class="u-inspector-label">Sağ kenar</span>
+              <span class="u-inspector-value"><strong>Inspector</strong> — seçili objenin tüm detayları</span>
+            </div>
+            <div class="u-inspector-row">
+              <span class="u-inspector-icon ui"><i class="ti ti-arrow-down"></i></span>
+              <span class="u-inspector-label">Alt orta</span>
+              <span class="u-inspector-value"><strong>Project</strong> ve <strong>Console</strong> sekmeleri — asset'ler ve hatalar</span>
+            </div>
+            <div class="u-inspector-row">
+              <span class="u-inspector-icon audio"><i class="ti ti-arrow-up"></i></span>
+              <span class="u-inspector-label">En üst</span>
+              <span class="u-inspector-value"><strong>Toolbar</strong> — Transform araçları, Play/Pause, Layers, Layout</span>
+            </div>
+            <div class="u-inspector-row">
+              <span class="u-inspector-icon transform"><i class="ti ti-grip-vertical"></i></span>
+              <span class="u-inspector-label">En üst (menüler)</span>
+              <span class="u-inspector-value"><strong>File, Edit, Assets, GameObject, Component, Window, Help</strong> menüleri</span>
+            </div>
+          </div>
+        </div>
+
+        <p style="margin-top:14px;">Bu pencerelerin her birini <strong>sürükleyebilir, ayırabilir, başka monitöre taşıyabilirsin</strong>. Birden fazla monitörün varsa, Hierarchy + Inspector'ı bir tarafa, Scene View'ı tam ekran diğer monitöre alabilirsin — profesyonel geliştiriciler genelde böyle çalışır.</p>
+
+        <div class="info-callout">
+          <div class="info-callout-icon"><i class="ti ti-info-circle"></i></div>
+          <div><strong>Pencereler kayboldu mu?</strong> Yanlışlıkla bir pencereyi kapatırsan paniğe kapılma. Üst menü → <strong>Window</strong> → ilgili pencerenin adına tıkla, geri gelir. Veya Layout dropdown'dan "Default" seçersen her şey sıfırlanır.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="topic-section">
+      <div class="topic-header">
+        <span class="topic-number">2.2</span>
+        <h2 class="topic-title">Hierarchy — Sahnenin ağaç yapısı</h2>
+      </div>
+      <div class="topic-body">
+        <p>Hierarchy penceresi, <strong>sahnedeki her şeyin listesidir</strong>. Bir küp koydun mu, orada görürsün. Bir kamera, bir ışık, bir karakter — hepsi Hierarchy'de bir satır olarak yer alır.</p>
+
+        <h3>Parent-Child ilişkisi</h3>
+        <p>Hierarchy bir <strong>ağaç yapısı</strong>dır. Bir GameObject'i başka bir GameObject'in <em>çocuğu</em> yapabilirsin. Bunu yaptığında <strong>child</strong>, <strong>parent</strong>'in:</p>
+        <ul>
+          <li>Konumunu takip eder (parent hareket ederse child da hareket eder)</li>
+          <li>Dönüşünü takip eder (parent dönerse child da döner)</li>
+          <li>Ölçeğini takip eder (parent büyürse child da büyür)</li>
+          <li>Aktif/pasif durumunu takip eder (parent kapatılırsa child da kapanır)</li>
+        </ul>
+
+        <div class="info-callout">
+          <div class="info-callout-icon"><i class="ti ti-puzzle"></i></div>
+          <div><strong>Pratik örnek:</strong> Bir araba yapacaksan: "Car" adlı boş bir GameObject oluştur. İçine "Body" (gövde mesh'i), "Wheel_FL", "Wheel_FR", "Wheel_BL", "Wheel_BR" (tekerlekler) ekle. Hepsi "Car"ın child'ı olsun. Şimdi Car'ı hareket ettirdiğinde tekerlekler ve gövde otomatik takip eder — tek tek hareket ettirmen gerekmez.</div>
+        </div>
+
+        <h3>Hierarchy'de en sık yapacakların</h3>
+        <div class="u-inspector">
+          <div class="u-inspector-header"><i class="ti ti-hierarchy-2"></i>Hierarchy Komutları</div>
+          <div class="u-inspector-body">
+            <div class="u-inspector-row">
+              <span class="u-inspector-icon mesh"><i class="ti ti-plus"></i></span>
+              <span class="u-inspector-label">Yeni obje</span>
+              <span class="u-inspector-value">Hierarchy'de boş alana sağ tık → seçim listesi. Veya üst menü <strong>GameObject</strong>.</span>
+            </div>
+            <div class="u-inspector-row">
+              <span class="u-inspector-icon transform"><i class="ti ti-trash"></i></span>
+              <span class="u-inspector-label">Sil</span>
+              <span class="u-inspector-value">Obje seçili → <strong>Delete</strong> tuşu. Veya sağ tık → Delete.</span>
+            </div>
+            <div class="u-inspector-row">
+              <span class="u-inspector-icon ui"><i class="ti ti-copy"></i></span>
+              <span class="u-inspector-label">Kopyala</span>
+              <span class="u-inspector-value"><strong>Ctrl+D</strong> (Duplicate). Aynı anda 100 küp yapmanın en hızlı yolu.</span>
+            </div>
+            <div class="u-inspector-row">
+              <span class="u-inspector-icon script"><i class="ti ti-grip-vertical"></i></span>
+              <span class="u-inspector-label">Parent yap</span>
+              <span class="u-inspector-value">Bir objeyi sürükle, başka objenin üzerine bırak. Artık child'ı oldu.</span>
+            </div>
+            <div class="u-inspector-row">
+              <span class="u-inspector-icon camera"><i class="ti ti-search"></i></span>
+              <span class="u-inspector-label">Ara</span>
+              <span class="u-inspector-value">Hierarchy üstündeki arama kutusuna isim yaz, vurgulu satırlar gelir.</span>
+            </div>
+            <div class="u-inspector-row">
+              <span class="u-inspector-icon light"><i class="ti ti-eye-off"></i></span>
+              <span class="u-inspector-label">Görünmez yap</span>
+              <span class="u-inspector-value">Satırın solundaki <strong>göz</strong> ikonu — sahnede gizler ama çalışmaya devam eder (Scene View only).</span>
+            </div>
+          </div>
+        </div>
+
+        <h3>Renkli ikonlar ne demek?</h3>
+        <p>Hierarchy'deki GameObject isimlerinin yanında bazen küçük ikonlar görürsün:</p>
+        <ul>
+          <li><strong>Mavi küp</strong> — Prefab instance (Prefab'tan oluşturulmuş kopya)</li>
+          <li><strong>Mavi küp + ok</strong> — Prefab variant (varyant)</li>
+          <li><strong>Saydam isim</strong> — GameObject pasif (devre dışı)</li>
+          <li><strong>Sarı uyarı</strong> — Eksik component (script silinmiş ama referans duruyor)</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="topic-section">
+      <div class="topic-header">
+        <span class="topic-number">2.3</span>
+        <h2 class="topic-title">Scene View — 3B uzayın editörü</h2>
+      </div>
+      <div class="topic-body">
+        <p>Scene View, oyununu kurduğun ana penceredir. Burası 3 boyutlu bir uzay; objeleri buraya yerleştirir, döndürür, boyutlandırırsın. Oyuncu bu pencereyi <em>asla</em> görmez — Scene View senin tasarım ortamın.</p>
+
+        <h3>Navigasyon kontrolleri</h3>
+        <div class="u-inspector">
+          <div class="u-inspector-header"><i class="ti ti-window"></i>Scene View Navigation</div>
+          <div class="u-inspector-body">
+            <div class="u-inspector-row">
+              <span class="u-inspector-icon camera"><i class="ti ti-arrow-up-right"></i></span>
+              <span class="u-inspector-label">Sağ tık + WASD</span>
+              <span class="u-inspector-value">FPS modu — sağ tıkı basılı tut, WASD ile uç. <strong>Shift</strong> hızlandırır. <strong>Q-E</strong> aşağı-yukarı.</span>
+            </div>
+            <div class="u-inspector-row">
+              <span class="u-inspector-icon transform"><i class="ti ti-orbit"></i></span>
+              <span class="u-inspector-label">Alt + sol tık + sürükle</span>
+              <span class="u-inspector-value">Bir noktanın etrafında dön (Orbit). Modeli incelerken çok kullanılır.</span>
+            </div>
+            <div class="u-inspector-row">
+              <span class="u-inspector-icon ui"><i class="ti ti-arrows-move"></i></span>
+              <span class="u-inspector-label">Orta tık + sürükle</span>
+              <span class="u-inspector-value">Pan — yatay/dikey kaydır.</span>
+            </div>
+            <div class="u-inspector-row">
+              <span class="u-inspector-icon mesh"><i class="ti ti-zoom-in"></i></span>
+              <span class="u-inspector-label">Tekerlek</span>
+              <span class="u-inspector-value">Zoom (yakınlaş/uzaklaş). Mac kullanıyorsan iki parmakla yukarı/aşağı.</span>
+            </div>
+            <div class="u-inspector-row">
+              <span class="u-inspector-icon script"><i class="ti ti-focus"></i></span>
+              <span class="u-inspector-label">F tuşu</span>
+              <span class="u-inspector-value">Seçili objeye odaklan (Frame Selected). Çok kullanışlı — kaybolan objeyi bulur.</span>
+            </div>
+            <div class="u-inspector-row">
+              <span class="u-inspector-icon audio"><i class="ti ti-keyframe"></i></span>
+              <span class="u-inspector-label">Shift + F</span>
+              <span class="u-inspector-value">Lock to Selected — kamera obje hareket etse bile takip eder.</span>
+            </div>
+          </div>
+        </div>
+
+        <h3>Gizmolar — sahnedeki yardımcılar</h3>
+        <p>Sağ üstte <strong>renkli oklar olan bir küp</strong> görürsün. Bu <strong>Scene Gizmo</strong>'dur. Oklara tıklayarak görünüm yönünü değiştirebilirsin:</p>
+        <ul>
+          <li><strong>Kırmızı (X)</strong> — sağdan bak</li>
+          <li><strong>Yeşil (Y)</strong> — yukarıdan bak (top-down)</li>
+          <li><strong>Mavi (Z)</strong> — önden bak</li>
+          <li><strong>Ortadaki küp</strong> — perspective ⇄ orthographic (perspektif/dik bakış) toggle</li>
+        </ul>
+
+        <h3>Transform tools — sahnedeki manipülasyon</h3>
+        <p>Sol üstte 7 buton var (kısayolları parantezde):</p>
+        <ul>
+          <li><strong>Hand (Q)</strong> — sürükleyerek pan yap</li>
+          <li><strong>Move (W)</strong> — objeyi taşı, renkli oklar belirir</li>
+          <li><strong>Rotate (E)</strong> — objeyi döndür, daireler belirir</li>
+          <li><strong>Scale (R)</strong> — objeyi boyutlandır, küpler belirir</li>
+          <li><strong>Rect (T)</strong> — 2D dikdörtgen düzenleme (UI ve sprite için)</li>
+          <li><strong>Universal (Y)</strong> — taşıma + dönüş + ölçek hep bir arada</li>
+          <li><strong>Custom (V)</strong> — vertex snap modu (yakında detay)</li>
+        </ul>
+
+        <div class="info-callout">
+          <div class="info-callout-icon"><i class="ti ti-keyboard"></i></div>
+          <div><strong>QWERTY = sıralı kısayollar.</strong> Klavyede Q-W-E-R-T-Y harfleri yan yana ve Transform araçları aynı sırada. Bu rastlantı değil — Unity geliştiricileri arka arkaya bastığında ergonomik olsun diye böyle tasarlanmış.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="topic-section">
+      <div class="topic-header">
+        <span class="topic-number">2.4</span>
+        <h2 class="topic-title">Game View — Oyuncunun gözüyle bak</h2>
+      </div>
+      <div class="topic-body">
+        <p>Scene View senin editörün, Game View ise oyuncunun göreceği şey. Bu pencere <strong>Main Camera</strong>'nın gördüğünü gösterir.</p>
+
+        <h3>Game View'in özellikleri</h3>
+        <ul>
+          <li><strong>Aspect ratio</strong> dropdown — oyunun hangi ekran oranında olduğunu seç. "Free Aspect" (serbest), "16:9", "1920x1080", özel ekleyebilirsin.</li>
+          <li><strong>Play (▶) çalışırken Game View canlanır</strong>. Oyunun davranışını burada görürsün.</li>
+          <li><strong>Maximize On Play</strong> — toggle ile Play'e basınca otomatik tam ekran.</li>
+          <li><strong>Stats</strong> butonu — FPS, draw call, triangle sayısı gibi performans bilgileri.</li>
+          <li><strong>Gizmos</strong> toggle'ı Game View'da da var — Play'de bile gizmo görmek için.</li>
+        </ul>
+
+        <div class="warning-callout">
+          <div class="warning-callout-icon"><i class="ti ti-alert-triangle"></i></div>
+          <div><strong>"Display 1 No cameras rendering" yazıyorsa?</strong> Sahnede Main Camera silinmiş ya da disable. Yeni bir kamera ekle: <strong>GameObject → Camera</strong>. Veya silinen Main Camera'yı geri yükle (yeni 3D oluştur, ondan kopyala).</div>
+        </div>
+
+        <h3>Scene vs Game — temel fark</h3>
+        <div class="u-compare">
+          <div class="u-compare-side lts">
+            <div class="u-compare-head"><i class="ti ti-pencil"></i> Scene View</div>
+            <div class="u-compare-body">
+              <ul>
+                <li>Senin tasarım ortamın</li>
+                <li>İstediğin yere bakabilirsin</li>
+                <li>Gizmolar, ışık ikonları, kamera frustum görünür</li>
+                <li>Play'de bile özgürce dolaşabilirsin</li>
+                <li>Oyuncu bunu asla görmez</li>
+              </ul>
+            </div>
+          </div>
+          <div class="u-compare-side u6">
+            <div class="u-compare-head"><i class="ti ti-device-tv"></i> Game View</div>
+            <div class="u-compare-body">
+              <ul>
+                <li>Oyuncunun gözü</li>
+                <li>Main Camera'nın çerçevesi</li>
+                <li>Sadece final render — ışık, post-process, her şey aktif</li>
+                <li>Play'de canlanır, kontroller çalışır</li>
+                <li>Oyununun bilgisayara çıkacak hali</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="mini-checkpoint">
+      <div class="mini-checkpoint-icon"><i class="ti ti-flag"></i></div>
+      <div class="mini-checkpoint-body">
+        <div class="mini-checkpoint-title">Mini-checkpoint #1</div>
+        <p>Şimdiye kadar 4 pencereyi tanıdın:</p>
+        <ul>
+          <li>✓ Hierarchy — sahnenin ağaç yapısı</li>
+          <li>✓ Scene View — 3B düzenleme alanı</li>
+          <li>✓ Game View — oyuncunun gözü</li>
+          <li>✓ Default Layout'un yerleşimi</li>
+        </ul>
+        <p><strong>Düşün:</strong> Bir araba modelini sahneye koydun, dört tekerlek ayrı GameObject. Aracı 5 metre öne taşımak istiyorsun. Hangi yöntem en verimli?</p>
+      </div>
+    </aside>
+
+    <section class="topic-section">
+      <div class="topic-header">
+        <span class="topic-number">2.5</span>
+        <h2 class="topic-title">Inspector — Unity'nin kalbi</h2>
+      </div>
+      <div class="topic-body">
+        <p>Inspector, bu rehberde <strong>en çok zamanı geçireceğin pencere</strong>dir. Bir GameObject seçtiğinde sağda Inspector açılır ve o GameObject'in tüm <strong>component</strong>'larını gösterir.</p>
+
+        <div class="info-callout">
+          <div class="info-callout-icon"><i class="ti ti-puzzle"></i></div>
+          <div>
+            <strong>Önemli kavram:</strong> Unity'de bir GameObject, <em>kendisi bir şey yapmaz</em>. Sadece <strong>component</strong>'lar (bileşenler) yapar. GameObject = boş kutu. Component'lar = ona yetenek ekleyen modüller.
+            <ul style="margin-top:6px;">
+              <li>Transform component → konum/dönüş/ölçek bilgisi</li>
+              <li>Mesh Renderer → görüntü</li>
+              <li>Box Collider → çarpışma</li>
+              <li>Rigidbody → fizik</li>
+              <li>Yazdığın script → senin kodun</li>
+            </ul>
+            Inspector, bütün bunları gösterir.
+          </div>
+        </div>
+
+        <h3>Inspector'ın bölümleri</h3>
+        <p>Bir küp seçtiğinde Inspector'da göreceklerin:</p>
+        <div class="u-inspector">
+          <div class="u-inspector-header"><i class="ti ti-cube"></i>Cube (Inspector view)</div>
+          <div class="u-inspector-body">
+            <div class="u-inspector-row">
+              <span class="u-inspector-icon transform"><i class="ti ti-arrows-move"></i></span>
+              <span class="u-inspector-label">Transform</span>
+              <span class="u-inspector-value vector">Position X:<span style="color:#ff6b8a;">0</span> Y:<span style="color:#50e3c2;">0</span> Z:<span style="color:#5e9fff;">0</span></span>
+            </div>
+            <div class="u-inspector-row">
+              <span class="u-inspector-icon mesh"><i class="ti ti-3d-cube-sphere"></i></span>
+              <span class="u-inspector-label">Mesh Filter</span>
+              <span class="u-inspector-value">Mesh: Cube</span>
+            </div>
+            <div class="u-inspector-row">
+              <span class="u-inspector-icon light"><i class="ti ti-palette"></i></span>
+              <span class="u-inspector-label">Mesh Renderer</span>
+              <span class="u-inspector-value">Materials: Default-Material</span>
+            </div>
+            <div class="u-inspector-row">
+              <span class="u-inspector-icon collider"><i class="ti ti-box"></i></span>
+              <span class="u-inspector-label">Box Collider</span>
+              <span class="u-inspector-value">Size: 1, 1, 1</span>
+            </div>
+          </div>
+        </div>
+
+        <h3>Inspector'da en sık yapacakların</h3>
+        <ul>
+          <li><strong>Component değerlerini değiştir</strong> — Position X'i 5 yap, küp 5 birim sağa kayar.</li>
+          <li><strong>Add Component</strong> — alt taraftaki buton. Yeni bir component (mesela Rigidbody) ekle.</li>
+          <li><strong>Component'i devre dışı bırak</strong> — sol üstteki checkbox. Mesh Renderer'ı kapatırsan küp görünmez ama çarpışma çalışır.</li>
+          <li><strong>Component'i sil</strong> — sağ üstteki ⋮ menüsü → Remove Component.</li>
+          <li><strong>Reset</strong> — ⋮ → Reset. Component'i varsayılan değerlere döndürür.</li>
+          <li><strong>Component'i kopyala</strong> — ⋮ → Copy Component, başka objeye Paste Component As New.</li>
+        </ul>
+
+        <div class="info-callout">
+          <div class="info-callout-icon"><i class="ti ti-lock"></i></div>
+          <div><strong>Inspector kilitleme:</strong> Sağ üstte küçük bir kilit ikonu var. Tıkladığında Inspector seçili objeyi "kilitler" — başka obje seçsen bile Inspector değişmez. Karşılaştırma yaparken çok kullanışlı.</div>
+        </div>
+
+        <h3>Renkli alanlar ne demek?</h3>
+        <ul>
+          <li><strong>Mavi şerit</strong> (sol kenar) — Prefab'tan değiştirilmiş değer (override). Sağ tık → Apply/Revert.</li>
+          <li><strong>Sarı üçgen</strong> — uyarı (eksik referans, geçersiz değer).</li>
+          <li><strong>Kırmızı X</strong> — hata (script derlenmedi, referans kayıp).</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="topic-section">
+      <div class="topic-header">
+        <span class="topic-number">2.6</span>
+        <h2 class="topic-title">Project & Console — Asset'ler ve hatalar</h2>
+      </div>
+      <div class="topic-body">
+        <h3>Project penceresi</h3>
+        <p>Alt taraftaki Project penceresi, projenin <strong>Assets/</strong> klasörünün diskteki dosya görünümüdür. Sol tarafta klasör ağacı, sağda klasör içeriği. Burada:</p>
+        <ul>
+          <li><strong>3D modeller</strong> (.fbx, .obj, .glb)</li>
+          <li><strong>Dokular</strong> (.png, .jpg, .tga)</li>
+          <li><strong>Sesler</strong> (.wav, .mp3, .ogg)</li>
+          <li><strong>Sahneler</strong> (.unity)</li>
+          <li><strong>Materyaller</strong> (.mat)</li>
+          <li><strong>Script'ler</strong> (.cs)</li>
+          <li><strong>Prefab'lar</strong> (.prefab)</li>
+        </ul>
+
+        <h3>Klasör yapısı disiplini</h3>
+        <p>Profesyonel projeler Assets içinde böyle organize edilir:</p>
+        <div class="code-block">
+<pre>Assets/
+├── Art/
+│   ├── Models/
+│   ├── Textures/
+│   └── Materials/
+├── Audio/
+│   ├── Music/
+│   └── SFX/
+├── Prefabs/
+├── Scenes/
+├── Scripts/
+└── Settings/</pre>
+        </div>
+
+        <p>İlk başta önemli görünmez, ama 200 dosya olunca seni kurtarır. <strong>İlk günden bu yapıyı kur</strong> — sonra düzeltmek çok zordur.</p>
+
+        <h3>Console penceresi</h3>
+        <p>Console, Unity'nin "konuşma kanalı"dır. Burada görürsün:</p>
+        <ul>
+          <li><strong>Hata mesajları</strong> (kırmızı X) — script derlenmedi, çalışma zamanı patladı</li>
+          <li><strong>Uyarılar</strong> (sarı !) — kritik değil ama dikkat</li>
+          <li><strong>Mesajlar</strong> (mavi i) — bilgilendirme, <code>Debug.Log()</code> çıktıları</li>
+        </ul>
+
+        <div class="info-callout">
+          <div class="info-callout-icon"><i class="ti ti-bug"></i></div>
+          <div><strong>Console = senin en iyi arkadaşın.</strong> Oyun çalışmıyor mu? Önce Console'a bak. %90 ihtimalle kırmızı bir hata mesajı var ve tam olarak hangi satırda neden patladığını söylüyor. Hata mesajına çift tıklarsan ilgili script açılır.</div>
+        </div>
+
+        <h3>Console'un üst butonları</h3>
+        <ul>
+          <li><strong>Clear</strong> — tüm mesajları temizle</li>
+          <li><strong>Clear on Play</strong> — Play'e basınca otomatik temizle</li>
+          <li><strong>Clear on Build</strong> — Build alırken temizle</li>
+          <li><strong>Error Pause</strong> — bir hata olunca otomatik Pause (debug için altın)</li>
+          <li><strong>Filtreler</strong> (sağda) — Error/Warning/Info tipleri ayrı ayrı aç/kapat</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="topic-section">
+      <div class="topic-header">
+        <span class="topic-number">2.7</span>
+        <h2 class="topic-title">Toolbar, Layout sistemi ve kısayollar</h2>
+      </div>
+      <div class="topic-body">
+        <h3>Üst toolbar — 3 bölge</h3>
+        <p>Ekranın en üstündeki çubuk üç gruba ayrılır:</p>
+
+        <div class="u-inspector">
+          <div class="u-inspector-header"><i class="ti ti-layout-board"></i>Toolbar Bölgeleri</div>
+          <div class="u-inspector-body">
+            <div class="u-inspector-row">
+              <span class="u-inspector-icon transform"><i class="ti ti-arrows-move"></i></span>
+              <span class="u-inspector-label">Sol — Transform</span>
+              <span class="u-inspector-value">Hand (Q), Move (W), Rotate (E), Scale (R), Rect (T), Universal (Y) + Pivot/Center, Local/Global toggle</span>
+            </div>
+            <div class="u-inspector-row">
+              <span class="u-inspector-icon camera"><i class="ti ti-player-play"></i></span>
+              <span class="u-inspector-label">Orta — Playback</span>
+              <span class="u-inspector-value">Play (▶), Pause (⏸), Step (⏯). Play'e basınca Editor "Play modu"na geçer.</span>
+            </div>
+            <div class="u-inspector-row">
+              <span class="u-inspector-icon ui"><i class="ti ti-layers-intersect"></i></span>
+              <span class="u-inspector-label">Sağ — Yönetim</span>
+              <span class="u-inspector-value">Layers (görünür/maskeleme), Layout (kayıtlı düzenler), Cloud, Account.</span>
+            </div>
+          </div>
+        </div>
+
+        <h3>Pivot/Center, Local/Global — küçük ama hayati toggle'lar</h3>
+        <p>Sol toolbar'da Transform tool'larının yanında iki dropdown:</p>
+        <ul>
+          <li><strong>Pivot / Center</strong>:
+            <ul>
+              <li><strong>Pivot</strong> — gizmo, objenin orijinal nokta noktasında (3D modelde ne ayarladıysan)</li>
+              <li><strong>Center</strong> — gizmo, seçili tüm objelerin ortalama merkezinde (birden fazla seçtiğinde)</li>
+            </ul>
+          </li>
+          <li><strong>Local / Global</strong>:
+            <ul>
+              <li><strong>Local</strong> — objenin kendi eksenlerine göre (eğik bir obje seçtiğinde gizmo da eğri olur)</li>
+              <li><strong>Global</strong> — dünyanın eksenlerine göre (her zaman dik)</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h3>Layout sistemi — düzenini kaydet</h3>
+        <p>Sağ üstteki <strong>Layout</strong> dropdown bir altın madeni:</p>
+        <ol class="step-list">
+          <li>Pencereleri istediğin gibi yerleştir.</li>
+          <li>Layout dropdown → <strong>Save Layout</strong> seç.</li>
+          <li>Bir isim ver: "BenimLayout".</li>
+          <li>Artık istediğin zaman bu düzene tek tıkla dönebilirsin.</li>
+        </ol>
+        <p><strong>Pratik öneriler:</strong></p>
+        <ul>
+          <li><strong>"Programming"</strong> layout — Scene + Console + Inspector büyük, diğerleri küçük</li>
+          <li><strong>"Animation"</strong> layout — Scene + Animation pencereleri büyük</li>
+          <li><strong>"Art"</strong> layout — Scene tam ekran, Project altta</li>
+        </ul>
+
+        <h3>En kritik kısayollar</h3>
+        <div class="u-inspector">
+          <div class="u-inspector-header"><i class="ti ti-keyboard"></i>Mutlaka Ezberlemen Gerekenler</div>
+          <div class="u-inspector-body">
+            <div class="u-inspector-row">
+              <span class="u-inspector-icon script"><i class="ti ti-deviceFloppy"></i></span>
+              <span class="u-inspector-label">Ctrl+S</span>
+              <span class="u-inspector-value">Sahneyi kaydet. <strong>Her 5 dakikada bir bas.</strong> Unity çökerse en sevdiğin alışkanlık olur.</span>
+            </div>
+            <div class="u-inspector-row">
+              <span class="u-inspector-icon ui"><i class="ti ti-arrow-back-up"></i></span>
+              <span class="u-inspector-label">Ctrl+Z / Ctrl+Y</span>
+              <span class="u-inspector-value">Geri al / İleri al. Çoğu işlem geri alınabilir.</span>
+            </div>
+            <div class="u-inspector-row">
+              <span class="u-inspector-icon mesh"><i class="ti ti-copy"></i></span>
+              <span class="u-inspector-label">Ctrl+D</span>
+              <span class="u-inspector-value">Duplicate — seçili objeyi kopyala. 100 ot yapmanın en hızlı yolu.</span>
+            </div>
+            <div class="u-inspector-row">
+              <span class="u-inspector-icon camera"><i class="ti ti-player-play"></i></span>
+              <span class="u-inspector-label">Ctrl+P</span>
+              <span class="u-inspector-value">Play toggle. Üst butona uzanmadan oyunu çalıştır/durdur.</span>
+            </div>
+            <div class="u-inspector-row">
+              <span class="u-inspector-icon transform"><i class="ti ti-focus"></i></span>
+              <span class="u-inspector-label">F</span>
+              <span class="u-inspector-value">Frame Selected — seçili objeye kameranı odakla.</span>
+            </div>
+            <div class="u-inspector-row">
+              <span class="u-inspector-icon light"><i class="ti ti-search"></i></span>
+              <span class="u-inspector-label">Ctrl+F</span>
+              <span class="u-inspector-value">Hierarchy'de ara.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-callout">
+          <div class="info-callout-icon"><i class="ti ti-star"></i></div>
+          <div><strong>Tek tavsiye:</strong> İlk haftalarda kısayolları ezberleme — onlar kendiliğinden gelir. Ama <strong>Ctrl+S</strong>'i ilk gün öğren. Çünkü Unity ara sıra çöker ve son kaydından sonra ne yaptıysan uçar.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="topic-section">
+      <div class="topic-header">
+        <span class="topic-number">2.8</span>
+        <h2 class="topic-title"><span class="u6-new">Unity 6 YENİ!</span> Editor farkları</h2>
+      </div>
+      <div class="topic-body">
+        <p>Unity 6 editör arayüzü, 2022.3 LTS'e göre birkaç önemli noktada modernleşti:</p>
+
+        <div class="u-compare">
+          <div class="u-compare-side lts">
+            <div class="u-compare-head"><span class="u-ver-badge lts">2022.3 LTS</span></div>
+            <div class="u-compare-body">
+              <ul>
+                <li>File → <strong>Build Settings</strong> menüsü (eski adı)</li>
+                <li>Asset Manager opsiyonel paket</li>
+                <li>Stats butonu Game View'da yer alır</li>
+                <li>Cloud Diagnostics ayrı pencere</li>
+              </ul>
+            </div>
+          </div>
+          <div class="u-compare-side u6">
+            <div class="u-compare-head"><span class="u-ver-badge u6">Unity 6</span></div>
+            <div class="u-compare-body">
+              <ul>
+                <li>File → <strong>Build Profiles</strong> (yeni isim, yeni arayüz)</li>
+                <li>Asset Manager varsayılan, Project penceresine entegre</li>
+                <li>Profiler Game View'a yerleştirilebilir</li>
+                <li>Editor üst çubuğunda <strong>Search</strong> ikonu (Ctrl+K) — global arama</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <p style="margin-top:14px;">Bu farklar dramatik değil. Mantık aynı, sadece isim ve konum farklı. İki sürümde de aynı işi yaparsın.</p>
+      </div>
+    </section>
+
+    <section class="projects-section">
+      <div class="projects-header">
+        <div class="projects-header-icon"><i class="ti ti-tools"></i></div>
+        <div>
+          <h2>Bölüm Projeleri</h2>
+          <p>Editor'ü ezberin haline getir.</p>
+        </div>
+      </div>
+
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-num">01</div>
+          <h3 class="project-title">Proje 1 — Pencere Egzersizi</h3>
+          <p class="project-desc">Tüm pencereleri (Hierarchy, Inspector, Scene, Game, Project, Console) tek tek kapat. Sonra Window menüsünden hepsini geri aç. Sonra "Default" layout'a dön.</p>
+          <div class="project-check"><div class="project-check-title">Tamamlama Kontrolü</div><ul><li>En az 4 pencereyi kapattın ve geri açtın</li><li>Window menüsünden Console'u açmayı buldun</li><li>"Default" layout ile her şey eski hâle döndü</li></ul></div>
+          <div class="project-goal"><i class="ti ti-target"></i><span>Panik yapmadan pencere yönetimi.</span></div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-num">02</div>
+          <h3 class="project-title">Proje 2 — Aile Kurma</h3>
+          <p class="project-desc">Sahnede bir "Parent" boş GameObject oluştur (GameObject → Create Empty). İçine 3 küp ekle, hepsi onun child'ı olsun. Sonra Parent'i taşıdığında küplerin de onunla taşındığını gör. Sonra bir küpü Parent'tan çıkar.</p>
+          <div class="project-check"><div class="project-check-title">Tamamlama Kontrolü</div><ul><li>1 parent + 3 child küp var</li><li>Parent'i taşıdığında 3 küp birlikte hareket etti</li><li>Bir küpü sürükleyip parent'tan çıkardın</li></ul></div>
+          <div class="project-goal"><i class="ti ti-target"></i><span>Parent-child mantığı sezgisel olsun.</span></div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-num">03</div>
+          <h3 class="project-title">Proje 3 — Kişisel Layout</h3>
+          <p class="project-desc">Pencereleri istediğin gibi yerleştir: Scene tam ortada büyük, Inspector + Hierarchy sağda dar, Project + Console altta. "MyDev" diye kaydet. Sonra Default'a dön, sonra MyDev'e tekrar dön.</p>
+          <div class="project-check"><div class="project-check-title">Tamamlama Kontrolü</div><ul><li>"MyDev" adlı layout dropdown'da görünüyor</li><li>İki layout arasında geçiş yapabildin</li><li>Save Layout dialog'u kullandın</li></ul></div>
+          <div class="project-goal"><i class="ti ti-target"></i><span>Editor seni yormamalı — şekilden şekle giriyor.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quiz" id="bolum-quiz">
+  <header class="quiz-header">
+    <div class="quiz-header-icon"><i class="ti ti-help"></i></div>
+    <div class="quiz-header-text">
+      <h2>Bölüm Sonu Sınavı</h2>
+      <span>5 soru</span>
+    </div>
+  </header>
+
+  <article class="quiz-question" id="q2-1">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">01</span>
+      <h3 class="quiz-prompt-text">Hierarchy penceresinde bir GameObject'i başka GameObject'in child'ı yapmak ne sağlar?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Sadece görsel olarak iç içe görünmesini sağlar, davranışsal bir etkisi yoktur</button>
+      <button class="quiz-option" data-correct="true">Parent hareket ettiğinde child da otomatik takip eder; konum, dönüş ve ölçek üzerinden bağlanır</button>
+      <button class="quiz-option" data-correct="false">Child silinemez olur</button>
+      <button class="quiz-option" data-correct="false">Child Inspector'da görünmez olur</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q2-2">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">02</span>
+      <h3 class="quiz-prompt-text">Scene View ile Game View arasındaki ana fark nedir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Scene View ücretli, Game View ücretsizdir</button>
+      <button class="quiz-option" data-correct="false">Scene View 2D, Game View 3D'dir</button>
+      <button class="quiz-option" data-correct="true">Scene View senin düzenleme alanın, Game View Main Camera'nın gördüğüdür</button>
+      <button class="quiz-option" data-correct="false">Aralarında fark yoktur, sadece farklı temalar</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q2-3">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">03</span>
+      <h3 class="quiz-prompt-text">F tuşunun Scene View'daki işlevi nedir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Full Screen — tam ekran</button>
+      <button class="quiz-option" data-correct="true">Frame Selected — seçili objeye kamerayı odaklar</button>
+      <button class="quiz-option" data-correct="false">Find — arama açar</button>
+      <button class="quiz-option" data-correct="false">Filter — sahnedeki objeleri filtreler</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q2-4">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">04</span>
+      <h3 class="quiz-prompt-text">Inspector'da bir Component'in checkbox'ını kaldırırsan ne olur?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Component silinir, geri alınamaz</button>
+      <button class="quiz-option" data-correct="true">Component devre dışı kalır ama silinmez; tekrar işaretleyince geri açılır</button>
+      <button class="quiz-option" data-correct="false">Tüm GameObject pasifleşir</button>
+      <button class="quiz-option" data-correct="false">Unity hata verir</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q2-5">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">05</span>
+      <h3 class="quiz-prompt-text">Oyun çalışmıyor, hata var. İlk nereye bakarsın?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Hierarchy — silinmiş objeyi aramak için</button>
+      <button class="quiz-option" data-correct="false">Inspector — bozuk değerleri aramak için</button>
+      <button class="quiz-option" data-correct="true">Console — hata mesajları orada</button>
+      <button class="quiz-option" data-correct="false">Project — bozuk asset aramak için</button>
+    </div>
+  </article>
+</section>
+
+    <section class="complete-section">
+      <h3 class="complete-title">🎉 Bölüm 2 Tamamlandı!</h3>
+      <p class="complete-msg">Unity editörünün tüm panellerini öğrendin: Hierarchy, Scene, Game, Inspector ve Project. Artık editörde rahatça çalışabilirsin. Sırada GameObject ve Component mantığı var.</p>
+      <button class="complete-btn" data-section="s2">
+        <i class="ti ti-circle-check"></i>
+        <span>Bu Bölümü Tamamladım</span>
+      </button>
+      <p class="complete-note">İlerlemen otomatik tarayıcına kaydedilir.</p>
+    </section>
+
+    <nav class="page-nav" aria-label="Bölüm gezinme">
+      <a href="01-kurulum.html" class="page-nav-link prev">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-left"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Önceki Bölüm</div>
+          <div class="page-nav-title">1. Unity Kurulumu</div>
+        </div>
+      </a>
+      <a href="03-gameobject-component.html" class="page-nav-link next">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-right"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Sonraki Bölüm</div>
+          <div class="page-nav-title">3. GameObject & Component</div>
+        </div>
+      </a>
+    </nav>
+
+  </div>
+</main>
+<script src="../js/progress.js?v=11"></script>
+<script src="../js/quiz.js?v=11"></script>
+<script src="../js/toc.js?v=11"></script>
+<script src="../js/main.js?v=11"></script>
+</body>
+</html>

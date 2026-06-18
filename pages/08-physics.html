@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Physics — UnityAkademi</title>
+  <meta name="description" content="Rigidbody, Collider, Trigger, Raycast — Unity&#x27;nin fizik motorunu sıfırdan — Bölüm 08.">
+  <meta name="theme-color" content="#fa7d19">
+  <link rel="manifest" href="../manifest.json">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Physics">
+  <meta property="og:description" content="Rigidbody, Collider, Trigger, Raycast — Unity&#x27;nin fizik motorunu sıfırdan — Bölüm 08.">
+  <meta property="og:image" content="../og-image.svg">
+  <meta property="og:site_name" content="UnityAkademi">
+  <meta property="og:locale" content="tr_TR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Physics">
+  <meta name="twitter:description" content="Rigidbody, Collider, Trigger, Raycast — Unity&#x27;nin fizik motorunu sıfırdan — Bölüm 08.">
+  <meta name="twitter:image" content="../og-image.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="../css/variables.css?v=11">
+  <link rel="stylesheet" href="../css/reset.css?v=11">
+  <link rel="stylesheet" href="../css/layout.css?v=11">
+  <link rel="stylesheet" href="../css/components.css?v=11">
+  <link rel="stylesheet" href="../css/content.css?v=11">
+  <link rel="stylesheet" href="../css/visuals.css?v=11">
+  <link rel="stylesheet" href="../css/extras.css?v=11">
+  <link rel="stylesheet" href="../css/responsive.css?v=11">
+</head>
+<body>
+<button class="nav-hamburger" id="navHamburger" aria-label="Menüyü aç">
+  <i class="ti ti-menu-2"></i>
+</button>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a href="../index.html" class="sidebar-brand">
+      <div class="sidebar-brand-icon"><i class="ti ti-home-2"></i></div>
+      <div class="sidebar-brand-text">
+        <span class="sidebar-brand-name">Ana Sayfa</span>
+        <span class="sidebar-brand-sub">UnityAkademi</span>
+      </div>
+    </a>
+    <button class="mobile-toggle" aria-label="Menü"><i class="ti ti-x"></i></button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-group">
+      <div class="nav-group-title">Temeller</div>
+      <a href="01-kurulum.html" class="nav-link" data-section="s1"><i class="ti ti-download"></i><span class="nav-link-text">Kurulum & İlk Bakış</span><span class="nav-link-num">01</span></a>
+      <a href="02-arayuz.html" class="nav-link" data-section="s2"><i class="ti ti-layout-board"></i><span class="nav-link-text">Editor Arayüzü</span><span class="nav-link-num">02</span></a>
+      <a href="03-gameobject-component.html" class="nav-link" data-section="s3"><i class="ti ti-cube"></i><span class="nav-link-text">GameObject & Component</span><span class="nav-link-num">03</span></a>
+      <a href="04-csharp-temelleri.html" class="nav-link" data-section="s4"><i class="ti ti-code"></i><span class="nav-link-text">C# Temelleri</span><span class="nav-link-num">04</span></a>
+      <a href="05-monobehaviour-lifecycle.html" class="nav-link" data-section="s5"><i class="ti ti-refresh"></i><span class="nav-link-text">MonoBehaviour Lifecycle</span><span class="nav-link-num">05</span></a>
+      <a href="06-transform-vector.html" class="nav-link" data-section="s6"><i class="ti ti-arrows-move"></i><span class="nav-link-text">Transform & Vector3</span><span class="nav-link-num">06</span></a>
+      <a href="07-input.html" class="nav-link" data-section="s7"><i class="ti ti-keyboard"></i><span class="nav-link-text">Input Sistemi</span><span class="nav-link-num">07</span></a>
+      <a href="08-physics.html" class="nav-link active" data-section="s8"><i class="ti ti-atom"></i><span class="nav-link-text">Physics</span><span class="nav-link-num">08</span></a>
+      <a href="09-ui.html" class="nav-link" data-section="s9"><i class="ti ti-layout-grid"></i><span class="nav-link-text">UI Sistemi</span><span class="nav-link-num">09</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Görsel & Asset</div>
+      <a href="10-material-shader.html" class="nav-link" data-section="s10"><i class="ti ti-palette"></i><span class="nav-link-text">Material & Shader</span><span class="nav-link-num">10</span></a>
+      <a href="11-asset-import.html" class="nav-link" data-section="s11"><i class="ti ti-folder"></i><span class="nav-link-text">Asset Import</span><span class="nav-link-num">11</span></a>
+      <a href="12-animation.html" class="nav-link" data-section="s12"><i class="ti ti-bounce-right"></i><span class="nav-link-text">Animation</span><span class="nav-link-num">12</span></a>
+      <a href="13-particle-vfx.html" class="nav-link" data-section="s13"><i class="ti ti-sparkles"></i><span class="nav-link-text">Particle & VFX Graph</span><span class="nav-link-num">13</span></a>
+      <a href="14-lighting.html" class="nav-link" data-section="s14"><i class="ti ti-bulb"></i><span class="nav-link-text">Lighting</span><span class="nav-link-num">14</span></a>
+      <a href="15-audio.html" class="nav-link" data-section="s15"><i class="ti ti-volume"></i><span class="nav-link-text">Audio</span><span class="nav-link-num">15</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Sistemler</div>
+      <a href="16-probuilder.html" class="nav-link" data-section="s16"><i class="ti ti-3d-cube-sphere"></i><span class="nav-link-text">ProBuilder</span><span class="nav-link-num">16</span></a>
+      <a href="17-terrain.html" class="nav-link" data-section="s17"><i class="ti ti-mountain"></i><span class="nav-link-text">Terrain</span><span class="nav-link-num">17</span></a>
+      <a href="18-cinemachine.html" class="nav-link" data-section="s18"><i class="ti ti-camera"></i><span class="nav-link-text">Cinemachine</span><span class="nav-link-num">18</span></a>
+      <a href="19-timeline.html" class="nav-link" data-section="s19"><i class="ti ti-timeline"></i><span class="nav-link-text">Timeline</span><span class="nav-link-num">19</span></a>
+      <a href="20-navmesh.html" class="nav-link" data-section="s20"><i class="ti ti-route"></i><span class="nav-link-text">NavMesh & AI</span><span class="nav-link-num">20</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">İleri Seviye</div>
+      <a href="21-urp-hdrp.html" class="nav-link" data-section="s21"><i class="ti ti-bolt"></i><span class="nav-link-text">URP, HDRP & Unity 6</span><span class="nav-link-num">21</span></a>
+      <a href="22-new-input.html" class="nav-link" data-section="s22"><i class="ti ti-device-gamepad-2"></i><span class="nav-link-text">New Input System</span><span class="nav-link-num">22</span></a>
+      <a href="23-save-menu.html" class="nav-link" data-section="s23"><i class="ti ti-device-floppy"></i><span class="nav-link-text">Save & Menü</span><span class="nav-link-num">23</span></a>
+      <a href="24-build.html" class="nav-link" data-section="s24"><i class="ti ti-package-export"></i><span class="nav-link-text">Build & Yayınlama</span><span class="nav-link-num">24</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Profesyonel</div>
+      <a href="25-csharp-ileri.html" class="nav-link" data-section="s25"><i class="ti ti-brackets-contain"></i><span class="nav-link-text">C# İleri</span><span class="nav-link-num">25</span></a>
+      <a href="26-performance.html" class="nav-link" data-section="s26"><i class="ti ti-gauge"></i><span class="nav-link-text">Performance</span><span class="nav-link-num">26</span></a>
+      <a href="27-yol-haritasi.html" class="nav-link" data-section="s27"><i class="ti ti-map-2"></i><span class="nav-link-text">Yol Haritası</span><span class="nav-link-num">27</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Pratik</div>
+      <a href="projects.html" class="nav-link nav-link-extra" data-section="x-projects"><i class="ti ti-rocket"></i><span class="nav-link-text">Projeler</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Ek Kaynaklar</div>
+      <a href="sozluk.html" class="nav-link nav-link-extra" data-section="x-sozluk"><i class="ti ti-book-2"></i><span class="nav-link-text">Sözlük</span></a>
+      <a href="cheatsheet.html" class="nav-link nav-link-extra" data-section="x-cheatsheet"><i class="ti ti-list-details"></i><span class="nav-link-text">Cheat Sheet</span></a>
+      <a href="sss.html" class="nav-link nav-link-extra" data-section="x-sss"><i class="ti ti-help-circle"></i><span class="nav-link-text">SSS</span></a>
+      <a href="arama.html" class="nav-link nav-link-extra" data-section="x-arama"><i class="ti ti-search"></i><span class="nav-link-text">Arama</span></a>
+      <a href="sertifika.html" class="nav-link nav-link-extra" data-section="x-sertifika"><i class="ti ti-certificate"></i><span class="nav-link-text">Sertifika</span></a>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="kaynaklar.html" class="sidebar-btn"><i class="ti ti-books"></i><span>Kaynaklar</span></a>
+    <a href="iletisim.html" class="sidebar-btn"><i class="ti ti-mail"></i><span>İletişim</span></a>
+  </div>
+</aside>
+<main class="main">
+  <div class="main-content">
+<nav class="breadcrumb" aria-label="Sayfa konumu">
+      <a href="../index.html"><i class="ti ti-home"></i><span>Ana Sayfa</span></a>
+      <i class="ti ti-chevron-right"></i><span><i class="ti ti-school" style="font-size: 13px; opacity: 0.7; margin-right: 4px;"></i>Mekanikler</span>
+      <i class="ti ti-chevron-right"></i><span style="color: var(--primary-light);">Physics</span>
+    </nav>
+
+<header class="page-header">
+  <div class="page-badge">Bölüm 08 · Fizik Motoru</div>
+  <h1 class="page-title">Physics — Düşen Kutular, Çarpan Toplar, Patlayan Variller</h1>
+  <p class="page-desc">
+    Unity, gerçek dünyayı taklit eden bir <strong>fizik motoru</strong>na sahip: 3D için <strong>PhysX</strong>,
+    2D için <strong>Box2D</strong>. Bir küpe Rigidbody eklediğin an o küp yerçekimine itaat eder, başka
+    objelere çarpar, sürtünür. Bu bölümde Rigidbody'nin tüm parametrelerini, Collider çeşitlerini, çarpışma
+    eventlerini ve Raycast'i öğreneceksin.
+  </p>
+  <div class="page-meta">
+    <span class="meta-item">⏱ 35 dakika</span>
+    <span class="meta-item">⚛ Rigidbody + Collider</span>
+    <span class="meta-item">🎯 Raycast</span>
+  </div>
+</header>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">8.1</span>
+    <h2 class="topic-title">Fizik Motoru Nedir? Niye Önemli?</h2>
+  </div>
+  <p>
+    Bir oyun motorunda fiziği iki şekilde yapabilirsin. <strong>Birincisi:</strong> her şeyi kendin
+    matematikle yazarsın — yerçekimi, çarpışma, sürtünme, momentum. Bu çok zor, çok yorucu ve hataya
+    açık. <strong>İkincisi:</strong> hazır bir fizik motoru kullanırsın — Unity sana bunu kutudan
+    çıkar çıkmaz veriyor. Sadece bir component eklersin, motor geri kalanını halleder.
+  </p>
+
+  <div class="info-box">
+    <h4>💡 Unity'nin iki fizik dünyası</h4>
+    <p>
+      Unity'de aslında <strong>iki ayrı fizik motoru</strong> aynı anda çalışıyor:
+    </p>
+    <ul>
+      <li><strong>3D Physics (PhysX)</strong> — NVIDIA'nın endüstri standardı motoru. <code>Rigidbody</code>,
+      <code>BoxCollider</code>, <code>SphereCollider</code> gibi component'leri kullanır.</li>
+      <li><strong>2D Physics (Box2D)</strong> — 2D oyunlar için optimize. <code>Rigidbody2D</code>,
+      <code>BoxCollider2D</code>, <code>CircleCollider2D</code> gibi 2D-suffix'li component'ler.</li>
+    </ul>
+    <p>
+      İkisi <strong>birbirinden tamamen bağımsız</strong> çalışır. 3D bir küp ile 2D bir kareyi
+      çarpıştıramazsın — farklı evrenlerde yaşarlar. Bu bölümde ağırlıklı olarak 3D üzerinden
+      anlatacağım, ama tüm prensipler 2D için de geçerli.
+    </p>
+  </div>
+
+  <h3>Fixed Timestep — fiziğin saat sesi</h3>
+  <p>
+    Bir önceki bölümde <code>Update()</code> ile <code>FixedUpdate()</code>'in farkını gördük. Şimdi
+    nedeni daha net olacak: fizik motoru <strong>sabit zaman aralığıyla</strong> çalışmak zorunda. Eğer
+    FPS düşerse ve fizik de FPS'e bağlı olsaydı, oyununda kütleler garip davranır, top duvarlardan
+    geçer, karakterler havada takılır.
+  </p>
+  <p>
+    Bu yüzden Unity, fizik motorunu varsayılan olarak saniyede <strong>50 kez</strong> (her 0.02 saniyede
+    bir) çalıştırır. Bu sayı <code>Edit → Project Settings → Time → Fixed Timestep</code> menüsünden
+    değiştirilebilir, ama dokunmaman önerilir.
+  </p>
+
+  <div class="warning-box">
+    <h4>⚠ Altın kural</h4>
+    <p>
+      Rigidbody'ye <strong>kuvvet uygulayacaksan</strong> (<code>AddForce</code>, <code>velocity = ...</code>,
+      <code>MovePosition</code>), bunu mutlaka <code>FixedUpdate()</code> içinde yap. Input okuma ve
+      görsel güncellemeler <code>Update()</code>'te kalsın.
+    </p>
+  </div>
+</section>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">8.2</span>
+    <h2 class="topic-title">Rigidbody — "Bu obje fiziğe katılıyor"</h2>
+  </div>
+  <p>
+    Bir GameObject'i fizik motorunun parçası yapmak için ona <strong>Rigidbody</strong> component'i
+    eklemen yeter. Bu component bir cümleyle özetlenir: "Bu objenin kütlesi var, kuvvete tepki verir,
+    yerçekimine düşer, başka objelere çarpar."
+  </p>
+
+  <h3>Rigidbody nasıl eklenir?</h3>
+  <ol class="step-list">
+    <li>Hierarchy'den bir GameObject seç (örnek: Cube).</li>
+    <li>Inspector'ın altındaki <strong>Add Component</strong> butonuna tıkla.</li>
+    <li>Arama kutusuna "Rigidbody" yaz, çıkan sonuçtan <strong>Rigidbody</strong>'yi (3D için) veya
+    <strong>Rigidbody 2D</strong>'yi (2D için) seç.</li>
+    <li>Component eklenir eklenmez Play'e basarsan küp aşağı düşer — yerçekimi otomatik aktif.</li>
+  </ol>
+
+  <h3>Rigidbody alanları — tek tek</h3>
+
+  <div class="u-inspector">
+    <div class="u-inspector-header">
+      <span class="u-inspector-icon rigidbody">⚛</span>
+      <span>Rigidbody</span>
+      <span style="margin-left:auto; opacity:.6;">⋮</span>
+    </div>
+    <div class="u-inspector-body">
+      <div class="u-inspector-row">
+        <span class="u-inspector-label">Mass</span>
+        <span class="u-inspector-value">1</span>
+      </div>
+      <div class="u-inspector-row">
+        <span class="u-inspector-label">Drag</span>
+        <span class="u-inspector-value">0</span>
+      </div>
+      <div class="u-inspector-row">
+        <span class="u-inspector-label">Angular Drag</span>
+        <span class="u-inspector-value">0.05</span>
+      </div>
+      <div class="u-inspector-row">
+        <span class="u-inspector-label">Use Gravity</span>
+        <span class="u-inspector-value">☑</span>
+      </div>
+      <div class="u-inspector-row">
+        <span class="u-inspector-label">Is Kinematic</span>
+        <span class="u-inspector-value">☐</span>
+      </div>
+      <div class="u-inspector-row">
+        <span class="u-inspector-label">Interpolate</span>
+        <span class="u-inspector-value">None</span>
+      </div>
+      <div class="u-inspector-row">
+        <span class="u-inspector-label">Collision Detection</span>
+        <span class="u-inspector-value">Discrete</span>
+      </div>
+      <div class="u-inspector-row">
+        <span class="u-inspector-label">Constraints</span>
+        <span class="u-inspector-value">— Freeze Position / Rotation —</span>
+      </div>
+    </div>
+  </div>
+
+  <h4>Mass (Kütle)</h4>
+  <p>
+    Kg cinsinden objenin kütlesi. Varsayılan 1. <strong>Önemli yanılgı:</strong> Galileo'nun deneyi
+    gibi, kütle <strong>düşme hızını etkilemez</strong> — 1 kg da 100 kg da aynı hızda düşer (yerçekimi
+    sabit ivmedir). Kütle <strong>çarpışmada</strong> önemlidir: ağır bir top hafif bir topu daha
+    sert iter.
+  </p>
+
+  <h4>Drag (Hava sürtünmesi)</h4>
+  <p>
+    Objenin hızlandıkça yavaşlama oranı. 0 → hiç sürtünme yok, vakum gibi. Yüksek değer (5-10) →
+    hızlı bir hava direnci. Paraşüt efekti için 1-2 arası iyi başlangıç.
+  </p>
+
+  <h4>Angular Drag (Dönme sürtünmesi)</h4>
+  <p>
+    Aynı mantık, ama dönme için. Yüksekse obje dönmeyi çabuk bırakır.
+  </p>
+
+  <h4>Use Gravity</h4>
+  <p>
+    Kapatırsan obje yerçekiminden etkilenmez — havada asılı kalır. Uçan dronlar, uzay gemileri,
+    iticili karakterler için kullanılır.
+  </p>
+
+  <h4>Is Kinematic</h4>
+  <p>
+    Bu <strong>en kritik</strong> alan. İşaretlersen obje:
+  </p>
+  <ul>
+    <li>Fizik tarafından <strong>hareket ettirilmez</strong> — yerçekimi etkilemez, kuvvete tepki
+    vermez.</li>
+    <li>Ama yine de <strong>fizik dünyasının parçası</strong>dır — diğer objeler ona çarpar, onunla
+    trigger oluşturur.</li>
+    <li>Hareketini <strong>script ile</strong> kontrol edersin: <code>transform.position</code>
+    değiştirerek veya <code>MovePosition()</code> çağırarak.</li>
+  </ul>
+  <p>
+    Kullanım örneği: hareketli platformlar, asansörler, animasyonlu kapılar, oyuncu karakter
+    (CharacterController kullanmıyorsan).
+  </p>
+
+  <h4>Interpolate (İnterpolasyon)</h4>
+  <p>
+    Fizik 50Hz'de çalışır, ekran 60-144Hz'de. Bu fark titreşim yapabilir. <code>Interpolate</code>
+    objenin gözüne yumuşak görünmesini sağlar:
+  </p>
+  <ul>
+    <li><strong>None</strong> — interpolasyon yok, varsayılan.</li>
+    <li><strong>Interpolate</strong> — bir önceki fizik karesinden bu kareye yumuşak geçiş. Oyuncu
+    karakterinin Rigidbody'sinde tercih edilir.</li>
+    <li><strong>Extrapolate</strong> — bir sonraki kareyi tahmin ederek interpolate eder. Daha az
+    yaygın.</li>
+  </ul>
+
+  <h4>Collision Detection</h4>
+  <p>
+    Bunu birazdan ayrı başlıkta detaylı işleyeceğim — şimdilik "Discrete" varsayılan, hızlı objeler için
+    "Continuous" seçildiğini bil.
+  </p>
+
+  <h4>Constraints (Kısıtlamalar)</h4>
+  <p>
+    Belirli eksenlerde hareketi veya dönmeyi kilitler. Örnek kullanımlar:
+  </p>
+  <ul>
+    <li><strong>Freeze Rotation X, Z</strong> — Karakter sadece Y ekseninde dönsün (sağa-sola baksın
+    ama düşmesin).</li>
+    <li><strong>Freeze Position Z</strong> — Karakter 2.5D oyunda Z eksenini kullanmasın, sadece XY
+    düzleminde hareket etsin.</li>
+  </ul>
+</section>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">8.3</span>
+    <h2 class="topic-title">Rigidbody'yi Script ile Hareket Ettirmek</h2>
+  </div>
+  <p>
+    Rigidbody'nin hareketini script'ten üç farklı şekilde kontrol edebilirsin. Her birinin ne zaman
+    kullanılacağı önemli.
+  </p>
+
+  <h3>Yöntem 1: AddForce — kuvvet uygula</h3>
+  <p>
+    Gerçek dünyaya en yakın yöntem. "Bu yönde, bu büyüklükte bir kuvvet uyguluyorum" der, kütle ve
+    sürtünmeye göre Unity sonucu hesaplar.
+  </p>
+
+  <div class="cs-block">
+    <div class="cs-block-header"><span class="cs-block-filename">BallLauncher.cs</span></div>
+    <pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+
+<span class="kw">public class</span> <span class="type">BallLauncher</span> : <span class="type">MonoBehaviour</span>
+{
+    <span class="attr">[SerializeField]</span> <span class="kw">private float</span> <span class="fn">forceAmount</span> = <span class="num">500f</span>;
+    <span class="kw">private</span> <span class="type">Rigidbody</span> <span class="fn">rb</span>;
+
+    <span class="kw">void</span> <span class="mb">Awake</span>()
+    {
+        rb = <span class="fn">GetComponent</span>&lt;<span class="type">Rigidbody</span>&gt;();
+    }
+
+    <span class="kw">void</span> <span class="mb">FixedUpdate</span>()
+    {
+        <span class="kw">if</span> (<span class="type">Input</span>.<span class="fn">GetKey</span>(<span class="type">KeyCode</span>.Space))
+        {
+            rb.<span class="fn">AddForce</span>(<span class="type">Vector3</span>.up * forceAmount);
+        }
+    }
+}</code></pre>
+  </div>
+
+  <p>
+    <code>AddForce</code>'un ikinci parametresi <strong>ForceMode</strong>:
+  </p>
+  <ul>
+    <li><strong>Force</strong> (varsayılan) — Sürekli kuvvet, kütle dikkate alınır. Roket motoru gibi.</li>
+    <li><strong>Acceleration</strong> — Sürekli ivme, kütle dikkate alınmaz.</li>
+    <li><strong>Impulse</strong> — Anlık darbe, kütle dikkate alınır. Patlama, zıplama gibi.</li>
+    <li><strong>VelocityChange</strong> — Anlık hız değişimi, kütle dikkate alınmaz.</li>
+  </ul>
+
+  <h3>Yöntem 2: velocity = ... — hızı doğrudan ayarla</h3>
+  <p>
+    "Kuvvet hesabı yapma, ben hızı direkt veriyorum." daha az gerçekçi ama daha kontrollü.
+  </p>
+
+  <div class="cs-block">
+    <div class="cs-block-header"><span class="cs-block-filename">SimpleMover.cs</span></div>
+    <pre><code><span class="kw">void</span> <span class="mb">FixedUpdate</span>()
+{
+    <span class="kw">float</span> h = <span class="type">Input</span>.<span class="fn">GetAxis</span>(<span class="str">"Horizontal"</span>);
+    rb.linearVelocity = <span class="kw">new</span> <span class="type">Vector3</span>(h * <span class="num">5f</span>, rb.linearVelocity.y, <span class="num">0f</span>);
+}</code></pre>
+  </div>
+
+  <div class="info-box">
+    <h4>💡 velocity mi, linearVelocity mi?</h4>
+    <p>
+      Unity 2026 itibarıyla <code>rb.velocity</code> yerini <code>rb.linearVelocity</code>'ye bıraktı
+      (eski API hâlâ çalışıyor ama "obsolete" uyarısı veriyor). Yeni projede her zaman
+      <code>linearVelocity</code> kullan. Angular velocity için de <code>rb.angularVelocity</code>
+      adı aynı kaldı.
+    </p>
+  </div>
+
+  <h3>Yöntem 3: MovePosition — "buraya git"</h3>
+  <p>
+    Kinematic Rigidbody'ler için en uygun yöntem. Bir hedef pozisyon verirsin, Unity oraya yumuşakça
+    hareket ettirir. Çarpışmaları yine doğru hesaplar.
+  </p>
+
+  <div class="cs-block">
+    <div class="cs-block-header"><span class="cs-block-filename">MovingPlatform.cs</span></div>
+    <pre><code><span class="attr">[SerializeField]</span> <span class="type">Transform</span> pointA;
+<span class="attr">[SerializeField]</span> <span class="type">Transform</span> pointB;
+<span class="attr">[SerializeField]</span> <span class="kw">float</span> speed = <span class="num">2f</span>;
+
+<span class="kw">private</span> <span class="type">Rigidbody</span> rb;
+
+<span class="kw">void</span> <span class="mb">Awake</span>() { rb = <span class="fn">GetComponent</span>&lt;<span class="type">Rigidbody</span>&gt;(); }
+
+<span class="kw">void</span> <span class="mb">FixedUpdate</span>()
+{
+    <span class="kw">float</span> t = <span class="type">Mathf</span>.<span class="fn">PingPong</span>(<span class="type">Time</span>.time * speed, <span class="num">1f</span>);
+    <span class="type">Vector3</span> target = <span class="type">Vector3</span>.<span class="fn">Lerp</span>(pointA.position, pointB.position, t);
+    rb.<span class="fn">MovePosition</span>(target);
+}</code></pre>
+  </div>
+</section>
+
+<div class="mini-checkpoint">
+  <h4>⚡ Mini Checkpoint</h4>
+  <p>Şu ana kadar öğrendiklerin:</p>
+  <ul>
+    <li>Unity'de 3D fizik <strong>PhysX</strong>, 2D fizik <strong>Box2D</strong> motorlarıyla çalışır.</li>
+    <li>Fizik motoru <strong>FixedUpdate</strong>'te çalışır, varsayılan 50Hz (her 0.02 saniyede bir).</li>
+    <li>Bir obje fiziğe katılması için <strong>Rigidbody</strong> component'ine ihtiyaç duyar.</li>
+    <li><strong>Is Kinematic</strong> aktifse obje fiziğe tepki vermez ama fizik dünyasının parçasıdır.</li>
+    <li>Hareket için 3 yol: <strong>AddForce</strong>, <strong>linearVelocity</strong>,
+    <strong>MovePosition</strong>.</li>
+    <li><code>velocity</code> artık <code>linearVelocity</code> oldu.</li>
+  </ul>
+</div>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">8.4</span>
+    <h2 class="topic-title">Collider — Çarpışmanın Şekli</h2>
+  </div>
+  <p>
+    Rigidbody bir objenin <strong>fiziğe katıldığını</strong> söyler, ama "bu obje hangi şekle sahip,
+    nereden nereye uzanıyor, başkalarıyla nerede çarpışacak" sorusunun cevabı <strong>Collider</strong>
+    component'lerinden gelir. Rigidbody + Collider çift olarak çalışır.
+  </p>
+
+  <div class="info-box">
+    <h4>💡 Collider olmadan Rigidbody?</h4>
+    <p>
+      Bir Rigidbody'yi Collider'sız bırakırsan obje düşer ama hiçbir şeye çarpmaz — yerin içinden
+      geçer. Tersi de mümkündür: Collider var ama Rigidbody yok → obje statik bir engel olur, kendi
+      kımıldamaz ama başkaları ona çarpar (duvar, zemin, kayalık gibi).
+    </p>
+  </div>
+
+  <h3>Primitif Collider'lar — hızlı ve ucuz</h3>
+
+  <div class="step-list">
+    <div class="step-note">
+      <strong>BoxCollider</strong> — Küp şeklinde. Sandık, kutu, mobilya, bina için ideal. Hesaplaması
+      en ucuz collider.
+    </div>
+    <div class="step-note">
+      <strong>SphereCollider</strong> — Küre. Top, bilye, küçük objeler. Çok hızlı, ama yere
+      "rest" ederken sürekli ufak titreşimler yapabilir.
+    </div>
+    <div class="step-note">
+      <strong>CapsuleCollider</strong> — Kapsül (dikey silindir + yarım küre uçlar). Karakterler,
+      ağaç gövdeleri, sütunlar için tercih edilir. Köşeli geometrilere takılmaz.
+    </div>
+    <div class="step-note">
+      <strong>MeshCollider</strong> — Objenin tam mesh'ini collider olarak kullanır. Detaylı ama
+      <strong>pahalı</strong>. Karmaşık dekor, peyzaj için. Genelde Rigidbody'siz, statik olarak
+      kullanılır.
+    </div>
+  </div>
+
+  <div class="warning-box">
+    <h4>⚠ MeshCollider kuralı</h4>
+    <p>
+      Dinamik (hareketli) bir MeshCollider istiyorsan <strong>Convex</strong> kutusunu işaretlemen
+      gerekir. Convex olmayan MeshCollider'lar Rigidbody ile çalışmaz. Ayrıca Convex MeshCollider
+      en fazla 255 üçgenden oluşabilir — daha karmaşık mesh'lerde Unity sadeleştirir.
+    </p>
+  </div>
+
+  <h3>Compound Collider — birden fazla küçük collider</h3>
+  <p>
+    Bir karakter veya araba gibi karmaşık şekillerde, tek bir BoxCollider yetmez ama MeshCollider
+    da pahalı. Çözüm: <strong>çok sayıda primitif collider'ı bir araya getirmek</strong>.
+  </p>
+  <p>
+    Örneğin bir araba için:
+  </p>
+  <ul>
+    <li>Ana gövde için bir <strong>BoxCollider</strong></li>
+    <li>Tampon için ufak bir <strong>BoxCollider</strong></li>
+    <li>Tekerlekler için 4 ayrı <strong>SphereCollider</strong> (veya özel WheelCollider)</li>
+    <li>Çatı için eğik bir <strong>BoxCollider</strong> (rotation ile yatık)</li>
+  </ul>
+  <p>
+    Hepsi aynı GameObject'te veya child objelerde olabilir. Unity hepsini birleşik şekilde davranır.
+  </p>
+
+  <h3>Collider eklemek</h3>
+  <ol class="step-list">
+    <li>GameObject seç.</li>
+    <li><strong>Add Component → Physics → Box Collider</strong> (veya Sphere/Capsule).</li>
+    <li>Scene view'da yeşil <strong>wireframe</strong>'i göreceksin — collider'ın görsel sınırı.</li>
+    <li>Inspector'dan <strong>Edit Collider</strong> butonuna tıklayıp manuel ayarlayabilirsin.</li>
+    <li>Veya <strong>Size</strong> ve <strong>Center</strong> alanlarından sayısal değer ver.</li>
+  </ol>
+</section>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">8.5</span>
+    <h2 class="topic-title">Trigger vs Collision — İki Tip Etkileşim</h2>
+  </div>
+  <p>
+    Her Collider'ın <strong>Is Trigger</strong> diye bir kutucuğu var. Bu kutu işaretli mi değil mi,
+    objenin davranışı tamamen değişir.
+  </p>
+
+  <div class="u-compare">
+    <div class="u-compare-side lts">
+      <div class="u-compare-head">Is Trigger ☐ (kapalı) — Collision</div>
+      <div class="u-compare-body">
+        <ul>
+          <li>Obje fiziksel bir engel gibi davranır</li>
+          <li>Başka objeler ona <strong>çarpar</strong>, içinden geçemez</li>
+          <li>Çarpışma olduğunda <strong>OnCollision*</strong> eventleri tetiklenir</li>
+          <li>Kuvvet aktarımı olur (top zıplar, kutu devrilir)</li>
+          <li>Örnek: zemin, duvar, sandık, oyuncu karakter</li>
+        </ul>
+      </div>
+    </div>
+    <div class="u-compare-side u6">
+      <div class="u-compare-head">Is Trigger ☑ (açık) — Trigger</div>
+      <div class="u-compare-body">
+        <ul>
+          <li>Obje "hayalet" olur — başkaları içinden geçer</li>
+          <li>Ama içine giren objeyi <strong>algılar</strong></li>
+          <li>İçeri girince <strong>OnTrigger*</strong> eventleri tetiklenir</li>
+          <li>Hiç kuvvet aktarımı olmaz</li>
+          <li>Örnek: checkpoint, kapı sensörü, item kutusu, hasar bölgesi</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h3>Collision eventleri — 3 hâl</h3>
+
+  <div class="cs-block">
+    <div class="cs-block-header"><span class="cs-block-filename">CollisionExample.cs</span></div>
+    <pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+
+<span class="kw">public class</span> <span class="type">CollisionExample</span> : <span class="type">MonoBehaviour</span>
+{
+    <span class="com">// Çarpışma ilk anı — bir kez tetiklenir</span>
+    <span class="kw">void</span> <span class="mb">OnCollisionEnter</span>(<span class="type">Collision</span> other)
+    {
+        <span class="type">Debug</span>.<span class="fn">Log</span>(<span class="str">$"Çarptım: {other.gameObject.name}"</span>);
+
+        <span class="com">// Çarpışmanın hızı (impact)</span>
+        <span class="kw">float</span> impactSpeed = other.relativeVelocity.magnitude;
+        <span class="kw">if</span> (impactSpeed &gt; <span class="num">5f</span>)
+        {
+            <span class="type">Debug</span>.<span class="fn">Log</span>(<span class="str">"Sert çarpışma!"</span>);
+        }
+    }
+
+    <span class="com">// Çarpışma devam ettiği sürece HER FRAME tetiklenir</span>
+    <span class="kw">void</span> <span class="mb">OnCollisionStay</span>(<span class="type">Collision</span> other)
+    {
+        <span class="com">// Örnek: oyuncu yerde mi kontrolü için kullanılabilir</span>
+    }
+
+    <span class="com">// Temas bittiğinde bir kez tetiklenir</span>
+    <span class="kw">void</span> <span class="mb">OnCollisionExit</span>(<span class="type">Collision</span> other)
+    {
+        <span class="type">Debug</span>.<span class="fn">Log</span>(<span class="str">$"Ayrıldım: {other.gameObject.name}"</span>);
+    }
+}</code></pre>
+  </div>
+
+  <h3>Trigger eventleri — aynı 3 hâl ama "geçen"</h3>
+
+  <div class="cs-block">
+    <div class="cs-block-header"><span class="cs-block-filename">CheckpointTrigger.cs</span></div>
+    <pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+
+<span class="kw">public class</span> <span class="type">CheckpointTrigger</span> : <span class="type">MonoBehaviour</span>
+{
+    <span class="kw">void</span> <span class="mb">OnTriggerEnter</span>(<span class="type">Collider</span> other)
+    {
+        <span class="kw">if</span> (other.<span class="fn">CompareTag</span>(<span class="str">"Player"</span>))
+        {
+            <span class="type">Debug</span>.<span class="fn">Log</span>(<span class="str">"Checkpoint alındı!"</span>);
+            <span class="fn">SaveCheckpoint</span>(other.transform.position);
+        }
+    }
+
+    <span class="kw">void</span> <span class="mb">OnTriggerStay</span>(<span class="type">Collider</span> other) { }
+    <span class="kw">void</span> <span class="mb">OnTriggerExit</span>(<span class="type">Collider</span> other) { }
+
+    <span class="kw">void</span> <span class="fn">SaveCheckpoint</span>(<span class="type">Vector3</span> pos) { <span class="com">/* ... */</span> }
+}</code></pre>
+  </div>
+
+  <div class="info-box">
+    <h4>💡 Collision ve Collider arasındaki fark</h4>
+    <p>
+      <code>OnCollisionEnter</code>'a gelen parametre <strong>Collision</strong> tipinde — temas
+      noktası, hız, impulse gibi detaylar içerir. <code>OnTriggerEnter</code>'a gelen ise sadece
+      <strong>Collider</strong> — daha az bilgi var çünkü "çarpışma" yok, sadece "girdi" var.
+    </p>
+  </div>
+
+  <div class="warning-box">
+    <h4>⚠ Hangi taraf Rigidbody'ye sahip olmalı?</h4>
+    <p>
+      Trigger ve Collision event'lerinin tetiklenmesi için <strong>en az bir tarafın Rigidbody'si
+      olmalı</strong>. İki statik collider birbirine değdiğinde hiçbir event tetiklenmez. En yaygın
+      kalıp: oyuncu hareket eden taraf (Rigidbody'li), checkpoint statik (Rigidbody'siz).
+    </p>
+  </div>
+
+  <h3>OnTriggerStay ile zemin algılama</h3>
+  <p>
+    Karakterin yerde olup olmadığını anlamak için yaygın bir yöntem:
+  </p>
+
+  <div class="cs-block">
+    <div class="cs-block-header"><span class="cs-block-filename">GroundCheck.cs</span></div>
+    <pre><code><span class="kw">public class</span> <span class="type">GroundCheck</span> : <span class="type">MonoBehaviour</span>
+{
+    <span class="kw">public bool</span> isGrounded;
+    <span class="kw">public</span> <span class="type">LayerMask</span> groundLayer;
+
+    <span class="kw">void</span> <span class="mb">OnTriggerStay</span>(<span class="type">Collider</span> other)
+    {
+        <span class="kw">if</span> (((<span class="num">1</span> &lt;&lt; other.gameObject.layer) &amp; groundLayer) != <span class="num">0</span>)
+        {
+            isGrounded = <span class="kw">true</span>;
+        }
+    }
+
+    <span class="kw">void</span> <span class="mb">OnTriggerExit</span>(<span class="type">Collider</span> other)
+    {
+        <span class="kw">if</span> (((<span class="num">1</span> &lt;&lt; other.gameObject.layer) &amp; groundLayer) != <span class="num">0</span>)
+        {
+            isGrounded = <span class="kw">false</span>;
+        }
+    }
+}</code></pre>
+  </div>
+</section>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">8.6</span>
+    <h2 class="topic-title">Collision Detection Mode — Hızlı Objeler Niye Duvardan Geçer?</h2>
+  </div>
+  <p>
+    Bir mermi 100m/s hızla uçuyor. Fizik motoru 50Hz çalışıyor (her 0.02 saniyede bir). Bu demek
+    oluyor ki mermi her tick'te 2 metre yol alıyor. Eğer önündeki duvar sadece 50cm kalınlığındaysa
+    ve mermi bir tick'te onun <strong>diğer tarafına</strong> geçerse — Unity hiçbir çarpışmayı
+    algılamayabilir. Mermi duvardan <strong>geçer gider</strong>.
+  </p>
+
+  <p>
+    Bu sorunu çözmek için Rigidbody'nin <strong>Collision Detection</strong> alanı var.
+  </p>
+
+  <h3>4 mod — hangisi ne zaman?</h3>
+
+  <div class="step-list">
+    <div class="step-note">
+      <strong>Discrete</strong> — Varsayılan. En hızlı. Her fizik tick'inde objeyi taşır, sonra
+      "kesişme var mı?" diye bakar. Yavaş objeler için sorun yok.
+    </div>
+    <div class="step-note">
+      <strong>Continuous</strong> — Obje hareket ederken yolu boyunca <strong>statik</strong>
+      collider'larla "geçiş" var mı diye bakar. Hızlı mermi, top için iyi. Biraz daha pahalı.
+    </div>
+    <div class="step-note">
+      <strong>Continuous Dynamic</strong> — Continuous + diğer Continuous/Continuous Dynamic objelerle
+      de kontrol eder. Hızlı objelerin birbiriyle çarpışması için.
+    </div>
+    <div class="step-note">
+      <strong>Continuous Speculative</strong> — Yeni nesil yöntem. Bir sonraki adımı tahmin eder,
+      çoklu temasta daha doğru. Sürekli iyileşiyor; çoğu hızlı obje için tavsiye edilen mod.
+    </div>
+  </div>
+
+  <div class="info-box">
+    <h4>💡 Performance — hepsini Continuous yapma!</h4>
+    <p>
+      Continuous modlar Discrete'e göre 2-3 kat daha pahalıdır. Sadece <strong>hızlı objelerde</strong>
+      kullan: mermiler, fırlatılan eşyalar, hızlı araçlar. Yavaş hareket eden NPC'ler, sandıklar,
+      düşen küpler Discrete'te kalsın.
+    </p>
+  </div>
+</section>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">8.7</span>
+    <h2 class="topic-title">Physics Material — Sürtünme ve Zıplama</h2>
+  </div>
+  <p>
+    Bir buz pateni pisti ile bir asfalt kaldırım aynı şekilde davranmaz: buz kayar, asfalt sürtünür.
+    Bir lastik top yerden zıplar, taş top zıplamaz. Bu farkı Unity'de <strong>Physics Material</strong>
+    asset'i ile yönetiriz.
+  </p>
+
+  <h3>Physics Material oluşturma</h3>
+  <ol class="step-list">
+    <li>Project'te bir klasöre sağ tık → <strong>Create → Physics Material</strong>.</li>
+    <li>Yeni asset'e bir isim ver (örn: "IceMaterial").</li>
+    <li>Inspector'da 4 alan göreceksin:
+      <ul>
+        <li><strong>Dynamic Friction</strong> — Obje hareket ederkenki sürtünme (0-1)</li>
+        <li><strong>Static Friction</strong> — Obje duruyorken sürtünme (0-1)</li>
+        <li><strong>Bounciness</strong> — Çarpınca ne kadar zıplar (0-1)</li>
+        <li><strong>Friction Combine / Bounce Combine</strong> — İki obje çarpışınca değerler nasıl
+        birleştirilir (Average, Minimum, Maximum, Multiply)</li>
+      </ul>
+    </li>
+    <li>Asset'i bir Collider'ın <strong>Material</strong> slot'una sürükle.</li>
+  </ol>
+
+  <h3>Örnek değerler</h3>
+  <div class="u-compare">
+    <div class="u-compare-side lts">
+      <div class="u-compare-head">Buz (kaygan)</div>
+      <div class="u-compare-body">
+        <ul>
+          <li>Dynamic Friction: <strong>0.02</strong></li>
+          <li>Static Friction: <strong>0.05</strong></li>
+          <li>Bounciness: <strong>0</strong></li>
+          <li>Friction Combine: <strong>Minimum</strong></li>
+        </ul>
+      </div>
+    </div>
+    <div class="u-compare-side u6">
+      <div class="u-compare-head">Lastik top (zıplayan)</div>
+      <div class="u-compare-body">
+        <ul>
+          <li>Dynamic Friction: <strong>0.4</strong></li>
+          <li>Static Friction: <strong>0.5</strong></li>
+          <li>Bounciness: <strong>0.85</strong></li>
+          <li>Bounce Combine: <strong>Maximum</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="warning-box">
+    <h4>⚠ Bounciness 1.0 → sonsuz zıplama?</h4>
+    <p>
+      Teorik olarak Bounciness=1 mükemmel elastik çarpışma demek, ama Unity'nin solver'ı küçük
+      hatalar yapar ve obje gerçekten sonsuza dek zıplayabilir. Çok yüksek (0.9+) değerler oyunda
+      garip davranışa yol açabilir. 0.6-0.8 arası genelde yeterince "zıplak" görünür.
+    </p>
+  </div>
+</section>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">8.8</span>
+    <h2 class="topic-title">Layer Collision Matrix — Kim Kime Çarpsın?</h2>
+  </div>
+  <p>
+    Bazen objelerin sadece belirli objelerle çarpışmasını istersin. Örnek: oyuncunun mermisi başka
+    mermilere çarpmasın, sadece düşmana ve duvara çarpsın. Bunu manuel script ile yazmak kötü bir
+    fikirdir; Unity'nin <strong>Layer Collision Matrix</strong>'i tam bu iş için.
+  </p>
+
+  <h3>Adımlar</h3>
+  <ol class="step-list">
+    <li>Her GameObject'in Inspector'ın sağ üstünde bir <strong>Layer</strong> seçici var.</li>
+    <li>Önce yeni layer'lar oluştur: <strong>Layer → Add Layer</strong> → boş User Layer slotlarına
+    isim yaz (Player, Enemy, Bullet, Pickup, Wall).</li>
+    <li>Sonra objelerinin Layer'ını bu listeden seç.</li>
+    <li><strong>Edit → Project Settings → Physics → Layer Collision Matrix</strong>'i aç.</li>
+    <li>Burası iki ekseni Layer olan kocaman bir checkbox tablosudur. Bir kutucuğu kapatırsan o iki
+    Layer arasında <strong>hiçbir fizik etkileşimi olmaz</strong>.</li>
+  </ol>
+
+  <h3>Tipik kurulum</h3>
+  <div class="layout-diagram" style="grid-template-columns:repeat(5,1fr); font-size:.78rem;">
+    <div class="layout-cell" style="background:#1a1a25; color:#fa7d19; font-weight:600;">—</div>
+    <div class="layout-cell" style="background:#1a1a25; color:#fa7d19; font-weight:600;">Player</div>
+    <div class="layout-cell" style="background:#1a1a25; color:#fa7d19; font-weight:600;">Enemy</div>
+    <div class="layout-cell" style="background:#1a1a25; color:#fa7d19; font-weight:600;">Bullet</div>
+    <div class="layout-cell" style="background:#1a1a25; color:#fa7d19; font-weight:600;">Wall</div>
+
+    <div class="layout-cell" style="background:#1a1a25; color:#fa7d19; font-weight:600;">Player</div>
+    <div class="layout-cell">☐</div>
+    <div class="layout-cell">☑</div>
+    <div class="layout-cell">☐</div>
+    <div class="layout-cell">☑</div>
+
+    <div class="layout-cell" style="background:#1a1a25; color:#fa7d19; font-weight:600;">Enemy</div>
+    <div class="layout-cell">☑</div>
+    <div class="layout-cell">☐</div>
+    <div class="layout-cell">☑</div>
+    <div class="layout-cell">☑</div>
+
+    <div class="layout-cell" style="background:#1a1a25; color:#fa7d19; font-weight:600;">Bullet</div>
+    <div class="layout-cell">☐</div>
+    <div class="layout-cell">☑</div>
+    <div class="layout-cell">☐</div>
+    <div class="layout-cell">☑</div>
+
+    <div class="layout-cell" style="background:#1a1a25; color:#fa7d19; font-weight:600;">Wall</div>
+    <div class="layout-cell">☑</div>
+    <div class="layout-cell">☑</div>
+    <div class="layout-cell">☑</div>
+    <div class="layout-cell">☑</div>
+  </div>
+  <p style="opacity:.7; font-size:.85rem; margin-top:.5rem;">
+    Burada Player-Player kapalı (karakter kendine çarpmaz), Bullet-Bullet kapalı (mermiler birbirine
+    çarpmaz), Enemy-Enemy kapalı (düşmanlar birbirine takılmaz). Diğer her şey çarpışır.
+  </p>
+</section>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">8.9</span>
+    <h2 class="topic-title">Raycast — "Gözle Bakmak"</h2>
+  </div>
+  <p>
+    Raycast — Unity'nin en güçlü ve en çok kullanılan fizik fonksiyonu. Bir <strong>başlangıç
+    noktasından bir yöne sanal bir ışın gönderir</strong> ve "bu ışın bir şeye çarptı mı?" sorusunun
+    cevabını alır.
+  </p>
+
+  <h3>Hangi durumlarda Raycast?</h3>
+  <ul>
+    <li><strong>Nişan alma</strong> — silah ucundan ileri ışın, ilk vurduğu obje hedef.</li>
+    <li><strong>Tıklama tespiti</strong> — fare pozisyonundan ekrana ışın, neye tıklandığı belli.</li>
+    <li><strong>Yer kontrolü</strong> — karakter ayağından aşağı ışın, mesafe 0.1'den küçükse zeminde.</li>
+    <li><strong>Görüş alanı</strong> — düşman gözünden oyuncuya ışın, arada bir şey varsa "göremiyor".</li>
+    <li><strong>Duvar atlama</strong> — yandan ışın, duvar varsa tutun ve tırman.</li>
+  </ul>
+
+  <h3>Temel Raycast</h3>
+
+  <div class="cs-block">
+    <div class="cs-block-header"><span class="cs-block-filename">SimpleShooter.cs</span></div>
+    <pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+
+<span class="kw">public class</span> <span class="type">SimpleShooter</span> : <span class="type">MonoBehaviour</span>
+{
+    <span class="attr">[SerializeField]</span> <span class="kw">private float</span> range = <span class="num">100f</span>;
+    <span class="attr">[SerializeField]</span> <span class="kw">private float</span> damage = <span class="num">20f</span>;
+
+    <span class="kw">void</span> <span class="mb">Update</span>()
+    {
+        <span class="kw">if</span> (<span class="type">Input</span>.<span class="fn">GetMouseButtonDown</span>(<span class="num">0</span>))
+        {
+            <span class="fn">Shoot</span>();
+        }
+    }
+
+    <span class="kw">void</span> <span class="fn">Shoot</span>()
+    {
+        <span class="type">RaycastHit</span> hit;
+        <span class="kw">if</span> (<span class="type">Physics</span>.<span class="fn">Raycast</span>(transform.position, transform.forward, <span class="kw">out</span> hit, range))
+        {
+            <span class="type">Debug</span>.<span class="fn">Log</span>(<span class="str">$"Vurdum: {hit.collider.name}"</span>);
+            <span class="type">Debug</span>.<span class="fn">Log</span>(<span class="str">$"Mesafe: {hit.distance}m"</span>);
+            <span class="type">Debug</span>.<span class="fn">Log</span>(<span class="str">$"Vuruş noktası: {hit.point}"</span>);
+
+            <span class="com">// Hedefte hasar component'i varsa hasar ver</span>
+            <span class="kw">var</span> health = hit.collider.<span class="fn">GetComponent</span>&lt;<span class="type">Health</span>&gt;();
+            <span class="kw">if</span> (health != <span class="kw">null</span>)
+            {
+                health.<span class="fn">TakeDamage</span>(damage);
+            }
+        }
+    }
+}</code></pre>
+  </div>
+
+  <h3>RaycastHit içinde ne var?</h3>
+  <ul>
+    <li><code>hit.collider</code> — Vurulan Collider</li>
+    <li><code>hit.collider.gameObject</code> — Vurulan GameObject</li>
+    <li><code>hit.point</code> — Tam vuruş noktası (Vector3)</li>
+    <li><code>hit.normal</code> — Çarpılan yüzeyin normal vektörü</li>
+    <li><code>hit.distance</code> — Başlangıç noktasından vuruş noktasına olan mesafe</li>
+    <li><code>hit.transform</code> — Vurulan objenin Transform'u</li>
+    <li><code>hit.rigidbody</code> — Vurulan objenin Rigidbody'si (yoksa null)</li>
+  </ul>
+
+  <h3>LayerMask ile filtreleme</h3>
+  <p>
+    Sadece belirli Layer'lardaki objeleri vurmak istersen:
+  </p>
+
+  <div class="cs-block">
+    <pre><code><span class="attr">[SerializeField]</span> <span class="kw">private</span> <span class="type">LayerMask</span> shootableMask;
+
+<span class="kw">void</span> <span class="fn">Shoot</span>()
+{
+    <span class="kw">if</span> (<span class="type">Physics</span>.<span class="fn">Raycast</span>(transform.position, transform.forward,
+        <span class="kw">out</span> <span class="type">RaycastHit</span> hit, range, shootableMask))
+    {
+        <span class="com">// Sadece shootableMask'tekiler hit olur</span>
+    }
+}</code></pre>
+  </div>
+
+  <h3>Diğer faydalı Physics fonksiyonları</h3>
+  <ul>
+    <li><code>Physics.RaycastAll</code> — Yolu üzerindeki <strong>tüm</strong> objeleri döndürür
+    (dizi olarak), sadece ilkini değil.</li>
+    <li><code>Physics.SphereCast</code> — Bir küre yuvarlayarak gönderir, ışından daha "kalın"
+    tespit yapar. Karakterin önündeki engelleri bulmak için ideal.</li>
+    <li><code>Physics.OverlapSphere</code> — Bir noktada küre çiz, içindeki tüm collider'ları
+    dön. Patlama hasarı için klasik.</li>
+    <li><code>Physics.CheckSphere</code> — Aynı şey ama sadece "var mı yok mu" bool döner. Zemin
+    kontrolü için yaygın.</li>
+  </ul>
+
+  <div class="cs-block">
+    <div class="cs-block-header"><span class="cs-block-filename">ExplosionDamage.cs</span></div>
+    <pre><code><span class="kw">void</span> <span class="fn">Explode</span>(<span class="type">Vector3</span> center, <span class="kw">float</span> radius, <span class="kw">float</span> damage)
+{
+    <span class="type">Collider</span>[] hits = <span class="type">Physics</span>.<span class="fn">OverlapSphere</span>(center, radius);
+    <span class="kw">foreach</span> (<span class="kw">var</span> hit <span class="kw">in</span> hits)
+    {
+        <span class="kw">var</span> health = hit.<span class="fn">GetComponent</span>&lt;<span class="type">Health</span>&gt;();
+        <span class="kw">if</span> (health != <span class="kw">null</span>)
+        {
+            <span class="kw">float</span> dist = <span class="type">Vector3</span>.<span class="fn">Distance</span>(center, hit.transform.position);
+            <span class="kw">float</span> falloff = <span class="num">1f</span> - (dist / radius);
+            health.<span class="fn">TakeDamage</span>(damage * falloff);
+        }
+    }
+}</code></pre>
+  </div>
+</section>
+
+<div class="real-world-box">
+  <h4>🎮 Gerçek dünya — Garry's Mod fizik motorunun gücü</h4>
+  <p>
+    Garry's Mod 2004'te çıktığında dünyaya bir şeyi gösterdi: bir oyun motorunun fizik sistemini
+    oyunculara <strong>açtığın</strong> zaman insanlar inanılmaz şeyler yapıyor. Tahta kutuyu
+    kaynakla ahşap parçasına, ona varili, ona şamandırayı bağla — kendi gemini yap. Bir bombayı zip
+    line'a koy, halatı kes. Oyuncular YouTube'da milyonlarca video paylaştı.
+  </p>
+  <p>
+    Garry's Mod, altta <strong>Havok</strong> fizik motorunu kullanıyordu — Unity'nin PhysX'ine
+    benzer bir motor. Önemli olan motor değildi, oyuncuların eline verilen <strong>araçlar</strong>:
+    Rigidbody, Hinge Joint, Spring Joint, Fixed Joint. Sen de aynı bileşenlere sahipsin. Bir test
+    sahnesi açıp 30 küpün arasına bir Rigidbody bombası koyup patlatmak senin oyununda da mümkün.
+    Fizik motoru sadece "yerçekimi" demek değil — <strong>oyun mekanikleri tasarlamak</strong>
+    demek.
+  </p>
+</div>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">8.10</span>
+    <h2 class="topic-title">Joint — Objeleri Birbirine Bağlamak</h2>
+  </div>
+  <p>
+    İki Rigidbody'yi <strong>fiziksel olarak</strong> bağlamak istersen Joint component'lerini
+    kullanırsın. Her Joint farklı bir bağlantı tipini simüle eder.
+  </p>
+
+  <div class="step-list">
+    <div class="step-note">
+      <strong>Fixed Joint</strong> — İki objeyi sert biçimde birbirine yapıştırır. Aynı mesafede
+      kalmaya zorlar.
+    </div>
+    <div class="step-note">
+      <strong>Hinge Joint</strong> — Menteşe. Bir eksen etrafında dönmeye izin verir. Kapı, sallanan
+      tabela için.
+    </div>
+    <div class="step-note">
+      <strong>Spring Joint</strong> — Yay. İki objeyi belirli mesafede tutmaya çalışır, esnetilince
+      geri çeker.
+    </div>
+    <div class="step-note">
+      <strong>Configurable Joint</strong> — Kendine her eksende ayrı kısıtlamalar koyabildiğin
+      gelişmiş joint. Karakter joint'leri (ragdoll) için kullanılır.
+    </div>
+    <div class="step-note">
+      <strong>Character Joint</strong> — Konfigüre edilmiş bir joint, omuz/diz/kalça için optimize.
+      Ragdoll yaparken her eklemde bunu kullanırsın.
+    </div>
+  </div>
+
+  <div class="info-box">
+    <h4>💡 Joint'ler her zaman iki objeyi bağlar</h4>
+    <p>
+      Bir Joint component'i koyduğun objeye Inspector'da <strong>Connected Body</strong> diye bir
+      slot çıkar. Buraya başka bir Rigidbody sürüklersin. Boş bırakırsan obje "dünyaya" bağlanır —
+      yani sabit bir noktadan asılı kalır.
+    </p>
+  </div>
+</section>
+
+<div class="practice-section">
+  <h3>🛠 Pratik — 3 Mini Proje</h3>
+  <p>Bu bölümde öğrendiklerini uygulamak için 3 proje. Sırayla yap, hepsi bir öncekinin üzerine inşa edilir.</p>
+
+  <div class="project-card">
+    <div class="project-goal">
+      <strong>Proje 1 — Bowling Pisti</strong>
+      <p>Düşen bir top ile dizili 10 şişeyi devirmek.</p>
+    </div>
+    <ul class="project-check">
+      <li>Yere uzun bir BoxCollider'lı Plane (pist) koy.</li>
+      <li>10 tane silindir (Cylinder) yarat, üçgen düzende diz (1+2+3+4 sıralı).</li>
+      <li>Her birine <strong>Rigidbody</strong> ekle. Mass: 1, Drag: 0.</li>
+      <li>Bir <strong>Sphere</strong> yarat (top), Rigidbody Mass: 7.</li>
+      <li>Top'a basit bir script ekle: <code>Space</code>'e basınca <code>AddForce(Vector3.forward * 1000f, ForceMode.Impulse)</code>.</li>
+      <li>Pistin sonuna bir trigger BoxCollider koy ("StrikeZone"), içine giren şişeleri saysın.</li>
+      <li>Top hep aynı kuvvette atıldığında her seferinde aynı şişeler düşmemeli — fiziğin doğal varyansını gözle.</li>
+    </ul>
+  </div>
+
+  <div class="project-card">
+    <div class="project-goal">
+      <strong>Proje 2 — Patlayan Variller</strong>
+      <p>Mermi ile vurulan varilin alanında hasar yayan patlama.</p>
+    </div>
+    <ul class="project-check">
+      <li>Bir silindir yarat (varil), Rigidbody ekle, Mass: 5.</li>
+      <li>Çevreye 5-6 küp koy, her birinde <code>Health</code> script'i (basit: float currentHealth, TakeDamage method).</li>
+      <li>Varilin üzerine <code>Barrel</code> script'i ekle. <code>OnCollisionEnter</code>'da gelen objenin tag'i "Bullet" ise <code>Explode()</code> çağır.</li>
+      <li><code>Explode()</code> fonksiyonu: <code>Physics.OverlapSphere</code> ile 5m yarıçapındaki tüm collider'ları al, her birine mesafe-bazlı hasar uygula, varili <code>Destroy</code> et.</li>
+      <li>Bir mermi prefab'ı yarat: küçük Sphere + Rigidbody + tag "Bullet". Fare tıklamasıyla kameradan AddForce ile fırlat.</li>
+      <li>Patlama anında <code>Debug.DrawRay</code> veya kısa süreli bir partikül ile alanı göster.</li>
+    </ul>
+  </div>
+
+  <div class="project-card">
+    <div class="project-goal">
+      <strong>Proje 3 — Salıncak ve Sallanan Kapı</strong>
+      <p>Joint'leri kullanarak iki interaktif mekanik.</p>
+    </div>
+    <ul class="project-check">
+      <li><strong>Salıncak:</strong> Üstte sabit bir küp, altta uzun bir tahta (BoxCollider'lı). Tahtaya
+      Rigidbody + Hinge Joint ekle. Hinge'in Connected Body'sine üstteki sabit küpü ata.</li>
+      <li>Tahtanın ortasına başka bir küp koy (oturan kişi), Rigidbody ekle. Tahta ile küp arasına
+      Fixed Joint koy ki düşmesin.</li>
+      <li>Play'e bas, salıncak yan yatık dursun. Bir tarafa AddForce ile dürtüp sallanmasını izle.</li>
+      <li><strong>Kapı:</strong> Bir BoxCollider'lı küp duvar olsun. Yanına ince bir küp (kapı), Rigidbody
+      ekle, Hinge Joint ile duvara bağla. Hinge'in Axis'i Y olsun (dikey eksende dönsün).</li>
+      <li>Oyuncu kapıya çarptığında doğal olarak açılmalı.</li>
+      <li><strong>Bonus:</strong> Hinge'in <strong>Use Limits</strong>'ini açıp Min: -90, Max: 90
+      vererek kapının fazla açılmasını engelle.</li>
+    </ul>
+  </div>
+</div>
+
+<section class="quiz" id="bolum-quiz">
+  <header class="quiz-header">
+    <div class="quiz-header-icon"><i class="ti ti-help"></i></div>
+    <div class="quiz-header-text">
+      <h2>Bölüm Sonu Sınavı</h2>
+      <span>5 soru</span>
+    </div>
+  </header>
+
+  <article class="quiz-question" id="q8-1">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">01</span>
+      <h3 class="quiz-prompt-text">Rigidbody'ye kuvvet uygulamak için en uygun callback hangisidir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Update</button>
+      <button class="quiz-option" data-correct="true">FixedUpdate</button>
+      <button class="quiz-option" data-correct="false">LateUpdate</button>
+      <button class="quiz-option" data-correct="false">Awake</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q8-2">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">02</span>
+      <h3 class="quiz-prompt-text"><code>Is Kinematic</code> aktif olan bir Rigidbody için hangisi <em>yanlıştır</em>?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Yerçekiminden etkilenmez</button>
+      <button class="quiz-option" data-correct="false">Diğer objeler ona çarpabilir</button>
+      <button class="quiz-option" data-correct="true">AddForce ile hareket ettirilebilir</button>
+      <button class="quiz-option" data-correct="false">Hareketi script ile kontrol edilir</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q8-3">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">03</span>
+      <h3 class="quiz-prompt-text">Hızlı bir mermi duvardan geçiyor. En basit çözüm nedir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Mermi hızını düşürmek</button>
+      <button class="quiz-option" data-correct="true">Rigidbody'nin Collision Detection alanını Continuous yapmak</button>
+      <button class="quiz-option" data-correct="false">Duvarı kalınlaştırmak</button>
+      <button class="quiz-option" data-correct="false">Mass'i artırmak</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q8-4">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">04</span>
+      <h3 class="quiz-prompt-text"><code>OnTriggerEnter</code>'a gelen parametre hangi tiptedir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Collision</button>
+      <button class="quiz-option" data-correct="true">Collider</button>
+      <button class="quiz-option" data-correct="false">Rigidbody</button>
+      <button class="quiz-option" data-correct="false">GameObject</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q8-5">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">05</span>
+      <h3 class="quiz-prompt-text">Bir patlamanın yarıçap içindeki tüm objelere hasar vermesi için en uygun fonksiyon hangisidir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Physics.Raycast</button>
+      <button class="quiz-option" data-correct="false">Physics.SphereCast</button>
+      <button class="quiz-option" data-correct="true">Physics.OverlapSphere</button>
+      <button class="quiz-option" data-correct="false">Physics.CheckSphere</button>
+    </div>
+  </article>
+</section>
+
+<section class="complete-section">
+      <h3 class="complete-title">🎉 Bölüm 8 Tamamlandı!</h3>
+      <p class="complete-msg">Artık Unity'nin fizik motorunu kontrol edebiliyorsun: Rigidbody'nin tüm parametreleri, Collider çeşitleri, Trigger vs Collision farkı, Raycast ile dünyaya bakmak, Layer Collision Matrix ile çarpışma kuralları... Bir sonraki bölümde <strong>UI Sistemi</strong>'ne geçiyoruz — Canvas, Button, Text, ve yeni UI Toolkit.</p>
+      <button class="complete-btn" data-section="s8">
+        <i class="ti ti-circle-check"></i>
+        <span>Bu Bölümü Tamamladım</span>
+      </button>
+      <p class="complete-note">İlerlemen otomatik tarayıcına kaydedilir.</p>
+    </section>
+    <!-- Sayfa Gezinme -->
+    <nav class="page-nav" aria-label="Bölüm gezinme">
+      <a href="07-input.html" class="page-nav-link prev">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-left"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Önceki Bölüm</div>
+          <div class="page-nav-title">7. Input Sistemi</div>
+        </div>
+      </a>
+      <a href="09-ui.html" class="page-nav-link next">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-right"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Sonraki Bölüm</div>
+          <div class="page-nav-title">9. UI Sistemi (Canvas)</div>
+        </div>
+      </a>
+    </nav>
+
+  </div>
+</main>
+<script src="../js/progress.js?v=11"></script>
+<script src="../js/quiz.js?v=11"></script>
+<script src="../js/toc.js?v=11"></script>
+<script src="../js/main.js?v=11"></script>
+</body>
+</html>

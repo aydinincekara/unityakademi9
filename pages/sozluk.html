@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sözlük — UnityAkademi</title>
+  <meta name="description" content="80+ Unity terimi — GameObject, Prefab, ScriptableObject, MonoBehaviour ve daha fazlası">
+  <meta name="theme-color" content="#fa7d19">
+  <link rel="manifest" href="../manifest.json">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Sözlük">
+  <meta property="og:description" content="80+ Unity terimi — GameObject, Prefab, ScriptableObject, MonoBehaviour ve daha fazlası">
+  <meta property="og:image" content="../og-image.svg">
+  <meta property="og:site_name" content="UnityAkademi">
+  <meta property="og:locale" content="tr_TR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sözlük">
+  <meta name="twitter:description" content="80+ Unity terimi — GameObject, Prefab, ScriptableObject, MonoBehaviour ve daha fazlası">
+  <meta name="twitter:image" content="../og-image.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="../css/variables.css?v=11">
+  <link rel="stylesheet" href="../css/reset.css?v=11">
+  <link rel="stylesheet" href="../css/layout.css?v=11">
+  <link rel="stylesheet" href="../css/components.css?v=11">
+  <link rel="stylesheet" href="../css/content.css?v=11">
+  <link rel="stylesheet" href="../css/visuals.css?v=11">
+  <link rel="stylesheet" href="../css/extras.css?v=11">
+  <link rel="stylesheet" href="../css/responsive.css?v=11">
+</head>
+<body>
+<button class="nav-hamburger" id="navHamburger" aria-label="Menüyü aç">
+  <i class="ti ti-menu-2"></i>
+</button>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a href="../index.html" class="sidebar-brand">
+      <div class="sidebar-brand-icon"><i class="ti ti-home-2"></i></div>
+      <div class="sidebar-brand-text">
+        <span class="sidebar-brand-name">Ana Sayfa</span>
+        <span class="sidebar-brand-sub">UnityAkademi</span>
+      </div>
+    </a>
+    <button class="mobile-toggle" aria-label="Menü"><i class="ti ti-x"></i></button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-group">
+      <div class="nav-group-title">Temeller</div>
+      <a href="01-kurulum.html" class="nav-link" data-section="s1"><i class="ti ti-download"></i><span class="nav-link-text">Kurulum & İlk Bakış</span><span class="nav-link-num">01</span></a>
+      <a href="02-arayuz.html" class="nav-link" data-section="s2"><i class="ti ti-layout-board"></i><span class="nav-link-text">Editor Arayüzü</span><span class="nav-link-num">02</span></a>
+      <a href="03-gameobject-component.html" class="nav-link" data-section="s3"><i class="ti ti-cube"></i><span class="nav-link-text">GameObject & Component</span><span class="nav-link-num">03</span></a>
+      <a href="04-csharp-temelleri.html" class="nav-link" data-section="s4"><i class="ti ti-code"></i><span class="nav-link-text">C# Temelleri</span><span class="nav-link-num">04</span></a>
+      <a href="05-monobehaviour-lifecycle.html" class="nav-link" data-section="s5"><i class="ti ti-refresh"></i><span class="nav-link-text">MonoBehaviour Lifecycle</span><span class="nav-link-num">05</span></a>
+      <a href="06-transform-vector.html" class="nav-link" data-section="s6"><i class="ti ti-arrows-move"></i><span class="nav-link-text">Transform & Vector3</span><span class="nav-link-num">06</span></a>
+      <a href="07-input.html" class="nav-link" data-section="s7"><i class="ti ti-keyboard"></i><span class="nav-link-text">Input Sistemi</span><span class="nav-link-num">07</span></a>
+      <a href="08-physics.html" class="nav-link" data-section="s8"><i class="ti ti-atom"></i><span class="nav-link-text">Physics</span><span class="nav-link-num">08</span></a>
+      <a href="09-ui.html" class="nav-link" data-section="s9"><i class="ti ti-layout-grid"></i><span class="nav-link-text">UI Sistemi</span><span class="nav-link-num">09</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Görsel & Asset</div>
+      <a href="10-material-shader.html" class="nav-link" data-section="s10"><i class="ti ti-palette"></i><span class="nav-link-text">Material & Shader</span><span class="nav-link-num">10</span></a>
+      <a href="11-asset-import.html" class="nav-link" data-section="s11"><i class="ti ti-folder"></i><span class="nav-link-text">Asset Import</span><span class="nav-link-num">11</span></a>
+      <a href="12-animation.html" class="nav-link" data-section="s12"><i class="ti ti-bounce-right"></i><span class="nav-link-text">Animation</span><span class="nav-link-num">12</span></a>
+      <a href="13-particle-vfx.html" class="nav-link" data-section="s13"><i class="ti ti-sparkles"></i><span class="nav-link-text">Particle & VFX Graph</span><span class="nav-link-num">13</span></a>
+      <a href="14-lighting.html" class="nav-link" data-section="s14"><i class="ti ti-bulb"></i><span class="nav-link-text">Lighting</span><span class="nav-link-num">14</span></a>
+      <a href="15-audio.html" class="nav-link" data-section="s15"><i class="ti ti-volume"></i><span class="nav-link-text">Audio</span><span class="nav-link-num">15</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Sistemler</div>
+      <a href="16-probuilder.html" class="nav-link" data-section="s16"><i class="ti ti-3d-cube-sphere"></i><span class="nav-link-text">ProBuilder</span><span class="nav-link-num">16</span></a>
+      <a href="17-terrain.html" class="nav-link" data-section="s17"><i class="ti ti-mountain"></i><span class="nav-link-text">Terrain</span><span class="nav-link-num">17</span></a>
+      <a href="18-cinemachine.html" class="nav-link" data-section="s18"><i class="ti ti-camera"></i><span class="nav-link-text">Cinemachine</span><span class="nav-link-num">18</span></a>
+      <a href="19-timeline.html" class="nav-link" data-section="s19"><i class="ti ti-timeline"></i><span class="nav-link-text">Timeline</span><span class="nav-link-num">19</span></a>
+      <a href="20-navmesh.html" class="nav-link" data-section="s20"><i class="ti ti-route"></i><span class="nav-link-text">NavMesh & AI</span><span class="nav-link-num">20</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">İleri Seviye</div>
+      <a href="21-urp-hdrp.html" class="nav-link" data-section="s21"><i class="ti ti-bolt"></i><span class="nav-link-text">URP, HDRP & Unity 6</span><span class="nav-link-num">21</span></a>
+      <a href="22-new-input.html" class="nav-link" data-section="s22"><i class="ti ti-device-gamepad-2"></i><span class="nav-link-text">New Input System</span><span class="nav-link-num">22</span></a>
+      <a href="23-save-menu.html" class="nav-link" data-section="s23"><i class="ti ti-device-floppy"></i><span class="nav-link-text">Save & Menü</span><span class="nav-link-num">23</span></a>
+      <a href="24-build.html" class="nav-link" data-section="s24"><i class="ti ti-package-export"></i><span class="nav-link-text">Build & Yayınlama</span><span class="nav-link-num">24</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Profesyonel</div>
+      <a href="25-csharp-ileri.html" class="nav-link" data-section="s25"><i class="ti ti-brackets-contain"></i><span class="nav-link-text">C# İleri</span><span class="nav-link-num">25</span></a>
+      <a href="26-performance.html" class="nav-link" data-section="s26"><i class="ti ti-gauge"></i><span class="nav-link-text">Performance</span><span class="nav-link-num">26</span></a>
+      <a href="27-yol-haritasi.html" class="nav-link" data-section="s27"><i class="ti ti-map-2"></i><span class="nav-link-text">Yol Haritası</span><span class="nav-link-num">27</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Pratik</div>
+      <a href="projects.html" class="nav-link nav-link-extra" data-section="x-projects"><i class="ti ti-rocket"></i><span class="nav-link-text">Projeler</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Ek Kaynaklar</div>
+      <a href="sozluk.html" class="nav-link nav-link-extra active" data-section="x-sozluk"><i class="ti ti-book-2"></i><span class="nav-link-text">Sözlük</span></a>
+      <a href="cheatsheet.html" class="nav-link nav-link-extra" data-section="x-cheatsheet"><i class="ti ti-list-details"></i><span class="nav-link-text">Cheat Sheet</span></a>
+      <a href="sss.html" class="nav-link nav-link-extra" data-section="x-sss"><i class="ti ti-help-circle"></i><span class="nav-link-text">SSS</span></a>
+      <a href="arama.html" class="nav-link nav-link-extra" data-section="x-arama"><i class="ti ti-search"></i><span class="nav-link-text">Arama</span></a>
+      <a href="sertifika.html" class="nav-link nav-link-extra" data-section="x-sertifika"><i class="ti ti-certificate"></i><span class="nav-link-text">Sertifika</span></a>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="kaynaklar.html" class="sidebar-btn"><i class="ti ti-books"></i><span>Kaynaklar</span></a>
+    <a href="iletisim.html" class="sidebar-btn"><i class="ti ti-mail"></i><span>İletişim</span></a>
+  </div>
+</aside>
+<main class="main">
+  <div class="main-content">
+    <nav class="breadcrumb">
+      <a href="../index.html"><i class="ti ti-home"></i> Ana Sayfa</a>
+      <i class="ti ti-chevron-right"></i><span style="color: var(--primary-light);">Sözlük</span>
+    </nav>
+
+    <header class="helper-page-header">
+      <h1><i class="ti ti-book-2"></i> Sözlük</h1>
+      <p>Unity ve oyun geliştirme terimlerinin Türkçe açıklamaları + İngilizce karşılıkları. 80+ terim, alfabetik sıralı.</p>
+    </header>
+
+    <div class="glossary-search">
+      <input type="search" id="glossary-search" placeholder="🔍 Terim ara... (örn. coroutine, raycast, animator)">
+    </div>
+
+    <div class="glossary-letters" id="glossary-letters"></div>
+
+    <div id="glossary-content">
+
+      <div class="glossary-section" data-letter="A">
+        <h2 class="glossary-section-title" id="letter-A">A</h2>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">AddForce</span><span class="glossary-term-en">AddForce</span></div>
+          <p class="glossary-term-def">Rigidbody'e fizik kuvveti uygulayan metot. <code>rb.AddForce(Vector3.up * 10f, ForceMode.Impulse)</code> şeklinde kullanılır.</p>
+          <a href="08-physics.html" class="glossary-term-link">→ Bölüm 08</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Addressables</span><span class="glossary-term-en">Addressables</span></div>
+          <p class="glossary-term-def">Unity'nin modern asset yönetim sistemi. Asset'leri label/key ile async yükler, runtime'da hafıza kontrolü sağlar. AssetBundle'ın yerine geçer.</p>
+          <a href="23-save-menu.html" class="glossary-term-link">→ Bölüm 23</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Animation Clip</span><span class="glossary-term-en">Animation Clip</span></div>
+          <p class="glossary-term-def">Tek bir animasyon kaydı (örn. Run, Jump, Attack). FBX'ten gelir veya Animation penceresinde Unity içinde yaratılır.</p>
+          <a href="12-animation.html" class="glossary-term-link">→ Bölüm 12</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Animator Controller</span><span class="glossary-term-en">Animator Controller</span></div>
+          <p class="glossary-term-def">Karakterin animasyon state'lerini ve geçişlerini yöneten state machine asset'i. <code>.controller</code> uzantılıdır.</p>
+          <a href="12-animation.html" class="glossary-term-link">→ Bölüm 12</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">AssetBundle</span><span class="glossary-term-en">AssetBundle</span></div>
+          <p class="glossary-term-def">Asset'leri paketleyip runtime'da yükleme sistemi. Yeni projelerde Addressables tercih edilir.</p>
+          <a href="23-save-menu.html" class="glossary-term-link">→ Bölüm 23</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Asset Store</span><span class="glossary-term-en">Unity Asset Store</span></div>
+          <p class="glossary-term-def">Unity'nin resmi asset pazarı — model, shader, plugin, müzik. Ücretsiz ve ücretli içerik içerir.</p>
+          <a href="11-asset-import.html" class="glossary-term-link">→ Bölüm 11</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">async/await</span><span class="glossary-term-en">async/await</span></div>
+          <p class="glossary-term-def">C#'ın asenkron programlama anahtar kelimeleri. <code>Task</code> tabanlı, Coroutine'e modern alternatif.</p>
+          <a href="25-csharp-ileri.html" class="glossary-term-link">→ Bölüm 25</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">AudioMixer</span><span class="glossary-term-en">Audio Mixer</span></div>
+          <p class="glossary-term-def">Ses kanallarını gruplayıp efekt zinciri uygulayan asset. Master/Music/SFX gibi gruplar düzenler.</p>
+          <a href="15-audio.html" class="glossary-term-link">→ Bölüm 15</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">AudioSource</span><span class="glossary-term-en">AudioSource</span></div>
+          <p class="glossary-term-def">Bir AudioClip'i 3D veya 2D olarak çalan component. Spatial Blend ile uzaysal duyum ayarlanır.</p>
+          <a href="15-audio.html" class="glossary-term-link">→ Bölüm 15</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Avatar</span><span class="glossary-term-en">Avatar</span></div>
+          <p class="glossary-term-def">Humanoid karakterin iskelet kemiklerinin Unity'nin standart insan kemiğine nasıl eşleştiğini tanımlayan asset.</p>
+          <a href="12-animation.html" class="glossary-term-link">→ Bölüm 12</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Awake</span><span class="glossary-term-en">Awake</span></div>
+          <p class="glossary-term-def">GameObject yaratılırken (Active olmasa bile) bir kere çağrılan MonoBehaviour lifecycle metodu. Self-reference için kullanılır.</p>
+          <a href="05-monobehaviour-lifecycle.html" class="glossary-term-link">→ Bölüm 05</a>
+        </div>
+      </div>
+
+      <div class="glossary-section" data-letter="B">
+        <h2 class="glossary-section-title" id="letter-B">B</h2>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Baked Lighting</span><span class="glossary-term-en">Baked Lighting</span></div>
+          <p class="glossary-term-def">Önceden hesaplanıp lightmap'lere yazılmış ışık. Runtime'da neredeyse bedavadır ama statik objelere bağlıdır.</p>
+          <a href="14-lighting.html" class="glossary-term-link">→ Bölüm 14</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Blend Tree</span><span class="glossary-term-en">Blend Tree</span></div>
+          <p class="glossary-term-def">Birden çok animasyonu parametreye göre birleştiren Animator node'u. Idle↔Walk↔Run geçişleri için tipiktir.</p>
+          <a href="12-animation.html" class="glossary-term-link">→ Bölüm 12</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">BoxCollider</span><span class="glossary-term-en">Box Collider</span></div>
+          <p class="glossary-term-def">Eksen-hizalı dikdörtgen prizma şeklinde collider. En ucuz collider türlerinden biri.</p>
+          <a href="08-physics.html" class="glossary-term-link">→ Bölüm 08</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Build Profile</span><span class="glossary-term-en">Build Profile</span></div>
+          <p class="glossary-term-def">Unity 6'da gelen platform-bazlı build yapılandırması. Her platform için ayrı scene listesi ve player settings tutar.</p>
+          <a href="24-build.html" class="glossary-term-link">→ Bölüm 24</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Built-in RP</span><span class="glossary-term-en">Built-in Render Pipeline</span></div>
+          <p class="glossary-term-def">Unity'nin klasik (Legacy) render pipeline'ı. Yeni projelerde URP veya HDRP tercih edilir.</p>
+          <a href="21-urp-hdrp.html" class="glossary-term-link">→ Bölüm 21</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Burst Compiler</span><span class="glossary-term-en">Burst Compiler</span></div>
+          <p class="glossary-term-def">C# kodu LLVM ile yüksek performanslı native koda derleyen Unity paketi. Job System ile birlikte kullanılır.</p>
+          <a href="26-performance.html" class="glossary-term-link">→ Bölüm 26</a>
+        </div>
+      </div>
+
+      <div class="glossary-section" data-letter="C">
+        <h2 class="glossary-section-title" id="letter-C">C</h2>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Canvas</span><span class="glossary-term-en">Canvas</span></div>
+          <p class="glossary-term-def">UI elemanlarının kapsayıcı root component'i. Screen Space veya World Space olabilir.</p>
+          <a href="09-ui.html" class="glossary-term-link">→ Bölüm 09</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Cinemachine</span><span class="glossary-term-en">Cinemachine</span></div>
+          <p class="glossary-term-def">Unity'nin gelişmiş kamera paketi. Virtual Camera, blend, dolly, freelook ve daha fazlasını sağlar.</p>
+          <a href="18-cinemachine.html" class="glossary-term-link">→ Bölüm 18</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Collider</span><span class="glossary-term-en">Collider</span></div>
+          <p class="glossary-term-def">Bir GameObject'in çarpışma şeklini tanımlayan component. Trigger veya solid olabilir.</p>
+          <a href="08-physics.html" class="glossary-term-link">→ Bölüm 08</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Console</span><span class="glossary-term-en">Console</span></div>
+          <p class="glossary-term-def">Editor'deki log, warning ve error mesajlarını gösteren pencere. <code>Debug.Log</code> buraya yazar.</p>
+          <a href="02-arayuz.html" class="glossary-term-link">→ Bölüm 02</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Coroutine</span><span class="glossary-term-en">Coroutine</span></div>
+          <p class="glossary-term-def"><code>IEnumerator</code> dönen ve <code>yield</code> ile zamana yayılan metot. Async iş için Unity'nin klasik yolu.</p>
+          <a href="05-monobehaviour-lifecycle.html" class="glossary-term-link">→ Bölüm 05</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">C#</span><span class="glossary-term-en">C Sharp</span></div>
+          <p class="glossary-term-def">Unity'nin scripting dili. .NET ailesinden, statik tipli, OOP tabanlı.</p>
+          <a href="04-csharp-temelleri.html" class="glossary-term-link">→ Bölüm 04</a>
+        </div>
+      </div>
+
+      <div class="glossary-section" data-letter="D">
+        <h2 class="glossary-section-title" id="letter-D">D</h2>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Debug.Log</span><span class="glossary-term-en">Debug.Log</span></div>
+          <p class="glossary-term-def">Konsola mesaj yazan static metot. <code>LogWarning</code>, <code>LogError</code> varyantları da vardır.</p>
+          <a href="04-csharp-temelleri.html" class="glossary-term-link">→ Bölüm 04</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Deferred Rendering</span><span class="glossary-term-en">Deferred Rendering</span></div>
+          <p class="glossary-term-def">Geometriyi G-buffer'a yazıp aydınlatmayı sonra hesaplayan render yaklaşımı. Çok ışıklı sahnelerde avantajlı.</p>
+          <a href="21-urp-hdrp.html" class="glossary-term-link">→ Bölüm 21</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Delegate</span><span class="glossary-term-en">Delegate</span></div>
+          <p class="glossary-term-def">Bir metodu değişken gibi tutan tip. <code>Action</code> ve <code>Func</code> bunlar üzerine kuruludur.</p>
+          <a href="25-csharp-ileri.html" class="glossary-term-link">→ Bölüm 25</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Time.deltaTime</span><span class="glossary-term-en">deltaTime</span></div>
+          <p class="glossary-term-def">Önceki frame'den bu frame'e geçen süre (saniye). Update'te FPS-bağımsız hareket için <code>* Time.deltaTime</code>.</p>
+          <a href="06-transform-vector.html" class="glossary-term-link">→ Bölüm 06</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">DOTS</span><span class="glossary-term-en">Data-Oriented Technology Stack</span></div>
+          <p class="glossary-term-def">Unity'nin yüksek performans paketi: ECS + Job System + Burst. Yüz binlerce entity'yi 60 FPS işlemek için tasarlandı.</p>
+          <a href="26-performance.html" class="glossary-term-link">→ Bölüm 26</a>
+        </div>
+      </div>
+
+      <div class="glossary-section" data-letter="E">
+        <h2 class="glossary-section-title" id="letter-E">E</h2>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">ECS</span><span class="glossary-term-en">Entity Component System</span></div>
+          <p class="glossary-term-def">Veri-yönelimli mimari. Entity = ID, Component = veri, System = mantık. DOTS'un kalbi.</p>
+          <a href="26-performance.html" class="glossary-term-link">→ Bölüm 26</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Euler Angles</span><span class="glossary-term-en">Euler Angles</span></div>
+          <p class="glossary-term-def">X, Y, Z eksenleri etrafındaki dönüş açıları (derece). Inspector'da gördüğün <code>Rotation</code> bunlardır.</p>
+          <a href="06-transform-vector.html" class="glossary-term-link">→ Bölüm 06</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Event</span><span class="glossary-term-en">Event</span></div>
+          <p class="glossary-term-def">Birden çok subscriber'ın dinleyebildiği özel delegate. <code>+=</code> ile abone, <code>-=</code> ile abonelikten çıkış.</p>
+          <a href="25-csharp-ileri.html" class="glossary-term-link">→ Bölüm 25</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">EventSystem</span><span class="glossary-term-en">EventSystem</span></div>
+          <p class="glossary-term-def">UI input ve odak yönetiminden sorumlu sahne objesi. Canvas oluşturulduğunda otomatik eklenir.</p>
+          <a href="09-ui.html" class="glossary-term-link">→ Bölüm 09</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Extension Method</span><span class="glossary-term-en">Extension Method</span></div>
+          <p class="glossary-term-def">Var olan bir tipe (örn. <code>Transform</code>) yeni metot ekleyen static syntax. <code>this</code> anahtar kelimesiyle.</p>
+          <a href="25-csharp-ileri.html" class="glossary-term-link">→ Bölüm 25</a>
+        </div>
+      </div>
+
+      <div class="glossary-section" data-letter="F">
+        <h2 class="glossary-section-title" id="letter-F">F</h2>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">FixedUpdate</span><span class="glossary-term-en">FixedUpdate</span></div>
+          <p class="glossary-term-def">Sabit fizik step'inde (varsayılan 50 Hz) çağrılan lifecycle. Rigidbody hareketleri burada yapılır.</p>
+          <a href="05-monobehaviour-lifecycle.html" class="glossary-term-link">→ Bölüm 05</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Forward Rendering</span><span class="glossary-term-en">Forward Rendering</span></div>
+          <p class="glossary-term-def">Her objeyi her ışık için ayrı geçişle aydınlatan render yöntemi. URP'nin varsayılanı.</p>
+          <a href="21-urp-hdrp.html" class="glossary-term-link">→ Bölüm 21</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Forward+</span><span class="glossary-term-en">Forward Plus</span></div>
+          <p class="glossary-term-def">Unity 6 ile URP'ye gelen yeni render path'i. Cluster bazlı aydınlatma, çok ışıklı sahnelerde forward'a göre çok daha hızlı.</p>
+          <a href="21-urp-hdrp.html" class="glossary-term-link">→ Bölüm 21</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Frame Debugger</span><span class="glossary-term-en">Frame Debugger</span></div>
+          <p class="glossary-term-def">Bir frame'in tüm draw call'larını adım adım gezdiren editor aracı. Performans ve görsel hata avı için kritik.</p>
+          <a href="26-performance.html" class="glossary-term-link">→ Bölüm 26</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Frustum Culling</span><span class="glossary-term-en">Frustum Culling</span></div>
+          <p class="glossary-term-def">Kameranın görmediği objeleri render etmeyen otomatik mekanizma. Unity'de açıktır.</p>
+          <a href="26-performance.html" class="glossary-term-link">→ Bölüm 26</a>
+        </div>
+      </div>
+
+      <div class="glossary-section" data-letter="G">
+        <h2 class="glossary-section-title" id="letter-G">G</h2>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">GameObject</span><span class="glossary-term-en">GameObject</span></div>
+          <p class="glossary-term-def">Sahnedeki her şeyin temeli. Boş bir container'dır; davranışları Component'ler verir.</p>
+          <a href="03-gameobject-component.html" class="glossary-term-link">→ Bölüm 03</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">GC.Alloc</span><span class="glossary-term-en">Garbage Collection Allocation</span></div>
+          <p class="glossary-term-def">Çöp toplayıcının ileride temizleyeceği managed memory tahsisi. Her frame'deki yeni <code>new</code>'lar stutter yaratabilir.</p>
+          <a href="26-performance.html" class="glossary-term-link">→ Bölüm 26</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">GetComponent</span><span class="glossary-term-en">GetComponent</span></div>
+          <p class="glossary-term-def">GameObject'in üzerindeki bir component'i alan metot. <code>Start</code>'ta cache'lenmesi performans için önemlidir.</p>
+          <a href="03-gameobject-component.html" class="glossary-term-link">→ Bölüm 03</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Gizmo</span><span class="glossary-term-en">Gizmo</span></div>
+          <p class="glossary-term-def">Scene View'de görünen ama oyunda görünmeyen yardımcı çizim. <code>OnDrawGizmos</code> ile çizilir.</p>
+          <a href="02-arayuz.html" class="glossary-term-link">→ Bölüm 02</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">GPU Instancing</span><span class="glossary-term-en">GPU Instancing</span></div>
+          <p class="glossary-term-def">Aynı mesh ve material'ı paylaşan objeleri tek draw call'da çizen optimizasyon. Material'da bir checkbox'la açılır.</p>
+          <a href="26-performance.html" class="glossary-term-link">→ Bölüm 26</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">GPU Resident Drawer</span><span class="glossary-term-en">GPU Resident Drawer</span></div>
+          <p class="glossary-term-def">Unity 6'da gelen, draw call'ları otomatik birleştiren CPU-yükü azaltıcı sistem.</p>
+          <a href="21-urp-hdrp.html" class="glossary-term-link">→ Bölüm 21</a>
+        </div>
+      </div>
+
+      <div class="glossary-section" data-letter="H">
+        <h2 class="glossary-section-title" id="letter-H">H</h2>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">HDR</span><span class="glossary-term-en">High Dynamic Range</span></div>
+          <p class="glossary-term-def">Standart aralığın dışındaki parlaklıkları (örn. güneş, neon) saklayabilen renk formatı.</p>
+          <a href="14-lighting.html" class="glossary-term-link">→ Bölüm 14</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">HDRP</span><span class="glossary-term-en">High Definition Render Pipeline</span></div>
+          <p class="glossary-term-def">Yüksek görsel kalite için tasarlanmış SRP. PC ve yeni nesil konsol hedefler, mobil değil.</p>
+          <a href="21-urp-hdrp.html" class="glossary-term-link">→ Bölüm 21</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Hierarchy</span><span class="glossary-term-en">Hierarchy</span></div>
+          <p class="glossary-term-def">Aktif sahnedeki tüm GameObject'leri ağaç görünümünde listeleyen pencere.</p>
+          <a href="02-arayuz.html" class="glossary-term-link">→ Bölüm 02</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Humanoid</span><span class="glossary-term-en">Humanoid Rig</span></div>
+          <p class="glossary-term-def">Unity'nin standart insan iskeleti şablonu. Animation Retargeting'i mümkün kılar.</p>
+          <a href="12-animation.html" class="glossary-term-link">→ Bölüm 12</a>
+        </div>
+      </div>
+
+      <div class="glossary-section" data-letter="I">
+        <h2 class="glossary-section-title" id="letter-I">I</h2>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">IEnumerator</span><span class="glossary-term-en">IEnumerator</span></div>
+          <p class="glossary-term-def">Coroutine'lerin döndürdüğü arayüz. <code>yield return</code> ile değer üretir.</p>
+          <a href="05-monobehaviour-lifecycle.html" class="glossary-term-link">→ Bölüm 05</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">IK</span><span class="glossary-term-en">Inverse Kinematics</span></div>
+          <p class="glossary-term-def">Hedef pozisyondan iskelet zincirinin açılarını geri hesaplama. Ayak yerleşimi, el hedefi için kullanılır.</p>
+          <a href="12-animation.html" class="glossary-term-link">→ Bölüm 12</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">IL2CPP</span><span class="glossary-term-en">IL to C++</span></div>
+          <p class="glossary-term-def">Unity'nin C#'tan C++'a, oradan native kod'a derleyen backend'i. iOS'ta zorunlu, diğer platformlarda hız sağlar.</p>
+          <a href="24-build.html" class="glossary-term-link">→ Bölüm 24</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Input Action</span><span class="glossary-term-en">Input Action</span></div>
+          <p class="glossary-term-def">Yeni Input System'de bir eylem tanımı (örn. Move, Jump). Birden çok binding'i tutabilir.</p>
+          <a href="22-new-input.html" class="glossary-term-link">→ Bölüm 22</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Input System</span><span class="glossary-term-en">Input System (new)</span></div>
+          <p class="glossary-term-def">Unity'nin modern input paketi. Multi-device, control scheme ve rebinding desteği sağlar.</p>
+          <a href="22-new-input.html" class="glossary-term-link">→ Bölüm 22</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Inspector</span><span class="glossary-term-en">Inspector</span></div>
+          <p class="glossary-term-def">Seçili GameObject'in component'lerini ve [SerializeField] alanlarını gösteren/düzenleyen pencere.</p>
+          <a href="02-arayuz.html" class="glossary-term-link">→ Bölüm 02</a>
+        </div>
+      </div>
+
+      <div class="glossary-section" data-letter="J">
+        <h2 class="glossary-section-title" id="letter-J">J</h2>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Job System</span><span class="glossary-term-en">Job System</span></div>
+          <p class="glossary-term-def">Unity'nin multi-thread API'si. <code>IJob</code>, <code>IJobFor</code>, <code>IJobParallelFor</code> ile worker thread'lere iş dağıtır.</p>
+          <a href="26-performance.html" class="glossary-term-link">→ Bölüm 26</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">JsonUtility</span><span class="glossary-term-en">JsonUtility</span></div>
+          <p class="glossary-term-def">Unity'nin yerleşik JSON serileştiricisi. <code>FromJson</code> / <code>ToJson</code> ile çalışır.</p>
+          <a href="23-save-menu.html" class="glossary-term-link">→ Bölüm 23</a>
+        </div>
+      </div>
+
+      <div class="glossary-section" data-letter="L">
+        <h2 class="glossary-section-title" id="letter-L">L</h2>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">LateUpdate</span><span class="glossary-term-en">LateUpdate</span></div>
+          <p class="glossary-term-def">Tüm Update'ler bittikten sonra çağrılan lifecycle. Kamera takibi gibi her şey hareket ettikten sonra çalışacak şeyler için.</p>
+          <a href="05-monobehaviour-lifecycle.html" class="glossary-term-link">→ Bölüm 05</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Layer</span><span class="glossary-term-en">Layer</span></div>
+          <p class="glossary-term-def">GameObject'leri gruplara ayıran etiket. Physics, Camera Culling Mask ve Raycast filtreleri için kullanılır.</p>
+          <a href="08-physics.html" class="glossary-term-link">→ Bölüm 08</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">LayerMask</span><span class="glossary-term-en">LayerMask</span></div>
+          <p class="glossary-term-def">Raycast ve Physics sorgularında hangi Layer'ları dahil edeceğini belirleyen bitmask.</p>
+          <a href="08-physics.html" class="glossary-term-link">→ Bölüm 08</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Lerp</span><span class="glossary-term-en">Linear Interpolation</span></div>
+          <p class="glossary-term-def">İki değer arasında doğrusal geçiş. <code>Vector3.Lerp(a, b, t)</code> şeklinde, t 0..1 aralığında.</p>
+          <a href="06-transform-vector.html" class="glossary-term-link">→ Bölüm 06</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Light Probe</span><span class="glossary-term-en">Light Probe</span></div>
+          <p class="glossary-term-def">Sahnedeki belirli noktalarda ışık örneklemesi yapan probe. Dinamik objelere baked ışık verir.</p>
+          <a href="14-lighting.html" class="glossary-term-link">→ Bölüm 14</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Lightmap</span><span class="glossary-term-en">Lightmap</span></div>
+          <p class="glossary-term-def">Statik objelerin yüzeyine pişirilmiş ışık dokusu. Real-time hesaplama yok, doku okuması var.</p>
+          <a href="14-lighting.html" class="glossary-term-link">→ Bölüm 14</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">LOD Group</span><span class="glossary-term-en">Level of Detail Group</span></div>
+          <p class="glossary-term-def">Mesafeye göre düşük poly model'lere geçen optimizasyon component'i.</p>
+          <a href="26-performance.html" class="glossary-term-link">→ Bölüm 26</a>
+        </div>
+      </div>
+
+      <div class="glossary-section" data-letter="M">
+        <h2 class="glossary-section-title" id="letter-M">M</h2>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Material</span><span class="glossary-term-en">Material</span></div>
+          <p class="glossary-term-def">Bir Shader'ın somut ayar setine sahip kullanım örneği. Doku, renk ve parametre referansları içerir.</p>
+          <a href="10-material-shader.html" class="glossary-term-link">→ Bölüm 10</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Mathf</span><span class="glossary-term-en">Mathf</span></div>
+          <p class="glossary-term-def">Unity'nin float-bazlı matematik utility sınıfı. <code>Clamp</code>, <code>Sin</code>, <code>Lerp</code>, <code>PingPong</code> burada.</p>
+          <a href="06-transform-vector.html" class="glossary-term-link">→ Bölüm 06</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Mesh</span><span class="glossary-term-en">Mesh</span></div>
+          <p class="glossary-term-def">3D geometriyi (vertex, triangle, UV, normal) tutan veri yapısı.</p>
+          <a href="11-asset-import.html" class="glossary-term-link">→ Bölüm 11</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">MeshCollider</span><span class="glossary-term-en">Mesh Collider</span></div>
+          <p class="glossary-term-def">Bir mesh'i bire bir collider olarak kullanan tip. Pahalıdır; Convex açılırsa Rigidbody ile kullanılabilir.</p>
+          <a href="08-physics.html" class="glossary-term-link">→ Bölüm 08</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Mixed Lighting</span><span class="glossary-term-en">Mixed Lighting</span></div>
+          <p class="glossary-term-def">Baked + Realtime hibrit ışık modu. Statik objelere pişer, dinamiklere real-time vurur.</p>
+          <a href="14-lighting.html" class="glossary-term-link">→ Bölüm 14</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">MonoBehaviour</span><span class="glossary-term-en">MonoBehaviour</span></div>
+          <p class="glossary-term-def">Script'lerin temel sınıfı. Lifecycle metotlarını (Awake, Start, Update...) ve <code>StartCoroutine</code>'u sağlar.</p>
+          <a href="05-monobehaviour-lifecycle.html" class="glossary-term-link">→ Bölüm 05</a>
+        </div>
+      </div>
+
+      <div class="glossary-section" data-letter="N">
+        <h2 class="glossary-section-title" id="letter-N">N</h2>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">NativeArray</span><span class="glossary-term-en">NativeArray<T></span></div>
+          <p class="glossary-term-def">Job System için unmanaged (GC'den bağımsız) dizi. Burst-uyumlu çalışır.</p>
+          <a href="26-performance.html" class="glossary-term-link">→ Bölüm 26</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">NavMesh</span><span class="glossary-term-en">NavMesh</span></div>
+          <p class="glossary-term-def">Yapay zekanın üzerinde yürüyebileceği sahne yüzeyinin pre-computed haritası.</p>
+          <a href="20-navmesh.html" class="glossary-term-link">→ Bölüm 20</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">NavMeshAgent</span><span class="glossary-term-en">NavMesh Agent</span></div>
+          <p class="glossary-term-def">NavMesh üzerinde hedefe yol bulup yürüyen component. <code>SetDestination</code> ile hedef verilir.</p>
+          <a href="20-navmesh.html" class="glossary-term-link">→ Bölüm 20</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">NavMeshSurface</span><span class="glossary-term-en">NavMesh Surface</span></div>
+          <p class="glossary-term-def">AI Navigation paketiyle gelen, runtime'da NavMesh oluşturan/yeniden hesaplayan component.</p>
+          <a href="20-navmesh.html" class="glossary-term-link">→ Bölüm 20</a>
+        </div>
+      </div>
+
+      <div class="glossary-section" data-letter="O">
+        <h2 class="glossary-section-title" id="letter-O">O</h2>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Object Pool</span><span class="glossary-term-en">Object Pool</span></div>
+          <p class="glossary-term-def">Aynı tür objeleri sürekli <code>Instantiate/Destroy</code> etmek yerine yeniden kullanma deseni. Unity 6'da <code>UnityEngine.Pool</code> hazır API verir.</p>
+          <a href="26-performance.html" class="glossary-term-link">→ Bölüm 26</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Occlusion Culling</span><span class="glossary-term-en">Occlusion Culling</span></div>
+          <p class="glossary-term-def">Kamera frustum'unda olsa bile başka objelerin arkasında kalan objeleri render etmeme optimizasyonu.</p>
+          <a href="26-performance.html" class="glossary-term-link">→ Bölüm 26</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">OnCollisionEnter</span><span class="glossary-term-en">OnCollisionEnter</span></div>
+          <p class="glossary-term-def">İki Collider'ın (en az biri Rigidbody'li) çarpıştığı ilk frame'de çağrılan callback.</p>
+          <a href="08-physics.html" class="glossary-term-link">→ Bölüm 08</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">OnTriggerEnter</span><span class="glossary-term-en">OnTriggerEnter</span></div>
+          <p class="glossary-term-def">Bir trigger collider'a girildiğinde çağrılan callback. Hasar zonu, item pickup tipiktir.</p>
+          <a href="08-physics.html" class="glossary-term-link">→ Bölüm 08</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">OverlapSphere</span><span class="glossary-term-en">Physics.OverlapSphere</span></div>
+          <p class="glossary-term-def">Belirli bir merkezde, yarıçap içindeki tüm Collider'ları döndüren static metot.</p>
+          <a href="08-physics.html" class="glossary-term-link">→ Bölüm 08</a>
+        </div>
+      </div>
+
+      <div class="glossary-section" data-letter="P">
+        <h2 class="glossary-section-title" id="letter-P">P</h2>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Particle System</span><span class="glossary-term-en">Particle System</span></div>
+          <p class="glossary-term-def">Shuriken olarak da bilinen CPU-bazlı parçacık sistemi. Duman, kıvılcım, ateş için.</p>
+          <a href="13-particle-vfx.html" class="glossary-term-link">→ Bölüm 13</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">PBR</span><span class="glossary-term-en">Physically Based Rendering</span></div>
+          <p class="glossary-term-def">Gerçek dünya optik kurallarına dayalı render yaklaşımı. Albedo, Metallic, Smoothness/Roughness ve Normal kullanır.</p>
+          <a href="10-material-shader.html" class="glossary-term-link">→ Bölüm 10</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">persistentDataPath</span><span class="glossary-term-en">Application.persistentDataPath</span></div>
+          <p class="glossary-term-def">Her platformda kalıcı veri yazılabilen tek standart yol. Save sistemleri burayı kullanır.</p>
+          <a href="23-save-menu.html" class="glossary-term-link">→ Bölüm 23</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">PhysicsMaterial</span><span class="glossary-term-en">Physics Material</span></div>
+          <p class="glossary-term-def">Sürtünme ve zıplama (bounciness) ayarlarını taşıyan asset. Collider üzerinden uygulanır.</p>
+          <a href="08-physics.html" class="glossary-term-link">→ Bölüm 08</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">PlayerPrefs</span><span class="glossary-term-en">PlayerPrefs</span></div>
+          <p class="glossary-term-def">Basit ayarlar (volume, çözünürlük) için key-value saklama. Sensitive data için uygun değildir.</p>
+          <a href="23-save-menu.html" class="glossary-term-link">→ Bölüm 23</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Post-Processing</span><span class="glossary-term-en">Post-Processing</span></div>
+          <p class="glossary-term-def">Kameranın render'ı bittikten sonra uygulanan efektler: bloom, vignette, tonemapping, DoF.</p>
+          <a href="21-urp-hdrp.html" class="glossary-term-link">→ Bölüm 21</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Prefab</span><span class="glossary-term-en">Prefab</span></div>
+          <p class="glossary-term-def">Bir GameObject hiyerarşisinin yeniden kullanılabilir şablonu. Override ve Variant özelliklerini destekler.</p>
+          <a href="03-gameobject-component.html" class="glossary-term-link">→ Bölüm 03</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Profiler</span><span class="glossary-term-en">Profiler</span></div>
+          <p class="glossary-term-def">Unity'nin yerleşik performans analiz aracı. CPU, GPU, Memory ve Rendering ayrı modüllerde.</p>
+          <a href="26-performance.html" class="glossary-term-link">→ Bölüm 26</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Project</span><span class="glossary-term-en">Project Window</span></div>
+          <p class="glossary-term-def">Asset klasörü ve içindeki tüm asset'leri gösteren editor penceresi.</p>
+          <a href="02-arayuz.html" class="glossary-term-link">→ Bölüm 02</a>
+        </div>
+      </div>
+
+      <div class="glossary-section" data-letter="Q">
+        <h2 class="glossary-section-title" id="letter-Q">Q</h2>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Quality Settings</span><span class="glossary-term-en">Quality Settings</span></div>
+          <p class="glossary-term-def">Texture çözünürlüğü, gölge, anti-aliasing gibi ayarları farklı kalite seviyeleri olarak tanımlar.</p>
+          <a href="26-performance.html" class="glossary-term-link">→ Bölüm 26</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Quaternion</span><span class="glossary-term-en">Quaternion</span></div>
+          <p class="glossary-term-def">Dönüşü gimbal-lock olmadan ifade eden 4-bileşenli matematik yapısı. Inspector'a Euler olarak gösterilir.</p>
+          <a href="06-transform-vector.html" class="glossary-term-link">→ Bölüm 06</a>
+        </div>
+      </div>
+
+      <div class="glossary-section" data-letter="R">
+        <h2 class="glossary-section-title" id="letter-R">R</h2>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Raycast</span><span class="glossary-term-en">Physics.Raycast</span></div>
+          <p class="glossary-term-def">Belirli yönde ışın gönderip ne çarptığını bulan static metot. Nişan, etkileşim, AI görüşü için tipiktir.</p>
+          <a href="08-physics.html" class="glossary-term-link">→ Bölüm 08</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">RectTransform</span><span class="glossary-term-en">RectTransform</span></div>
+          <p class="glossary-term-def">UI elemanlarının Transform varyantı. Anchor, Pivot ve boyut tutar.</p>
+          <a href="09-ui.html" class="glossary-term-link">→ Bölüm 09</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Reflection Probe</span><span class="glossary-term-en">Reflection Probe</span></div>
+          <p class="glossary-term-def">Belirli bir noktadan çevreyi cubemap olarak yakalayan probe. Material'ların yansımalarına kullanılır.</p>
+          <a href="14-lighting.html" class="glossary-term-link">→ Bölüm 14</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Render Graph</span><span class="glossary-term-en">Render Graph</span></div>
+          <p class="glossary-term-def">Unity 6 ile URP'nin yeni iç mimarisi. Render geçişlerini explicit bir grafik olarak tanımlar.</p>
+          <a href="21-urp-hdrp.html" class="glossary-term-link">→ Bölüm 21</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Render Texture</span><span class="glossary-term-en">Render Texture</span></div>
+          <p class="glossary-term-def">GPU'da yazılabilen bir doku. Mini-map, security camera, portal için kullanılır.</p>
+          <a href="10-material-shader.html" class="glossary-term-link">→ Bölüm 10</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Rigidbody</span><span class="glossary-term-en">Rigidbody</span></div>
+          <p class="glossary-term-def">3D fizik kütlesi component'i. Velocity, mass, drag ve <code>AddForce</code> davranışlarını sağlar.</p>
+          <a href="08-physics.html" class="glossary-term-link">→ Bölüm 08</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Rigidbody2D</span><span class="glossary-term-en">Rigidbody2D</span></div>
+          <p class="glossary-term-def">Rigidbody'nin 2B versiyonu. Box2D fizik motoru kullanır.</p>
+          <a href="08-physics.html" class="glossary-term-link">→ Bölüm 08</a>
+        </div>
+      </div>
+
+      <div class="glossary-section" data-letter="S">
+        <h2 class="glossary-section-title" id="letter-S">S</h2>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Scene</span><span class="glossary-term-en">Scene</span></div>
+          <p class="glossary-term-def">Editor'de açılan, GameObject'lerin yaşadığı tek bir dünya dosyası (<code>.unity</code>).</p>
+          <a href="02-arayuz.html" class="glossary-term-link">→ Bölüm 02</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">ScriptableObject</span><span class="glossary-term-en">ScriptableObject</span></div>
+          <p class="glossary-term-def">MonoBehaviour'a benzer ama sahneye konulmayan, asset olarak yaşayan veri taşıyıcı sınıf.</p>
+          <a href="25-csharp-ileri.html" class="glossary-term-link">→ Bölüm 25</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">SerializeField</span><span class="glossary-term-en">[SerializeField]</span></div>
+          <p class="glossary-term-def">Private bir alanı Inspector'da göstermeye yarayan attribute. Public yapmadan editor'a açar.</p>
+          <a href="04-csharp-temelleri.html" class="glossary-term-link">→ Bölüm 04</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Shader</span><span class="glossary-term-en">Shader</span></div>
+          <p class="glossary-term-def">GPU üzerinde çalışan, pikseller ve vertex'ler üzerinde işlem yapan program.</p>
+          <a href="10-material-shader.html" class="glossary-term-link">→ Bölüm 10</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Shader Graph</span><span class="glossary-term-en">Shader Graph</span></div>
+          <p class="glossary-term-def">Unity'nin görsel shader editörü. Node-bazlı, URP ve HDRP ile birlikte gelir.</p>
+          <a href="10-material-shader.html" class="glossary-term-link">→ Bölüm 10</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Slerp</span><span class="glossary-term-en">Spherical Linear Interpolation</span></div>
+          <p class="glossary-term-def">İki vektör/quaternion arasında küresel (sabit hızda dönen) interpolation. Pürüzsüz rotasyonlar için.</p>
+          <a href="06-transform-vector.html" class="glossary-term-link">→ Bölüm 06</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">SRP Batcher</span><span class="glossary-term-en">SRP Batcher</span></div>
+          <p class="glossary-term-def">Aynı shader variant'ını paylaşan farklı material'ları tek pas'ta gönderen URP/HDRP optimizasyonu.</p>
+          <a href="26-performance.html" class="glossary-term-link">→ Bölüm 26</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Start</span><span class="glossary-term-en">Start</span></div>
+          <p class="glossary-term-def">GameObject ilk Active olduğu frame'de bir kere çağrılan lifecycle. Başlangıç verisi için.</p>
+          <a href="05-monobehaviour-lifecycle.html" class="glossary-term-link">→ Bölüm 05</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Static Batching</span><span class="glossary-term-en">Static Batching</span></div>
+          <p class="glossary-term-def"><i>Static</i> işaretli mesh'leri editor'de birleştiren build-time optimizasyon.</p>
+          <a href="26-performance.html" class="glossary-term-link">→ Bölüm 26</a>
+        </div>
+      </div>
+
+      <div class="glossary-section" data-letter="T">
+        <h2 class="glossary-section-title" id="letter-T">T</h2>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Tag</span><span class="glossary-term-en">Tag</span></div>
+          <p class="glossary-term-def">GameObject'i string ile etiketleme. <code>CompareTag("Player")</code> ile filtrelemek tipiktir.</p>
+          <a href="03-gameobject-component.html" class="glossary-term-link">→ Bölüm 03</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Terrain</span><span class="glossary-term-en">Terrain</span></div>
+          <p class="glossary-term-def">Yükseklik haritası tabanlı, paint ile dokulanabilen arazi sistemi. Ağaç ve detay objeleri de barındırır.</p>
+          <a href="17-terrain.html" class="glossary-term-link">→ Bölüm 17</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">TextMeshPro</span><span class="glossary-term-en">TextMeshPro</span></div>
+          <p class="glossary-term-def">Unity'nin önerilen text sistemi. SDF tabanlı, keskin yazı ve rich text desteği sağlar.</p>
+          <a href="09-ui.html" class="glossary-term-link">→ Bölüm 09</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Time.timeScale</span><span class="glossary-term-en">Time.timeScale</span></div>
+          <p class="glossary-term-def">Tüm Update ve fizik adımlarının hızını belirleyen çarpan. 0 = duraklat, 0.5 = yavaş çekim.</p>
+          <a href="06-transform-vector.html" class="glossary-term-link">→ Bölüm 06</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Timeline</span><span class="glossary-term-en">Timeline</span></div>
+          <p class="glossary-term-def">Sahne içi sinematik ve sequence'ları düzenlemek için track-bazlı editor.</p>
+          <a href="19-timeline.html" class="glossary-term-link">→ Bölüm 19</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Tonemapping</span><span class="glossary-term-en">Tonemapping</span></div>
+          <p class="glossary-term-def">HDR render sonucunu ekranın LDR aralığına dönüştüren post-process. ACES filmik bir standart.</p>
+          <a href="21-urp-hdrp.html" class="glossary-term-link">→ Bölüm 21</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Transform</span><span class="glossary-term-en">Transform</span></div>
+          <p class="glossary-term-def">Bir GameObject'in Position, Rotation ve Scale değerlerini taşıyan, asla kaldırılamayan component.</p>
+          <a href="06-transform-vector.html" class="glossary-term-link">→ Bölüm 06</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Trigger</span><span class="glossary-term-en">Trigger Collider</span></div>
+          <p class="glossary-term-def">Fiziksel çarpışma yapmayan ama içine giren collider'ı bildiren collider modu (Is Trigger).</p>
+          <a href="08-physics.html" class="glossary-term-link">→ Bölüm 08</a>
+        </div>
+      </div>
+
+      <div class="glossary-section" data-letter="U">
+        <h2 class="glossary-section-title" id="letter-U">U</h2>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Unity Hub</span><span class="glossary-term-en">Unity Hub</span></div>
+          <p class="glossary-term-def">Editor versiyonlarını ve projeleri yöneten, Unity'yi açmadan önce kullandığın launcher.</p>
+          <a href="01-kurulum.html" class="glossary-term-link">→ Bölüm 01</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Unity Personal</span><span class="glossary-term-en">Unity Personal</span></div>
+          <p class="glossary-term-def">Belirli ciro/finans eşiğinin altındaki bireyler ve şirketler için ücretsiz Unity lisansı.</p>
+          <a href="01-kurulum.html" class="glossary-term-link">→ Bölüm 01</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">UnityEngine.Pool</span><span class="glossary-term-en">UnityEngine.Pool</span></div>
+          <p class="glossary-term-def">Unity'nin yerleşik object pool API'si. <code>ObjectPool&lt;T&gt;</code> sınıfı sağlar.</p>
+          <a href="26-performance.html" class="glossary-term-link">→ Bölüm 26</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">UnityEvent</span><span class="glossary-term-en">UnityEvent</span></div>
+          <p class="glossary-term-def">Inspector'dan kalıcı listener atanabilen serializable event tipi. Button OnClick burayı kullanır.</p>
+          <a href="09-ui.html" class="glossary-term-link">→ Bölüm 09</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Update</span><span class="glossary-term-en">Update</span></div>
+          <p class="glossary-term-def">Her frame'de bir kere çağrılan en sık kullanılan lifecycle metodu. Input okuma ve kamera/UI burada yapılır.</p>
+          <a href="05-monobehaviour-lifecycle.html" class="glossary-term-link">→ Bölüm 05</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">URP</span><span class="glossary-term-en">Universal Render Pipeline</span></div>
+          <p class="glossary-term-def">Mobilden konsola kadar geniş yelpazeyi hedefleyen Scriptable Render Pipeline. Yeni projeler için varsayılan öneri.</p>
+          <a href="21-urp-hdrp.html" class="glossary-term-link">→ Bölüm 21</a>
+        </div>
+      </div>
+
+      <div class="glossary-section" data-letter="V">
+        <h2 class="glossary-section-title" id="letter-V">V</h2>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Vector2</span><span class="glossary-term-en">Vector2</span></div>
+          <p class="glossary-term-def">İki bileşenli (X, Y) sayı yapısı. UI pozisyonları ve 2B oyunlar için.</p>
+          <a href="06-transform-vector.html" class="glossary-term-link">→ Bölüm 06</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Vector3</span><span class="glossary-term-en">Vector3</span></div>
+          <p class="glossary-term-def">Üç bileşenli (X, Y, Z) sayı yapısı. Konum, hız ve yön için en sık kullanılan tip.</p>
+          <a href="06-transform-vector.html" class="glossary-term-link">→ Bölüm 06</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">VFX Graph</span><span class="glossary-term-en">Visual Effect Graph</span></div>
+          <p class="glossary-term-def">GPU üzerinde çalışan, milyonlarca parçacığı kaldırabilen modern VFX sistemi.</p>
+          <a href="13-particle-vfx.html" class="glossary-term-link">→ Bölüm 13</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Virtual Camera</span><span class="glossary-term-en">Cinemachine Virtual Camera</span></div>
+          <p class="glossary-term-def">Cinemachine'in sahnede yer kaplayan ama gerçek kamerayı yöneten sanal kamerası (vcam).</p>
+          <a href="18-cinemachine.html" class="glossary-term-link">→ Bölüm 18</a>
+        </div>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">Volume</span><span class="glossary-term-en">Volume</span></div>
+          <p class="glossary-term-def">Post-processing profilini sahneye uygulayan component. Global veya local olabilir.</p>
+          <a href="21-urp-hdrp.html" class="glossary-term-link">→ Bölüm 21</a>
+        </div>
+      </div>
+
+      <div class="glossary-section" data-letter="W">
+        <h2 class="glossary-section-title" id="letter-W">W</h2>
+        <div class="glossary-term">
+          <div class="glossary-term-head"><span class="glossary-term-name">World Space</span><span class="glossary-term-en">World Space</span></div>
+          <p class="glossary-term-def">Sahnenin global koordinat sistemi. <code>transform.position</code> burayı verir; <code>localPosition</code> parent-relative'tir.</p>
+          <a href="06-transform-vector.html" class="glossary-term-link">→ Bölüm 06</a>
+        </div>
+      </div>
+
+    </div>
+
+    <script>
+    (function() {
+      const letters = ['A','B','C','D','E','F','G','H','I','J','L','M','N','O','P','Q','R','S','T','U','V','W'];
+      const container = document.getElementById('glossary-letters');
+      letters.forEach(L => {
+        const a = document.createElement('a');
+        a.className = 'glossary-letter';
+        a.href = '#letter-' + L;
+        a.textContent = L;
+        container.appendChild(a);
+      });
+
+      const search = document.getElementById('glossary-search');
+      search.addEventListener('input', function() {
+        const q = this.value.trim().toLowerCase();
+        document.querySelectorAll('.glossary-term').forEach(t => {
+          const text = t.textContent.toLowerCase();
+          t.style.display = (q === '' || text.includes(q)) ? '' : 'none';
+        });
+        document.querySelectorAll('.glossary-section').forEach(sec => {
+          const visible = sec.querySelectorAll('.glossary-term:not([style*="display: none"])').length;
+          sec.style.display = visible > 0 ? '' : 'none';
+        });
+      });
+    })();
+    </script>
+
+  </div>
+</main>
+<script src="../js/progress.js?v=11"></script>
+<script src="../js/quiz.js?v=11"></script>
+<script src="../js/toc.js?v=11"></script>
+<script src="../js/main.js?v=11"></script>
+</body>
+</html>

@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProBuilder — UnityAkademi</title>
+  <meta name="description" content="Unity&#x27;nin in-editor 3D modelleme aracı — Cube, Stair, Element Modes (Vertex/Edge/Face), Extrude, Inset, Polybrush — Bölüm 16.">
+  <meta name="theme-color" content="#fa7d19">
+  <link rel="manifest" href="../manifest.json">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="ProBuilder">
+  <meta property="og:description" content="Unity&#x27;nin in-editor 3D modelleme aracı — Cube, Stair, Element Modes (Vertex/Edge/Face), Extrude, Inset, Polybrush — Bölüm 16.">
+  <meta property="og:image" content="../og-image.svg">
+  <meta property="og:site_name" content="UnityAkademi">
+  <meta property="og:locale" content="tr_TR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ProBuilder">
+  <meta name="twitter:description" content="Unity&#x27;nin in-editor 3D modelleme aracı — Cube, Stair, Element Modes (Vertex/Edge/Face), Extrude, Inset, Polybrush — Bölüm 16.">
+  <meta name="twitter:image" content="../og-image.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="../css/variables.css?v=11">
+  <link rel="stylesheet" href="../css/reset.css?v=11">
+  <link rel="stylesheet" href="../css/layout.css?v=11">
+  <link rel="stylesheet" href="../css/components.css?v=11">
+  <link rel="stylesheet" href="../css/content.css?v=11">
+  <link rel="stylesheet" href="../css/visuals.css?v=11">
+  <link rel="stylesheet" href="../css/extras.css?v=11">
+  <link rel="stylesheet" href="../css/responsive.css?v=11">
+</head>
+<body>
+<button class="nav-hamburger" id="navHamburger" aria-label="Menüyü aç">
+  <i class="ti ti-menu-2"></i>
+</button>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a href="../index.html" class="sidebar-brand">
+      <div class="sidebar-brand-icon"><i class="ti ti-home-2"></i></div>
+      <div class="sidebar-brand-text">
+        <span class="sidebar-brand-name">Ana Sayfa</span>
+        <span class="sidebar-brand-sub">UnityAkademi</span>
+      </div>
+    </a>
+    <button class="mobile-toggle" aria-label="Menü"><i class="ti ti-x"></i></button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-group">
+      <div class="nav-group-title">Temeller</div>
+      <a href="01-kurulum.html" class="nav-link" data-section="s1"><i class="ti ti-download"></i><span class="nav-link-text">Kurulum & İlk Bakış</span><span class="nav-link-num">01</span></a>
+      <a href="02-arayuz.html" class="nav-link" data-section="s2"><i class="ti ti-layout-board"></i><span class="nav-link-text">Editor Arayüzü</span><span class="nav-link-num">02</span></a>
+      <a href="03-gameobject-component.html" class="nav-link" data-section="s3"><i class="ti ti-cube"></i><span class="nav-link-text">GameObject & Component</span><span class="nav-link-num">03</span></a>
+      <a href="04-csharp-temelleri.html" class="nav-link" data-section="s4"><i class="ti ti-code"></i><span class="nav-link-text">C# Temelleri</span><span class="nav-link-num">04</span></a>
+      <a href="05-monobehaviour-lifecycle.html" class="nav-link" data-section="s5"><i class="ti ti-refresh"></i><span class="nav-link-text">MonoBehaviour Lifecycle</span><span class="nav-link-num">05</span></a>
+      <a href="06-transform-vector.html" class="nav-link" data-section="s6"><i class="ti ti-arrows-move"></i><span class="nav-link-text">Transform & Vector3</span><span class="nav-link-num">06</span></a>
+      <a href="07-input.html" class="nav-link" data-section="s7"><i class="ti ti-keyboard"></i><span class="nav-link-text">Input Sistemi</span><span class="nav-link-num">07</span></a>
+      <a href="08-physics.html" class="nav-link" data-section="s8"><i class="ti ti-atom"></i><span class="nav-link-text">Physics</span><span class="nav-link-num">08</span></a>
+      <a href="09-ui.html" class="nav-link" data-section="s9"><i class="ti ti-layout-grid"></i><span class="nav-link-text">UI Sistemi</span><span class="nav-link-num">09</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Görsel & Asset</div>
+      <a href="10-material-shader.html" class="nav-link" data-section="s10"><i class="ti ti-palette"></i><span class="nav-link-text">Material & Shader</span><span class="nav-link-num">10</span></a>
+      <a href="11-asset-import.html" class="nav-link" data-section="s11"><i class="ti ti-folder"></i><span class="nav-link-text">Asset Import</span><span class="nav-link-num">11</span></a>
+      <a href="12-animation.html" class="nav-link" data-section="s12"><i class="ti ti-bounce-right"></i><span class="nav-link-text">Animation</span><span class="nav-link-num">12</span></a>
+      <a href="13-particle-vfx.html" class="nav-link" data-section="s13"><i class="ti ti-sparkles"></i><span class="nav-link-text">Particle & VFX Graph</span><span class="nav-link-num">13</span></a>
+      <a href="14-lighting.html" class="nav-link" data-section="s14"><i class="ti ti-bulb"></i><span class="nav-link-text">Lighting</span><span class="nav-link-num">14</span></a>
+      <a href="15-audio.html" class="nav-link" data-section="s15"><i class="ti ti-volume"></i><span class="nav-link-text">Audio</span><span class="nav-link-num">15</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Sistemler</div>
+      <a href="16-probuilder.html" class="nav-link active" data-section="s16"><i class="ti ti-3d-cube-sphere"></i><span class="nav-link-text">ProBuilder</span><span class="nav-link-num">16</span></a>
+      <a href="17-terrain.html" class="nav-link" data-section="s17"><i class="ti ti-mountain"></i><span class="nav-link-text">Terrain</span><span class="nav-link-num">17</span></a>
+      <a href="18-cinemachine.html" class="nav-link" data-section="s18"><i class="ti ti-camera"></i><span class="nav-link-text">Cinemachine</span><span class="nav-link-num">18</span></a>
+      <a href="19-timeline.html" class="nav-link" data-section="s19"><i class="ti ti-timeline"></i><span class="nav-link-text">Timeline</span><span class="nav-link-num">19</span></a>
+      <a href="20-navmesh.html" class="nav-link" data-section="s20"><i class="ti ti-route"></i><span class="nav-link-text">NavMesh & AI</span><span class="nav-link-num">20</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">İleri Seviye</div>
+      <a href="21-urp-hdrp.html" class="nav-link" data-section="s21"><i class="ti ti-bolt"></i><span class="nav-link-text">URP, HDRP & Unity 6</span><span class="nav-link-num">21</span></a>
+      <a href="22-new-input.html" class="nav-link" data-section="s22"><i class="ti ti-device-gamepad-2"></i><span class="nav-link-text">New Input System</span><span class="nav-link-num">22</span></a>
+      <a href="23-save-menu.html" class="nav-link" data-section="s23"><i class="ti ti-device-floppy"></i><span class="nav-link-text">Save & Menü</span><span class="nav-link-num">23</span></a>
+      <a href="24-build.html" class="nav-link" data-section="s24"><i class="ti ti-package-export"></i><span class="nav-link-text">Build & Yayınlama</span><span class="nav-link-num">24</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Profesyonel</div>
+      <a href="25-csharp-ileri.html" class="nav-link" data-section="s25"><i class="ti ti-brackets-contain"></i><span class="nav-link-text">C# İleri</span><span class="nav-link-num">25</span></a>
+      <a href="26-performance.html" class="nav-link" data-section="s26"><i class="ti ti-gauge"></i><span class="nav-link-text">Performance</span><span class="nav-link-num">26</span></a>
+      <a href="27-yol-haritasi.html" class="nav-link" data-section="s27"><i class="ti ti-map-2"></i><span class="nav-link-text">Yol Haritası</span><span class="nav-link-num">27</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Pratik</div>
+      <a href="projects.html" class="nav-link nav-link-extra" data-section="x-projects"><i class="ti ti-rocket"></i><span class="nav-link-text">Projeler</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Ek Kaynaklar</div>
+      <a href="sozluk.html" class="nav-link nav-link-extra" data-section="x-sozluk"><i class="ti ti-book-2"></i><span class="nav-link-text">Sözlük</span></a>
+      <a href="cheatsheet.html" class="nav-link nav-link-extra" data-section="x-cheatsheet"><i class="ti ti-list-details"></i><span class="nav-link-text">Cheat Sheet</span></a>
+      <a href="sss.html" class="nav-link nav-link-extra" data-section="x-sss"><i class="ti ti-help-circle"></i><span class="nav-link-text">SSS</span></a>
+      <a href="arama.html" class="nav-link nav-link-extra" data-section="x-arama"><i class="ti ti-search"></i><span class="nav-link-text">Arama</span></a>
+      <a href="sertifika.html" class="nav-link nav-link-extra" data-section="x-sertifika"><i class="ti ti-certificate"></i><span class="nav-link-text">Sertifika</span></a>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="kaynaklar.html" class="sidebar-btn"><i class="ti ti-books"></i><span>Kaynaklar</span></a>
+    <a href="iletisim.html" class="sidebar-btn"><i class="ti ti-mail"></i><span>İletişim</span></a>
+  </div>
+</aside>
+<main class="main">
+  <div class="main-content">
+    <nav class="breadcrumb" aria-label="Sayfa konumu">
+      <a href="../index.html"><i class="ti ti-home"></i><span>Ana Sayfa</span></a>
+      <i class="ti ti-chevron-right"></i><span><i class="ti ti-school" style="font-size: 13px; opacity: 0.7; margin-right: 4px;"></i>Sistemler</span>
+      <i class="ti ti-chevron-right"></i><span style="color: var(--primary-light);">ProBuilder</span>
+    </nav>
+
+    <header class="page-header">
+      <div class="page-meta">
+        <span class="page-number">Bölüm 16</span>
+        <span class="page-category">Sistemler</span>
+        <span class="page-duration"><i class="ti ti-clock"></i> ~50 dakika</span>
+      </div>
+      <h1 class="page-title">ProBuilder — Unity'nin içinde modelleme</h1>
+      <p class="page-lead">
+        Bir level prototipi yapmak için her seferinde Blender'a gidip mesh modelleyip Unity'ye geri import etmek ağır bir döngüdür. Unity, bu iş akışını editor içinde çözmek için <strong>ProBuilder</strong>'ı sunar — duvar, koridor, merdiven, kapı, tüm seviye geometrisini Unity içinde modelleyip anında oyunda görebileceğin bir araç.
+      </p>
+    </header>
+
+    <section class="topic-section">
+      <div class="topic-header">
+        <span class="topic-number">16.1</span>
+        <h2 class="topic-title">ProBuilder nedir, neden kullanılır?</h2>
+      </div>
+      <div class="topic-content">
+        <p>
+          ProBuilder, Unity'nin resmi <strong>in-editor 3D modelleme</strong> paketidir. Maya/Blender kadar kapsamlı değildir; ama level prototiplemek, basit yapısal mesh'ler oluşturmak, hızlı iteratif tasarım yapmak için biçilmiş kaftandır.
+        </p>
+
+        <div class="info-box">
+          <div class="info-box-icon"><i class="ti ti-bulb"></i></div>
+          <div class="info-box-body">
+            <strong>Whitebox (greybox) tasarım:</strong> Oyunun level'larını ilk önce dokusuz, beyaz/gri prototip mesh'lerle inşa etme tekniği. Önce gameplay akar, geometri çalışır mı bakılır; sonra sanatçılar üzerine detaylı modelleri ekler. ProBuilder bu için <em>standart</em> Unity aracıdır.
+          </div>
+        </div>
+
+        <h4>ProBuilder'ı yükle</h4>
+        <div class="step-list">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-body"><strong>Window → Package Manager</strong> aç.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-body">Sol üstte <strong>Unity Registry</strong> seç.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-body">Arama: <em>ProBuilder</em> → <strong>Install</strong> tıkla.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div class="step-body"><strong>Tools → ProBuilder → ProBuilder Window</strong>'u aç. Sahnenin üstünde gri bir panel belirir.</div>
+          </div>
+        </div>
+
+        <h4>ProBuilder kavramları</h4>
+        <div class="check-list">
+          <div class="check-item"><i class="ti ti-circle-check"></i><span><strong>ProBuilder Mesh:</strong> ProBuilder ile oluşturulmuş, düzenlenebilir mesh. Normal Unity meshe'ye dönüştürülebilir.</span></div>
+          <div class="check-item"><i class="ti ti-circle-check"></i><span><strong>Element Modes:</strong> Vertex, Edge, Face — Maya/Blender mantığında.</span></div>
+          <div class="check-item"><i class="ti ti-circle-check"></i><span><strong>ProBuilderize:</strong> Mevcut bir mesh'i ProBuilder ile düzenlenebilir hale çevirme.</span></div>
+          <div class="check-item"><i class="ti ti-circle-check"></i><span><strong>Polybrush:</strong> ProBuilder'ın kardeş paketi — vertex boyama ve organik şekillendirme.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="topic-section">
+      <div class="topic-header">
+        <span class="topic-number">16.2</span>
+        <h2 class="topic-title">İlk şekillerin — New Shape penceresi</h2>
+      </div>
+      <div class="topic-content">
+        <p>
+          ProBuilder Window'da <strong>New Shape</strong>'e tıkla. 15+ hazır şekil seçeneği gelir:
+        </p>
+
+        <div class="check-list">
+          <div class="check-item"><i class="ti ti-circle-check"></i><span><strong>Cube:</strong> Klasik küp.</span></div>
+          <div class="check-item"><i class="ti ti-circle-check"></i><span><strong>Plane:</strong> Düzlem — zemin, duvar.</span></div>
+          <div class="check-item"><i class="ti ti-circle-check"></i><span><strong>Stair:</strong> Merdiven — basamak sayısı, derinlik, yükseklik ayarlanır.</span></div>
+          <div class="check-item"><i class="ti ti-circle-check"></i><span><strong>Cylinder:</strong> Silindir — sütun, vazolar için.</span></div>
+          <div class="check-item"><i class="ti ti-circle-check"></i><span><strong>Door:</strong> Kapı şekli — açıklığı önceden hesaplanmış.</span></div>
+          <div class="check-item"><i class="ti ti-circle-check"></i><span><strong>Arch:</strong> Kemer — kalıp olarak güzel.</span></div>
+          <div class="check-item"><i class="ti ti-circle-check"></i><span><strong>Sphere, Cone, Torus, Pipe, Sprite</strong> ve daha fazlası.</span></div>
+        </div>
+
+        <h4>Cube ile başla</h4>
+        <div class="step-list">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-body"><strong>New Shape → Cube</strong> seç. Boyutlarını gir (X=10, Y=3, Z=10).</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-body">Sahnede mouse'unla yer seç ve sürükle — küp orada büyür.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-body">Tatmin olunca tıkla, küp oluşturulur. Hierarchy'de <em>Cube</em> belirir.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div class="step-body">Inspector'da <strong>Pro Builder Mesh</strong> component'i göreceksin.</div>
+          </div>
+        </div>
+
+        <div class="info-box">
+          <div class="info-box-icon"><i class="ti ti-info-circle"></i></div>
+          <div class="info-box-body">
+            <strong>Grid Snap:</strong> Sahne üstünde <em>Edit → Grid and Snap → Grid Settings</em>'ten 1m grid aktif et. Tüm hareketler ızgaraya snap'lenir; bu, mimari yapıların hizalı kalmasını sağlar.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="topic-section">
+      <div class="topic-header">
+        <span class="topic-number">16.3</span>
+        <h2 class="topic-title">Element Modes — Vertex, Edge, Face</h2>
+      </div>
+      <div class="topic-content">
+        <p>
+          ProBuilder Mesh seçili iken klavyeden 4 mode'a geçebilirsin:
+        </p>
+
+        <div class="check-list">
+          <div class="check-item"><i class="ti ti-circle-check"></i><span><strong>H</strong> — Object Mode (varsayılan): tüm mesh seçili.</span></div>
+          <div class="check-item"><i class="ti ti-circle-check"></i><span><strong>G</strong> — Vertex Mode: tek tek köşeleri seçer.</span></div>
+          <div class="check-item"><i class="ti ti-circle-check"></i><span><strong>J</strong> — Edge Mode: kenarları seçer.</span></div>
+          <div class="check-item"><i class="ti ti-circle-check"></i><span><strong>K</strong> — Face Mode: yüzleri seçer.</span></div>
+        </div>
+
+        <div class="info-box">
+          <div class="info-box-icon"><i class="ti ti-bulb"></i></div>
+          <div class="info-box-body">
+            <strong>Klavye kısayolu tip:</strong> Bu 4 tuşu (H/G/J/K) sürekli kullanacaksın. Maya ve Blender'dan farklı; ezberle.
+          </div>
+        </div>
+
+        <h4>Şu örneği dene:</h4>
+        <div class="step-list">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-body">Bir Cube oluştur.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-body"><strong>K</strong> ile Face Mode'a geç. Üst yüzü tıkla — kırmızı seçilir.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-body">ProBuilder Window'da <strong>Extrude Faces</strong>'e tıkla. Yüz 1m yükselir.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div class="step-body">Birkaç kez daha extrude yap; bir kule gibi yükselen mimari ortaya çıkar.</div>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <div class="info-box-icon"><i class="ti ti-alert-triangle"></i></div>
+          <div class="info-box-body">
+            <strong>Element seçildiğinde Move/Rotate/Scale gizmosu</strong> sadece seçili elemanlara uygulanır. Yani Face Mode'da bir yüzü seçip W (Move) ile çekersen, sadece o yüz hareket eder — mesh deforme olur. Bu, modellemenin temelidir.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="mini-checkpoint">
+      <div class="mini-checkpoint-icon"><i class="ti ti-flag"></i></div>
+      <div class="mini-checkpoint-body">
+        <strong>Mini Checkpoint — Buraya kadar:</strong>
+        <ul>
+          <li>ProBuilder paketini Package Manager'dan yükledin.</li>
+          <li>New Shape ile Cube, Stair, Cylinder oluşturmayı biliyorsun.</li>
+          <li>H / G / J / K kısayollarıyla Object / Vertex / Edge / Face mode'larına geçiyorsun.</li>
+          <li>Face Mode'da Extrude işlemini denediğinde mesh'in büyüdüğünü gördün.</li>
+        </ul>
+      </div>
+    </div>
+
+    <section class="topic-section">
+      <div class="topic-header">
+        <span class="topic-number">16.4</span>
+        <h2 class="topic-title">Temel modelleme operasyonları</h2>
+      </div>
+      <div class="topic-content">
+        <p>
+          ProBuilder, gerçek bir 3D modelleme yazılımı kadar değil ama level tasarımı için fazlasıyla yeterli operasyonlar sunar. Aşağıdakileri sıkça kullanacaksın:
+        </p>
+
+        <h4>Extrude — Bir yüzü dışarı/içeri itme</h4>
+        <p>
+          Face Mode'da yüz seç → <strong>Extrude Faces</strong>. Yüz ileri itilir; arada yeni yan duvarlar oluşur. Bir kapının çerçevesi, balkon, çıkıntı, hep böyle yapılır.
+        </p>
+
+        <h4>Inset — Bir yüzün içine küçük yüz</h4>
+        <p>
+          <strong>Inset Faces</strong> seçili yüzün içine ufak bir yüz çizer; sonra onu extrude edip pencere boşluğu, kapı açıklığı oluşturabilirsin.
+        </p>
+
+        <h4>Bevel — Kenarı yumuşat</h4>
+        <p>
+          Edge Mode'da kenar seç → <strong>Bevel Edges</strong>. Sert kenarlar yumuşar; modern mimari, mobilya gibi şeyler için şarttır.
+        </p>
+
+        <h4>Bridge — İki yüzü bağla</h4>
+        <p>
+          İki paralel yüz seç → <strong>Bridge Edges/Faces</strong>. Aralarına bir tüp inşa edilir. İki binayı bir köprüyle bağlamak için.
+        </p>
+
+        <h4>Subdivide — Yüzeyi alt-yüzlere böl</h4>
+        <p>
+          <strong>Subdivide Faces</strong> bir yüzü 4'e böler. Daha fazla detay verirken kullanılır — orta noktadan extrude için.
+        </p>
+
+        <h4>Merge / Weld Vertices</h4>
+        <p>
+          İki yakın vertex'i seç → <strong>Weld Vertices</strong>. Aynı noktada birleşirler — açık geometriyi kapatmak için.
+        </p>
+
+        <h4>Flip Normals</h4>
+        <p>
+          Bir yüz "ters" görünüyorsa (içeriden ışık alıyorsa) Face Mode'da seç → <strong>Flip Face Normals</strong>. Normal yönü ters çevrilir.
+        </p>
+
+        <h4>Tüm operasyonları görmek için</h4>
+        <p>
+          ProBuilder Window menüsü <em>Selection, Shape, Object, Geometry, Material, UV</em> sekmelerine bölünmüştür. <em>Geometry</em> sekmesinde tüm vertex/edge/face operasyonlarını bulursun.
+        </p>
+      </div>
+    </section>
+
+    <section class="topic-section">
+      <div class="topic-header">
+        <span class="topic-number">16.5</span>
+        <h2 class="topic-title">Bir oda inşa et — adım adım</h2>
+      </div>
+      <div class="topic-content">
+        <p>
+          Tek bir Cube'dan bir oda yapalım. Kapısı ve penceresi olan bir mekân:
+        </p>
+
+        <div class="step-list">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-body"><strong>New Shape → Cube</strong>, boyut X=8, Y=3, Z=6. Bu oda kütlesi.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-body"><strong>K</strong> ile Face Mode. Üst yüzü seç, <strong>Delete Faces</strong>. Tavan kaldırıldı (sahne içinden bakacağız).</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-body">Şimdi mesh'i "ters çevir" gerekecek. Tüm yüzleri seç (Ctrl+A) → <strong>Flip Normals</strong>. Artık içeri bakınca duvarlar görünüyor.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div class="step-body">Bir duvarın yüzünü Face Mode'da seç → <strong>Inset Faces</strong> ile küçük bir kapı şekli yap.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">5</div>
+            <div class="step-body">Inset edilmiş yüzü seç → <strong>Delete Faces</strong>. Kapı boşluğu açıldı.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">6</div>
+            <div class="step-body">Başka duvarda Inset → <strong>Delete</strong> ile pencere yap.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">7</div>
+            <div class="step-body">Bir <strong>Stair</strong> objesi ekle, ölçeklendir, oda dışındaki bir alana yerleştir.</div>
+          </div>
+        </div>
+
+        <div class="info-box">
+          <div class="info-box-icon"><i class="ti ti-bulb"></i></div>
+          <div class="info-box-body">
+            <strong>White-box mantalitesi:</strong> Bu aşamada güzellik aranmaz — boyut hissi, oranlar, mekânın oynanabilirliği aranır. Oyunu bu mekânda gerçekten test et; boyutlar yanlışsa <em>şimdi</em> değiştir, sonradan dokuyla kaplandığında çok geç olur.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="topic-section">
+      <div class="topic-header">
+        <span class="topic-number">16.6</span>
+        <h2 class="topic-title">Material &amp; UV — Yüzeyleri kapla</h2>
+      </div>
+      <div class="topic-content">
+        <p>
+          ProBuilder mesh'in her yüzüne ayrı material atayabilirsin. Bu, white-box aşamasında "burası taş, burası ahşap" demek için işe yarar.
+        </p>
+
+        <h4>Material atama</h4>
+        <div class="step-list">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-body">K (Face Mode) ile bir veya birden çok yüz seç.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-body">Project'ten bir Material'ı seçili yüzlere sürükle. Sadece o yüzler bu materyali alır.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-body">Material değişimi anlık — anında sahnede görürsün.</div>
+          </div>
+        </div>
+
+        <h4>UV Editor</h4>
+        <p>
+          <strong>Tools → ProBuilder → UV Editor</strong> ile her yüzün UV koordinatlarını düzenleyebilirsin. ProBuilder'ın iki UV modu vardır:
+        </p>
+        <div class="check-list">
+          <div class="check-item"><i class="ti ti-circle-check"></i><span><strong>Auto UV:</strong> Otomatik düzenleme. Bir yüzü Move/Rotate/Scale ettiğinde UV de bununla beraber güncellenir. White-box için ideal.</span></div>
+          <div class="check-item"><i class="ti ti-circle-check"></i><span><strong>Manual UV:</strong> El ile UV ayarlama. Doku detayı kritik olduğunda gerekli — gerçek modelleme yazılımı tarzı.</span></div>
+        </div>
+
+        <div class="warning-box">
+          <div class="info-box-icon"><i class="ti ti-alert-triangle"></i></div>
+          <div class="info-box-body">
+            <strong>Auto UV + Tiling:</strong> Auto UV modunda dokular sürekli tile'lanır (tekrar eder). Bir taş duvar dokusu 2 metrede bir tekrarlamayı sürdürür. Manual UV'de tekrarlamayı sen ayarlarsın.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="topic-section">
+      <div class="topic-header">
+        <span class="topic-number">16.7</span>
+        <h2 class="topic-title">ProBuilderize &amp; Export</h2>
+      </div>
+      <div class="topic-content">
+        <h4>ProBuilderize — Mevcut mesh'i dönüştür</h4>
+        <p>
+          Eğer Asset Store'dan veya Blender'dan gelen bir mesh'i ProBuilder ile düzenlemek istersen:
+        </p>
+        <div class="step-list">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-body">Mesh'i seç.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-body"><strong>Tools → ProBuilder → Repair → ProBuilderize</strong>.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-body">Mesh artık ProBuilder Mesh'e dönüşür, Vertex/Edge/Face Mode kullanılabilir.</div>
+          </div>
+        </div>
+
+        <h4>Export — Blender'a aktar</h4>
+        <p>
+          Bir ProBuilder mesh'i Blender'da daha detaylı işlemek için <strong>Tools → ProBuilder → Export → Export OBJ</strong> kullan. .obj dosyası diskte oluşur, Blender'a import edebilirsin.
+        </p>
+
+        <h4>Production-ready'e geçiş</h4>
+        <p>
+          ProBuilder modelleri yayına çıkacak final mesh'ler değildir — onlar prototip için. Production'da çoğu studio şu adımları izler:
+        </p>
+        <div class="check-list">
+          <div class="check-item"><i class="ti ti-circle-check"></i><span>ProBuilder ile white-box level'ı yap, gameplay testlerini geç.</span></div>
+          <div class="check-item"><i class="ti ti-circle-check"></i><span>White-box ölçülerini sanatçılara ver (referans).</span></div>
+          <div class="check-item"><i class="ti ti-circle-check"></i><span>Sanatçılar Maya/Blender'da detaylı mesh'ler hazırlar.</span></div>
+          <div class="check-item"><i class="ti ti-circle-check"></i><span>Detaylı modeller Unity'ye import edilir, ProBuilder mesh'leri kaldırılır.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="topic-section">
+      <div class="topic-header">
+        <span class="topic-number">16.8</span>
+        <h2 class="topic-title">Polybrush — Vertex boyama &amp; organik düzenleme</h2>
+      </div>
+      <div class="topic-content">
+        <p>
+          Polybrush, ProBuilder'ın kardeş paketidir — Package Manager'dan ayrıca yüklenir. Sahnedeki mesh'lerin üstüne fırçayla:
+        </p>
+        <div class="check-list">
+          <div class="check-item"><i class="ti ti-circle-check"></i><span><strong>Sculpt:</strong> Vertex'leri yukarı/aşağı iterek arazi yumuşatma.</span></div>
+          <div class="check-item"><i class="ti ti-circle-check"></i><span><strong>Smooth:</strong> Sert geçişleri yumuşat.</span></div>
+          <div class="check-item"><i class="ti ti-circle-check"></i><span><strong>Color Paint:</strong> Vertex color boya. Material'ın bunu kullanması için <em>vertex color</em> destekli shader gerek (URP'da Shader Graph ile yapılır).</span></div>
+          <div class="check-item"><i class="ti ti-circle-check"></i><span><strong>Texture Paint:</strong> Birden çok dokuyu fırça ile karıştırma (mesh blend).</span></div>
+          <div class="check-item"><i class="ti ti-circle-check"></i><span><strong>Place Prefabs:</strong> Ağaç, çalı, taş prefab'ları fırça ile sahneye scatter.</span></div>
+        </div>
+
+        <div class="info-box">
+          <div class="info-box-icon"><i class="ti ti-bulb"></i></div>
+          <div class="info-box-body">
+            <strong>Place Prefabs</strong> özelliği bir orman yapmak için inanılmaz hızlıdır. 50 farklı ağacın prefab'larını listele, fırçayla sahneye sürtüştür — her tıklamada rastgele bir ağaç rastgele rotasyonla yerleştirilir.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="real-world-box">
+      <div class="real-world-icon"><i class="ti ti-world"></i></div>
+      <div class="real-world-body">
+        <div class="real-world-title">Gerçek Dünya — Hyper Light Drifter prototipi</div>
+        <p>
+          Heart Machine studio Hyper Light Drifter'ın seviyelerini önce ProBuilder ile inşa etti. Beyaz duvarlar, basit kutular, hiçbir doku — sadece geometri. Oyuncu hızını, sıçrama mesafelerini, çatışma alanlarını bu beyaz dünyada test ettiler.
+        </p>
+        <p>
+          Gameplay donduktan sonra sanatçılar piksel-perfect mesh'leri Blender'da yaptılar, white-box geometrisinin ölçülerini birebir takip ettiler. Sonuç: oyunun mekânsal hissiyatı tasarım aşamasında kilitlenmişti, görsel sadece üstüne giydirildi. Pek çok modern indie ve AA studio aynı iş akışını izler.
+        </p>
+      </div>
+    </div>
+
+    <section class="practice-section">
+      <h2 class="practice-title"><i class="ti ti-tools"></i> Pratik Projeler</h2>
+      <p class="practice-intro">ProBuilder modelleme alışkanlık ister. Aşağıdaki üç projeyle pratiği oturt.</p>
+
+      <div class="project-card">
+        <div class="project-num">PROJE 16.1</div>
+        <h3 class="project-title">Bir oda + kapı + pencere</h3>
+        <p class="project-goal">
+          <strong>Hedef:</strong> Içeri girilebilir bir odayı tek başına bir mesh'ten yap. Bir kapı boşluğu, iki pencere açıklığı olsun.
+        </p>
+        <div class="project-check">
+          <div class="check-item"><i class="ti ti-square"></i><span>Cube oluştur, tavanı sil, normal'ları flip et.</span></div>
+          <div class="check-item"><i class="ti ti-square"></i><span>Bir duvarın yüzünde Inset → Delete ile kapı aç.</span></div>
+          <div class="check-item"><i class="ti ti-square"></i><span>Başka duvarda iki pencere yap.</span></div>
+          <div class="check-item"><i class="ti ti-square"></i><span>İçeri farklı material at: zemin ahşap, duvar tuğla.</span></div>
+          <div class="check-item"><i class="ti ti-square"></i><span>İçerisinde First Person Controller ile dolaş, ölçülerin doğruluğunu test et.</span></div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">PROJE 16.2</div>
+        <h3 class="project-title">Çok katlı bir bina</h3>
+        <p class="project-goal">
+          <strong>Hedef:</strong> 3 katlı, merdivenli bir bina yap. Katlar arası merdiven, her katta odalar.
+        </p>
+        <div class="project-check">
+          <div class="check-item"><i class="ti ti-square"></i><span>Zemin kat oda (Proje 16.1'i klonla).</span></div>
+          <div class="check-item"><i class="ti ti-square"></i><span><strong>New Shape → Stair</strong> ile merdiven oluştur, boyutlandır.</span></div>
+          <div class="check-item"><i class="ti ti-square"></i><span>2. ve 3. katlarda farklı yerleşim, en az bir balkon çıkıntı (Extrude).</span></div>
+          <div class="check-item"><i class="ti ti-square"></i><span>Çatıyı düz olarak bırak, üzerine bir Stair çıkartma ekleyebilirsin.</span></div>
+          <div class="check-item"><i class="ti ti-square"></i><span>NavMesh Bake ile binayı AI dolaşabilir hale getir (Bölüm 20).</span></div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">PROJE 16.3</div>
+        <h3 class="project-title">Asset Store mesh'i ProBuilderize</h3>
+        <p class="project-goal">
+          <strong>Hedef:</strong> Bir Asset Store'dan indirilmiş veya kendi modelinden gelen mesh'i ProBuilder'a çevirip düzenle.
+        </p>
+        <div class="project-check">
+          <div class="check-item"><i class="ti ti-square"></i><span>Asset Store'dan ücretsiz bir basit prop indir (eski bir sandık, masa).</span></div>
+          <div class="check-item"><i class="ti ti-square"></i><span>Mesh'i seç → <strong>Tools → ProBuilder → ProBuilderize</strong>.</span></div>
+          <div class="check-item"><i class="ti ti-square"></i><span>Face Mode'la bir yüz seç, Extrude'la mesh'i deforme et.</span></div>
+          <div class="check-item"><i class="ti ti-square"></i><span>Çalışıyorsa orijinal mesh'ten kopyalanmış UV'ler ne kadar dağıldığını gözlemle.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="practice-section">
+      <h2 class="practice-title"><i class="ti ti-help-circle"></i> Mini Sınav</h2>
+
+      <section class="quiz" id="bolum-quiz">
+  <header class="quiz-header">
+    <div class="quiz-header-icon"><i class="ti ti-help"></i></div>
+    <div class="quiz-header-text">
+      <h2>Bölüm Sonu Sınavı</h2>
+      <span>5 soru</span>
+    </div>
+  </header>
+
+  <article class="quiz-question" id="q16-1">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">01</span>
+      <h3 class="quiz-prompt-text">ProBuilder ile Face Mode'a hangi kısayolla geçilir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">G</button>
+      <button class="quiz-option" data-correct="false">J</button>
+      <button class="quiz-option" data-correct="true">K</button>
+      <button class="quiz-option" data-correct="false">H</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q16-2">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">02</span>
+      <h3 class="quiz-prompt-text">Bir yüzü dışarı itip yan duvarlar oluşturmak için hangi operasyon?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="true">Extrude Faces</button>
+      <button class="quiz-option" data-correct="false">Bevel Edges</button>
+      <button class="quiz-option" data-correct="false">Inset Faces</button>
+      <button class="quiz-option" data-correct="false">Flip Normals</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q16-3">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">03</span>
+      <h3 class="quiz-prompt-text">ProBuilder hangi tip iş akışı için ideal hayatın <em>ilk</em> kullanımındadır?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Karakter modelleme</button>
+      <button class="quiz-option" data-correct="true">White-box level tasarımı</button>
+      <button class="quiz-option" data-correct="false">High-poly sahne render</button>
+      <button class="quiz-option" data-correct="false">UV unwrap (manuel)</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q16-4">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">04</span>
+      <h3 class="quiz-prompt-text">Bir yüze sürüklenmiş Material sadece nereye uygulanır?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Tüm mesh</button>
+      <button class="quiz-option" data-correct="true">Seçili yüze (yüzlere)</button>
+      <button class="quiz-option" data-correct="false">Hiçbir yere — hata</button>
+      <button class="quiz-option" data-correct="false">Mesh'in vertex'lerine</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q16-5">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">05</span>
+      <h3 class="quiz-prompt-text">Vertex boyama ve scatter prefab özelliği hangi pakette?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">ProBuilder</button>
+      <button class="quiz-option" data-correct="true">Polybrush</button>
+      <button class="quiz-option" data-correct="false">Cinemachine</button>
+      <button class="quiz-option" data-correct="false">Shader Graph</button>
+    </div>
+  </article>
+</section>
+    </section>
+
+    <section class="complete-section">
+      <h3 class="complete-title">🎉 Bölüm 16 Tamamlandı!</h3>
+      <p class="complete-msg">ProBuilder ile Unity içinde hızlı 3D modelleme yapmayı öğrendin: prototip seviyeler, blockout ve mesh düzenleme. Bir sonraki bölümde <strong>Terrain</strong> ile geniş açık dünya araziler oluşturacağız.</p>
+      <button class="complete-btn" data-section="s16">
+        <i class="ti ti-circle-check"></i>
+        <span>Bu Bölümü Tamamladım</span>
+      </button>
+      <p class="complete-note">İlerlemen otomatik tarayıcına kaydedilir.</p>
+    </section>
+    <!-- Sayfa Gezinme -->
+    <nav class="page-nav" aria-label="Bölüm gezinme">
+      <a href="15-audio.html" class="page-nav-link prev">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-left"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Önceki Bölüm</div>
+          <div class="page-nav-title">15. Ses Sistemi</div>
+        </div>
+      </a>
+      <a href="17-terrain.html" class="page-nav-link next">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-right"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Sonraki Bölüm</div>
+          <div class="page-nav-title">17. Terrain</div>
+        </div>
+      </a>
+    </nav>
+
+  </div>
+</main>
+<script src="../js/progress.js?v=11"></script>
+<script src="../js/quiz.js?v=11"></script>
+<script src="../js/toc.js?v=11"></script>
+<script src="../js/main.js?v=11"></script>
+</body>
+</html>

@@ -1,0 +1,357 @@
+/* ========================================================
+   UnityAkademi — Responsive
+   Tablet & Mobile breakpoints
+   ======================================================== */
+
+/* ───── TABLET (1024px ve altı) ───── */
+@media (max-width: 1024px) {
+  :root {
+    --sidebar-width: 240px;
+  }
+
+  .main-content {
+    padding: var(--space-10) var(--space-6) var(--space-12);
+  }
+
+  .hero h1 {
+    font-size: var(--fs-4xl);
+  }
+
+  .page-title {
+    font-size: var(--fs-3xl);
+  }
+}
+
+/* ───── MOBILE (768px ve altı) ───── */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform var(--duration-base) var(--ease-out);
+    width: 280px;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .main {
+    margin-left: 0;
+  }
+
+  .mobile-toggle {
+    display: flex;
+  }
+
+  /* Backdrop when sidebar open */
+  body.sidebar-open::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: calc(var(--z-sidebar) - 1);
+    animation: fadeIn 200ms ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .main-content {
+    padding: var(--space-8) var(--space-4) var(--space-10);
+  }
+
+  .hero h1 {
+    font-size: var(--fs-3xl);
+  }
+
+  .hero-lead {
+    font-size: var(--fs-md);
+  }
+
+  .hero-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+  }
+
+  .stat-number {
+    font-size: var(--fs-2xl);
+  }
+
+  .page-title {
+    font-size: var(--fs-2xl);
+  }
+
+  .page-lead {
+    font-size: var(--fs-base);
+  }
+
+  .topic-title {
+    font-size: var(--fs-xl);
+  }
+
+  .topic-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  /* Concept grid */
+  .concept-grid,
+  .feature-grid,
+  .info-grid,
+  .color-swatch-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Page nav */
+  .page-nav {
+    grid-template-columns: 1fr;
+  }
+
+  /* Project card */
+  .project-card {
+    flex-direction: column;
+    padding: var(--space-4);
+  }
+
+  /* Compare table — horizontal scroll */
+  .compare-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  /* Blueprint canvas — horizontal scroll */
+  .bp-canvas {
+    padding: var(--space-4);
+  }
+
+  .bp-flow {
+    flex-wrap: wrap;
+  }
+
+  .code-block {
+    padding: var(--space-4);
+    font-size: 12px;
+  }
+
+  .code-block pre {
+    font-size: 12px;
+  }
+
+  /* Steps */
+  .step-marker {
+    width: 36px;
+  }
+
+  .step-number {
+    width: 28px;
+    height: 28px;
+    font-size: var(--fs-xs);
+  }
+
+  /* Quiz */
+  .quiz-card {
+    padding: var(--space-4);
+  }
+}
+
+/* ───── SMALL MOBILE (480px ve altı) ───── */
+@media (max-width: 480px) {
+  .main-content {
+    padding: var(--space-6) var(--space-3) var(--space-8);
+  }
+
+  .hero h1 {
+    font-size: 30px;
+  }
+
+  .page-title {
+    font-size: var(--fs-2xl);
+  }
+
+  .hero-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-cta .btn {
+    width: 100%;
+  }
+
+  .mobile-toggle {
+    width: 48px;
+    height: 48px;
+    bottom: var(--space-4);
+    right: var(--space-4);
+  }
+}
+
+/* ───── PRINT ───── */
+@media print {
+  .sidebar,
+  .mobile-toggle,
+  .page-nav,
+  .btn-complete {
+    display: none;
+  }
+
+  .main {
+    margin-left: 0;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+}
+
+/* ───── PREFERS REDUCED MOTION ───── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   GLOBAL TAŞMA ÖNLEME (en son yüklenir — kesin kazanır)
+   cs-block stili (kaybolmuştu) + tüm kod/içerik kutularının TOC'a taşmaması
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* cs-block — kod kutusu temel stili (kaybolmuştu) */
+.cs-block {
+  background: #12121c;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin: 16px 0;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+}
+.cs-block pre { margin: 0; background: none; border: none; padding: 0; }
+.cs-block code,
+.cs-block pre code {
+  font-family: var(--font-mono, monospace);
+  font-size: 13px;
+  line-height: 1.6;
+  color: #e2e2ea;
+  white-space: pre;
+}
+/* Kod renklendirme span'leri */
+.cs-block .kw { color: #ff9d4f; }
+.cs-block .type { color: #50e3c2; }
+.cs-block .fn { color: #82aaff; }
+.cs-block .str { color: #c3e88d; }
+.cs-block .cm { color: #6a6a78; font-style: italic; }
+
+/* TÜM kod blokları kutu içinde kaydırılır, asla taşmaz */
+.main-content pre,
+.main-content .cs-block,
+.main-content .code-block,
+.info-box pre, .info-box .cs-block,
+.callout pre, .callout .cs-block {
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Uzun inline kod KESİN sarsın (nowrap'i her durumda ez) */
+/* SADECE inline kod (pre DIŞI) sarsın — pre içindeki kod bloğuna DOKUNMA */
+.main-content :not(pre) > code {
+  white-space: normal !important;
+  overflow-wrap: break-word !important;
+  word-break: break-word !important;
+}
+/* Kod blokları (pre içi) KESİN satır yapısını korur — düz metne dönmez */
+pre code,
+.cs-block pre code,
+.code-block pre code,
+.cs-block pre,
+.code-block pre {
+  white-space: pre !important;
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+}
+
+/* İçerik kutuları main-content'i (TOC sınırını) aşamaz */
+.main-content .info-box,
+.main-content .callout,
+.main-content .project-card,
+.main-content .practice-section,
+.main-content table,
+.main-content .u-table {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+.main-content table, .main-content .u-table {
+  display: block;
+  overflow-x: auto !important;
+}
+
+/* Bitirme bölümü alt notu — soluk, küçük */
+.complete-section .complete-note {
+  font-size: 13px;
+  color: var(--text-tertiary, #7a7a85);
+  margin-top: 14px;
+  opacity: 0.85;
+}
+.complete-section .complete-title { margin-top: 0; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   SORUN C DÜZELTMESİ: warning-box vb. düz paragraf — sütunlara bölünmesin
+   Tüm bilgi kutuları block (flex'i kesin ez), düzgün padding/okunur metin
+   ══════════════════════════════════════════════════════════════════════════ */
+.warning-box,
+.info-box,
+.callout,
+.danger-box,
+.success-box,
+.real-world,
+.highlight-box {
+  display: block !important;
+  padding: 16px 20px !important;
+  margin: 20px 0 !important;
+  border-left-width: 4px !important;
+  border-left-style: solid !important;
+  border-radius: 0 8px 8px 0 !important;
+  line-height: 1.65 !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+/* Kutu içindeki öğeler normal akışta (sütun değil) */
+.warning-box > *,
+.info-box > *,
+.callout > *,
+.danger-box > *,
+.success-box > *,
+.real-world > * {
+  display: revert !important;
+  width: auto !important;
+  flex: none !important;
+}
+/* Kutu içi inline kod normal akar (dikey harf harf değil) */
+.warning-box code,
+.info-box code,
+.callout code,
+.danger-box code,
+.success-box code {
+  display: inline !important;
+  white-space: normal !important;
+  word-break: normal !important;
+}

@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Save &amp;amp; Menü — UnityAkademi</title>
+  <meta name="description" content="PlayerPrefs, JSON, binary, encrypted save, ScriptableObject veri, ana menü, pause menüsü, ayarlar, slot sistemi, autosave, cloud save — Bölüm 23.">
+  <meta name="theme-color" content="#fa7d19">
+  <link rel="manifest" href="../manifest.json">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Save &amp;amp; Menü">
+  <meta property="og:description" content="PlayerPrefs, JSON, binary, encrypted save, ScriptableObject veri, ana menü, pause menüsü, ayarlar, slot sistemi, autosave, cloud save — Bölüm 23.">
+  <meta property="og:image" content="../og-image.svg">
+  <meta property="og:site_name" content="UnityAkademi">
+  <meta property="og:locale" content="tr_TR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Save &amp;amp; Menü">
+  <meta name="twitter:description" content="PlayerPrefs, JSON, binary, encrypted save, ScriptableObject veri, ana menü, pause menüsü, ayarlar, slot sistemi, autosave, cloud save — Bölüm 23.">
+  <meta name="twitter:image" content="../og-image.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="../css/variables.css?v=11">
+  <link rel="stylesheet" href="../css/reset.css?v=11">
+  <link rel="stylesheet" href="../css/layout.css?v=11">
+  <link rel="stylesheet" href="../css/components.css?v=11">
+  <link rel="stylesheet" href="../css/content.css?v=11">
+  <link rel="stylesheet" href="../css/visuals.css?v=11">
+  <link rel="stylesheet" href="../css/extras.css?v=11">
+  <link rel="stylesheet" href="../css/responsive.css?v=11">
+</head>
+<body>
+<button class="nav-hamburger" id="navHamburger" aria-label="Menüyü aç">
+  <i class="ti ti-menu-2"></i>
+</button>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a href="../index.html" class="sidebar-brand">
+      <div class="sidebar-brand-icon"><i class="ti ti-home-2"></i></div>
+      <div class="sidebar-brand-text">
+        <span class="sidebar-brand-name">Ana Sayfa</span>
+        <span class="sidebar-brand-sub">UnityAkademi</span>
+      </div>
+    </a>
+    <button class="mobile-toggle" aria-label="Menü"><i class="ti ti-x"></i></button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-group">
+      <div class="nav-group-title">Temeller</div>
+      <a href="01-kurulum.html" class="nav-link" data-section="s1"><i class="ti ti-download"></i><span class="nav-link-text">Kurulum & İlk Bakış</span><span class="nav-link-num">01</span></a>
+      <a href="02-arayuz.html" class="nav-link" data-section="s2"><i class="ti ti-layout-board"></i><span class="nav-link-text">Editor Arayüzü</span><span class="nav-link-num">02</span></a>
+      <a href="03-gameobject-component.html" class="nav-link" data-section="s3"><i class="ti ti-cube"></i><span class="nav-link-text">GameObject & Component</span><span class="nav-link-num">03</span></a>
+      <a href="04-csharp-temelleri.html" class="nav-link" data-section="s4"><i class="ti ti-code"></i><span class="nav-link-text">C# Temelleri</span><span class="nav-link-num">04</span></a>
+      <a href="05-monobehaviour-lifecycle.html" class="nav-link" data-section="s5"><i class="ti ti-refresh"></i><span class="nav-link-text">MonoBehaviour Lifecycle</span><span class="nav-link-num">05</span></a>
+      <a href="06-transform-vector.html" class="nav-link" data-section="s6"><i class="ti ti-arrows-move"></i><span class="nav-link-text">Transform & Vector3</span><span class="nav-link-num">06</span></a>
+      <a href="07-input.html" class="nav-link" data-section="s7"><i class="ti ti-keyboard"></i><span class="nav-link-text">Input Sistemi</span><span class="nav-link-num">07</span></a>
+      <a href="08-physics.html" class="nav-link" data-section="s8"><i class="ti ti-atom"></i><span class="nav-link-text">Physics</span><span class="nav-link-num">08</span></a>
+      <a href="09-ui.html" class="nav-link" data-section="s9"><i class="ti ti-layout-grid"></i><span class="nav-link-text">UI Sistemi</span><span class="nav-link-num">09</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Görsel & Asset</div>
+      <a href="10-material-shader.html" class="nav-link" data-section="s10"><i class="ti ti-palette"></i><span class="nav-link-text">Material & Shader</span><span class="nav-link-num">10</span></a>
+      <a href="11-asset-import.html" class="nav-link" data-section="s11"><i class="ti ti-folder"></i><span class="nav-link-text">Asset Import</span><span class="nav-link-num">11</span></a>
+      <a href="12-animation.html" class="nav-link" data-section="s12"><i class="ti ti-bounce-right"></i><span class="nav-link-text">Animation</span><span class="nav-link-num">12</span></a>
+      <a href="13-particle-vfx.html" class="nav-link" data-section="s13"><i class="ti ti-sparkles"></i><span class="nav-link-text">Particle & VFX Graph</span><span class="nav-link-num">13</span></a>
+      <a href="14-lighting.html" class="nav-link" data-section="s14"><i class="ti ti-bulb"></i><span class="nav-link-text">Lighting</span><span class="nav-link-num">14</span></a>
+      <a href="15-audio.html" class="nav-link" data-section="s15"><i class="ti ti-volume"></i><span class="nav-link-text">Audio</span><span class="nav-link-num">15</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Sistemler</div>
+      <a href="16-probuilder.html" class="nav-link" data-section="s16"><i class="ti ti-3d-cube-sphere"></i><span class="nav-link-text">ProBuilder</span><span class="nav-link-num">16</span></a>
+      <a href="17-terrain.html" class="nav-link" data-section="s17"><i class="ti ti-mountain"></i><span class="nav-link-text">Terrain</span><span class="nav-link-num">17</span></a>
+      <a href="18-cinemachine.html" class="nav-link" data-section="s18"><i class="ti ti-camera"></i><span class="nav-link-text">Cinemachine</span><span class="nav-link-num">18</span></a>
+      <a href="19-timeline.html" class="nav-link" data-section="s19"><i class="ti ti-timeline"></i><span class="nav-link-text">Timeline</span><span class="nav-link-num">19</span></a>
+      <a href="20-navmesh.html" class="nav-link" data-section="s20"><i class="ti ti-route"></i><span class="nav-link-text">NavMesh & AI</span><span class="nav-link-num">20</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">İleri Seviye</div>
+      <a href="21-urp-hdrp.html" class="nav-link" data-section="s21"><i class="ti ti-bolt"></i><span class="nav-link-text">URP, HDRP & Unity 6</span><span class="nav-link-num">21</span></a>
+      <a href="22-new-input.html" class="nav-link" data-section="s22"><i class="ti ti-device-gamepad-2"></i><span class="nav-link-text">New Input System</span><span class="nav-link-num">22</span></a>
+      <a href="23-save-menu.html" class="nav-link active" data-section="s23"><i class="ti ti-device-floppy"></i><span class="nav-link-text">Save & Menü</span><span class="nav-link-num">23</span></a>
+      <a href="24-build.html" class="nav-link" data-section="s24"><i class="ti ti-package-export"></i><span class="nav-link-text">Build & Yayınlama</span><span class="nav-link-num">24</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Profesyonel</div>
+      <a href="25-csharp-ileri.html" class="nav-link" data-section="s25"><i class="ti ti-brackets-contain"></i><span class="nav-link-text">C# İleri</span><span class="nav-link-num">25</span></a>
+      <a href="26-performance.html" class="nav-link" data-section="s26"><i class="ti ti-gauge"></i><span class="nav-link-text">Performance</span><span class="nav-link-num">26</span></a>
+      <a href="27-yol-haritasi.html" class="nav-link" data-section="s27"><i class="ti ti-map-2"></i><span class="nav-link-text">Yol Haritası</span><span class="nav-link-num">27</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Pratik</div>
+      <a href="projects.html" class="nav-link nav-link-extra" data-section="x-projects"><i class="ti ti-rocket"></i><span class="nav-link-text">Projeler</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Ek Kaynaklar</div>
+      <a href="sozluk.html" class="nav-link nav-link-extra" data-section="x-sozluk"><i class="ti ti-book-2"></i><span class="nav-link-text">Sözlük</span></a>
+      <a href="cheatsheet.html" class="nav-link nav-link-extra" data-section="x-cheatsheet"><i class="ti ti-list-details"></i><span class="nav-link-text">Cheat Sheet</span></a>
+      <a href="sss.html" class="nav-link nav-link-extra" data-section="x-sss"><i class="ti ti-help-circle"></i><span class="nav-link-text">SSS</span></a>
+      <a href="arama.html" class="nav-link nav-link-extra" data-section="x-arama"><i class="ti ti-search"></i><span class="nav-link-text">Arama</span></a>
+      <a href="sertifika.html" class="nav-link nav-link-extra" data-section="x-sertifika"><i class="ti ti-certificate"></i><span class="nav-link-text">Sertifika</span></a>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="kaynaklar.html" class="sidebar-btn"><i class="ti ti-books"></i><span>Kaynaklar</span></a>
+    <a href="iletisim.html" class="sidebar-btn"><i class="ti ti-mail"></i><span>İletişim</span></a>
+  </div>
+</aside>
+<main class="main">
+  <div class="main-content">
+<nav class="breadcrumb" aria-label="Sayfa konumu">
+      <a href="../index.html"><i class="ti ti-home"></i><span>Ana Sayfa</span></a>
+      <i class="ti ti-chevron-right"></i><span><i class="ti ti-school" style="font-size: 13px; opacity: 0.7; margin-right: 4px;"></i>İleri Seviye</span>
+      <i class="ti ti-chevron-right"></i><span style="color: var(--primary-light);">Save & Menu</span>
+    </nav>
+
+<header class="page-header">
+  <span class="chapter-pill">Bölüm 23</span>
+  <h1 class="page-title">Save Sistemi &amp; Menü Tasarımı</h1>
+  <p class="page-subtitle">PlayerPrefs, JSON, ScriptableObject save, binary save, encryption — ilerleyişi koruma. Ana menü, duraklama menüsü, ayarlar — UI Toolkit ve UGUI ile.</p>
+  <div class="page-meta">
+    <span>⏱ Okuma süresi: ~28 dk</span>
+    <span>💾 4 save yöntemi</span>
+    <span>🎯 Zorluk: Orta</span>
+  </div>
+</header>
+
+<section class="topic-section" id="neden-save">
+  <div class="topic-header">
+    <span class="topic-number">23.1</span>
+    <h2 class="topic-title">💾 Neden Save Sistemine İhtiyaç Var?</h2>
+  </div>
+  <p class="topic-text">
+    Oyun çalışırken tüm değişkenler RAM'de yaşar. Player'ın canı, envanteri, hangi bölümde olduğu, ses ayarları — hepsi bilgisayar kapanınca silinir. <strong>Save sistemi</strong> bu RAM verisini <em>diske kalıcı bir dosyaya yazma</em>, ardından sonraki oturumda <em>geri okuma</em> sanatıdır.
+  </p>
+  <p class="topic-text">
+    Unity'de save için 4 yaygın yöntem vardır, her birinin yeri farklıdır:
+  </p>
+  <ul class="check-list">
+    <li><strong>PlayerPrefs</strong> — Ayarlar, en yüksek skor, basit anahtar-değer çiftleri.</li>
+    <li><strong>JSON</strong> — Karakter durumu, envanter, oyun ilerleyişi — insanın okuyabileceği metin.</li>
+    <li><strong>Binary</strong> — Büyük save verileri, hız önemli, manipülasyon zorlaşsın.</li>
+    <li><strong>ScriptableObject</strong> — Editor zamanı veri, runtime yapılandırma (cihaz kaydetme dışı).</li>
+  </ul>
+  <div class="real-world-box">
+    <h3>🎮 Gerçek Dünyadan: Hollow Knight'ta Save</h3>
+    <p><em>Hollow Knight</em>'ın save dosyası Unity'nin <strong>JsonUtility</strong>'sinden geçmiş bir yapıdır. Oyuncunun açtığı her geçit, yendiği boss, bulduğu eşya, bench koordinatı — hepsi tek bir JSON. Oyun, başlangıçta bu JSON'u okur, kaldığı yerden devam ettirir. Yedek alanlar dahi JSON'u <em>düzenleyerek</em> kendi kendine başarımlar açabilir. Bu, JSON tabanlı save'in hem gücü hem zayıflığıdır.</p>
+  </div>
+</section>
+
+<section class="topic-section" id="playerprefs">
+  <div class="topic-header">
+    <span class="topic-number">23.2</span>
+    <h2 class="topic-title">🔑 PlayerPrefs — Basit ve Hızlı</h2>
+  </div>
+  <p class="topic-text">
+    <code>PlayerPrefs</code>, Unity'nin sunduğu <strong>anahtar-değer (key-value) deposu</strong>'dur. Platform bağımsız olarak işletim sisteminin uygun yerine yazar:
+  </p>
+  <ul class="check-list">
+    <li>Windows → Registry (HKCU\Software\&lt;Company&gt;\&lt;Product&gt;).</li>
+    <li>macOS → ~/Library/Preferences/&lt;bundle_id&gt;.plist.</li>
+    <li>Linux → ~/.config/unity3d/&lt;Company&gt;/&lt;Product&gt;.</li>
+    <li>iOS/Android → uygulamanın preferences alanı.</li>
+  </ul>
+  <h3 class="topic-subtitle">3 Veri Tipi Destekler</h3>
+  <div class="cs-block">
+<pre><code><span class="com">// Yazma</span>
+<span class="type">PlayerPrefs</span>.<span class="fn">SetInt</span>(<span class="str">"HighScore"</span>, <span class="num">1500</span>);
+<span class="type">PlayerPrefs</span>.<span class="fn">SetFloat</span>(<span class="str">"MusicVolume"</span>, <span class="num">0.7f</span>);
+<span class="type">PlayerPrefs</span>.<span class="fn">SetString</span>(<span class="str">"PlayerName"</span>, <span class="str">"Ayşe"</span>);
+<span class="type">PlayerPrefs</span>.<span class="fn">Save</span>();  <span class="com">// Diske flush et (yoksa quit'te otomatik)</span>
+
+<span class="com">// Okuma — varsayılan değer ile</span>
+<span class="kw">int</span> high = <span class="type">PlayerPrefs</span>.<span class="fn">GetInt</span>(<span class="str">"HighScore"</span>, <span class="num">0</span>);
+<span class="kw">float</span> vol = <span class="type">PlayerPrefs</span>.<span class="fn">GetFloat</span>(<span class="str">"MusicVolume"</span>, <span class="num">1f</span>);
+<span class="kw">string</span> name = <span class="type">PlayerPrefs</span>.<span class="fn">GetString</span>(<span class="str">"PlayerName"</span>, <span class="str">"Player"</span>);
+
+<span class="com">// Anahtar var mı?</span>
+<span class="kw">if</span> (<span class="type">PlayerPrefs</span>.<span class="fn">HasKey</span>(<span class="str">"HighScore"</span>)) { <span class="com">// var</span> }
+
+<span class="com">// Sil</span>
+<span class="type">PlayerPrefs</span>.<span class="fn">DeleteKey</span>(<span class="str">"HighScore"</span>);
+<span class="type">PlayerPrefs</span>.<span class="fn">DeleteAll</span>();  <span class="com">// hepsini sil (dikkat!)</span></code></pre>
+  </div>
+  <div class="warning-box">
+    <strong>⚠️ PlayerPrefs'in Sınırları:</strong> <em>Karmaşık veri için tasarlanmadı</em>. 30+ anahtar yazıyorsan veya bir Dictionary kaydetmek istiyorsan, JSON'a geç. Ayrıca PlayerPrefs verisi <em>kolay manipüle edilebilir</em> — kullanıcı registry'ye girip skoru değiştirir. Ciddi veri için kullanma.
+  </div>
+</section>
+
+<section class="topic-section" id="json-save">
+  <div class="topic-header">
+    <span class="topic-number">23.3</span>
+    <h2 class="topic-title">📄 JSON ile Save — Yapısal Veri</h2>
+  </div>
+  <p class="topic-text">
+    Karakterin tüm durumunu kaydetmek için: önce verileri tutacak bir <strong>serializable class</strong> tanımla, sonra Unity'nin <code>JsonUtility</code>'siyle string'e çevir, son olarak dosyaya yaz.
+  </p>
+  <h3 class="topic-subtitle">Adım 1: Save Veri Modeli</h3>
+  <div class="cs-block">
+<pre><code>[<span class="type">System.Serializable</span>]
+<span class="kw">public class</span> <span class="type">PlayerSaveData</span>
+{
+    <span class="kw">public string</span> playerName;
+    <span class="kw">public int</span> level;
+    <span class="kw">public float</span> currentHealth;
+    <span class="kw">public</span> <span class="type">Vector3</span> position;
+    <span class="kw">public</span> <span class="type">List</span>&lt;<span class="kw">string</span>&gt; inventory;
+    <span class="kw">public</span> <span class="type">List</span>&lt;<span class="kw">int</span>&gt; unlockedAchievements;
+    <span class="kw">public string</span> sceneName;
+    <span class="kw">public string</span> saveTime;
+}</code></pre>
+  </div>
+  <p class="topic-text">
+    <strong>Önemli:</strong> <code>[Serializable]</code> attribute zorunludur. Field'lar <em>public</em> olmalı veya <code>[SerializeField]</code> ile işaretli private. Dictionary direkt desteklenmez — List&lt;Pair&gt; veya iki paralel List kullan.
+  </p>
+  <h3 class="topic-subtitle">Adım 2: SaveSystem Class</h3>
+  <div class="cs-block">
+<pre><code><span class="kw">using</span> <span class="type">System.IO</span>;
+<span class="kw">using</span> <span class="type">UnityEngine</span>;
+
+<span class="kw">public static class</span> <span class="type">SaveSystem</span>
+{
+    <span class="kw">private static</span> <span class="kw">string</span> path =&gt;
+        <span class="type">Path</span>.<span class="fn">Combine</span>(<span class="type">Application</span>.<span class="attr">persistentDataPath</span>, <span class="str">"save.json"</span>);
+
+    <span class="kw">public static void</span> <span class="fn">Save</span>(<span class="type">PlayerSaveData</span> data)
+    {
+        <span class="kw">string</span> json = <span class="type">JsonUtility</span>.<span class="fn">ToJson</span>(data, prettyPrint: <span class="kw">true</span>);
+        <span class="type">File</span>.<span class="fn">WriteAllText</span>(path, json);
+        <span class="type">Debug</span>.<span class="fn">Log</span>(<span class="str">$"Save yazıldı: {path}"</span>);
+    }
+
+    <span class="kw">public static</span> <span class="type">PlayerSaveData</span> <span class="fn">Load</span>()
+    {
+        <span class="kw">if</span> (!<span class="type">File</span>.<span class="fn">Exists</span>(path))
+        {
+            <span class="type">Debug</span>.<span class="fn">LogWarning</span>(<span class="str">"Save dosyası yok"</span>);
+            <span class="kw">return null</span>;
+        }
+        <span class="kw">string</span> json = <span class="type">File</span>.<span class="fn">ReadAllText</span>(path);
+        <span class="kw">return</span> <span class="type">JsonUtility</span>.<span class="fn">FromJson</span>&lt;<span class="type">PlayerSaveData</span>&gt;(json);
+    }
+
+    <span class="kw">public static bool</span> <span class="fn">HasSave</span>() =&gt; <span class="type">File</span>.<span class="fn">Exists</span>(path);
+    <span class="kw">public static void</span> <span class="fn">Delete</span>() { <span class="kw">if</span> (<span class="type">File</span>.<span class="fn">Exists</span>(path)) <span class="type">File</span>.<span class="fn">Delete</span>(path); }
+}</code></pre>
+  </div>
+  <p class="topic-text">
+    <code>Application.persistentDataPath</code> her platformda <em>uygulamanın kalıcı veri klasörünü</em> verir. Windows'ta <code>%appdata%\..\LocalLow\&lt;Company&gt;\&lt;Product&gt;</code>, Android'de app-specific folder. Save dosyaları için bu yeri kullan, asla <code>Application.dataPath</code> kullanma (oraya yazma izni yoktur).
+  </p>
+  <h3 class="topic-subtitle">Adım 3: Kullanım</h3>
+  <div class="cs-block">
+<pre><code><span class="kw">public class</span> <span class="type">GameManager</span> : <span class="type">MonoBehaviour</span>
+{
+    <span class="kw">public</span> <span class="type">Transform</span> player;
+
+    <span class="kw">public void</span> <span class="fn">SaveGame</span>()
+    {
+        <span class="type">PlayerSaveData</span> data = <span class="kw">new</span> <span class="type">PlayerSaveData</span>
+        {
+            playerName = <span class="str">"Ayşe"</span>,
+            level = <span class="num">5</span>,
+            currentHealth = <span class="num">85f</span>,
+            position = player.<span class="attr">position</span>,
+            inventory = <span class="kw">new</span> <span class="type">List</span>&lt;<span class="kw">string</span>&gt; { <span class="str">"sword"</span>, <span class="str">"shield"</span> },
+            sceneName = <span class="type">SceneManager</span>.<span class="fn">GetActiveScene</span>().<span class="attr">name</span>,
+            saveTime = <span class="type">System.DateTime</span>.<span class="attr">Now</span>.<span class="fn">ToString</span>(<span class="str">"yyyy-MM-dd HH:mm"</span>)
+        };
+        <span class="type">SaveSystem</span>.<span class="fn">Save</span>(data);
+    }
+
+    <span class="kw">public void</span> <span class="fn">LoadGame</span>()
+    {
+        <span class="type">PlayerSaveData</span> data = <span class="type">SaveSystem</span>.<span class="fn">Load</span>();
+        <span class="kw">if</span> (data == <span class="kw">null</span>) <span class="kw">return</span>;
+        player.<span class="attr">position</span> = data.<span class="attr">position</span>;
+        <span class="com">// vd. değerleri sahneye uygula</span>
+    }
+}</code></pre>
+  </div>
+</section>
+
+<section class="topic-section" id="binary-save">
+  <div class="topic-header">
+    <span class="topic-number">23.4</span>
+    <h2 class="topic-title">📦 Binary Save — Hız ve Boyut</h2>
+  </div>
+  <p class="topic-text">
+    JSON insan-okur ama büyür ve yavaşlar. Büyük save'ler için (örn. açık dünya oyunu, 50 MB save) <strong>binary serialization</strong> 2-5x daha küçük dosya ve 3-10x daha hızlı yükleme verir.
+  </p>
+  <div class="cs-block">
+<pre><code><span class="kw">using</span> <span class="type">System.IO</span>;
+<span class="kw">using</span> <span class="type">System.Runtime.Serialization.Formatters.Binary</span>;
+
+<span class="kw">public static class</span> <span class="type">BinarySaveSystem</span>
+{
+    <span class="kw">private static</span> <span class="kw">string</span> path =&gt;
+        <span class="type">Path</span>.<span class="fn">Combine</span>(<span class="type">Application</span>.<span class="attr">persistentDataPath</span>, <span class="str">"save.dat"</span>);
+
+    <span class="kw">public static void</span> <span class="fn">Save</span>(<span class="type">PlayerSaveData</span> data)
+    {
+        <span class="kw">using</span> (<span class="kw">var</span> stream = <span class="type">File</span>.<span class="fn">Create</span>(path))
+        {
+            <span class="type">BinaryFormatter</span> bf = <span class="kw">new</span> <span class="type">BinaryFormatter</span>();
+            bf.<span class="fn">Serialize</span>(stream, data);
+        }
+    }
+
+    <span class="kw">public static</span> <span class="type">PlayerSaveData</span> <span class="fn">Load</span>()
+    {
+        <span class="kw">if</span> (!<span class="type">File</span>.<span class="fn">Exists</span>(path)) <span class="kw">return null</span>;
+        <span class="kw">using</span> (<span class="kw">var</span> stream = <span class="type">File</span>.<span class="fn">OpenRead</span>(path))
+        {
+            <span class="type">BinaryFormatter</span> bf = <span class="kw">new</span> <span class="type">BinaryFormatter</span>();
+            <span class="kw">return</span> (<span class="type">PlayerSaveData</span>)bf.<span class="fn">Deserialize</span>(stream);
+        }
+    }
+}</code></pre>
+  </div>
+  <div class="info-box">
+    <strong>📌 .NET'in BinaryFormatter Uyarısı:</strong> Microsoft, BinaryFormatter'ı .NET 5+'ta güvenlik nedeniyle obsolete ilan etti. Production'da <strong>Protobuf-net</strong>, <strong>MessagePack</strong>, ya da Unity'nin yeni <strong>Json.NET</strong> (Newtonsoft) tabanlı paketini tercih et. Burada öğrenmek için basit kalsın diye BinaryFormatter gösteriyoruz.
+  </div>
+</section>
+
+<section class="topic-section" id="encryption">
+  <div class="topic-header">
+    <span class="topic-number">23.5</span>
+    <h2 class="topic-title">🔐 Save'i Şifrele — Hile Önleme</h2>
+  </div>
+  <p class="topic-text">
+    Save dosyası açık JSON ise oyuncu Notepad'le açıp <em>"health": 100</em>'ü <em>"health": 99999</em> yapar. Kabaca koruma için <strong>AES şifreleme</strong> ekleyebilirsin:
+  </p>
+  <div class="cs-block">
+<pre><code><span class="kw">using</span> <span class="type">System.IO</span>;
+<span class="kw">using</span> <span class="type">System.Security.Cryptography</span>;
+<span class="kw">using</span> <span class="type">System.Text</span>;
+
+<span class="kw">public static class</span> <span class="type">EncryptedSave</span>
+{
+    <span class="kw">private static readonly</span> <span class="kw">byte</span>[] key = <span class="type">Encoding</span>.<span class="attr">UTF8</span>.<span class="fn">GetBytes</span>(<span class="str">"32-CHAR-LONG-SECRET-KEY-12345678"</span>);
+    <span class="kw">private static readonly</span> <span class="kw">byte</span>[] iv = <span class="type">Encoding</span>.<span class="attr">UTF8</span>.<span class="fn">GetBytes</span>(<span class="str">"16-CHAR-LONG-IV!"</span>);
+
+    <span class="kw">public static string</span> <span class="fn">Encrypt</span>(<span class="kw">string</span> plain)
+    {
+        <span class="kw">using</span> (<span class="kw">var</span> aes = <span class="type">Aes</span>.<span class="fn">Create</span>())
+        {
+            aes.<span class="attr">Key</span> = key; aes.<span class="attr">IV</span> = iv;
+            <span class="kw">var</span> encryptor = aes.<span class="fn">CreateEncryptor</span>();
+            <span class="kw">byte</span>[] inputBytes = <span class="type">Encoding</span>.<span class="attr">UTF8</span>.<span class="fn">GetBytes</span>(plain);
+            <span class="kw">byte</span>[] cipher = encryptor.<span class="fn">TransformFinalBlock</span>(inputBytes, <span class="num">0</span>, inputBytes.<span class="attr">Length</span>);
+            <span class="kw">return</span> <span class="type">System.Convert</span>.<span class="fn">ToBase64String</span>(cipher);
+        }
+    }
+
+    <span class="kw">public static string</span> <span class="fn">Decrypt</span>(<span class="kw">string</span> encoded)
+    {
+        <span class="kw">using</span> (<span class="kw">var</span> aes = <span class="type">Aes</span>.<span class="fn">Create</span>())
+        {
+            aes.<span class="attr">Key</span> = key; aes.<span class="attr">IV</span> = iv;
+            <span class="kw">var</span> decryptor = aes.<span class="fn">CreateDecryptor</span>();
+            <span class="kw">byte</span>[] cipher = <span class="type">System.Convert</span>.<span class="fn">FromBase64String</span>(encoded);
+            <span class="kw">byte</span>[] plain = decryptor.<span class="fn">TransformFinalBlock</span>(cipher, <span class="num">0</span>, cipher.<span class="attr">Length</span>);
+            <span class="kw">return</span> <span class="type">Encoding</span>.<span class="attr">UTF8</span>.<span class="fn">GetString</span>(plain);
+        }
+    }
+}
+
+<span class="com">// Kullanım:</span>
+<span class="kw">string</span> json = <span class="type">JsonUtility</span>.<span class="fn">ToJson</span>(data);
+<span class="kw">string</span> encrypted = <span class="type">EncryptedSave</span>.<span class="fn">Encrypt</span>(json);
+<span class="type">File</span>.<span class="fn">WriteAllText</span>(path, encrypted);</code></pre>
+  </div>
+  <div class="warning-box">
+    <strong>⚠️ Mutlak Güvenlik Yok:</strong> Anahtarı oyunun kodunda taşıyorsan dedektif bir oyuncu çözebilir. AAA studio'lar sunucu tabanlı save (cloud save + server validation) kullanır. Single-player için AES yeterli engeldir — büyük çoğunluk için.
+  </div>
+</section>
+
+<section class="topic-section" id="scriptable-save">
+  <div class="topic-header">
+    <span class="topic-number">23.6</span>
+    <h2 class="topic-title">📋 ScriptableObject + Save Kombinasyonu</h2>
+  </div>
+  <p class="topic-text">
+    Modern Unity tasarımında save mimarisi sıklıkla <strong>ScriptableObject</strong> ile birleştirilir. Mantık:
+  </p>
+  <ol class="step-list">
+    <li>Veri konteyneri olarak <strong>PlayerData : ScriptableObject</strong> yarat.</li>
+    <li>Runtime'da değişen değerler bu SO'da tutulur (level, health, inventory).</li>
+    <li>Save zamanı SO'yu JSON'a serialize et.</li>
+    <li>Load'da JSON'u okuyup SO'ya geri yaz.</li>
+    <li>Tüm sistemler aynı SO'dan okuyup yazar — merkezi durum.</li>
+  </ol>
+  <div class="cs-block">
+<pre><code>[<span class="type">CreateAssetMenu</span>(menuName = <span class="str">"Game/Player Data"</span>)]
+<span class="kw">public class</span> <span class="type">PlayerData</span> : <span class="type">ScriptableObject</span>
+{
+    <span class="kw">public string</span> playerName;
+    <span class="kw">public int</span> level;
+    <span class="kw">public float</span> currentHealth;
+    <span class="kw">public</span> <span class="type">List</span>&lt;<span class="kw">string</span>&gt; inventory;
+
+    <span class="kw">public void</span> <span class="fn">Save</span>()
+    {
+        <span class="kw">string</span> json = <span class="type">JsonUtility</span>.<span class="fn">ToJson</span>(<span class="kw">this</span>);
+        <span class="type">File</span>.<span class="fn">WriteAllText</span>(<span class="type">Path</span>.<span class="fn">Combine</span>(
+            <span class="type">Application</span>.<span class="attr">persistentDataPath</span>, <span class="str">"player.json"</span>), json);
+    }
+
+    <span class="kw">public void</span> <span class="fn">Load</span>()
+    {
+        <span class="kw">string</span> p = <span class="type">Path</span>.<span class="fn">Combine</span>(<span class="type">Application</span>.<span class="attr">persistentDataPath</span>, <span class="str">"player.json"</span>);
+        <span class="kw">if</span> (!<span class="type">File</span>.<span class="fn">Exists</span>(p)) <span class="kw">return</span>;
+        <span class="type">JsonUtility</span>.<span class="fn">FromJsonOverwrite</span>(<span class="type">File</span>.<span class="fn">ReadAllText</span>(p), <span class="kw">this</span>);
+    }
+}</code></pre>
+  </div>
+  <p class="topic-text">
+    <code>FromJsonOverwrite</code> mevcut SO'nun field'larını JSON'dan üzerine yazar — yeni instance oluşturmaz. SO referansları korunur.
+  </p>
+</section>
+
+<section class="topic-section" id="ana-menu">
+  <div class="topic-header">
+    <span class="topic-number">23.7</span>
+    <h2 class="topic-title">🎬 Ana Menü Tasarımı</h2>
+  </div>
+  <p class="topic-text">
+    Bir oyunun yüzü Ana Menü'dür. Tasarım sırası:
+  </p>
+  <ol class="step-list">
+    <li>Yeni sahne: <code>MainMenu</code>. Build Settings'e ekle, ilk sahne yap.</li>
+    <li><strong>Canvas</strong> ekle (Render Mode: Screen Space - Overlay).</li>
+    <li>Background için <em>RawImage</em> (oyun temasının arka planı) veya tam ekran <em>Image</em>.</li>
+    <li><strong>VerticalLayoutGroup</strong> içinde butonlar: "Devam Et", "Yeni Oyun", "Ayarlar", "Çıkış".</li>
+    <li>Her butona <em>OnClick</em> event'i bağla.</li>
+  </ol>
+  <div class="cs-block">
+<pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+<span class="kw">using</span> <span class="type">UnityEngine.SceneManagement</span>;
+<span class="kw">using</span> <span class="type">UnityEngine.UI</span>;
+
+<span class="kw">public class</span> <span class="type">MainMenuController</span> : <span class="type">MonoBehaviour</span>
+{
+    [<span class="type">SerializeField</span>] <span class="kw">private</span> <span class="type">Button</span> continueButton;
+    [<span class="type">SerializeField</span>] <span class="kw">private</span> <span class="type">GameObject</span> settingsPanel;
+
+    <span class="kw">private void</span> <span class="fn">Start</span>()
+    {
+        <span class="com">// Save yoksa Devam Et butonu kapalı</span>
+        continueButton.<span class="attr">interactable</span> = <span class="type">SaveSystem</span>.<span class="fn">HasSave</span>();
+    }
+
+    <span class="kw">public void</span> <span class="fn">OnContinueClicked</span>()
+    {
+        <span class="type">PlayerSaveData</span> data = <span class="type">SaveSystem</span>.<span class="fn">Load</span>();
+        <span class="type">SceneManager</span>.<span class="fn">LoadScene</span>(data.<span class="attr">sceneName</span>);
+    }
+
+    <span class="kw">public void</span> <span class="fn">OnNewGameClicked</span>()
+    {
+        <span class="type">SaveSystem</span>.<span class="fn">Delete</span>();
+        <span class="type">SceneManager</span>.<span class="fn">LoadScene</span>(<span class="str">"Level01"</span>);
+    }
+
+    <span class="kw">public void</span> <span class="fn">OnSettingsClicked</span>() =&gt; settingsPanel.<span class="fn">SetActive</span>(<span class="kw">true</span>);
+    <span class="kw">public void</span> <span class="fn">OnQuitClicked</span>() =&gt; <span class="type">Application</span>.<span class="fn">Quit</span>();
+}</code></pre>
+  </div>
+</section>
+
+<section class="topic-section" id="pause-menu">
+  <div class="topic-header">
+    <span class="topic-number">23.8</span>
+    <h2 class="topic-title">⏸ Duraklama Menüsü (Pause Menu)</h2>
+  </div>
+  <p class="topic-text">
+    Oyun içinde Escape tuşuna basılınca oyun duruyor, menü beliriyor, geri dönüş veya ana menüye dönüş seçeneği veriyor. Klasik kalıp:
+  </p>
+  <div class="cs-block">
+<pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+<span class="kw">using</span> <span class="type">UnityEngine.SceneManagement</span>;
+
+<span class="kw">public class</span> <span class="type">PauseMenu</span> : <span class="type">MonoBehaviour</span>
+{
+    [<span class="type">SerializeField</span>] <span class="kw">private</span> <span class="type">GameObject</span> menuPanel;
+    <span class="kw">public static bool</span> IsPaused { <span class="kw">get</span>; <span class="kw">private set</span>; }
+
+    <span class="kw">private void</span> <span class="fn">Update</span>()
+    {
+        <span class="kw">if</span> (<span class="type">Input</span>.<span class="fn">GetKeyDown</span>(<span class="type">KeyCode</span>.<span class="attr">Escape</span>))
+        {
+            <span class="kw">if</span> (IsPaused) <span class="fn">Resume</span>();
+            <span class="kw">else</span> <span class="fn">Pause</span>();
+        }
+    }
+
+    <span class="kw">public void</span> <span class="fn">Pause</span>()
+    {
+        menuPanel.<span class="fn">SetActive</span>(<span class="kw">true</span>);
+        <span class="type">Time</span>.<span class="attr">timeScale</span> = <span class="num">0f</span>;  <span class="com">// fizik ve animasyon dursun</span>
+        IsPaused = <span class="kw">true</span>;
+        <span class="type">AudioListener</span>.<span class="attr">pause</span> = <span class="kw">true</span>;
+    }
+
+    <span class="kw">public void</span> <span class="fn">Resume</span>()
+    {
+        menuPanel.<span class="fn">SetActive</span>(<span class="kw">false</span>);
+        <span class="type">Time</span>.<span class="attr">timeScale</span> = <span class="num">1f</span>;
+        IsPaused = <span class="kw">false</span>;
+        <span class="type">AudioListener</span>.<span class="attr">pause</span> = <span class="kw">false</span>;
+    }
+
+    <span class="kw">public void</span> <span class="fn">SaveAndQuit</span>()
+    {
+        <span class="com">// game manager'a save'i çağırt</span>
+        <span class="type">FindFirstObjectByType</span>&lt;<span class="type">GameManager</span>&gt;().<span class="fn">SaveGame</span>();
+        <span class="type">Time</span>.<span class="attr">timeScale</span> = <span class="num">1f</span>;  <span class="com">// menü sahnesinde normal olsun</span>
+        <span class="type">SceneManager</span>.<span class="fn">LoadScene</span>(<span class="str">"MainMenu"</span>);
+    }
+}</code></pre>
+  </div>
+  <div class="warning-box">
+    <strong>⚠️ Time.timeScale Tuzakları:</strong> Pause sırasında <code>Time.timeScale = 0</code>, Update zaman delta'sı sıfır olur ama Update kendisi çalışmaya devam eder. <em>UI</em> ve <em>input</em> hâlâ çalışır. Ancak <code>Animator</code> "Animate Physics" değil "Normal" ise duracaktır. <code>WaitForSeconds</code> coroutine'leri donar. <code>WaitForSecondsRealtime</code> kullanarak menü içi animasyon yapabilirsin.
+  </div>
+</section>
+
+<section class="topic-section" id="ayarlar-menusu">
+  <div class="topic-header">
+    <span class="topic-number">23.9</span>
+    <h2 class="topic-title">⚙️ Ayarlar Menüsü — Slider, Dropdown, Toggle</h2>
+  </div>
+  <p class="topic-text">
+    Ses, çözünürlük, kalite, kontrol seçimleri. Tüm değerleri PlayerPrefs'e yazıp Awake'te yükle.
+  </p>
+  <div class="cs-block">
+<pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+<span class="kw">using</span> <span class="type">UnityEngine.UI</span>;
+<span class="kw">using</span> <span class="type">UnityEngine.Audio</span>;
+<span class="kw">using</span> <span class="type">TMPro</span>;
+
+<span class="kw">public class</span> <span class="type">SettingsMenu</span> : <span class="type">MonoBehaviour</span>
+{
+    [<span class="type">SerializeField</span>] <span class="kw">private</span> <span class="type">AudioMixer</span> mixer;
+    [<span class="type">SerializeField</span>] <span class="kw">private</span> <span class="type">Slider</span> musicSlider, sfxSlider;
+    [<span class="type">SerializeField</span>] <span class="kw">private</span> <span class="type">TMP_Dropdown</span> qualityDropdown, resolutionDropdown;
+    [<span class="type">SerializeField</span>] <span class="kw">private</span> <span class="type">Toggle</span> fullscreenToggle;
+
+    <span class="kw">private</span> <span class="type">Resolution</span>[] resolutions;
+
+    <span class="kw">private void</span> <span class="fn">Start</span>()
+    {
+        <span class="com">// Çözünürlük seçenekleri</span>
+        resolutions = <span class="type">Screen</span>.<span class="attr">resolutions</span>;
+        resolutionDropdown.<span class="fn">ClearOptions</span>();
+        <span class="kw">var</span> opts = <span class="kw">new</span> <span class="type">List</span>&lt;<span class="kw">string</span>&gt;();
+        <span class="kw">int</span> currentIdx = <span class="num">0</span>;
+        <span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">0</span>; i &lt; resolutions.<span class="attr">Length</span>; i++)
+        {
+            opts.<span class="fn">Add</span>(<span class="str">$"{resolutions[i].width}x{resolutions[i].height}"</span>);
+            <span class="kw">if</span> (resolutions[i].<span class="attr">width</span> == <span class="type">Screen</span>.<span class="attr">currentResolution</span>.<span class="attr">width</span>)
+                currentIdx = i;
+        }
+        resolutionDropdown.<span class="fn">AddOptions</span>(opts);
+        resolutionDropdown.<span class="attr">value</span> = currentIdx;
+
+        <span class="com">// Önceki ayarları yükle</span>
+        musicSlider.<span class="attr">value</span> = <span class="type">PlayerPrefs</span>.<span class="fn">GetFloat</span>(<span class="str">"MusicVol"</span>, <span class="num">0.7f</span>);
+        sfxSlider.<span class="attr">value</span> = <span class="type">PlayerPrefs</span>.<span class="fn">GetFloat</span>(<span class="str">"SfxVol"</span>, <span class="num">1f</span>);
+        qualityDropdown.<span class="attr">value</span> = <span class="type">QualitySettings</span>.<span class="attr">GetQualityLevel</span>();
+        fullscreenToggle.<span class="attr">isOn</span> = <span class="type">Screen</span>.<span class="attr">fullScreen</span>;
+    }
+
+    <span class="kw">public void</span> <span class="fn">SetMusicVolume</span>(<span class="kw">float</span> v)
+    {
+        mixer.<span class="fn">SetFloat</span>(<span class="str">"MusicVol"</span>, <span class="type">Mathf</span>.<span class="fn">Log10</span>(<span class="type">Mathf</span>.<span class="fn">Max</span>(v, <span class="num">0.0001f</span>)) * <span class="num">20</span>);
+        <span class="type">PlayerPrefs</span>.<span class="fn">SetFloat</span>(<span class="str">"MusicVol"</span>, v);
+    }
+
+    <span class="kw">public void</span> <span class="fn">SetQuality</span>(<span class="kw">int</span> idx) =&gt; <span class="type">QualitySettings</span>.<span class="fn">SetQualityLevel</span>(idx);
+    <span class="kw">public void</span> <span class="fn">SetFullscreen</span>(<span class="kw">bool</span> on) =&gt; <span class="type">Screen</span>.<span class="attr">fullScreen</span> = on;
+
+    <span class="kw">public void</span> <span class="fn">SetResolution</span>(<span class="kw">int</span> idx)
+    {
+        <span class="type">Resolution</span> r = resolutions[idx];
+        <span class="type">Screen</span>.<span class="fn">SetResolution</span>(r.<span class="attr">width</span>, r.<span class="attr">height</span>, <span class="type">Screen</span>.<span class="attr">fullScreen</span>);
+    }
+}</code></pre>
+  </div>
+  <p class="topic-text">
+    <strong>Ses ayarı için logaritmik</strong>: AudioMixer'daki ses dB cinsindendir, slider 0-1 lineer. <code>Mathf.Log10(v) * 20</code> dönüşümü insan kulağının logaritmik algısına uyar.
+  </p>
+</section>
+
+<section class="topic-section" id="multiple-saves">
+  <div class="topic-header">
+    <span class="topic-number">23.10</span>
+    <h2 class="topic-title">📚 Birden Fazla Save Slotu</h2>
+  </div>
+  <p class="topic-text">
+    AAA oyunlar genellikle 3-6 save slotu sunar. Mantık aynı, sadece her slot için ayrı dosya:
+  </p>
+  <div class="cs-block">
+<pre><code><span class="kw">public static class</span> <span class="type">SlotSaveSystem</span>
+{
+    <span class="kw">private static</span> <span class="kw">string</span> <span class="fn">PathFor</span>(<span class="kw">int</span> slot) =&gt;
+        <span class="type">Path</span>.<span class="fn">Combine</span>(<span class="type">Application</span>.<span class="attr">persistentDataPath</span>, <span class="str">$"slot_{slot}.json"</span>);
+
+    <span class="kw">public static void</span> <span class="fn">Save</span>(<span class="kw">int</span> slot, <span class="type">PlayerSaveData</span> data)
+    {
+        <span class="type">File</span>.<span class="fn">WriteAllText</span>(<span class="fn">PathFor</span>(slot), <span class="type">JsonUtility</span>.<span class="fn">ToJson</span>(data));
+    }
+
+    <span class="kw">public static</span> <span class="type">PlayerSaveData</span> <span class="fn">Load</span>(<span class="kw">int</span> slot)
+    {
+        <span class="kw">if</span> (!<span class="type">File</span>.<span class="fn">Exists</span>(<span class="fn">PathFor</span>(slot))) <span class="kw">return null</span>;
+        <span class="kw">return</span> <span class="type">JsonUtility</span>.<span class="fn">FromJson</span>&lt;<span class="type">PlayerSaveData</span>&gt;(
+            <span class="type">File</span>.<span class="fn">ReadAllText</span>(<span class="fn">PathFor</span>(slot)));
+    }
+
+    <span class="kw">public static</span> <span class="type">List</span>&lt;<span class="type">PlayerSaveData</span>&gt; <span class="fn">LoadAll</span>(<span class="kw">int</span> slots = <span class="num">3</span>)
+    {
+        <span class="kw">var</span> list = <span class="kw">new</span> <span class="type">List</span>&lt;<span class="type">PlayerSaveData</span>&gt;();
+        <span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">0</span>; i &lt; slots; i++) list.<span class="fn">Add</span>(<span class="fn">Load</span>(i));
+        <span class="kw">return</span> list;
+    }
+}</code></pre>
+  </div>
+  <p class="topic-text">
+    UI tarafında her slot için bir buton; üzerinde sahne adı, level, oynama süresi, save tarihi gösterilir. Boş slot için "+" işareti.
+  </p>
+</section>
+
+<section class="topic-section" id="autosave">
+  <div class="topic-header">
+    <span class="topic-number">23.11</span>
+    <h2 class="topic-title">⏱ Otomatik Save (Autosave)</h2>
+  </div>
+  <p class="topic-text">
+    Modern oyunlar 30-60 saniyede bir veya önemli olaylardan sonra otomatik kayıt yapar. Coroutine ile:
+  </p>
+  <div class="cs-block">
+<pre><code><span class="kw">private</span> <span class="type">Coroutine</span> autosaveRoutine;
+
+<span class="kw">private void</span> <span class="fn">Start</span>()
+{
+    autosaveRoutine = <span class="fn">StartCoroutine</span>(<span class="fn">AutosaveLoop</span>());
+}
+
+<span class="kw">private</span> <span class="type">IEnumerator</span> <span class="fn">AutosaveLoop</span>()
+{
+    <span class="kw">while</span> (<span class="kw">true</span>)
+    {
+        <span class="kw">yield return new</span> <span class="type">WaitForSeconds</span>(<span class="num">60f</span>);
+        <span class="fn">SaveGame</span>();
+        <span class="type">UIManager</span>.<span class="fn">ShowToast</span>(<span class="str">"Oyun otomatik kaydedildi"</span>);
+    }
+}
+
+<span class="com">// Boss bölgesi giriş, item alma, level atlama gibi olaylarda da:</span>
+<span class="kw">public void</span> <span class="fn">OnImportantEvent</span>()
+{
+    <span class="fn">SaveGame</span>();
+}</code></pre>
+  </div>
+</section>
+
+<section class="topic-section" id="cloud-save">
+  <div class="topic-header">
+    <span class="topic-number">23.12</span>
+    <h2 class="topic-title">☁️ Cloud Save — Unity Gaming Services</h2>
+  </div>
+  <p class="topic-text">
+    Mobile/multiplayer oyunlar için <strong>Unity Cloud Save</strong> servisi kullanılır. Unity Dashboard'tan projeyi UGS'ye bağla, paketi yükle:
+  </p>
+  <div class="cs-block">
+<pre><code><span class="kw">using</span> <span class="type">Unity.Services.CloudSave</span>;
+<span class="kw">using</span> <span class="type">Unity.Services.Core</span>;
+<span class="kw">using</span> <span class="type">Unity.Services.Authentication</span>;
+
+<span class="kw">private async void</span> <span class="fn">Start</span>()
+{
+    <span class="kw">await</span> <span class="type">UnityServices</span>.<span class="fn">InitializeAsync</span>();
+    <span class="kw">await</span> <span class="type">AuthenticationService</span>.<span class="attr">Instance</span>.<span class="fn">SignInAnonymouslyAsync</span>();
+}
+
+<span class="kw">public async void</span> <span class="fn">CloudSave</span>(<span class="type">PlayerSaveData</span> data)
+{
+    <span class="kw">var</span> dict = <span class="kw">new</span> <span class="type">Dictionary</span>&lt;<span class="kw">string</span>, <span class="kw">object</span>&gt;
+    {
+        { <span class="str">"level"</span>, data.<span class="attr">level</span> },
+        { <span class="str">"health"</span>, data.<span class="attr">currentHealth</span> },
+        { <span class="str">"inventory"</span>, <span class="type">JsonUtility</span>.<span class="fn">ToJson</span>(data.<span class="attr">inventory</span>) }
+    };
+    <span class="kw">await</span> <span class="type">CloudSaveService</span>.<span class="attr">Instance</span>.<span class="attr">Data</span>.<span class="attr">Player</span>.<span class="fn">SaveAsync</span>(dict);
+}</code></pre>
+  </div>
+  <p class="topic-text">
+    Cloud save oyuncunun farklı cihazlardan girince aynı progresi görmesini sağlar. Free tier küçük oyunlar için yeterli, paid plan büyük veriler için.
+  </p>
+</section>
+
+<div class="mini-checkpoint">
+  <strong>💾 Bölüm Kontrol Noktası:</strong> PlayerPrefs basit anahtar-değer; JSON yapısal save; Binary hız; AES şifre hile önleme; ScriptableObject merkezi durum. <code>Application.persistentDataPath</code> kalıcı klasör. Time.timeScale = 0 ile pause, AudioListener.pause ile ses durdurma. AudioMixer log dönüşümü. Birden fazla slot, autosave, cloud save — ihtiyaca göre kademeli ekleme.
+</div>
+
+<div class="practice-section">
+  <h2>🎯 Pratik Projeler</h2>
+
+  <div class="project-card">
+    <h3>Proje 1: PlayerPrefs ile Yüksek Skor</h3>
+    <p><strong>Hedef:</strong> Basit bir top toplama oyunu yap, oturumlar arasında en yüksek skoru hatırlatsın.</p>
+    <ol class="step-list">
+      <li>Sahnede topları topla, score değişkenini arttır.</li>
+      <li>Oyun bittiğinde mevcut score &gt; PlayerPrefs.GetInt("HighScore") ise yeni high score kaydet.</li>
+      <li>Ana menüde HighScore'u TextMeshPro ile göster.</li>
+      <li>"Sıfırla" butonu: PlayerPrefs.DeleteKey("HighScore").</li>
+    </ol>
+  </div>
+
+  <div class="project-card">
+    <h3>Proje 2: JSON ile Karakter Save/Load</h3>
+    <p><strong>Hedef:</strong> Karakterin konumu, canı ve envanteri JSON dosyasına yazılsın, oyun açıldığında geri yüklensin.</p>
+    <ol class="step-list">
+      <li>PlayerSaveData class'ını oluştur (Serializable, public field'lar).</li>
+      <li>SaveSystem static class'ını yaz (Save, Load metodları).</li>
+      <li>GameManager içinde Esc menüsünde Save butonu ekle.</li>
+      <li>Oyun başlangıcında SaveSystem.HasSave() ise oyuncuya "Devam Et?" sor.</li>
+      <li>Save dosyasının yolunu Debug.Log ile yazdır, dosyayı Notepad'de aç, JSON içeriğini incele.</li>
+    </ol>
+  </div>
+
+  <div class="project-card">
+    <h3>Proje 3: 3 Slot'lu Ana Menü</h3>
+    <p><strong>Hedef:</strong> Ana menüde 3 save slotu görünsün; her slotta varsa "Devam Et", yoksa "Yeni Oyun" yazsın.</p>
+    <ol class="step-list">
+      <li>SlotSaveSystem class'ını oluştur (slot indexli dosyalar).</li>
+      <li>Ana menü sahnesinde 3 buton + her birinde TextMeshPro ile slot bilgisi.</li>
+      <li>MainMenuController.Start()'ta SlotSaveSystem.LoadAll(3) çağır, butonların yazılarını güncelle.</li>
+      <li>Boş slot: "Yeni Oyun" → Level01'i yükle, yeni save oluştur.</li>
+      <li>Dolu slot: "Lv 5 — 12:34" → o sahneyi yükle.</li>
+      <li>Bonus: Her slotun yanına "Sil" küçük butonu ekle.</li>
+    </ol>
+  </div>
+</div>
+
+<section class="quiz" id="bolum-quiz">
+  <header class="quiz-header">
+    <div class="quiz-header-icon"><i class="ti ti-help"></i></div>
+    <div class="quiz-header-text">
+      <h2>Bölüm Sonu Sınavı</h2>
+      <span>5 soru</span>
+    </div>
+  </header>
+
+  <article class="quiz-question" id="q23-1">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">01</span>
+      <h3 class="quiz-prompt-text">Karmaşık karakter durumu (envanter dahil) için en uygun save yöntemi?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">PlayerPrefs ile her field ayrı</button>
+      <button class="quiz-option" data-correct="true">JSON serialization (JsonUtility) ile dosyaya yaz</button>
+      <button class="quiz-option" data-correct="false">Sahne içine GameObject olarak sakla</button>
+      <button class="quiz-option" data-correct="false">Statik C# değişkende tut</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q23-2">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">02</span>
+      <h3 class="quiz-prompt-text">Save dosyasını platform-bağımsız olarak hangi yola yazmalıyız?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Application.dataPath</button>
+      <button class="quiz-option" data-correct="true">Application.persistentDataPath</button>
+      <button class="quiz-option" data-correct="false">C:\Users\Public\save.json</button>
+      <button class="quiz-option" data-correct="false">Assets/Saves/ klasörü</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q23-3">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">03</span>
+      <h3 class="quiz-prompt-text">Time.timeScale = 0 yapınca hangi etki olur?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Update tamamen durur</button>
+      <button class="quiz-option" data-correct="true">Time.deltaTime sıfır olur, fizik ve normal animasyon durur, UI çalışır</button>
+      <button class="quiz-option" data-correct="false">Sahne kaydedilir</button>
+      <button class="quiz-option" data-correct="false">Sadece input durur</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q23-4">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">04</span>
+      <h3 class="quiz-prompt-text">JSON ile karakteri serialize ederken Dictionary kullanılabilir mi?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Evet, otomatik desteklenir</button>
+      <button class="quiz-option" data-correct="true">Hayır, JsonUtility Dictionary'yi desteklemez; List veya iki paralel array kullan</button>
+      <button class="quiz-option" data-correct="false">Sadece Dictionary&lt;int,int&gt; desteklenir</button>
+      <button class="quiz-option" data-correct="false">JsonUtility yerine BinaryFormatter gerekir</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q23-5">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">05</span>
+      <h3 class="quiz-prompt-text">AudioMixer slider'ı 0-1 lineerken hangi formül dB'ye çevirir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">v * 100</button>
+      <button class="quiz-option" data-correct="true">Mathf.Log10(v) * 20</button>
+      <button class="quiz-option" data-correct="false">v * v</button>
+      <button class="quiz-option" data-correct="false">1 / v</button>
+    </div>
+  </article>
+</section>
+
+<section class="complete-section">
+      <h3 class="complete-title">🎉 Bölüm 23 Tamamlandı!</h3>
+      <p class="complete-msg">Oyuncunun emeği artık kaybolmuyor — JSON, binary, encrypted, slot-tabanlı save sistemleri hepsi senin elinde. Ana menü, duraklama, ayarlar — modern bir oyunun bütün UI iskeleti tamam. Sıradaki bölümde <strong>Build &amp; Yayınlama</strong>'ya geçiyoruz: oyununu Windows .exe, WebGL, Android APK ve iOS olarak nasıl paketleyeceğin.</p>
+      <button class="complete-btn" data-section="s23">
+        <i class="ti ti-circle-check"></i>
+        <span>Bu Bölümü Tamamladım</span>
+      </button>
+      <p class="complete-note">İlerlemen otomatik tarayıcına kaydedilir.</p>
+    </section>
+    <!-- Sayfa Gezinme -->
+    <nav class="page-nav" aria-label="Bölüm gezinme">
+      <a href="22-new-input.html" class="page-nav-link prev">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-left"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Önceki Bölüm</div>
+          <div class="page-nav-title">22. New Input System</div>
+        </div>
+      </a>
+      <a href="24-build.html" class="page-nav-link next">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-right"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Sonraki Bölüm</div>
+          <div class="page-nav-title">24. Build & Yayın</div>
+        </div>
+      </a>
+    </nav>
+
+  </div>
+</main>
+<script src="../js/progress.js?v=11"></script>
+<script src="../js/quiz.js?v=11"></script>
+<script src="../js/toc.js?v=11"></script>
+<script src="../js/main.js?v=11"></script>
+</body>
+</html>

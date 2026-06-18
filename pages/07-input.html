@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Input Sistemi — UnityAkademi</title>
+  <meta name="description" content="Klavye, fare, gamepad ve touch — oyuncunun input&#x27;unu nasıl alırız? Input Manager&#x27;dan yeni Input System&#x27;a — Bölüm 07.">
+  <meta name="theme-color" content="#fa7d19">
+  <link rel="manifest" href="../manifest.json">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Input Sistemi">
+  <meta property="og:description" content="Klavye, fare, gamepad ve touch — oyuncunun input&#x27;unu nasıl alırız? Input Manager&#x27;dan yeni Input System&#x27;a — Bölüm 07.">
+  <meta property="og:image" content="../og-image.svg">
+  <meta property="og:site_name" content="UnityAkademi">
+  <meta property="og:locale" content="tr_TR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Input Sistemi">
+  <meta name="twitter:description" content="Klavye, fare, gamepad ve touch — oyuncunun input&#x27;unu nasıl alırız? Input Manager&#x27;dan yeni Input System&#x27;a — Bölüm 07.">
+  <meta name="twitter:image" content="../og-image.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="../css/variables.css?v=11">
+  <link rel="stylesheet" href="../css/reset.css?v=11">
+  <link rel="stylesheet" href="../css/layout.css?v=11">
+  <link rel="stylesheet" href="../css/components.css?v=11">
+  <link rel="stylesheet" href="../css/content.css?v=11">
+  <link rel="stylesheet" href="../css/visuals.css?v=11">
+  <link rel="stylesheet" href="../css/extras.css?v=11">
+  <link rel="stylesheet" href="../css/responsive.css?v=11">
+</head>
+<body>
+<button class="nav-hamburger" id="navHamburger" aria-label="Menüyü aç">
+  <i class="ti ti-menu-2"></i>
+</button>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a href="../index.html" class="sidebar-brand">
+      <div class="sidebar-brand-icon"><i class="ti ti-home-2"></i></div>
+      <div class="sidebar-brand-text">
+        <span class="sidebar-brand-name">Ana Sayfa</span>
+        <span class="sidebar-brand-sub">UnityAkademi</span>
+      </div>
+    </a>
+    <button class="mobile-toggle" aria-label="Menü"><i class="ti ti-x"></i></button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-group">
+      <div class="nav-group-title">Temeller</div>
+      <a href="01-kurulum.html" class="nav-link" data-section="s1"><i class="ti ti-download"></i><span class="nav-link-text">Kurulum & İlk Bakış</span><span class="nav-link-num">01</span></a>
+      <a href="02-arayuz.html" class="nav-link" data-section="s2"><i class="ti ti-layout-board"></i><span class="nav-link-text">Editor Arayüzü</span><span class="nav-link-num">02</span></a>
+      <a href="03-gameobject-component.html" class="nav-link" data-section="s3"><i class="ti ti-cube"></i><span class="nav-link-text">GameObject & Component</span><span class="nav-link-num">03</span></a>
+      <a href="04-csharp-temelleri.html" class="nav-link" data-section="s4"><i class="ti ti-code"></i><span class="nav-link-text">C# Temelleri</span><span class="nav-link-num">04</span></a>
+      <a href="05-monobehaviour-lifecycle.html" class="nav-link" data-section="s5"><i class="ti ti-refresh"></i><span class="nav-link-text">MonoBehaviour Lifecycle</span><span class="nav-link-num">05</span></a>
+      <a href="06-transform-vector.html" class="nav-link" data-section="s6"><i class="ti ti-arrows-move"></i><span class="nav-link-text">Transform & Vector3</span><span class="nav-link-num">06</span></a>
+      <a href="07-input.html" class="nav-link active" data-section="s7"><i class="ti ti-keyboard"></i><span class="nav-link-text">Input Sistemi</span><span class="nav-link-num">07</span></a>
+      <a href="08-physics.html" class="nav-link" data-section="s8"><i class="ti ti-atom"></i><span class="nav-link-text">Physics</span><span class="nav-link-num">08</span></a>
+      <a href="09-ui.html" class="nav-link" data-section="s9"><i class="ti ti-layout-grid"></i><span class="nav-link-text">UI Sistemi</span><span class="nav-link-num">09</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Görsel & Asset</div>
+      <a href="10-material-shader.html" class="nav-link" data-section="s10"><i class="ti ti-palette"></i><span class="nav-link-text">Material & Shader</span><span class="nav-link-num">10</span></a>
+      <a href="11-asset-import.html" class="nav-link" data-section="s11"><i class="ti ti-folder"></i><span class="nav-link-text">Asset Import</span><span class="nav-link-num">11</span></a>
+      <a href="12-animation.html" class="nav-link" data-section="s12"><i class="ti ti-bounce-right"></i><span class="nav-link-text">Animation</span><span class="nav-link-num">12</span></a>
+      <a href="13-particle-vfx.html" class="nav-link" data-section="s13"><i class="ti ti-sparkles"></i><span class="nav-link-text">Particle & VFX Graph</span><span class="nav-link-num">13</span></a>
+      <a href="14-lighting.html" class="nav-link" data-section="s14"><i class="ti ti-bulb"></i><span class="nav-link-text">Lighting</span><span class="nav-link-num">14</span></a>
+      <a href="15-audio.html" class="nav-link" data-section="s15"><i class="ti ti-volume"></i><span class="nav-link-text">Audio</span><span class="nav-link-num">15</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Sistemler</div>
+      <a href="16-probuilder.html" class="nav-link" data-section="s16"><i class="ti ti-3d-cube-sphere"></i><span class="nav-link-text">ProBuilder</span><span class="nav-link-num">16</span></a>
+      <a href="17-terrain.html" class="nav-link" data-section="s17"><i class="ti ti-mountain"></i><span class="nav-link-text">Terrain</span><span class="nav-link-num">17</span></a>
+      <a href="18-cinemachine.html" class="nav-link" data-section="s18"><i class="ti ti-camera"></i><span class="nav-link-text">Cinemachine</span><span class="nav-link-num">18</span></a>
+      <a href="19-timeline.html" class="nav-link" data-section="s19"><i class="ti ti-timeline"></i><span class="nav-link-text">Timeline</span><span class="nav-link-num">19</span></a>
+      <a href="20-navmesh.html" class="nav-link" data-section="s20"><i class="ti ti-route"></i><span class="nav-link-text">NavMesh & AI</span><span class="nav-link-num">20</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">İleri Seviye</div>
+      <a href="21-urp-hdrp.html" class="nav-link" data-section="s21"><i class="ti ti-bolt"></i><span class="nav-link-text">URP, HDRP & Unity 6</span><span class="nav-link-num">21</span></a>
+      <a href="22-new-input.html" class="nav-link" data-section="s22"><i class="ti ti-device-gamepad-2"></i><span class="nav-link-text">New Input System</span><span class="nav-link-num">22</span></a>
+      <a href="23-save-menu.html" class="nav-link" data-section="s23"><i class="ti ti-device-floppy"></i><span class="nav-link-text">Save & Menü</span><span class="nav-link-num">23</span></a>
+      <a href="24-build.html" class="nav-link" data-section="s24"><i class="ti ti-package-export"></i><span class="nav-link-text">Build & Yayınlama</span><span class="nav-link-num">24</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Profesyonel</div>
+      <a href="25-csharp-ileri.html" class="nav-link" data-section="s25"><i class="ti ti-brackets-contain"></i><span class="nav-link-text">C# İleri</span><span class="nav-link-num">25</span></a>
+      <a href="26-performance.html" class="nav-link" data-section="s26"><i class="ti ti-gauge"></i><span class="nav-link-text">Performance</span><span class="nav-link-num">26</span></a>
+      <a href="27-yol-haritasi.html" class="nav-link" data-section="s27"><i class="ti ti-map-2"></i><span class="nav-link-text">Yol Haritası</span><span class="nav-link-num">27</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Pratik</div>
+      <a href="projects.html" class="nav-link nav-link-extra" data-section="x-projects"><i class="ti ti-rocket"></i><span class="nav-link-text">Projeler</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Ek Kaynaklar</div>
+      <a href="sozluk.html" class="nav-link nav-link-extra" data-section="x-sozluk"><i class="ti ti-book-2"></i><span class="nav-link-text">Sözlük</span></a>
+      <a href="cheatsheet.html" class="nav-link nav-link-extra" data-section="x-cheatsheet"><i class="ti ti-list-details"></i><span class="nav-link-text">Cheat Sheet</span></a>
+      <a href="sss.html" class="nav-link nav-link-extra" data-section="x-sss"><i class="ti ti-help-circle"></i><span class="nav-link-text">SSS</span></a>
+      <a href="arama.html" class="nav-link nav-link-extra" data-section="x-arama"><i class="ti ti-search"></i><span class="nav-link-text">Arama</span></a>
+      <a href="sertifika.html" class="nav-link nav-link-extra" data-section="x-sertifika"><i class="ti ti-certificate"></i><span class="nav-link-text">Sertifika</span></a>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="kaynaklar.html" class="sidebar-btn"><i class="ti ti-books"></i><span>Kaynaklar</span></a>
+    <a href="iletisim.html" class="sidebar-btn"><i class="ti ti-mail"></i><span>İletişim</span></a>
+  </div>
+</aside>
+<main class="main">
+  <div class="main-content">
+<nav class="breadcrumb" aria-label="Sayfa konumu">
+      <a href="../index.html"><i class="ti ti-home"></i><span>Ana Sayfa</span></a>
+      <i class="ti ti-chevron-right"></i><span><i class="ti ti-school" style="font-size: 13px; opacity: 0.7; margin-right: 4px;"></i>Mekanikler</span>
+      <i class="ti ti-chevron-right"></i><span style="color: var(--primary-light);">Input Sistemi</span>
+    </nav>
+
+<header class="page-header">
+  <div class="page-badge">Bölüm 07 · Etkileşim</div>
+  <h1 class="page-title">Input Sistemi — Oyuncunun Sesini Duymak</h1>
+  <p class="page-desc">
+    Oyun, oyuncuya tepki verdiği an doğar. Klavye basışı, fare hareketi, dokunmatik dokunuşu, gamepad
+    sallaması — tüm bunlar sayısal veriye çevrilip script'inize akar. Bu bölümde Unity'nin
+    <strong>eski Input Manager</strong>'ını (hâlâ en yaygın yöntem) sıfırdan öğreneceğiz; yeni
+    <strong>Input System</strong>'ı ise Bölüm 22'de derinlemesine işleyeceğiz.
+  </p>
+  <div class="page-meta">
+    <span class="meta-item">⏱ 30 dakika</span>
+    <span class="meta-item">⌨ Klavye, fare, gamepad</span>
+    <span class="meta-item">📱 Touch input</span>
+  </div>
+</header>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">7.1</span>
+    <h2 class="topic-title">İki Input Sistemi — Hangisini Seçmeliyim?</h2>
+  </div>
+  <p>
+    Unity 2026 itibarıyla Input için <strong>iki ayrı sistem</strong> sunuyor. Editor menülerinde
+    Project Settings altında ikisini de görebilirsin: eski <strong>Input Manager</strong> ve yeni
+    <strong>Input System Package</strong>. Yeni gelen bir geliştiriciye en kafa karıştıran sorulardan biri
+    "Hangisini öğreneyim?".
+  </p>
+
+  <div class="u-compare">
+    <div class="u-compare-side lts">
+      <div class="u-compare-head">Eski Input Manager (Built-in)</div>
+      <div class="u-compare-body">
+        <ul>
+          <li>Yıllardır var, projelerin %90'ında hâlâ kullanılıyor</li>
+          <li>Tek satırlık API: <code>Input.GetKey(KeyCode.W)</code></li>
+          <li>Kurulum gerektirmez — yeni projede hazır gelir</li>
+          <li>Gamepad, touch, sensör desteği sınırlı</li>
+          <li>Tutorial'ların büyük çoğunluğu bunu anlatır</li>
+          <li>Hızlı prototip için ideal</li>
+        </ul>
+      </div>
+    </div>
+    <div class="u-compare-side u6">
+      <div class="u-compare-head">Yeni Input System (Package)</div>
+      <div class="u-compare-body">
+        <ul>
+          <li>Aksiyon-tabanlı (Action-based) modern mimari</li>
+          <li>Birden çok cihaz desteği — gamepad, VR, mobil aynı kodla</li>
+          <li>Rebinding (oyuncu tuş atayabilir) hazır gelir</li>
+          <li>Package Manager'dan kurulur (com.unity.inputsystem)</li>
+          <li>Öğrenme eğrisi daha dik — daha çok kurulum</li>
+          <li><span class="u-ver-badge u6">Unity 6 önerisi</span> yeni projelerde</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <div class="info-box-title">💡 Bu bölümde neden eskisini öğreniyoruz?</div>
+    <p>
+      İki nedenle: <strong>birincisi</strong>, Input Manager kavramsal olarak daha basit ve seni
+      "input"un ne demek olduğuna alıştırır; <strong>ikincisi</strong>, internetteki Unity tutorial'larının
+      ezici çoğunluğu Input Manager'a dayanıyor — eski projelere katılırken, tutorial izlerken
+      okuyabilmen gerekiyor. Yeni sistemi Bölüm 22'de detaylı işleyeceğiz; o zaman iki dünyayı
+      kıyaslayabilecek seviyede olacaksın.
+    </p>
+  </div>
+</section>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">7.2</span>
+    <h2 class="topic-title">Klavye — GetKey Üçlemesi</h2>
+  </div>
+  <p>
+    Bir tuşun durumunu sorgulamak için üç farklı metot var. İsimleri benzer, davranışları çok
+    farklı; üçünün arasındaki farkı oturtmak Input öğrenmenin yarısıdır.
+  </p>
+
+  <div class="cs-block">
+    <div class="cs-block-header">
+      <span class="cs-block-filename">📄 KeyboardBasics.cs</span>
+    </div>
+    <pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+
+<span class="kw">public class</span> <span class="type">KeyboardBasics</span> : <span class="mb">MonoBehaviour</span>
+{
+    <span class="kw">void</span> <span class="fn">Update</span>()
+    {
+        <span class="com">// 1) GetKey — her karede true döner (tuş basılı kaldığı sürece)</span>
+        <span class="kw">if</span> (<span class="type">Input</span>.<span class="fn">GetKey</span>(<span class="type">KeyCode</span>.W))
+        {
+            <span class="type">Debug</span>.<span class="fn">Log</span>(<span class="str">"W basılı tutuluyor"</span>);
+        }
+
+        <span class="com">// 2) GetKeyDown — yalnızca basıldığı karede true</span>
+        <span class="kw">if</span> (<span class="type">Input</span>.<span class="fn">GetKeyDown</span>(<span class="type">KeyCode</span>.Space))
+        {
+            <span class="type">Debug</span>.<span class="fn">Log</span>(<span class="str">"Zıpla!"</span>);   <span class="com">// Tek seferlik aksiyon</span>
+        }
+
+        <span class="com">// 3) GetKeyUp — yalnızca bırakıldığı karede true</span>
+        <span class="kw">if</span> (<span class="type">Input</span>.<span class="fn">GetKeyUp</span>(<span class="type">KeyCode</span>.Space))
+        {
+            <span class="type">Debug</span>.<span class="fn">Log</span>(<span class="str">"Boşluk bırakıldı"</span>);
+        }
+    }
+}</code></pre>
+  </div>
+
+  <div class="layout-diagram" style="grid-template-columns: repeat(3, 1fr);">
+    <div class="layout-cell">
+      <div class="cell-name">GetKey</div>
+      <div class="cell-note">"Şu an basılı mı?" — sürekli hareket, çekim modu</div>
+    </div>
+    <div class="layout-cell">
+      <div class="cell-name">GetKeyDown</div>
+      <div class="cell-note">"Şimdi mi basıldı?" — zıplama, ateşleme, menü</div>
+    </div>
+    <div class="layout-cell">
+      <div class="cell-name">GetKeyUp</div>
+      <div class="cell-note">"Şimdi mi bırakıldı?" — yay çekmeyi durdur, üfle</div>
+    </div>
+  </div>
+
+  <p>
+    <strong>Pratik kural:</strong> Sürekli yapılan işlerde (yürüme, kamera döndürme, gaz vermek)
+    <code>GetKey</code> kullan. Bir kez yapılan tetik aksiyonlarda (zıpla, ateş et, menü aç)
+    <code>GetKeyDown</code> kullan. Bırakıldığında tetiklenen geri-besleme (yayı bırak, ateşi kes)
+    için <code>GetKeyUp</code> kullan.
+  </p>
+
+  <div class="warning-box">
+    <div class="warning-box-title">⚠ GetKeyDown'ı FixedUpdate'e koyma</div>
+    <p>
+      <code>GetKeyDown</code> ve <code>GetKeyUp</code> kareye bağlı olaylardır. Eğer bunları
+      <code>FixedUpdate</code> içine koyarsan basışı kaçırma riski vardır — çünkü FixedUpdate
+      kareden bağımsız çalışır ve bazen aynı kare içinde hiç çağrılmaz, bazen iki kez çağrılır.
+      Tetik aksiyonlar (zıplama, ateşleme) <strong>her zaman Update</strong>'te yakalanmalı;
+      ardından bir <code>bool jumpRequested</code> flag'i set edilip FixedUpdate'te tüketilmeli.
+    </p>
+  </div>
+</section>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">7.3</span>
+    <h2 class="topic-title">KeyCode vs String — İki Yazım Stili</h2>
+  </div>
+  <p>
+    <code>Input.GetKey</code> iki parametre türünü kabul eder: <code>KeyCode</code> enum'u veya
+    <code>string</code>. İkisinin de doğru, ama tercihleri farklıdır.
+  </p>
+
+  <div class="cs-block">
+    <div class="cs-block-header">
+      <span class="cs-block-filename">📄 KeyCodeVsString.cs</span>
+    </div>
+    <pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+
+<span class="kw">public class</span> <span class="type">KeyCodeVsString</span> : <span class="mb">MonoBehaviour</span>
+{
+    <span class="kw">void</span> <span class="fn">Update</span>()
+    {
+        <span class="com">// KeyCode enum — derleme zamanı kontrol, IntelliSense desteği</span>
+        <span class="kw">if</span> (<span class="type">Input</span>.<span class="fn">GetKeyDown</span>(<span class="type">KeyCode</span>.Escape)) { }
+        <span class="kw">if</span> (<span class="type">Input</span>.<span class="fn">GetKeyDown</span>(<span class="type">KeyCode</span>.LeftShift)) { }
+        <span class="kw">if</span> (<span class="type">Input</span>.<span class="fn">GetKeyDown</span>(<span class="type">KeyCode</span>.Alpha1)) { }   <span class="com">// 1 tuşu (alfanumerik)</span>
+        <span class="kw">if</span> (<span class="type">Input</span>.<span class="fn">GetKeyDown</span>(<span class="type">KeyCode</span>.Keypad1)) { }   <span class="com">// numpad 1</span>
+
+        <span class="com">// String — yazım hatası fark edilmez (uyarı vermez)</span>
+        <span class="kw">if</span> (<span class="type">Input</span>.<span class="fn">GetKeyDown</span>(<span class="str">"escape"</span>)) { }
+        <span class="kw">if</span> (<span class="type">Input</span>.<span class="fn">GetKeyDown</span>(<span class="str">"left shift"</span>)) { }
+    }
+}</code></pre>
+  </div>
+
+  <p>
+    <strong>KeyCode'u tercih et</strong> — IDE seni otomatik tamamlar, yazım hatası yapamazsın,
+    refactor güvenlidir. <code>string</code> versiyonu sadece dinamik tuş ataması yapılan
+    (örneğin kullanıcı menüsünden tuş seçen) senaryolarda işe yarar.
+  </p>
+
+  <h3 class="subsection-title">Sık Kullanılan KeyCode Değerleri</h3>
+  <div class="layout-diagram" style="grid-template-columns: repeat(4, 1fr);">
+    <div class="layout-cell">
+      <div class="cell-name">KeyCode.W / A / S / D</div>
+      <div class="cell-note">Yürüme tuşları</div>
+    </div>
+    <div class="layout-cell">
+      <div class="cell-name">KeyCode.Space</div>
+      <div class="cell-note">Boşluk — zıplama</div>
+    </div>
+    <div class="layout-cell">
+      <div class="cell-name">KeyCode.Escape</div>
+      <div class="cell-note">Menü, geri tuşu</div>
+    </div>
+    <div class="layout-cell">
+      <div class="cell-name">KeyCode.LeftShift</div>
+      <div class="cell-note">Koşma, sprint</div>
+    </div>
+    <div class="layout-cell">
+      <div class="cell-name">KeyCode.LeftControl</div>
+      <div class="cell-note">Eğilme, çömelme</div>
+    </div>
+    <div class="layout-cell">
+      <div class="cell-name">KeyCode.Tab</div>
+      <div class="cell-note">Envanter, skor tablosu</div>
+    </div>
+    <div class="layout-cell">
+      <div class="cell-name">KeyCode.Return</div>
+      <div class="cell-note">Enter — onay, sohbet</div>
+    </div>
+    <div class="layout-cell">
+      <div class="cell-name">KeyCode.Alpha1..9</div>
+      <div class="cell-note">Üst sıra sayı tuşları</div>
+    </div>
+  </div>
+</section>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">7.4</span>
+    <h2 class="topic-title">Axis Input — Analog Hareketin Sırrı</h2>
+  </div>
+  <p>
+    <code>Input.GetAxis</code>, klavyenin "açık/kapalı" doğasını analog yumuşaklığa çevirir.
+    <code>Horizontal</code> ve <code>Vertical</code> adında iki varsayılan eksen vardır; geri
+    döndürdükleri değer <code>-1f</code> ile <code>+1f</code> arasında değişir.
+  </p>
+
+  <div class="cs-block">
+    <div class="cs-block-header">
+      <span class="cs-block-filename">📄 AxisExamples.cs</span>
+    </div>
+    <pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+
+<span class="kw">public class</span> <span class="type">AxisExamples</span> : <span class="mb">MonoBehaviour</span>
+{
+    <span class="kw">public</span> <span class="kw">float</span> hiz = <span class="num">5f</span>;
+
+    <span class="kw">void</span> <span class="fn">Update</span>()
+    {
+        <span class="com">// Yatay: A/Sol Ok = -1, D/Sağ Ok = +1, basılı değilse 0</span>
+        <span class="kw">float</span> h = <span class="type">Input</span>.<span class="fn">GetAxis</span>(<span class="str">"Horizontal"</span>);
+
+        <span class="com">// Dikey: W/Yukarı Ok = +1, S/Aşağı Ok = -1</span>
+        <span class="kw">float</span> v = <span class="type">Input</span>.<span class="fn">GetAxis</span>(<span class="str">"Vertical"</span>);
+
+        <span class="type">Vector3</span> hareket = <span class="kw">new</span> <span class="type">Vector3</span>(h, <span class="num">0f</span>, v) * hiz * <span class="type">Time</span>.deltaTime;
+        transform.<span class="fn">Translate</span>(hareket);
+    }
+}</code></pre>
+  </div>
+
+  <h3 class="subsection-title">GetAxis vs GetAxisRaw</h3>
+  <p>
+    Unity ekstra bir varyant daha sunar: <code>Input.GetAxisRaw</code>. Aralarındaki fark
+    <em>yumuşatma (smoothing)</em>:
+  </p>
+
+  <div class="u-compare">
+    <div class="u-compare-side lts">
+      <div class="u-compare-head">Input.GetAxis</div>
+      <div class="u-compare-body">
+        <ul>
+          <li>Değer 0'dan 1'e yumuşak geçer (interpolated)</li>
+          <li>Klavye basışı bile analog hissedilir</li>
+          <li>Araba, uçak gibi sürüklenmeli kontrol için iyi</li>
+          <li>Karakter platform oyunları için <strong>kötü</strong> — kayma hissi verir</li>
+        </ul>
+      </div>
+    </div>
+    <div class="u-compare-side u6">
+      <div class="u-compare-head">Input.GetAxisRaw</div>
+      <div class="u-compare-body">
+        <ul>
+          <li>Sadece <code>-1, 0, +1</code> döner — keskin</li>
+          <li>Tuşa bastığın an direkt değer değişir</li>
+          <li>Platform oyunu, FPS, retro 2D için ideal</li>
+          <li>Gamepad ile kullandığında joystick'in gerçek değerini verir</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <div class="info-box-title">💡 Yumuşatmayı kendin yap</div>
+    <p>
+      Çoğu profesyonel proje <code>GetAxisRaw</code> ile ham değeri alır ve yumuşatmayı kendisi yapar
+      — <code>Mathf.Lerp</code> ile veya bir <code>SmoothDamp</code> çağrısıyla. Bu sayede her
+      durumda kontrolün hızına ve yumuşatma karakterine sen karar verirsin.
+    </p>
+  </div>
+</section>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">7.5</span>
+    <h2 class="topic-title">Fare Input — Konum, Tıklama, Tekerlek</h2>
+  </div>
+
+  <div class="cs-block">
+    <div class="cs-block-header">
+      <span class="cs-block-filename">📄 MouseInput.cs</span>
+    </div>
+    <pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+
+<span class="kw">public class</span> <span class="type">MouseInput</span> : <span class="mb">MonoBehaviour</span>
+{
+    <span class="kw">void</span> <span class="fn">Update</span>()
+    {
+        <span class="com">// Tıklama — index 0=sol, 1=sağ, 2=orta</span>
+        <span class="kw">if</span> (<span class="type">Input</span>.<span class="fn">GetMouseButtonDown</span>(<span class="num">0</span>)) <span class="type">Debug</span>.<span class="fn">Log</span>(<span class="str">"Sol tık"</span>);
+        <span class="kw">if</span> (<span class="type">Input</span>.<span class="fn">GetMouseButtonDown</span>(<span class="num">1</span>)) <span class="type">Debug</span>.<span class="fn">Log</span>(<span class="str">"Sağ tık"</span>);
+        <span class="kw">if</span> (<span class="type">Input</span>.<span class="fn">GetMouseButton</span>(<span class="num">0</span>))     <span class="type">Debug</span>.<span class="fn">Log</span>(<span class="str">"Sol basılı"</span>);
+
+        <span class="com">// Fare konumu — ekran piksel koordinatları (sol-alt 0,0)</span>
+        <span class="type">Vector3</span> mp = <span class="type">Input</span>.mousePosition;
+        <span class="type">Debug</span>.<span class="fn">Log</span>($<span class="str">"Fare: {mp.x}, {mp.y}"</span>);
+
+        <span class="com">// Fare delta — son kareden bu kareye ne kadar hareket etti</span>
+        <span class="kw">float</span> mx = <span class="type">Input</span>.<span class="fn">GetAxis</span>(<span class="str">"Mouse X"</span>);
+        <span class="kw">float</span> my = <span class="type">Input</span>.<span class="fn">GetAxis</span>(<span class="str">"Mouse Y"</span>);
+
+        <span class="com">// Tekerlek — yukarı +, aşağı -</span>
+        <span class="kw">float</span> tekerlek = <span class="type">Input</span>.<span class="fn">GetAxis</span>(<span class="str">"Mouse ScrollWheel"</span>);
+        <span class="kw">if</span> (tekerlek != <span class="num">0f</span>) <span class="type">Debug</span>.<span class="fn">Log</span>($<span class="str">"Tekerlek: {tekerlek}"</span>);
+    }
+}</code></pre>
+  </div>
+
+  <h3 class="subsection-title">FPS Kamera için Klasik Kalıp</h3>
+  <div class="cs-block">
+    <pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+
+<span class="kw">public class</span> <span class="type">FpsCamera</span> : <span class="mb">MonoBehaviour</span>
+{
+    <span class="kw">public</span> <span class="kw">float</span> hassasiyet = <span class="num">2f</span>;
+    <span class="kw">private</span> <span class="kw">float</span> dikeyAci = <span class="num">0f</span>;
+
+    <span class="kw">void</span> <span class="fn">Start</span>()
+    {
+        <span class="type">Cursor</span>.lockState = <span class="type">CursorLockMode</span>.Locked;   <span class="com">// İmleci gizle ve kilitle</span>
+    }
+
+    <span class="kw">void</span> <span class="fn">Update</span>()
+    {
+        <span class="kw">float</span> mx = <span class="type">Input</span>.<span class="fn">GetAxis</span>(<span class="str">"Mouse X"</span>) * hassasiyet;
+        <span class="kw">float</span> my = <span class="type">Input</span>.<span class="fn">GetAxis</span>(<span class="str">"Mouse Y"</span>) * hassasiyet;
+
+        <span class="com">// Karakter Y ekseninde döner (sağa-sola)</span>
+        transform.<span class="fn">Rotate</span>(<span class="num">0f</span>, mx, <span class="num">0f</span>);
+
+        <span class="com">// Kamera X ekseninde döner (yukarı-aşağı), kısıtlı</span>
+        dikeyAci -= my;
+        dikeyAci = <span class="type">Mathf</span>.<span class="fn">Clamp</span>(dikeyAci, <span class="num">-80f</span>, <span class="num">80f</span>);
+        <span class="type">Camera</span>.main.transform.localEulerAngles = <span class="kw">new</span> <span class="type">Vector3</span>(dikeyAci, <span class="num">0f</span>, <span class="num">0f</span>);
+    }
+}</code></pre>
+  </div>
+
+  <div class="warning-box">
+    <div class="warning-box-title">⚠ Cursor.lockState ve Editor</div>
+    <p>
+      <code>CursorLockMode.Locked</code>'ı Editor'de denerken kilitten kurtulamayabilirsin. Editor'de
+      Escape tuşu otomatik olarak kilit modunu kırar — bunu kendin override etmen gerekir. Build
+      aldığında bu davranış kaybolur ve oyunda Escape tuşuyla menüye dönmeyi sen yönetirsin.
+    </p>
+  </div>
+</section>
+
+<div class="mini-checkpoint">
+  <div class="mini-checkpoint-title">⚡ Mini-Checkpoint — Input Refleksi</div>
+  <p>Devam etmeden önce şu beş ayrımı zihninde oturt:</p>
+  <ol class="check-list">
+    <li><strong>GetKey</strong> sürekli, <strong>GetKeyDown</strong> ve <strong>GetKeyUp</strong> tek seferlik.</li>
+    <li><strong>GetAxis</strong> yumuşatılmış (-1..+1), <strong>GetAxisRaw</strong> ham (-1, 0, +1).</li>
+    <li>Tetik aksiyonlar <strong>Update</strong>'te yakalanır, FixedUpdate'te değil.</li>
+    <li>Fare delta için <code>Input.GetAxis("Mouse X/Y")</code>, ekran konumu için <code>Input.mousePosition</code>.</li>
+    <li><strong>KeyCode</strong> enum'u <strong>string</strong>'e tercih edilir — IDE desteği ve tip güvenliği.</li>
+  </ol>
+</div>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">7.6</span>
+    <h2 class="topic-title">Input Manager — Project Settings</h2>
+  </div>
+  <p>
+    <strong>Edit › Project Settings › Input Manager</strong> menüsünden Unity'nin varsayılan
+    eksenlerini görebilir ve özelleştirebilirsin. Burada her <em>axis</em> bir kural setidir: hangi
+    tuşlara pozitif, hangilerine negatif gibi.
+  </p>
+
+  <div class="u-inspector">
+    <div class="u-inspector-header">
+      <div class="u-inspector-icon script">📄</div>
+      <span>Axis: Horizontal</span>
+    </div>
+    <div class="u-inspector-body">
+      <div class="u-inspector-row">
+        <span class="u-inspector-label">Name</span>
+        <span class="u-inspector-value">Horizontal</span>
+      </div>
+      <div class="u-inspector-row">
+        <span class="u-inspector-label">Negative Button</span>
+        <span class="u-inspector-value">left</span>
+      </div>
+      <div class="u-inspector-row">
+        <span class="u-inspector-label">Positive Button</span>
+        <span class="u-inspector-value">right</span>
+      </div>
+      <div class="u-inspector-row">
+        <span class="u-inspector-label">Alt Negative Button</span>
+        <span class="u-inspector-value">a</span>
+      </div>
+      <div class="u-inspector-row">
+        <span class="u-inspector-label">Alt Positive Button</span>
+        <span class="u-inspector-value">d</span>
+      </div>
+      <div class="u-inspector-row">
+        <span class="u-inspector-label">Gravity</span>
+        <span class="u-inspector-value">3</span>
+      </div>
+      <div class="u-inspector-row">
+        <span class="u-inspector-label">Sensitivity</span>
+        <span class="u-inspector-value">3</span>
+      </div>
+      <div class="u-inspector-row">
+        <span class="u-inspector-label">Type</span>
+        <span class="u-inspector-value">Key or Mouse Button</span>
+      </div>
+      <div class="u-inspector-row">
+        <span class="u-inspector-label">Axis</span>
+        <span class="u-inspector-value">X axis</span>
+      </div>
+    </div>
+  </div>
+
+  <p>
+    <strong>Gravity</strong>: tuş bırakıldığında değerin sıfıra dönme hızı. <strong>Sensitivity</strong>:
+    tuşa basıldığında değerin hedefe gitme hızı. İkisi de saniyedeki birim cinsindendir. Yüksek
+    değerler "keskin" hissini verir; Gravity ve Sensitivity ikisini birden <strong>1000</strong> yaparsan
+    GetAxisRaw gibi davranır (yumuşatma yok).
+  </p>
+
+  <h3 class="subsection-title">Özel Axis Tanımlamak</h3>
+  <p>
+    Varsayılan <code>Horizontal</code> ve <code>Vertical</code>'a ek olarak kendi axis'lerini
+    tanımlayabilirsin. Örneğin <em>Crouch</em> adında bir axis, LeftCtrl ile +1 veren bir tetik:
+  </p>
+  <ol class="step-list">
+    <li>Edit › Project Settings › Input Manager açılır.</li>
+    <li>Axes listesi genişletilir, <em>Size</em> bir artırılır.</li>
+    <li>Listenin sonunda görünen yeni axis seçilir, <em>Name</em>'i <code>Crouch</code> yapılır.</li>
+    <li><em>Positive Button</em> alanına <code>left ctrl</code> yazılır.</li>
+    <li>Script içinde <code>Input.GetAxis("Crouch") > 0.5f</code> ile sorgulanır.</li>
+  </ol>
+
+  <div class="info-box">
+    <div class="info-box-title">💡 Neden axis yerine doğrudan tuş okumayalım?</div>
+    <p>
+      İyi soru — küçük projelerde fark etmez. Ama gamepad desteği eklemek istediğinde, Linux'ta tuş
+      farklılıklarını karşılamak istediğinde veya oyuncuya tuş atama menüsü vermek istediğinde
+      axis soyutlaması işe yarar. Eski Input Manager'da gamepad butonları <code>joystick button 0</code>,
+      <code>joystick button 1</code> gibi numaralarla gelir — axis tanımı bu karmaşayı senin için
+      saklar.
+    </p>
+  </div>
+</section>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">7.7</span>
+    <h2 class="topic-title">Touch Input — Mobil İçin Temeller</h2>
+  </div>
+  <p>
+    Mobil platformlarda klavye yerine parmak var. Unity'de touch input'u okumak için
+    <code>Input.touches</code> dizisini kullanırız.
+  </p>
+
+  <div class="cs-block">
+    <div class="cs-block-header">
+      <span class="cs-block-filename">📄 TouchBasics.cs</span>
+    </div>
+    <pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+
+<span class="kw">public class</span> <span class="type">TouchBasics</span> : <span class="mb">MonoBehaviour</span>
+{
+    <span class="kw">void</span> <span class="fn">Update</span>()
+    {
+        <span class="kw">if</span> (<span class="type">Input</span>.touchCount > <span class="num">0</span>)
+        {
+            <span class="type">Touch</span> t = <span class="type">Input</span>.<span class="fn">GetTouch</span>(<span class="num">0</span>);   <span class="com">// İlk parmak</span>
+
+            <span class="kw">switch</span> (t.phase)
+            {
+                <span class="kw">case</span> <span class="type">TouchPhase</span>.Began:
+                    <span class="type">Debug</span>.<span class="fn">Log</span>($<span class="str">"Parmak değdi: {t.position}"</span>);
+                    <span class="kw">break</span>;
+
+                <span class="kw">case</span> <span class="type">TouchPhase</span>.Moved:
+                    <span class="type">Debug</span>.<span class="fn">Log</span>($<span class="str">"Hareket: {t.deltaPosition}"</span>);
+                    <span class="kw">break</span>;
+
+                <span class="kw">case</span> <span class="type">TouchPhase</span>.Stationary:
+                    <span class="type">Debug</span>.<span class="fn">Log</span>(<span class="str">"Parmak duruyor"</span>);
+                    <span class="kw">break</span>;
+
+                <span class="kw">case</span> <span class="type">TouchPhase</span>.Ended:
+                    <span class="type">Debug</span>.<span class="fn">Log</span>(<span class="str">"Parmak kalktı"</span>);
+                    <span class="kw">break</span>;
+            }
+        }
+    }
+}</code></pre>
+  </div>
+
+  <p>
+    Touch'un dört fazı: <code>Began</code> (parmağın değdiği an), <code>Moved</code> (kayıyor),
+    <code>Stationary</code> (basılı duruyor), <code>Ended</code> (kalktı). <code>Canceled</code> de
+    var — sistem touch'u iptal ettiğinde (örn. telefon görüşmesi gelince) tetiklenir.
+  </p>
+
+  <h3 class="subsection-title">Çoklu Parmak — Pinch Zoom</h3>
+  <div class="cs-block">
+    <pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+
+<span class="kw">public class</span> <span class="type">PinchZoom</span> : <span class="mb">MonoBehaviour</span>
+{
+    <span class="kw">void</span> <span class="fn">Update</span>()
+    {
+        <span class="kw">if</span> (<span class="type">Input</span>.touchCount == <span class="num">2</span>)
+        {
+            <span class="type">Touch</span> t0 = <span class="type">Input</span>.<span class="fn">GetTouch</span>(<span class="num">0</span>);
+            <span class="type">Touch</span> t1 = <span class="type">Input</span>.<span class="fn">GetTouch</span>(<span class="num">1</span>);
+
+            <span class="com">// Önceki kareden bu kareye iki parmak arasındaki mesafe farkı</span>
+            <span class="type">Vector2</span> oncekiT0 = t0.position - t0.deltaPosition;
+            <span class="type">Vector2</span> oncekiT1 = t1.position - t1.deltaPosition;
+
+            <span class="kw">float</span> onceMesafe = <span class="type">Vector2</span>.<span class="fn">Distance</span>(oncekiT0, oncekiT1);
+            <span class="kw">float</span> simdiMesafe = <span class="type">Vector2</span>.<span class="fn">Distance</span>(t0.position, t1.position);
+
+            <span class="kw">float</span> fark = onceMesafe - simdiMesafe;
+            <span class="type">Camera</span>.main.fieldOfView += fark * <span class="num">0.05f</span>;
+        }
+    }
+}</code></pre>
+  </div>
+
+  <div class="info-box">
+    <div class="info-box-title">💡 Editor'de touch'u simüle etmek</div>
+    <p>
+      Editor'de telefon olmadığı için touch testlerini direkt yapamazsın. İki yöntem var:
+      <strong>Unity Remote</strong> uygulamasını telefona kur ve USB ile bağla — telefondaki
+      touch direkt Editor'e iletilir. Veya <em>Project Settings › Input Manager › Active Input
+      Handling</em>'i geçici olarak fare ile simüle edecek şekilde ayarla. Yeni Input System bu
+      simülasyonu çok daha temiz çözer (Bölüm 22).
+    </p>
+  </div>
+</section>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">7.8</span>
+    <h2 class="topic-title">Gamepad Tuşları — Joystick Button İsimleri</h2>
+  </div>
+  <p>
+    Eski Input Manager gamepad'i klavyenin uzantısı gibi görür: butonlara <code>JoystickButton0</code>,
+    <code>JoystickButton1</code>... olarak numaralarla erişirsin; tetikler ve sol/sağ joystick'ler
+    axis olarak gelir.
+  </p>
+
+  <div class="cs-block">
+    <pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+
+<span class="kw">public class</span> <span class="type">GamepadOld</span> : <span class="mb">MonoBehaviour</span>
+{
+    <span class="kw">void</span> <span class="fn">Update</span>()
+    {
+        <span class="com">// Sol joystick — Horizontal/Vertical zaten klavye + gamepad birleşik gelir</span>
+        <span class="kw">float</span> sx = <span class="type">Input</span>.<span class="fn">GetAxis</span>(<span class="str">"Horizontal"</span>);
+        <span class="kw">float</span> sy = <span class="type">Input</span>.<span class="fn">GetAxis</span>(<span class="str">"Vertical"</span>);
+
+        <span class="com">// Butonlar — A=0, B=1, X=2, Y=3 (Xbox tarzı)</span>
+        <span class="kw">if</span> (<span class="type">Input</span>.<span class="fn">GetKeyDown</span>(<span class="type">KeyCode</span>.JoystickButton0))
+            <span class="type">Debug</span>.<span class="fn">Log</span>(<span class="str">"A tuşu"</span>);
+
+        <span class="kw">if</span> (<span class="type">Input</span>.<span class="fn">GetKeyDown</span>(<span class="type">KeyCode</span>.JoystickButton1))
+            <span class="type">Debug</span>.<span class="fn">Log</span>(<span class="str">"B tuşu"</span>);
+    }
+}</code></pre>
+  </div>
+
+  <div class="warning-box">
+    <div class="warning-box-title">⚠ Gamepad ve Eski Input'un sınırları</div>
+    <p>
+      Eski Input Manager Xbox, PlayStation ve generic gamepad'leri farklı düzenlerle algılar — buton
+      numaraları cihazdan cihaza değişebilir. PS5 DualSense'in haptic feedback'ine erişemezsin;
+      VR kontrolcüleri okuyamazsın. Modern, çok-platformlu input için <strong>yeni Input System</strong>
+      tek doğru yoldur — Bölüm 22'de bunu çözeceğiz.
+    </p>
+  </div>
+</section>
+
+<div class="real-world-box">
+  <div class="real-world-box-title">🎮 Gerçek hayattan örnek — İlk top-down hareket sistemin</div>
+  <p>
+    Klasik bir top-down (yukarıdan bakış) oyunda karakter WASD ile hareket eder, fare imlecinin
+    olduğu yere döner, sol tıkla ateş eder. Eski Input Manager'ın yapabildiklerinin tam ortasında
+    yer alan bir kalıp:
+  </p>
+  <div class="cs-block">
+    <pre><code><span class="kw">using</span> <span class="type">UnityEngine</span>;
+
+<span class="kw">public class</span> <span class="type">TopDownController</span> : <span class="mb">MonoBehaviour</span>
+{
+    <span class="kw">public</span> <span class="kw">float</span> hiz = <span class="num">6f</span>;
+    <span class="kw">public</span> <span class="type">GameObject</span> mermiPrefab;
+
+    <span class="kw">void</span> <span class="fn">Update</span>()
+    {
+        <span class="com">// 1) WASD — düz hareket (raw, keskin hissedilsin)</span>
+        <span class="kw">float</span> h = <span class="type">Input</span>.<span class="fn">GetAxisRaw</span>(<span class="str">"Horizontal"</span>);
+        <span class="kw">float</span> v = <span class="type">Input</span>.<span class="fn">GetAxisRaw</span>(<span class="str">"Vertical"</span>);
+        <span class="type">Vector3</span> yon = <span class="kw">new</span> <span class="type">Vector3</span>(h, <span class="num">0f</span>, v).<span class="fn">normalized</span>;
+        transform.position += yon * hiz * <span class="type">Time</span>.deltaTime;
+
+        <span class="com">// 2) Fare imlecine doğru dön</span>
+        <span class="type">Ray</span> ray = <span class="type">Camera</span>.main.<span class="fn">ScreenPointToRay</span>(<span class="type">Input</span>.mousePosition);
+        <span class="kw">if</span> (<span class="type">Physics</span>.<span class="fn">Raycast</span>(ray, <span class="kw">out</span> <span class="type">RaycastHit</span> hit))
+        {
+            <span class="type">Vector3</span> bakHedef = hit.point;
+            bakHedef.y = transform.position.y;       <span class="com">// Yana eğilmesin</span>
+            transform.<span class="fn">LookAt</span>(bakHedef);
+        }
+
+        <span class="com">// 3) Sol tık — ateş et</span>
+        <span class="kw">if</span> (<span class="type">Input</span>.<span class="fn">GetMouseButtonDown</span>(<span class="num">0</span>))
+        {
+            <span class="type">Instantiate</span>(mermiPrefab, transform.position, transform.rotation);
+        }
+    }
+}</code></pre>
+  </div>
+  <p>
+    Bu 20 satırlık script üç farklı input kanalını birleştirir: klavye axisleri, fare konumu (ray ile
+    dünyaya projekte edilmiş), fare butonu. Eski Input Manager'ın gücünü gösteren bir örnek — kısa,
+    okunaklı, hızlı yazılır.
+  </p>
+</div>
+
+<section class="practice-section">
+  <div class="topic-header">
+    <span class="topic-number">🛠</span>
+    <h2 class="topic-title">Pratik — Üç Mini Proje</h2>
+  </div>
+
+  <div class="project-card">
+    <div class="project-goal">🎯 Proje 1 — Klavye ile Renk Değiştir</div>
+    <p>
+      Sahnede bir Cube oluştur. Bir script bağla. <code>R</code>, <code>G</code>, <code>B</code>
+      tuşlarına bastığında küpün rengi sırasıyla kırmızı, yeşil, mavi olsun.
+    </p>
+    <div class="project-check">
+      <strong>Kontrol:</strong> <code>GetComponent&lt;Renderer&gt;().material.color = Color.red;</code>
+      satırı işine yarayacak. <code>GetKeyDown</code> kullan — sürekli tetiklenmesin.
+    </div>
+  </div>
+
+  <div class="project-card">
+    <div class="project-goal">🎯 Proje 2 — Mouse ile Top Fırlat</div>
+    <p>
+      Bir top prefab'ı oluştur (Sphere + Rigidbody). Boş bir GameObject olarak <em>Fırlatıcı</em>
+      yarat ve ona script bağla. Sol tıklayınca fareye doğru top fırlatsın
+      (<code>Rigidbody.AddForce</code> ile).
+    </p>
+    <div class="project-check">
+      <strong>Kontrol:</strong> Top fareye doğru gitmeli. İpucu: <code>Camera.main.ScreenPointToRay(Input.mousePosition)</code>
+      ile dünyada bir yön elde edebilirsin.
+    </div>
+  </div>
+
+  <div class="project-card">
+    <div class="project-goal">🎯 Proje 3 — Sprint Tuşuyla Koşma</div>
+    <p>
+      Karakterin <code>Vertical</code> axis'iyle ileri-geri hareket etsin. <code>LeftShift</code>
+      basılıyken hızı 2 katına çıksın (sprint). Bıraktığında normal hıza dönsün.
+    </p>
+    <div class="project-check">
+      <strong>Kontrol:</strong> <code>float aktifHiz = Input.GetKey(KeyCode.LeftShift) ? hiz * 2f : hiz;</code>
+      gibi tek satırla halledebilirsin.
+    </div>
+  </div>
+</section>
+
+<section class="topic-section">
+  <div class="topic-header">
+    <span class="topic-number">📝</span>
+    <h2 class="topic-title">Bölüm Quiz'i — Beş Soru</h2>
+  </div>
+
+  <section class="quiz" id="bolum-quiz">
+  <header class="quiz-header">
+    <div class="quiz-header-icon"><i class="ti ti-help"></i></div>
+    <div class="quiz-header-text">
+      <h2>Bölüm Sonu Sınavı</h2>
+      <span>5 soru</span>
+    </div>
+  </header>
+
+  <article class="quiz-question" id="q7-1">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">01</span>
+      <h3 class="quiz-prompt-text">Zıplama tuşunun (Space) algılanması için hangi metot doğru?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Input.GetKey(KeyCode.Space) — her karede çalışır</button>
+      <button class="quiz-option" data-correct="true">Input.GetKeyDown(KeyCode.Space) — basıldığı kare</button>
+      <button class="quiz-option" data-correct="false">Input.GetKeyUp(KeyCode.Space) — bırakıldığı kare</button>
+      <button class="quiz-option" data-correct="false">Input.GetAxis("Space")</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q7-2">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">02</span>
+      <h3 class="quiz-prompt-text"><code>Input.GetAxis("Horizontal")</code> en küçük ve en büyük hangi değerleri döner?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">0 ile 100 arası</button>
+      <button class="quiz-option" data-correct="true">-1f ile +1f arası</button>
+      <button class="quiz-option" data-correct="false">-360 ile 360 arası</button>
+      <button class="quiz-option" data-correct="false">Sadece -1, 0 veya +1</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q7-3">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">03</span>
+      <h3 class="quiz-prompt-text">Platform oyunu için neden <code>GetAxisRaw</code> tercih edilir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Daha az bellek kullanır</button>
+      <button class="quiz-option" data-correct="true">Yumuşatma yapmaz; hareket anında başlayıp anında durur — kayma hissi olmaz</button>
+      <button class="quiz-option" data-correct="false">Sadece klavyede çalışır</button>
+      <button class="quiz-option" data-correct="false">Sayısal değer döndürmez</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q7-4">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">04</span>
+      <h3 class="quiz-prompt-text">Fare imlecini gizleyip ekrana kilitlemek için hangisi kullanılır?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Input.HideCursor()</button>
+      <button class="quiz-option" data-correct="true">Cursor.lockState = CursorLockMode.Locked;</button>
+      <button class="quiz-option" data-correct="false">Mouse.lock = true;</button>
+      <button class="quiz-option" data-correct="false">Cursor.visible = false; (tek başına yeterli)</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q7-5">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">05</span>
+      <h3 class="quiz-prompt-text">GetKeyDown'ı FixedUpdate'e koymak neden sorunludur?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Hata vermez ama yavaş çalışır</button>
+      <button class="quiz-option" data-correct="true">FixedUpdate kareden bağımsız çağrılır; basışı kaçırabilir veya iki kez tetikleyebilir</button>
+      <button class="quiz-option" data-correct="false">Sadece Editor'de hata verir, build'de düzelir</button>
+      <button class="quiz-option" data-correct="false">FixedUpdate input okumaz — sessizce hiçbir şey olmaz</button>
+    </div>
+  </article>
+</section>
+</section>
+
+<section class="complete-section">
+      <h3 class="complete-title">🎉 Bölüm 7 Tamamlandı!</h3>
+      <p class="complete-msg">Tebrikler — oyununu artık oyuncuyla konuşur hale getirdin. Klavye, fare, gamepad ve dokunmatik için temel kalıpları biliyorsun; GetKey üçlemesi, axis yumuşatması, Input Manager soyutlaması artık tanıdık. Bir sonraki bölümde <strong>Physics</strong>'e dalıyoruz — Rigidbody, Collider, çarpışma olayları ve gerçek dünya benzeri hareket nasıl simüle edilir öğreneceğiz.</p>
+      <button class="complete-btn" data-section="s7">
+        <i class="ti ti-circle-check"></i>
+        <span>Bu Bölümü Tamamladım</span>
+      </button>
+      <p class="complete-note">İlerlemen otomatik tarayıcına kaydedilir.</p>
+    </section>
+    <!-- Sayfa Gezinme -->
+    <nav class="page-nav" aria-label="Bölüm gezinme">
+      <a href="06-transform-vector.html" class="page-nav-link prev">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-left"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Önceki Bölüm</div>
+          <div class="page-nav-title">6. Transform & Vector3</div>
+        </div>
+      </a>
+      <a href="08-physics.html" class="page-nav-link next">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-right"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Sonraki Bölüm</div>
+          <div class="page-nav-title">8. Fizik & Çarpışma</div>
+        </div>
+      </a>
+    </nav>
+
+  </div>
+</main>
+<script src="../js/progress.js?v=11"></script>
+<script src="../js/quiz.js?v=11"></script>
+<script src="../js/toc.js?v=11"></script>
+<script src="../js/main.js?v=11"></script>
+</body>
+</html>

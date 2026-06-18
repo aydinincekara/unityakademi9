@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asset Import — UnityAkademi</title>
+  <meta name="description" content="FBX import settings, texture/audio/sprite import, klasör organizasyonu, AssetPostprocessor — Bölüm 11.">
+  <meta name="theme-color" content="#fa7d19">
+  <link rel="manifest" href="../manifest.json">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Asset Import">
+  <meta property="og:description" content="FBX import settings, texture/audio/sprite import, klasör organizasyonu, AssetPostprocessor — Bölüm 11.">
+  <meta property="og:image" content="../og-image.svg">
+  <meta property="og:site_name" content="UnityAkademi">
+  <meta property="og:locale" content="tr_TR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Asset Import">
+  <meta name="twitter:description" content="FBX import settings, texture/audio/sprite import, klasör organizasyonu, AssetPostprocessor — Bölüm 11.">
+  <meta name="twitter:image" content="../og-image.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="../css/variables.css?v=11">
+  <link rel="stylesheet" href="../css/reset.css?v=11">
+  <link rel="stylesheet" href="../css/layout.css?v=11">
+  <link rel="stylesheet" href="../css/components.css?v=11">
+  <link rel="stylesheet" href="../css/content.css?v=11">
+  <link rel="stylesheet" href="../css/visuals.css?v=11">
+  <link rel="stylesheet" href="../css/extras.css?v=11">
+  <link rel="stylesheet" href="../css/responsive.css?v=11">
+</head>
+<body>
+<button class="nav-hamburger" id="navHamburger" aria-label="Menüyü aç">
+  <i class="ti ti-menu-2"></i>
+</button>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a href="../index.html" class="sidebar-brand">
+      <div class="sidebar-brand-icon"><i class="ti ti-home-2"></i></div>
+      <div class="sidebar-brand-text">
+        <span class="sidebar-brand-name">Ana Sayfa</span>
+        <span class="sidebar-brand-sub">UnityAkademi</span>
+      </div>
+    </a>
+    <button class="mobile-toggle" aria-label="Menü"><i class="ti ti-x"></i></button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-group">
+      <div class="nav-group-title">Temeller</div>
+      <a href="01-kurulum.html" class="nav-link" data-section="s1"><i class="ti ti-download"></i><span class="nav-link-text">Kurulum & İlk Bakış</span><span class="nav-link-num">01</span></a>
+      <a href="02-arayuz.html" class="nav-link" data-section="s2"><i class="ti ti-layout-board"></i><span class="nav-link-text">Editor Arayüzü</span><span class="nav-link-num">02</span></a>
+      <a href="03-gameobject-component.html" class="nav-link" data-section="s3"><i class="ti ti-cube"></i><span class="nav-link-text">GameObject & Component</span><span class="nav-link-num">03</span></a>
+      <a href="04-csharp-temelleri.html" class="nav-link" data-section="s4"><i class="ti ti-code"></i><span class="nav-link-text">C# Temelleri</span><span class="nav-link-num">04</span></a>
+      <a href="05-monobehaviour-lifecycle.html" class="nav-link" data-section="s5"><i class="ti ti-refresh"></i><span class="nav-link-text">MonoBehaviour Lifecycle</span><span class="nav-link-num">05</span></a>
+      <a href="06-transform-vector.html" class="nav-link" data-section="s6"><i class="ti ti-arrows-move"></i><span class="nav-link-text">Transform & Vector3</span><span class="nav-link-num">06</span></a>
+      <a href="07-input.html" class="nav-link" data-section="s7"><i class="ti ti-keyboard"></i><span class="nav-link-text">Input Sistemi</span><span class="nav-link-num">07</span></a>
+      <a href="08-physics.html" class="nav-link" data-section="s8"><i class="ti ti-atom"></i><span class="nav-link-text">Physics</span><span class="nav-link-num">08</span></a>
+      <a href="09-ui.html" class="nav-link" data-section="s9"><i class="ti ti-layout-grid"></i><span class="nav-link-text">UI Sistemi</span><span class="nav-link-num">09</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Görsel & Asset</div>
+      <a href="10-material-shader.html" class="nav-link" data-section="s10"><i class="ti ti-palette"></i><span class="nav-link-text">Material & Shader</span><span class="nav-link-num">10</span></a>
+      <a href="11-asset-import.html" class="nav-link active" data-section="s11"><i class="ti ti-folder"></i><span class="nav-link-text">Asset Import</span><span class="nav-link-num">11</span></a>
+      <a href="12-animation.html" class="nav-link" data-section="s12"><i class="ti ti-bounce-right"></i><span class="nav-link-text">Animation</span><span class="nav-link-num">12</span></a>
+      <a href="13-particle-vfx.html" class="nav-link" data-section="s13"><i class="ti ti-sparkles"></i><span class="nav-link-text">Particle & VFX Graph</span><span class="nav-link-num">13</span></a>
+      <a href="14-lighting.html" class="nav-link" data-section="s14"><i class="ti ti-bulb"></i><span class="nav-link-text">Lighting</span><span class="nav-link-num">14</span></a>
+      <a href="15-audio.html" class="nav-link" data-section="s15"><i class="ti ti-volume"></i><span class="nav-link-text">Audio</span><span class="nav-link-num">15</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Sistemler</div>
+      <a href="16-probuilder.html" class="nav-link" data-section="s16"><i class="ti ti-3d-cube-sphere"></i><span class="nav-link-text">ProBuilder</span><span class="nav-link-num">16</span></a>
+      <a href="17-terrain.html" class="nav-link" data-section="s17"><i class="ti ti-mountain"></i><span class="nav-link-text">Terrain</span><span class="nav-link-num">17</span></a>
+      <a href="18-cinemachine.html" class="nav-link" data-section="s18"><i class="ti ti-camera"></i><span class="nav-link-text">Cinemachine</span><span class="nav-link-num">18</span></a>
+      <a href="19-timeline.html" class="nav-link" data-section="s19"><i class="ti ti-timeline"></i><span class="nav-link-text">Timeline</span><span class="nav-link-num">19</span></a>
+      <a href="20-navmesh.html" class="nav-link" data-section="s20"><i class="ti ti-route"></i><span class="nav-link-text">NavMesh & AI</span><span class="nav-link-num">20</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">İleri Seviye</div>
+      <a href="21-urp-hdrp.html" class="nav-link" data-section="s21"><i class="ti ti-bolt"></i><span class="nav-link-text">URP, HDRP & Unity 6</span><span class="nav-link-num">21</span></a>
+      <a href="22-new-input.html" class="nav-link" data-section="s22"><i class="ti ti-device-gamepad-2"></i><span class="nav-link-text">New Input System</span><span class="nav-link-num">22</span></a>
+      <a href="23-save-menu.html" class="nav-link" data-section="s23"><i class="ti ti-device-floppy"></i><span class="nav-link-text">Save & Menü</span><span class="nav-link-num">23</span></a>
+      <a href="24-build.html" class="nav-link" data-section="s24"><i class="ti ti-package-export"></i><span class="nav-link-text">Build & Yayınlama</span><span class="nav-link-num">24</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Profesyonel</div>
+      <a href="25-csharp-ileri.html" class="nav-link" data-section="s25"><i class="ti ti-brackets-contain"></i><span class="nav-link-text">C# İleri</span><span class="nav-link-num">25</span></a>
+      <a href="26-performance.html" class="nav-link" data-section="s26"><i class="ti ti-gauge"></i><span class="nav-link-text">Performance</span><span class="nav-link-num">26</span></a>
+      <a href="27-yol-haritasi.html" class="nav-link" data-section="s27"><i class="ti ti-map-2"></i><span class="nav-link-text">Yol Haritası</span><span class="nav-link-num">27</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Pratik</div>
+      <a href="projects.html" class="nav-link nav-link-extra" data-section="x-projects"><i class="ti ti-rocket"></i><span class="nav-link-text">Projeler</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Ek Kaynaklar</div>
+      <a href="sozluk.html" class="nav-link nav-link-extra" data-section="x-sozluk"><i class="ti ti-book-2"></i><span class="nav-link-text">Sözlük</span></a>
+      <a href="cheatsheet.html" class="nav-link nav-link-extra" data-section="x-cheatsheet"><i class="ti ti-list-details"></i><span class="nav-link-text">Cheat Sheet</span></a>
+      <a href="sss.html" class="nav-link nav-link-extra" data-section="x-sss"><i class="ti ti-help-circle"></i><span class="nav-link-text">SSS</span></a>
+      <a href="arama.html" class="nav-link nav-link-extra" data-section="x-arama"><i class="ti ti-search"></i><span class="nav-link-text">Arama</span></a>
+      <a href="sertifika.html" class="nav-link nav-link-extra" data-section="x-sertifika"><i class="ti ti-certificate"></i><span class="nav-link-text">Sertifika</span></a>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="kaynaklar.html" class="sidebar-btn"><i class="ti ti-books"></i><span>Kaynaklar</span></a>
+    <a href="iletisim.html" class="sidebar-btn"><i class="ti ti-mail"></i><span>İletişim</span></a>
+  </div>
+</aside>
+<main class="main">
+  <div class="main-content">
+<nav class="breadcrumb" aria-label="Sayfa konumu">
+      <a href="../index.html"><i class="ti ti-home"></i><span>Ana Sayfa</span></a>
+      <i class="ti ti-chevron-right"></i><span><i class="ti ti-school" style="font-size: 13px; opacity: 0.7; margin-right: 4px;"></i>Görsel & Asset</span>
+      <i class="ti ti-chevron-right"></i><span style="color: var(--primary-light);">Asset Import</span>
+    </nav>
+
+<header class="page-header">
+  <h1>11. Asset Import — Modelden Dosyaya Köprü</h1>
+  <p class="page-desc">Unity, harici programlardan (Blender, Maya, Photoshop, Audacity) gelen dosyaları nasıl <em>okur</em>, nasıl <em>dönüştürür</em> ve neden her dosyanın yanında bir <code>.meta</code> oluşur? Bu bölümde Asset pipeline'ını sıfırdan inceliyoruz.</p>
+  <div class="page-meta">
+    <span class="u-ver-badge both">LTS + Unity 6</span>
+    <span class="page-time">⏱ ~55 dk</span>
+    <span class="page-level">🟢 Başlangıç-Orta</span>
+  </div>
+</header>
+
+<section class="topic-section" id="t1">
+  <div class="topic-header">
+    <span class="topic-number">11.1</span>
+    <h2 class="topic-title">Asset Nedir, Neden Import Edilir?</h2>
+  </div>
+  <p>Unity projende <strong>Assets/</strong> klasörüne attığın her dosya bir <strong>asset</strong>tir: .fbx, .png, .wav, .mp3, .ttf, .txt, .cs, .mat, .prefab... Ama Unity bu dosyaları doğrudan kullanmaz; her dosyayı kendi iç biçimine <strong>import</strong> eder.</p>
+
+  <div class="info-box">
+    <strong>💡 Neden Import?</strong>
+    <p>Bir <code>character.fbx</code> dosyası 30 MB olabilir; ama Unity oyununda çalışmak için optimize edilmiş <strong>mesh + animation</strong> biçiminde sadece 8 MB'a düşer. Texture'lar PNG (lossless) yerine GPU dostu <strong>BC7/ASTC</strong> sıkıştırmasına dönüşür. Import, "harici dosya → oyun-hazır asset" dönüşümüdür.</p>
+  </div>
+
+  <h3>.meta Dosyası — Asset'in Kimliği</h3>
+  <p>Assets/ içindeki her dosyanın yanında bir <code>.meta</code> dosyası bulunur. Bu dosyayı silersen Unity yeniden oluşturur — ama içindeki <strong>GUID</strong> (Globally Unique Identifier) değişir ve referanslar <span style="color:var(--c-error)">kopar</span>.</p>
+
+  <pre><code># Player.cs.meta örneği
+fileFormatVersion: 2
+guid: 7a3f9d2b8c1e4a4f8b9c2d1e5a6f7b8c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData:
+  assetBundleName:</code></pre>
+
+  <div class="warning-box">
+    <strong>⚠️ Sürüm Kontrolüne Mutlaka Dahil Et</strong>
+    <p>Git ile çalışıyorsan <code>.meta</code> dosyaları <strong>ASLA</strong> <code>.gitignore</code>'a eklenmemeli. Aksi halde takım arkadaşının projesinde sahnelerdeki referanslar (Prefab→Script bağlantıları) kopar. <code>.gitignore</code>'a <code>Library/</code>, <code>Temp/</code>, <code>Obj/</code> girer; <code>Assets/</code> ve <code>ProjectSettings/</code> commit edilir.</p>
+  </div>
+</section>
+
+<section class="topic-section" id="t2">
+  <div class="topic-header">
+    <span class="topic-number">11.2</span>
+    <h2 class="topic-title">Klasör Organizasyonu — Profesyonel Yapı</h2>
+  </div>
+  <p>Unity'de bazı klasör isimleri <strong>özel anlam</strong> taşır. Bunları bilmeden proje büyütmek kaos demektir.</p>
+
+  <div class="u-inspector">
+    <div class="u-inspector-header">📁 Tipik Profesyonel Klasör Yapısı</div>
+    <div class="u-inspector-body">
+      <pre style="margin:0;font-size:.85em;line-height:1.6">Assets/
+├── _Project/              ← Senin projene özel
+│   ├── Scenes/
+│   ├── Scripts/
+│   ├── Prefabs/
+│   ├── Materials/
+│   ├── Models/
+│   ├── Textures/
+│   ├── Audio/
+│   └── UI/
+├── ThirdParty/            ← Asset Store satın almaları
+├── Editor/                ← ÖZEL: Sadece editor'de çalışır
+├── Resources/             ← ÖZEL: Runtime'da Resources.Load
+├── StreamingAssets/       ← ÖZEL: Build'de değişmeden kopyalanır
+├── Plugins/               ← ÖZEL: Native DLL/lib
+└── Gizmos/                ← ÖZEL: Gizmos.DrawIcon()</pre>
+    </div>
+  </div>
+
+  <h3>Özel Klasör Anlamları</h3>
+  <table class="u-table">
+    <thead><tr><th>Klasör</th><th>Davranış</th><th>Tipik Kullanım</th></tr></thead>
+    <tbody>
+      <tr><td><code>Editor/</code></td><td>Build'e <strong>dahil edilmez</strong>. UnityEditor namespace burada kullanılabilir.</td><td>Custom Inspector, EditorWindow</td></tr>
+      <tr><td><code>Resources/</code></td><td><code>Resources.Load&lt;T&gt;("path")</code> ile yüklenebilir. Build'de hep dahil.</td><td>Eski stil dinamik yükleme</td></tr>
+      <tr><td><code>StreamingAssets/</code></td><td>Build sonrasında <strong>orijinal dosya olarak</strong> kalır. Application.streamingAssetsPath ile okunur.</td><td>Video dosyaları, JSON config</td></tr>
+      <tr><td><code>Plugins/</code></td><td>Native DLL, .so, .dylib, .a dosyaları için.</td><td>3. parti C/C++ kütüphaneleri</td></tr>
+      <tr><td><code>Editor Default Resources/</code></td><td>Editor'in kullandığı asset'ler.</td><td>Custom icon, banner</td></tr>
+    </tbody>
+  </table>
+
+  <div class="warning-box">
+    <strong>⚠️ Resources Klasörü Tuzaktır</strong>
+    <p>Resources/ içindeki <strong>her şey</strong> build'e dahil edilir — kullanılmasa bile. Modern projelerde Resources yerine <strong>Addressables</strong> kullanılır (ileride göreceğiz). Yeni başlayanlar küçük projelerde Resources kullanabilir ama büyürken alışkanlık olmamalı.</p>
+  </div>
+</section>
+
+<section class="topic-section" id="t3">
+  <div class="topic-header">
+    <span class="topic-number">11.3</span>
+    <h2 class="topic-title">FBX Import Settings — 3D Modeller</h2>
+  </div>
+  <p>Blender/Maya/3ds Max'ten gelen <code>.fbx</code> dosyaları Unity'nin en zengin import ayarına sahiptir. Bir FBX seçtiğinde Inspector'da <strong>4 tab</strong> görürsün: Model, Rig, Animation, Materials.</p>
+
+  <h3>Model Tab</h3>
+  <div class="u-inspector">
+    <div class="u-inspector-header">⚙️ Import Settings — Model</div>
+    <div class="u-inspector-body">
+      <div class="u-row"><span class="u-label">Scale Factor</span><span class="u-value">1</span></div>
+      <div class="u-row"><span class="u-label">Convert Units</span><span class="u-value">✓</span></div>
+      <div class="u-row"><span class="u-label">Mesh Compression</span><span class="u-value">Off ▾</span></div>
+      <div class="u-row"><span class="u-label">Read/Write Enabled</span><span class="u-value">☐</span></div>
+      <div class="u-row"><span class="u-label">Optimize Mesh</span><span class="u-value">Everything ▾</span></div>
+      <div class="u-row"><span class="u-label">Generate Colliders</span><span class="u-value">☐</span></div>
+      <div class="u-row"><span class="u-label">Keep Quads</span><span class="u-value">☐</span></div>
+      <div class="u-row"><span class="u-label">Weld Vertices</span><span class="u-value">✓</span></div>
+      <div class="u-row"><span class="u-label">Index Format</span><span class="u-value">Auto ▾</span></div>
+      <div class="u-row"><span class="u-label">Normals</span><span class="u-value">Import ▾</span></div>
+      <div class="u-row"><span class="u-label">Tangents</span><span class="u-value">Calculate Mikktspace ▾</span></div>
+    </div>
+  </div>
+
+  <h3>Önemli Alanlar</h3>
+  <ul class="check-list">
+    <li><strong>Scale Factor:</strong> Blender 1m = Unity 1m olur (FBX export'ta "Apply Transform" işaretliyse). Yanlış ölçekteyse 100 veya 0.01 dene.</li>
+    <li><strong>Mesh Compression:</strong> Off/Low/Medium/High. Yüksek seçenekte vertex precision düşer ama disk yeri azalır. Karakter mesh'lerinde "Off", environment'ta "Low" tipik tercih.</li>
+    <li><strong>Read/Write Enabled:</strong> Runtime'da mesh'i kod ile değiştirmek istiyorsan açık olmalı. KAPALI tut (RAM tasarrufu). Sadece "Procedural Terrain", "Mesh Cutting" gibi durumlarda aç.</li>
+    <li><strong>Generate Colliders:</strong> Static environment mesh'lerinde MeshCollider otomatik ekler. Karakter/dinamik objelerde KULLANMA.</li>
+    <li><strong>Normals:</strong> Import (FBX'in normallerini kullan) / Calculate (Unity hesaplasın) / None. Modeling programında düzgün normal verdiysen "Import" bırak.</li>
+    <li><strong>Tangents:</strong> Normal map kullanan modellerde "Calculate Mikktspace" en doğru sonucu verir.</li>
+  </ul>
+
+  <h3>Rig Tab</h3>
+  <p>İskeletli karakterler için. <strong>Animation Type</strong> seçimi kritiktir:</p>
+  <table class="u-table">
+    <thead><tr><th>Tip</th><th>Ne Zaman?</th></tr></thead>
+    <tbody>
+      <tr><td><strong>None</strong></td><td>Animasyon yok (props, environment)</td></tr>
+      <tr><td><strong>Legacy</strong></td><td>Eski sistem (kullanma)</td></tr>
+      <tr><td><strong>Generic</strong></td><td>İnsansı olmayan canlılar (yılan, ahtapot, robot)</td></tr>
+      <tr><td><strong>Humanoid</strong></td><td>İnsansı karakterler — Avatar oluşturulur, animation retargeting yapılabilir</td></tr>
+    </tbody>
+  </table>
+
+  <div class="info-box">
+    <strong>💡 Humanoid'in Süper Gücü: Retargeting</strong>
+    <p>Humanoid seçersen Unity karakterinin iskeletini <strong>insan iskelet şablonuna</strong> mapler (Avatar). Sonra Mixamo'dan veya başka bir karakterden bir animasyonu — <em>onun iskeleti farklı olsa bile</em> — bu karaktere uygulayabilirsin. AAA stüdyolarda zaman tasarrufu sağlar.</p>
+  </div>
+
+  <h3>Animation Tab</h3>
+  <ul class="check-list">
+    <li><strong>Clips:</strong> Bir FBX birden çok animasyon içerebilir (Idle, Run, Jump). Buradan zaman aralıklarını parçalara böl, isim ver.</li>
+    <li><strong>Loop Time:</strong> Idle/Run gibi tekrarlanan animasyonlarda ✓.</li>
+    <li><strong>Root Motion:</strong> Karakterin pozisyonunu animasyon kontrol etsin mi (Root Motion: ON) yoksa script mi (OFF)? FPS oyunlarda OFF, action-adventure'da ON tipik.</li>
+    <li><strong>Bake Into Pose:</strong> Y rotation, Z rotation, position için. Animasyonun bir kısmını "olduğu yerde dur" yapar.</li>
+  </ul>
+</section>
+
+<section class="topic-section" id="t4">
+  <div class="topic-header">
+    <span class="topic-number">11.4</span>
+    <h2 class="topic-title">Texture Import — Görseller</h2>
+  </div>
+  <p>PNG, JPG, TGA, PSD, EXR... Unity texture importer'da <strong>Texture Type</strong> en kritik seçim.</p>
+
+  <div class="u-inspector">
+    <div class="u-inspector-header">⚙️ Import Settings — Texture</div>
+    <div class="u-inspector-body">
+      <div class="u-row"><span class="u-label">Texture Type</span><span class="u-value">Default ▾</span></div>
+      <div class="u-row"><span class="u-label">Texture Shape</span><span class="u-value">2D ▾</span></div>
+      <div class="u-row"><span class="u-label">sRGB (Color Texture)</span><span class="u-value">✓</span></div>
+      <div class="u-row"><span class="u-label">Alpha Source</span><span class="u-value">Input Texture Alpha ▾</span></div>
+      <div class="u-row"><span class="u-label">Wrap Mode</span><span class="u-value">Repeat ▾</span></div>
+      <div class="u-row"><span class="u-label">Filter Mode</span><span class="u-value">Bilinear ▾</span></div>
+      <div class="u-row"><span class="u-label">Aniso Level</span><span class="u-value">1</span></div>
+      <div class="u-row"><span class="u-label">Max Size</span><span class="u-value">2048 ▾</span></div>
+      <div class="u-row"><span class="u-label">Resize Algorithm</span><span class="u-value">Mitchell ▾</span></div>
+      <div class="u-row"><span class="u-label">Format</span><span class="u-value">Automatic ▾</span></div>
+      <div class="u-row"><span class="u-label">Compression</span><span class="u-value">Normal Quality ▾</span></div>
+      <div class="u-row"><span class="u-label">Generate Mip Maps</span><span class="u-value">✓</span></div>
+    </div>
+  </div>
+
+  <h3>Texture Type — Hangisi Ne İçin?</h3>
+  <table class="u-table">
+    <thead><tr><th>Type</th><th>Ne İçin?</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Default</strong></td><td>Genel amaçlı (Base Color, Emission)</td></tr>
+      <tr><td><strong>Normal Map</strong></td><td>Yüzey detayı veren mavimsi-mor görseller. sRGB OTOMATİK kapanır.</td></tr>
+      <tr><td><strong>Editor GUI / Legacy GUI</strong></td><td>Editor pencerelerinde kullanılan ikonlar</td></tr>
+      <tr><td><strong>Sprite (2D and UI)</strong></td><td>2D oyunlar, UI Image bileşeni</td></tr>
+      <tr><td><strong>Cursor</strong></td><td>Custom mouse cursor</td></tr>
+      <tr><td><strong>Cookie</strong></td><td>Spot light maskesi (kepenk gölgesi gibi)</td></tr>
+      <tr><td><strong>Lightmap</strong></td><td>Baked lighting bilgisi</td></tr>
+      <tr><td><strong>Single Channel</strong></td><td>Tek kanal (yükseklik haritası, mask)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Wrap Mode</h3>
+  <ul class="check-list">
+    <li><strong>Repeat:</strong> UV 0-1 dışına çıkınca texture tekrar eder. Tiled zeminler için.</li>
+    <li><strong>Clamp:</strong> UV 0-1 dışında en kenar piksel sabit kalır. UI ve maske için.</li>
+    <li><strong>Mirror:</strong> Tekrar ederken aynalanır.</li>
+    <li><strong>Mirror Once:</strong> Bir kez aynalanır, sonra clamp.</li>
+  </ul>
+
+  <h3>Filter Mode</h3>
+  <ul class="check-list">
+    <li><strong>Point (no filter):</strong> Pixel-perfect, retro pixel art için.</li>
+    <li><strong>Bilinear:</strong> Standart yumuşatma (varsayılan).</li>
+    <li><strong>Trilinear:</strong> Mip seviyeleri arasında da yumuşatır — uzaklara giden zeminlerde daha temiz.</li>
+  </ul>
+
+  <h3>Mip Maps</h3>
+  <p>Mip map, texture'ın daha düşük çözünürlüklü kopyalarıdır (2048→1024→512→256→128...). Uzaktan görünen objeler için GPU küçük mip'i kullanır → daha hızlı, daha az aliasing. UI texture'larında kapalı tut (gereksiz bellek), 3D modellerde açık tut.</p>
+
+  <div class="warning-box">
+    <strong>⚠️ Power-of-Two Önerilir</strong>
+    <p>Texture boyutları 2'nin kuvveti olmalı: 128, 256, 512, 1024, 2048, 4096. NPOT (örn. 1500×1000) texture'larda mip map çalışmaz ve GPU bazı platformlarda yavaşlar.</p>
+  </div>
+
+  <h3>Max Size & Compression</h3>
+  <p>Max Size, texture'ın <strong>üst limitidir</strong>; gerçek dosyada 4096 olsa bile burada 1024 derseen Unity ona göre düşürür. Mobile için 1024, masaüstü için 2048, AAA için 4096 tipik. Compression: <strong>BC7</strong> (PC), <strong>ASTC</strong> (mobile) modern formatlar.</p>
+</section>
+
+<div class="mini-checkpoint">
+  <h3>🛑 Mini Checkpoint</h3>
+  <p>Buraya kadar 4 büyük konuyu öğrendin: Asset = import edilmiş dosya, .meta = GUID kimliği, Resources/Editor/StreamingAssets özel klasörleri, FBX 4 tab (Model/Rig/Animation/Materials), Texture Type seçimi (Default vs Normal Map). Şimdi ses, sprite ve workflow konularına geçiyoruz.</p>
+</div>
+
+<section class="topic-section" id="t5">
+  <div class="topic-header">
+    <span class="topic-number">11.5</span>
+    <h2 class="topic-title">Audio Import — Sesler</h2>
+  </div>
+  <p>.wav, .mp3, .ogg, .aiff... Unity ses dosyalarını <strong>AudioClip</strong>'e dönüştürür. En kritik ayar <strong>Load Type</strong>.</p>
+
+  <div class="u-inspector">
+    <div class="u-inspector-header">⚙️ Import Settings — Audio</div>
+    <div class="u-inspector-body">
+      <div class="u-row"><span class="u-label">Force To Mono</span><span class="u-value">☐</span></div>
+      <div class="u-row"><span class="u-label">Normalize</span><span class="u-value">✓</span></div>
+      <div class="u-row"><span class="u-label">Load In Background</span><span class="u-value">☐</span></div>
+      <div class="u-row"><span class="u-label">Ambisonic</span><span class="u-value">☐</span></div>
+      <div class="u-row"><span class="u-label">Load Type</span><span class="u-value">Decompress On Load ▾</span></div>
+      <div class="u-row"><span class="u-label">Preload Audio Data</span><span class="u-value">✓</span></div>
+      <div class="u-row"><span class="u-label">Compression Format</span><span class="u-value">Vorbis ▾</span></div>
+      <div class="u-row"><span class="u-label">Quality</span><span class="u-value">100</span></div>
+      <div class="u-row"><span class="u-label">Sample Rate Setting</span><span class="u-value">Preserve Sample Rate ▾</span></div>
+    </div>
+  </div>
+
+  <h3>Load Type — En Kritik Karar</h3>
+  <table class="u-table">
+    <thead><tr><th>Load Type</th><th>Ne Zaman?</th><th>Hafıza/CPU</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Decompress On Load</strong></td><td>Kısa, sık çalan SFX (silah ateşi, ayak sesi, UI tıklaması)</td><td>Yüksek RAM, düşük CPU</td></tr>
+      <tr><td><strong>Compressed In Memory</strong></td><td>Orta uzunluk (5-30s) sesler</td><td>Orta RAM, orta CPU</td></tr>
+      <tr><td><strong>Streaming</strong></td><td>Uzun müzikler, voiceover, ambiance</td><td>Düşük RAM, yüksek disk I/O</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Compression Format</h3>
+  <ul class="check-list">
+    <li><strong>PCM:</strong> Hiç sıkıştırılmamış. En yüksek kalite, en büyük dosya. Çok kısa SFX'lerde kullan.</li>
+    <li><strong>ADPCM:</strong> Hafif sıkıştırma, decoding hızlı. Tekrarlayan SFX için ideal.</li>
+    <li><strong>Vorbis (Ogg):</strong> Daha agresif sıkıştırma. Müzik ve uzun ses için varsayılan.</li>
+  </ul>
+
+  <div class="info-box">
+    <strong>💡 Force To Mono</strong>
+    <p>3D space'te çalan sesler (silah, ayak sesi) <strong>mono</strong> olmalı — Unity'nin spatial audio sistemi sesi sağ/sol kulağa zaten dağıtır. Stereo'da kalırsa konumsal his bozulur. Force To Mono ✓ ile dosyayı yarıya indirirsin <em>ve</em> doğru davranışı alırsın.</p>
+  </div>
+</section>
+
+<section class="topic-section" id="t6">
+  <div class="topic-header">
+    <span class="topic-number">11.6</span>
+    <h2 class="topic-title">Sprite Import — 2D Görseller</h2>
+  </div>
+  <p>2D oyunlar için Texture Type'ı <strong>Sprite (2D and UI)</strong> seç. Yeni alanlar açılır.</p>
+
+  <div class="u-inspector">
+    <div class="u-inspector-header">⚙️ Import Settings — Sprite</div>
+    <div class="u-inspector-body">
+      <div class="u-row"><span class="u-label">Texture Type</span><span class="u-value">Sprite (2D and UI) ▾</span></div>
+      <div class="u-row"><span class="u-label">Sprite Mode</span><span class="u-value">Single ▾</span></div>
+      <div class="u-row"><span class="u-label">Pixels Per Unit</span><span class="u-value">100</span></div>
+      <div class="u-row"><span class="u-label">Mesh Type</span><span class="u-value">Tight ▾</span></div>
+      <div class="u-row"><span class="u-label">Extrude Edges</span><span class="u-value">1</span></div>
+      <div class="u-row"><span class="u-label">Pivot</span><span class="u-value">Center ▾</span></div>
+      <div class="u-row"><span class="u-label">Generate Physics Shape</span><span class="u-value">✓</span></div>
+    </div>
+  </div>
+
+  <ul class="check-list">
+    <li><strong>Sprite Mode — Single:</strong> Tek bir görsel = tek sprite (UI icon, background).</li>
+    <li><strong>Sprite Mode — Multiple:</strong> Atlas/sprite sheet. <strong>Sprite Editor</strong> ile kesilir (karakter animasyon kareleri).</li>
+    <li><strong>Sprite Mode — Polygon:</strong> Custom mesh ile sprite (nadir).</li>
+    <li><strong>Pixels Per Unit:</strong> 100 PPU = 100 piksel 1 Unity birimine eşit. Pixel art'ta genelde 16, 32, veya 64 kullanılır.</li>
+    <li><strong>Pivot:</strong> Sprite'ın "merkez noktası". Karakterler için Bottom (ayakları yerde dursun), UI'da Center yaygın.</li>
+  </ul>
+
+  <h3>Sprite Editor — Slice</h3>
+  <p>Multiple modunda "Sprite Editor" butonuna basınca açılan pencerede <strong>Slice</strong> menüsü:</p>
+  <ul class="check-list">
+    <li><strong>Automatic:</strong> Şeffaf alanları algılayıp kareleri otomatik bulur.</li>
+    <li><strong>Grid By Cell Size:</strong> "Her hücre 64×64" şeklinde tarif et.</li>
+    <li><strong>Grid By Cell Count:</strong> "4 sütun × 4 satır" şeklinde tarif et.</li>
+  </ul>
+</section>
+
+<section class="topic-section" id="t7">
+  <div class="topic-header">
+    <span class="topic-number">11.7</span>
+    <h2 class="topic-title">Asset Database & AssetPostprocessor</h2>
+  </div>
+  <p>Unity'nin tüm asset'leri takip ettiği iç veritabanına <strong>AssetDatabase</strong> denir. Editor scripting'inde sık kullanılır.</p>
+
+  <div class="cs-block">
+    <span class="com">// Asset oluşturma</span>
+    <span class="kw">using</span> <span class="type">UnityEditor</span>;
+    <span class="kw">using</span> <span class="type">UnityEngine</span>;
+    <span class="br">{</span>
+    <span class="type">var</span> mat = <span class="kw">new</span> <span class="type">Material</span>(<span class="type">Shader</span>.<span class="fn">Find</span>(<span class="str">"Universal Render Pipeline/Lit"</span>));
+    <span class="type">AssetDatabase</span>.<span class="fn">CreateAsset</span>(mat, <span class="str">"Assets/M_NewMaterial.mat"</span>);
+    <span class="type">AssetDatabase</span>.<span class="fn">SaveAssets</span>();
+    <span class="type">AssetDatabase</span>.<span class="fn">Refresh</span>();
+    <span class="br">}</span>
+  </div>
+
+  <h3>AssetPostprocessor — İmport Sırasında Müdahale</h3>
+  <p>Editor klasöründe bir script yazıp asset import edilirken otomatik ayar uygulayabilirsin. Örneğin tüm Normal Map'leri otomatik işaretle:</p>
+
+  <div class="cs-block">
+    <span class="com">// Editor/TextureProcessor.cs</span>
+    <span class="kw">using</span> <span class="type">UnityEditor</span>;
+    <span class="br">{</span>
+    <span class="kw">public class</span> <span class="type">TextureProcessor</span> : <span class="type">AssetPostprocessor</span>
+    <span class="br">{</span>
+        <span class="kw">void</span> <span class="fn">OnPreprocessTexture</span>()
+        <span class="br">{</span>
+            <span class="type">var</span> imp = (<span class="type">TextureImporter</span>)assetImporter;
+            <span class="kw">if</span> (assetPath.<span class="fn">Contains</span>(<span class="str">"_Normal"</span>))
+                imp.textureType = <span class="type">TextureImporterType</span>.<span class="attr">NormalMap</span>;
+        <span class="br">}</span>
+    <span class="br">}</span>
+    <span class="br">}</span>
+  </div>
+
+  <p>Bu sayede <code>Brick_Normal.png</code> dosyasını Assets'e attığında otomatik olarak Normal Map tipine geçer.</p>
+
+  <h3>Addressables — Modern Asset Yönetimi</h3>
+  <p>Resources klasörü ile dinamik asset yükleme eski yöntemdir. Modern projeler <strong>Addressables</strong> paketini kullanır:</p>
+
+  <ul class="check-list">
+    <li>Asset'leri uzaktan (CDN) yükleyebilirsin.</li>
+    <li>Sadece ihtiyaç olunca diske inerler.</li>
+    <li>Memory profile çok daha temiz olur.</li>
+    <li>Updates için yeni APK/IPA değil, yeni asset bundle yayınlayabilirsin.</li>
+  </ul>
+
+  <p>Window → Package Manager → Addressables paketini ekledikten sonra bir asset'i "Addressable" işaretleyip kod ile yükleyebilirsin:</p>
+
+  <div class="cs-block">
+    <span class="kw">using</span> <span class="type">UnityEngine</span>.<span class="type">AddressableAssets</span>;
+    <span class="br">{</span>
+    <span class="type">Addressables</span>.<span class="fn">LoadAssetAsync</span>&lt;<span class="type">GameObject</span>&gt;(<span class="str">"Enemy_Boss"</span>).<span class="attr">Completed</span> += handle =>
+    <span class="br">{</span>
+        <span class="type">Instantiate</span>(handle.<span class="attr">Result</span>);
+    <span class="br">}</span>;
+    <span class="br">}</span>
+  </div>
+</section>
+
+<div class="real-world-box">
+  <h3>🎮 Gerçek Dünya: Hollow Knight'ın Asset Pipeline'ı</h3>
+  <p><strong>Hollow Knight</strong> (Team Cherry, 2017) ekibi <em>iki kişiydi</em>: William Pellen ve Ari Gibson. 2 kişinin <strong>165 düşman, 47 boss, 14 zon</strong> içeren bir dünya yapabilmesinin sebeplerinden biri Unity'nin asset pipeline'ını ustaca kullanmalarıdır.</p>
+  <p>Ari Gibson her sprite'ı Adobe Animate'te çizip PNG sequence olarak export ediyordu. Unity'de Texture Type = Sprite (Multiple), Sprite Editor'da Automatic Slice ile kareleri kestirip Animation Window'da <em>sürükleyerek</em> animation clip oluşturuyordu. Klasör yapısı kıskanılacak kadar disiplinliydi: <code>Assets/Enemies/Mantis/Sprites/, Assets/Enemies/Mantis/Animations/, Assets/Enemies/Mantis/Prefabs/</code>. Her düşmanın kendi bağımsız klasörü vardı; bu sayede başka projeye <em>klasörü kopyala-yapıştır</em> ile aktarabiliyorlardı.</p>
+  <p>Ses tarafında Christopher Larkin tüm müzikleri Ogg Vorbis Compression + Streaming Load Type ile import etmişti — bu sayede 8GB'lık projenin sadece 300MB'ı müzikti. SFX'ler ise PCM + Decompress On Load idi; bu yüzden Hornet'in mızrak sesi 1 ms gecikme olmadan çalıyordu.</p>
+</div>
+
+<section class="practice-section" id="practice">
+  <h2>🛠️ Uygulama: 3 Proje</h2>
+
+  <div class="project-card">
+    <h3>Proje 1: Klasör Disiplini Kurma</h3>
+    <p class="project-goal">🎯 Hedef: Var olan bir starter projedeki dağınık asset'leri profesyonel bir yapıya sok.</p>
+    <ul class="project-check">
+      <li>Yeni proje aç, Assets içinde şu klasörleri oluştur: <code>_Project/Scripts</code>, <code>_Project/Prefabs</code>, <code>_Project/Materials</code>, <code>_Project/Models</code>, <code>_Project/Textures</code>, <code>_Project/Audio</code>.</li>
+      <li>Asset Store'dan ücretsiz bir paket indir (örn. "Standard Assets" veya bir karakter pack'i).</li>
+      <li>İndirilen asset'leri <code>ThirdParty/</code> klasörüne taşı — kendi klasörlerine bulaşmasın.</li>
+      <li>Bir Cube oluştur, "Player" adında prefab yap, <code>_Project/Prefabs/</code> içine taşı.</li>
+      <li>Cube için bir material oluştur, <code>M_Player.mat</code> adı ver, <code>_Project/Materials/</code> içine koy.</li>
+    </ul>
+  </div>
+
+  <div class="project-card">
+    <h3>Proje 2: FBX Karakter Import</h3>
+    <p class="project-goal">🎯 Hedef: Mixamo'dan indirdiğin bir karakter ve animasyonu Unity'ye düzgün import et.</p>
+    <ul class="project-check">
+      <li><a href="https://www.mixamo.com" target="_blank">mixamo.com</a>'a git, ücretsiz hesap aç, bir karakter ve "Idle" animasyonu indir (FBX, with skin).</li>
+      <li>Indirilen FBX'i <code>_Project/Models/</code> içine sürükle.</li>
+      <li>Inspector'da: Model tab → Scale Factor 0.01 (Mixamo cm cinsinden gelir); Rig tab → Animation Type = <strong>Humanoid</strong>, Avatar Definition = Create From This Model; Apply.</li>
+      <li>Animation tab → Clip listesinde "mixamo.com" var; ismini "Idle" yap; Loop Time ✓; Apply.</li>
+      <li>Karakteri sahneye sürükle, Animator Component otomatik gelir. Play tuşuna bas — idle çalmalı.</li>
+    </ul>
+  </div>
+
+  <div class="project-card">
+    <h3>Proje 3: AssetPostprocessor Otomasyonu</h3>
+    <p class="project-goal">🎯 Hedef: Tüm "_Normal" içeren texture'lar otomatik Normal Map tipine geçsin.</p>
+    <ul class="project-check">
+      <li>Assets içinde <code>Editor/</code> klasörü oluştur.</li>
+      <li>İçine <code>TextureProcessor.cs</code> dosyası ekle, yukarıdaki AssetPostprocessor kodunu kopyala.</li>
+      <li>Bir test PNG'sini "Wall_Normal.png" olarak Assets'e sürükle.</li>
+      <li>Inspector'da Texture Type otomatik "Normal Map" olmalı.</li>
+      <li>BONUS: "_Albedo" olanlar sRGB ✓, "_Roughness" olanlar sRGB ☐ olacak şekilde genişlet.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="quiz" id="bolum-quiz">
+  <header class="quiz-header">
+    <div class="quiz-header-icon"><i class="ti ti-help"></i></div>
+    <div class="quiz-header-text">
+      <h2>Bölüm Sonu Sınavı</h2>
+      <span>5 soru</span>
+    </div>
+  </header>
+
+  <article class="quiz-question" id="q11-1">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">01</span>
+      <h3 class="quiz-prompt-text"><code>.meta</code> dosyaları Git'e dahil edilmeli mi?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="true">Evet — GUID'ler ve import ayarları orada saklanır</button>
+      <button class="quiz-option" data-correct="false">Hayır — gereksiz boyut yaratır</button>
+      <button class="quiz-option" data-correct="false">Sadece prefab'ların .meta'ları dahil edilir</button>
+      <button class="quiz-option" data-correct="false">Sadece Editor klasörüne ait olanlar dahil edilir</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q11-2">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">02</span>
+      <h3 class="quiz-prompt-text">Bir karakter sprite atlasını kesmek için doğru ayar nedir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Texture Type = Default, Wrap Mode = Repeat</button>
+      <button class="quiz-option" data-correct="true">Texture Type = Sprite (2D and UI), Sprite Mode = Multiple</button>
+      <button class="quiz-option" data-correct="false">Texture Type = Cookie, Filter Mode = Point</button>
+      <button class="quiz-option" data-correct="false">Texture Type = Normal Map</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q11-3">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">03</span>
+      <h3 class="quiz-prompt-text">Mixamo'dan indirilen bir insansı karakter için Rig tab'da hangi Animation Type seçilmeli?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">None</button>
+      <button class="quiz-option" data-correct="false">Legacy</button>
+      <button class="quiz-option" data-correct="false">Generic</button>
+      <button class="quiz-option" data-correct="true">Humanoid</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q11-4">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">04</span>
+      <h3 class="quiz-prompt-text">10 dakikalık bir arka plan müziği için en uygun Load Type nedir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Decompress On Load</button>
+      <button class="quiz-option" data-correct="false">Compressed In Memory</button>
+      <button class="quiz-option" data-correct="true">Streaming</button>
+      <button class="quiz-option" data-correct="false">PCM Direct</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q11-5">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">05</span>
+      <h3 class="quiz-prompt-text">Resources klasörünün modern projelerde sakıncası nedir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Sadece Editor'de çalışır</button>
+      <button class="quiz-option" data-correct="true">İçindeki her şey, kullanılmasa bile build'e dahil edilir</button>
+      <button class="quiz-option" data-correct="false">Sürüm kontrolünde sorun yaratır</button>
+      <button class="quiz-option" data-correct="false">Sadece tek bir asset taşıyabilir</button>
+    </div>
+  </article>
+</section>
+
+<section class="complete-section">
+      <h3 class="complete-title">🎉 Bölüm 11 Tamamlandı!</h3>
+      <p class="complete-msg">Asset pipeline'ı artık biliyorsun: FBX import settings, texture compression, audio load type, sprite slice, AssetPostprocessor. Bir sonraki bölümde bu asset'lerin canlanmasına geçiyoruz — <strong>Animation Sistemi</strong>!</p>
+      <button class="complete-btn" data-section="s11">
+        <i class="ti ti-circle-check"></i>
+        <span>Bu Bölümü Tamamladım</span>
+      </button>
+      <p class="complete-note">İlerlemen otomatik tarayıcına kaydedilir.</p>
+    </section>
+    <!-- Sayfa Gezinme -->
+    <nav class="page-nav" aria-label="Bölüm gezinme">
+      <a href="10-material-shader.html" class="page-nav-link prev">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-left"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Önceki Bölüm</div>
+          <div class="page-nav-title">10. Material & Shader</div>
+        </div>
+      </a>
+      <a href="12-animation.html" class="page-nav-link next">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-right"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Sonraki Bölüm</div>
+          <div class="page-nav-title">12. Animasyon</div>
+        </div>
+      </a>
+    </nav>
+
+  </div>
+</main>
+<script src="../js/progress.js?v=11"></script>
+<script src="../js/quiz.js?v=11"></script>
+<script src="../js/toc.js?v=11"></script>
+<script src="../js/main.js?v=11"></script>
+</body>
+</html>

@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animation Sistemi — UnityAkademi</title>
+  <meta name="description" content="Mecanim, Animator Controller, State Machine, Blend Tree, Layers, Avatar Mask, Root Motion — Bölüm 12.">
+  <meta name="theme-color" content="#fa7d19">
+  <link rel="manifest" href="../manifest.json">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Animation Sistemi">
+  <meta property="og:description" content="Mecanim, Animator Controller, State Machine, Blend Tree, Layers, Avatar Mask, Root Motion — Bölüm 12.">
+  <meta property="og:image" content="../og-image.svg">
+  <meta property="og:site_name" content="UnityAkademi">
+  <meta property="og:locale" content="tr_TR">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Animation Sistemi">
+  <meta name="twitter:description" content="Mecanim, Animator Controller, State Machine, Blend Tree, Layers, Avatar Mask, Root Motion — Bölüm 12.">
+  <meta name="twitter:image" content="../og-image.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="../css/variables.css?v=11">
+  <link rel="stylesheet" href="../css/reset.css?v=11">
+  <link rel="stylesheet" href="../css/layout.css?v=11">
+  <link rel="stylesheet" href="../css/components.css?v=11">
+  <link rel="stylesheet" href="../css/content.css?v=11">
+  <link rel="stylesheet" href="../css/visuals.css?v=11">
+  <link rel="stylesheet" href="../css/extras.css?v=11">
+  <link rel="stylesheet" href="../css/responsive.css?v=11">
+</head>
+<body>
+<button class="nav-hamburger" id="navHamburger" aria-label="Menüyü aç">
+  <i class="ti ti-menu-2"></i>
+</button>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a href="../index.html" class="sidebar-brand">
+      <div class="sidebar-brand-icon"><i class="ti ti-home-2"></i></div>
+      <div class="sidebar-brand-text">
+        <span class="sidebar-brand-name">Ana Sayfa</span>
+        <span class="sidebar-brand-sub">UnityAkademi</span>
+      </div>
+    </a>
+    <button class="mobile-toggle" aria-label="Menü"><i class="ti ti-x"></i></button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-group">
+      <div class="nav-group-title">Temeller</div>
+      <a href="01-kurulum.html" class="nav-link" data-section="s1"><i class="ti ti-download"></i><span class="nav-link-text">Kurulum & İlk Bakış</span><span class="nav-link-num">01</span></a>
+      <a href="02-arayuz.html" class="nav-link" data-section="s2"><i class="ti ti-layout-board"></i><span class="nav-link-text">Editor Arayüzü</span><span class="nav-link-num">02</span></a>
+      <a href="03-gameobject-component.html" class="nav-link" data-section="s3"><i class="ti ti-cube"></i><span class="nav-link-text">GameObject & Component</span><span class="nav-link-num">03</span></a>
+      <a href="04-csharp-temelleri.html" class="nav-link" data-section="s4"><i class="ti ti-code"></i><span class="nav-link-text">C# Temelleri</span><span class="nav-link-num">04</span></a>
+      <a href="05-monobehaviour-lifecycle.html" class="nav-link" data-section="s5"><i class="ti ti-refresh"></i><span class="nav-link-text">MonoBehaviour Lifecycle</span><span class="nav-link-num">05</span></a>
+      <a href="06-transform-vector.html" class="nav-link" data-section="s6"><i class="ti ti-arrows-move"></i><span class="nav-link-text">Transform & Vector3</span><span class="nav-link-num">06</span></a>
+      <a href="07-input.html" class="nav-link" data-section="s7"><i class="ti ti-keyboard"></i><span class="nav-link-text">Input Sistemi</span><span class="nav-link-num">07</span></a>
+      <a href="08-physics.html" class="nav-link" data-section="s8"><i class="ti ti-atom"></i><span class="nav-link-text">Physics</span><span class="nav-link-num">08</span></a>
+      <a href="09-ui.html" class="nav-link" data-section="s9"><i class="ti ti-layout-grid"></i><span class="nav-link-text">UI Sistemi</span><span class="nav-link-num">09</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Görsel & Asset</div>
+      <a href="10-material-shader.html" class="nav-link" data-section="s10"><i class="ti ti-palette"></i><span class="nav-link-text">Material & Shader</span><span class="nav-link-num">10</span></a>
+      <a href="11-asset-import.html" class="nav-link" data-section="s11"><i class="ti ti-folder"></i><span class="nav-link-text">Asset Import</span><span class="nav-link-num">11</span></a>
+      <a href="12-animation.html" class="nav-link active" data-section="s12"><i class="ti ti-bounce-right"></i><span class="nav-link-text">Animation</span><span class="nav-link-num">12</span></a>
+      <a href="13-particle-vfx.html" class="nav-link" data-section="s13"><i class="ti ti-sparkles"></i><span class="nav-link-text">Particle & VFX Graph</span><span class="nav-link-num">13</span></a>
+      <a href="14-lighting.html" class="nav-link" data-section="s14"><i class="ti ti-bulb"></i><span class="nav-link-text">Lighting</span><span class="nav-link-num">14</span></a>
+      <a href="15-audio.html" class="nav-link" data-section="s15"><i class="ti ti-volume"></i><span class="nav-link-text">Audio</span><span class="nav-link-num">15</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Sistemler</div>
+      <a href="16-probuilder.html" class="nav-link" data-section="s16"><i class="ti ti-3d-cube-sphere"></i><span class="nav-link-text">ProBuilder</span><span class="nav-link-num">16</span></a>
+      <a href="17-terrain.html" class="nav-link" data-section="s17"><i class="ti ti-mountain"></i><span class="nav-link-text">Terrain</span><span class="nav-link-num">17</span></a>
+      <a href="18-cinemachine.html" class="nav-link" data-section="s18"><i class="ti ti-camera"></i><span class="nav-link-text">Cinemachine</span><span class="nav-link-num">18</span></a>
+      <a href="19-timeline.html" class="nav-link" data-section="s19"><i class="ti ti-timeline"></i><span class="nav-link-text">Timeline</span><span class="nav-link-num">19</span></a>
+      <a href="20-navmesh.html" class="nav-link" data-section="s20"><i class="ti ti-route"></i><span class="nav-link-text">NavMesh & AI</span><span class="nav-link-num">20</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">İleri Seviye</div>
+      <a href="21-urp-hdrp.html" class="nav-link" data-section="s21"><i class="ti ti-bolt"></i><span class="nav-link-text">URP, HDRP & Unity 6</span><span class="nav-link-num">21</span></a>
+      <a href="22-new-input.html" class="nav-link" data-section="s22"><i class="ti ti-device-gamepad-2"></i><span class="nav-link-text">New Input System</span><span class="nav-link-num">22</span></a>
+      <a href="23-save-menu.html" class="nav-link" data-section="s23"><i class="ti ti-device-floppy"></i><span class="nav-link-text">Save & Menü</span><span class="nav-link-num">23</span></a>
+      <a href="24-build.html" class="nav-link" data-section="s24"><i class="ti ti-package-export"></i><span class="nav-link-text">Build & Yayınlama</span><span class="nav-link-num">24</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Profesyonel</div>
+      <a href="25-csharp-ileri.html" class="nav-link" data-section="s25"><i class="ti ti-brackets-contain"></i><span class="nav-link-text">C# İleri</span><span class="nav-link-num">25</span></a>
+      <a href="26-performance.html" class="nav-link" data-section="s26"><i class="ti ti-gauge"></i><span class="nav-link-text">Performance</span><span class="nav-link-num">26</span></a>
+      <a href="27-yol-haritasi.html" class="nav-link" data-section="s27"><i class="ti ti-map-2"></i><span class="nav-link-text">Yol Haritası</span><span class="nav-link-num">27</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Pratik</div>
+      <a href="projects.html" class="nav-link nav-link-extra" data-section="x-projects"><i class="ti ti-rocket"></i><span class="nav-link-text">Projeler</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-title">Ek Kaynaklar</div>
+      <a href="sozluk.html" class="nav-link nav-link-extra" data-section="x-sozluk"><i class="ti ti-book-2"></i><span class="nav-link-text">Sözlük</span></a>
+      <a href="cheatsheet.html" class="nav-link nav-link-extra" data-section="x-cheatsheet"><i class="ti ti-list-details"></i><span class="nav-link-text">Cheat Sheet</span></a>
+      <a href="sss.html" class="nav-link nav-link-extra" data-section="x-sss"><i class="ti ti-help-circle"></i><span class="nav-link-text">SSS</span></a>
+      <a href="arama.html" class="nav-link nav-link-extra" data-section="x-arama"><i class="ti ti-search"></i><span class="nav-link-text">Arama</span></a>
+      <a href="sertifika.html" class="nav-link nav-link-extra" data-section="x-sertifika"><i class="ti ti-certificate"></i><span class="nav-link-text">Sertifika</span></a>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="kaynaklar.html" class="sidebar-btn"><i class="ti ti-books"></i><span>Kaynaklar</span></a>
+    <a href="iletisim.html" class="sidebar-btn"><i class="ti ti-mail"></i><span>İletişim</span></a>
+  </div>
+</aside>
+<main class="main">
+  <div class="main-content">
+<nav class="breadcrumb" aria-label="Sayfa konumu">
+      <a href="../index.html"><i class="ti ti-home"></i><span>Ana Sayfa</span></a>
+      <i class="ti ti-chevron-right"></i><span><i class="ti ti-school" style="font-size: 13px; opacity: 0.7; margin-right: 4px;"></i>Görsel & Asset</span>
+      <i class="ti ti-chevron-right"></i><span style="color: var(--primary-light);">Animation</span>
+    </nav>
+
+<header class="page-header">
+  <h1>12. Animation Sistemi — Mecha-Nim'in Kalbi</h1>
+  <p class="page-desc">Bir karakter nasıl koşar, zıplar, ölür? Bir kapı nasıl açılır? Unity'nin <strong>Mecanim</strong> sistemi, Animator Controller'ı, State Machine'i, Blend Tree'leri ve Avatar Mask'ı bu bölümde adım adım çözüyoruz.</p>
+  <div class="page-meta">
+    <span class="u-ver-badge both">LTS + Unity 6</span>
+    <span class="page-time">⏱ ~70 dk</span>
+    <span class="page-level">🟡 Orta</span>
+  </div>
+</header>
+
+<section class="topic-section" id="t1">
+  <div class="topic-header">
+    <span class="topic-number">12.1</span>
+    <h2 class="topic-title">Animation Sistem Mimarisi — 3 Katman</h2>
+  </div>
+  <p>Unity'de bir karakteri canlandırmak için 3 farklı bileşen birlikte çalışır:</p>
+
+  <div class="layout-diagram">
+    <div class="layout-cell">
+      <h4>1. Animation Clip</h4>
+      <p>Tek bir hareket. "Idle", "Run", "Jump" gibi. <code>.anim</code> uzantılı veya FBX'ten gelen.</p>
+    </div>
+    <div class="layout-cell">
+      <h4>2. Animator Controller</h4>
+      <p>Clip'lerin durum makinesi (State Machine). Hangi clip, ne zaman, hangi şartlarla çalsın? <code>.controller</code> dosyası.</p>
+    </div>
+    <div class="layout-cell">
+      <h4>3. Animator Component</h4>
+      <p>GameObject'e eklenir. Controller'ı çalıştırır, runtime'da parametre değiştirir.</p>
+    </div>
+  </div>
+
+  <p>Bu üçlü hiyerarşi mimaride çok güçlüdür: aynı Animator Controller'ı 100 farklı karakter kullanabilir; sadece Avatar değişir.</p>
+</section>
+
+<section class="topic-section" id="t2">
+  <div class="topic-header">
+    <span class="topic-number">12.2</span>
+    <h2 class="topic-title">Animation Clip — Tek Bir Hareket</h2>
+  </div>
+  <p>Bir Animation Clip, <strong>property'lerin zaman içinde nasıl değiştiğini</strong> tanımlar. Bir kapıyı 0. saniyede 0°'de, 2. saniyede 90°'de göstermek bir clip'tir.</p>
+
+  <h3>İki Tür Clip</h3>
+  <table class="u-table">
+    <thead><tr><th>Tür</th><th>Geliş Yeri</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Imported Clip</strong></td><td>FBX'in içinden gelir. Read-only — silinemez, sadece import settings'ten değiştirilir.</td></tr>
+      <tr><td><strong>Authored Clip (.anim)</strong></td><td>Unity'de <code>Window → Animation → Animation</code> ile sıfırdan yapılır. Düzenlenebilir.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Animation Window — Clip Düzenleme</h3>
+  <p>Bir GameObject seçili iken <code>Ctrl+6</code> ile Animation Window'u açarsın. Üst kısımda clip seçicisi, sol tarafta property listesi (Position.x, Rotation.y, MyScript.health...), sağ tarafta timeline.</p>
+
+  <ul class="check-list">
+    <li><strong>Record (kırmızı top) tuşu:</strong> ON iken yaptığın her değişiklik o anki frame'e <em>keyframe</em> olarak kaydedilir.</li>
+    <li><strong>Add Property butonu:</strong> Hangi property animate edilsin?</li>
+    <li><strong>Keyframe'lere sağ tıkla:</strong> Linear / Constant / Free / Clamped Auto interpolation seçilebilir.</li>
+    <li><strong>Curves view:</strong> Dopesheet yerine Bezier eğrileri olarak görüntüle (ease-in/out yapmak için).</li>
+  </ul>
+
+  <h3>Animation Event — Clip İçinden Kod Çağırma</h3>
+  <p>Animasyonun belirli bir anında bir fonksiyon çağırmak istersen <strong>Animation Event</strong> ekle. Klasik örnek: "kılıç swing'i 0.4. saniyede MakeDamage() fonksiyonunu tetiklesin".</p>
+
+  <div class="cs-block">
+    <span class="kw">using</span> <span class="type">UnityEngine</span>;
+    <span class="br">{</span>
+    <span class="kw">public class</span> <span class="type">Attacker</span> : <span class="type">MonoBehaviour</span>
+    <span class="br">{</span>
+        <span class="kw">public void</span> <span class="fn">OnAttackHit</span>() <span class="com">// Animation Event tetikler</span>
+        <span class="br">{</span>
+            <span class="type">Debug</span>.<span class="fn">Log</span>(<span class="str">"Hasar verme zamanı!"</span>);
+            <span class="com">// hitbox enable, ses çal, particle spawn...</span>
+        <span class="br">}</span>
+    <span class="br">}</span>
+    <span class="br">}</span>
+  </div>
+
+  <p>Animation Window'da timeline üzerine sağ tıkla → "Add Animation Event" → fonksiyon adını gir.</p>
+</section>
+
+<section class="topic-section" id="t3">
+  <div class="topic-header">
+    <span class="topic-number">12.3</span>
+    <h2 class="topic-title">Animator Controller — State Machine</h2>
+  </div>
+  <p>Birden fazla clip'i nasıl bir araya getirip "Idle → Run → Jump → Idle" akışı kuracağız? Animator Controller bunu yapar. <code>Window → Animation → Animator</code> ile açılan pencerede grafik bir <strong>state machine</strong> görürsün.</p>
+
+  <h3>State (Durum)</h3>
+  <p>Her dikdörtgen bir state'tir, içinde bir clip vardır. State'ler arasında <strong>Transition</strong> (geçiş) okları bulunur.</p>
+
+  <ul class="check-list">
+    <li><strong>Entry:</strong> Yeşil ok. Animator çalışmaya başladığında ilk hangi state'e geçilecek?</li>
+    <li><strong>Default State:</strong> Turuncu state. Entry'nin gittiği yer.</li>
+    <li><strong>Any State:</strong> Mavi. Herhangi bir state'ten oraya geçişi tetikleyebilir (ölüm animasyonu için ideal).</li>
+    <li><strong>Exit:</strong> Sub-state machine'den çıkış noktası.</li>
+  </ul>
+
+  <h3>Transition (Geçiş)</h3>
+  <p>İki state arasındaki ok. Üstüne tıklayınca Inspector'da ayarları açılır:</p>
+
+  <div class="u-inspector">
+    <div class="u-inspector-header">⚙️ Transition Settings</div>
+    <div class="u-inspector-body">
+      <div class="u-row"><span class="u-label">Has Exit Time</span><span class="u-value">✓</span></div>
+      <div class="u-row"><span class="u-label">Exit Time</span><span class="u-value">0.92</span></div>
+      <div class="u-row"><span class="u-label">Fixed Duration</span><span class="u-value">✓</span></div>
+      <div class="u-row"><span class="u-label">Transition Duration</span><span class="u-value">0.25</span></div>
+      <div class="u-row"><span class="u-label">Transition Offset</span><span class="u-value">0</span></div>
+      <div class="u-row"><span class="u-label">Interruption Source</span><span class="u-value">None ▾</span></div>
+      <div class="u-row"><span class="u-label">Conditions</span><span class="u-value">Speed Greater 0.1</span></div>
+    </div>
+  </div>
+
+  <ul class="check-list">
+    <li><strong>Has Exit Time:</strong> ✓ ise mevcut clip'in belirli %'sine geldikten sonra geçer (Attack animasyonu bitmeden Idle'a geçmesin). KAPALI ise koşul sağlandığı anda hemen geçer (Idle → Run gibi anında geçişlerde).</li>
+    <li><strong>Transition Duration:</strong> İki clip arasında <em>blend</em> süresi. 0.25s tipik. 0 verirsen anlık atlama (snap).</li>
+    <li><strong>Conditions:</strong> Geçiş için sağlanması gereken parametre durumu.</li>
+  </ul>
+</section>
+
+<section class="topic-section" id="t4">
+  <div class="topic-header">
+    <span class="topic-number">12.4</span>
+    <h2 class="topic-title">Animator Parametreleri</h2>
+  </div>
+  <p>Kod ile Animator'a "değer" verebileceğin köprü. 4 tür var:</p>
+
+  <table class="u-table">
+    <thead><tr><th>Tip</th><th>Kullanım</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Float</strong></td><td>Sürekli değer (Speed, Health)</td></tr>
+      <tr><td><strong>Int</strong></td><td>Tamsayı (WeaponType: 0=Sword, 1=Bow)</td></tr>
+      <tr><td><strong>Bool</strong></td><td>true/false (IsGrounded, IsCrouching)</td></tr>
+      <tr><td><strong>Trigger</strong></td><td>Tek seferlik tetikleyici (Jump, Attack). Auto-reset.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Koddan Parametre Değiştirme</h3>
+  <div class="cs-block">
+    <span class="kw">using</span> <span class="type">UnityEngine</span>;
+    <span class="br">{</span>
+    <span class="kw">public class</span> <span class="type">PlayerAnim</span> : <span class="type">MonoBehaviour</span>
+    <span class="br">{</span>
+        <span class="kw">private</span> <span class="type">Animator</span> anim;
+        <span class="kw">private void</span> <span class="fn">Awake</span>() => anim = <span class="fn">GetComponent</span>&lt;<span class="type">Animator</span>&gt;();
+        <span class="br">{</span>
+        <span class="kw">private void</span> <span class="fn">Update</span>()
+        <span class="br">{</span>
+            <span class="kw">float</span> speed = <span class="type">Input</span>.<span class="fn">GetAxis</span>(<span class="str">"Vertical"</span>);
+            anim.<span class="fn">SetFloat</span>(<span class="str">"Speed"</span>, speed);
+            <span class="br">{</span>
+            <span class="kw">if</span> (<span class="type">Input</span>.<span class="fn">GetButtonDown</span>(<span class="str">"Jump"</span>))
+                anim.<span class="fn">SetTrigger</span>(<span class="str">"Jump"</span>);
+            <span class="br">{</span>
+            anim.<span class="fn">SetBool</span>(<span class="str">"IsGrounded"</span>, <span class="fn">CheckGround</span>());
+        <span class="br">}</span>
+    <span class="br">}</span>
+    <span class="br">}</span>
+  </div>
+
+  <div class="warning-box">
+    <strong>⚠️ String Yerine Hash Kullan (Performans)</strong>
+    <p><code>SetFloat("Speed", value)</code> her seferinde string'i hash'e çeviriyor. Hot path'lerde önceden hash'leyip kullan:</p>
+    <pre style="margin:0"><code>static readonly int SpeedHash = Animator.StringToHash("Speed");
+anim.SetFloat(SpeedHash, value);</code></pre>
+  </div>
+</section>
+
+<section class="topic-section" id="t5">
+  <div class="topic-header">
+    <span class="topic-number">12.5</span>
+    <h2 class="topic-title">Blend Tree — Birden Fazla Clip'i Karıştırma</h2>
+  </div>
+  <p>Karakter ileri yürürken sola/sağa dönmesi: bu 3 farklı clip değil, <strong>tek bir Blend Tree state</strong>'tir. Float parametreye göre clip'ler arasında <em>linear interpolation</em> yapılır.</p>
+
+  <h3>1D Blend Tree</h3>
+  <p>Tek bir float parametreyle clip'leri sıralarsın:</p>
+  <ul class="check-list">
+    <li>Speed = 0 → Idle clip</li>
+    <li>Speed = 0.5 → Walk clip</li>
+    <li>Speed = 1.0 → Run clip</li>
+  </ul>
+  <p>Speed = 0.7 olduğunda Unity Walk ve Run'ı %30/%70 oranında karıştırır → ara hız animasyonu.</p>
+
+  <h3>2D Blend Tree — Strafe Karışımı</h3>
+  <p>İki parametre kullanır (örn. <strong>SpeedX</strong> ve <strong>SpeedZ</strong>):</p>
+  <ul class="check-list">
+    <li>(0,0): Idle</li>
+    <li>(0,1): Run Forward</li>
+    <li>(0,-1): Run Back</li>
+    <li>(1,0): Strafe Right</li>
+    <li>(-1,0): Strafe Left</li>
+    <li>(0.7, 0.7): Diagonal — Unity 4 clip'i karıştırır</li>
+  </ul>
+
+  <p>2D Blend Tree'nin 3 alt tipi vardır: <strong>2D Simple Directional</strong> (hareket yönü), <strong>2D Freeform Directional</strong> (her noktada bir clip), <strong>2D Freeform Cartesian</strong> (XY koordinat sistemi).</p>
+
+  <div class="info-box">
+    <strong>💡 Locomotion Pattern</strong>
+    <p>AAA oyunlarda karakter hareketi tipik olarak <strong>tek bir 2D Freeform Cartesian Blend Tree</strong> ile çözülür: 8 yön + idle = 9 clip. Animator graph'ta sadece bir state vardır; karmaşıklık Blend Tree'nin içindedir.</p>
+  </div>
+</section>
+
+<div class="mini-checkpoint">
+  <h3>🛑 Mini Checkpoint</h3>
+  <p>Clip, Controller, State Machine, Parametreler, Blend Tree — temeli kurduk. Şimdi gelişmiş konulara geçiyoruz: Layers (üst beden alt beden ayrımı), Avatar Mask, Root Motion ve State Machine Behaviours.</p>
+</div>
+
+<section class="topic-section" id="t6">
+  <div class="topic-header">
+    <span class="topic-number">12.6</span>
+    <h2 class="topic-title">Animator Layers — Üst/Alt Beden Ayrımı</h2>
+  </div>
+  <p>Karakter koşarken aynı anda silah ateş etmeli. Tek bir state machine'de bu kombinasyonu yönetmek (Run+Shoot, Idle+Shoot, Walk+Shoot, ...) çok karmaşıklaşır. Çözüm: <strong>iki layer</strong>.</p>
+
+  <ul class="check-list">
+    <li><strong>Base Layer:</strong> Tüm beden (locomotion: Idle/Walk/Run).</li>
+    <li><strong>Upper Body Layer:</strong> Sadece üst beden (Shoot/Reload/Aim).</li>
+  </ul>
+
+  <p>Animator penceresinin sol üstündeki <strong>Layers</strong> sekmesinden yeni layer eklenir. Her layer'ın kendi state machine'i vardır.</p>
+
+  <h3>Layer Settings</h3>
+  <div class="u-inspector">
+    <div class="u-inspector-header">⚙️ Layer — Upper Body</div>
+    <div class="u-inspector-body">
+      <div class="u-row"><span class="u-label">Weight</span><span class="u-value">1</span></div>
+      <div class="u-row"><span class="u-label">Mask</span><span class="u-value">M_UpperBody ▾</span></div>
+      <div class="u-row"><span class="u-label">Blending</span><span class="u-value">Override ▾</span></div>
+      <div class="u-row"><span class="u-label">Sync</span><span class="u-value">☐</span></div>
+      <div class="u-row"><span class="u-label">IK Pass</span><span class="u-value">☐</span></div>
+    </div>
+  </div>
+
+  <ul class="check-list">
+    <li><strong>Weight:</strong> 0-1 arası. 0 = bu layer hiç çalışmıyor, 1 = tam etki. Koddan <code>anim.SetLayerWeight(1, 0.5f)</code> ile değiştirilebilir.</li>
+    <li><strong>Mask:</strong> Avatar Mask ile hangi kemiklerin etkileneceği seçilir.</li>
+    <li><strong>Blending — Override:</strong> Bu layer'ın değerleri alt layer'ı override eder. <strong>Additive:</strong> Alt layer'ın üstüne eklenir.</li>
+  </ul>
+
+  <h3>Avatar Mask Oluşturma</h3>
+  <p>Project window'da sağ tıkla → Create → Avatar Mask. Mask'a çift tıklayıp Humanoid bölümünden vücudun hangi parçalarının etkileneceğini seç (yeşil = aktif). "Sadece kollar ve baş" demek için bacakları kapat.</p>
+</section>
+
+<section class="topic-section" id="t7">
+  <div class="topic-header">
+    <span class="topic-number">12.7</span>
+    <h2 class="topic-title">Root Motion — Karakter Hareketi Nereden Geliyor?</h2>
+  </div>
+  <p>Karakterinin pozisyon değişimini <strong>animasyondan mı</strong> alacaksın yoksa <strong>script'ten mi</strong>?</p>
+
+  <table class="u-table">
+    <thead><tr><th>Root Motion ON</th><th>Root Motion OFF</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Animasyon karakterin pozisyonunu hareket ettirir. Realistic koşu, dans, savaş sahneleri için.</td>
+        <td>Animasyon "olduğu yerde" oynar. Pozisyonu CharacterController/Rigidbody/transform script ile değişir. FPS oyunlarda standard.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Animator Component'inde <strong>Apply Root Motion</strong> checkbox'ı kontrol eder. ON ise FBX import'taki "Bake Into Pose" ayarları kritik olur.</p>
+
+  <div class="info-box">
+    <strong>💡 OnAnimatorMove</strong>
+    <p>Root Motion'u kısmen kontrol etmek istersen MonoBehaviour'a şu fonksiyonu ekle:</p>
+    <pre style="margin:0"><code>void OnAnimatorMove() {
+    // anim.deltaPosition: animasyonun bu frame'deki pozisyon değişimi
+    // anim.deltaRotation: rotation değişimi
+    // Burada özel hesap yapabilir, transform'u kendin uygulayabilirsin
+    transform.position += anim.deltaPosition * 2f;  // 2x hızlı
+}</code></pre>
+  </div>
+</section>
+
+<section class="topic-section" id="t8">
+  <div class="topic-header">
+    <span class="topic-number">12.8</span>
+    <h2 class="topic-title">State Machine Behaviour — State'e Script Ekleme</h2>
+  </div>
+  <p>Bir state'e girince, içindeyken veya çıkınca kod çalıştırmak istersen <strong>StateMachineBehaviour</strong> kullan. State seçili iken Inspector'da "Add Behaviour" butonu vardır.</p>
+
+  <div class="cs-block">
+    <span class="kw">using</span> <span class="type">UnityEngine</span>;
+    <span class="br">{</span>
+    <span class="kw">public class</span> <span class="type">AttackState</span> : <span class="type">StateMachineBehaviour</span>
+    <span class="br">{</span>
+        <span class="kw">public override void</span> <span class="fn">OnStateEnter</span>(<span class="type">Animator</span> a, <span class="type">AnimatorStateInfo</span> s, <span class="kw">int</span> i)
+        <span class="br">{</span>
+            <span class="type">Debug</span>.<span class="fn">Log</span>(<span class="str">"Attack state başladı"</span>);
+            <span class="com">// hitbox aç, ses çal</span>
+        <span class="br">}</span>
+        <span class="br">{</span>
+        <span class="kw">public override void</span> <span class="fn">OnStateExit</span>(<span class="type">Animator</span> a, <span class="type">AnimatorStateInfo</span> s, <span class="kw">int</span> i)
+        <span class="br">{</span>
+            <span class="type">Debug</span>.<span class="fn">Log</span>(<span class="str">"Attack state bitti"</span>);
+            <span class="com">// hitbox kapat</span>
+        <span class="br">}</span>
+        <span class="br">{</span>
+        <span class="kw">public override void</span> <span class="fn">OnStateUpdate</span>(<span class="type">Animator</span> a, <span class="type">AnimatorStateInfo</span> s, <span class="kw">int</span> i)
+        <span class="br">{</span>
+            <span class="com">// Her frame, state aktifken çağrılır</span>
+        <span class="br">}</span>
+    <span class="br">}</span>
+    <span class="br">}</span>
+  </div>
+
+  <p>Bu pattern Animation Event'lere alternatiftir — clip değiştiğinde Event ölür, ama state behaviour state'e bağlıdır.</p>
+</section>
+
+<div class="real-world-box">
+  <h3>🎮 Gerçek Dünya: Cuphead'in Animator Cinleri</h3>
+  <p><strong>Cuphead</strong> (Studio MDHR, 2017) tamamen 1930'lar tarzı el-çizimi animasyonlardan oluşur. <em>Hiçbir 3D model yok</em> — her şey sprite sheet. Ama oyun aslında Unity'de yapıldı.</p>
+  <p>Ekibin yaklaşımı şöyleydi: Her boss için ortalama <strong>50,000+ kare</strong> sprite çizildi (kağıda fırçayla). Bu kareler Unity'ye 2D Sprite Multiple olarak import edildi, animation clip'lere dönüştürüldü. Tek bir boss'un Animator Controller'ı 30-60 state içeriyordu: Phase1_Idle, Phase1_Attack_Bullet, Phase1_Transition, Phase2_Idle, ...</p>
+  <p>Phase geçişleri tamamen Animator Parameters ile yönetildi: <code>int CurrentPhase</code>, <code>bool IsAngry</code>, <code>trigger TakeDamage</code>. State Machine Behaviour ile her phase girişinde müzik tempo'su, partikül emisyonu ve attack frequency değiştirildi. Cuphead'in Unity Animator'ı geleneksel Mecanim'in ötesinde, tam bir <em>oyun mantığı altyapısına</em> dönüştürülmüştü.</p>
+</div>
+
+<section class="practice-section" id="practice">
+  <h2>🛠️ Uygulama: 3 Proje</h2>
+
+  <div class="project-card">
+    <h3>Proje 1: Açılan Kapı (Authored Clip)</h3>
+    <p class="project-goal">🎯 Hedef: Bir küpten kapı yapıp Animation Window ile açılma animasyonu yarat.</p>
+    <ul class="project-check">
+      <li>Bir Cube oluştur, Scale (0.1, 2, 1) — kapı şekli.</li>
+      <li>Window → Animation → Animation. Pencere açıkken küp seçili: "Create" butonu çıkar.</li>
+      <li><code>A_DoorOpen.anim</code> olarak kaydet (Assets/Animations/).</li>
+      <li>Record (kırmızı) ON. Frame 0: Rotation Y = 0. Frame 60: Rotation Y = 90. Record OFF.</li>
+      <li>Otomatik oluşan Animator Controller'da bu clip Default. Play tuşuna bas — kapı dönmeli.</li>
+      <li>BONUS: Animation Event ekle, "OnDoorOpened" fonksiyonu Debug.Log("açıldı") yazsın.</li>
+    </ul>
+  </div>
+
+  <div class="project-card">
+    <h3>Proje 2: Karakter Locomotion (Blend Tree)</h3>
+    <p class="project-goal">🎯 Hedef: WASD ile karakter Idle ↔ Walk ↔ Run geçişi.</p>
+    <ul class="project-check">
+      <li>Mixamo'dan Idle, Walking, Running animasyonlarını indir (in-place, no skin).</li>
+      <li>Karakter prefab'ına Animator Controller oluştur, Bölüm 11'deki karakterle bağla.</li>
+      <li>Default state olarak Blend Tree (1D). Parameter = "Speed" (float).</li>
+      <li>Threshold: 0 → Idle, 0.5 → Walk, 1.0 → Run.</li>
+      <li>Script: <code>anim.SetFloat("Speed", Mathf.Clamp01(input.magnitude * (isRunning ? 1 : 0.5f)))</code></li>
+    </ul>
+  </div>
+
+  <div class="project-card">
+    <h3>Proje 3: Layered Upper Body Shoot</h3>
+    <p class="project-goal">🎯 Hedef: Karakter koşarken sol click ile el silahı atış animasyonu (sadece üst beden).</p>
+    <ul class="project-check">
+      <li>Avatar Mask oluştur (Create → Avatar Mask). Bacakları ve root'u kapat, üst bedeni aç.</li>
+      <li>Animator'da yeni Layer ekle, Mask alanına M_UpperBody'yi sürükle, Blending = Override.</li>
+      <li>Bu layer'da Empty (default) ve Shoot state'i. Shoot, "ShootTrigger" parametresiyle tetiklensin.</li>
+      <li>Script: <code>if (Input.GetMouseButtonDown(0)) anim.SetTrigger("ShootTrigger");</code></li>
+      <li>Karakter koşarken ateş edebilmeli — alt beden koşmaya devam, üst beden ateş eder.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="quiz" id="bolum-quiz">
+  <header class="quiz-header">
+    <div class="quiz-header-icon"><i class="ti ti-help"></i></div>
+    <div class="quiz-header-text">
+      <h2>Bölüm Sonu Sınavı</h2>
+      <span>5 soru</span>
+    </div>
+  </header>
+
+  <article class="quiz-question" id="q12-1">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">01</span>
+      <h3 class="quiz-prompt-text">Animator'ın "tek seferlik" parametre tipi hangisidir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Bool</button>
+      <button class="quiz-option" data-correct="false">Float</button>
+      <button class="quiz-option" data-correct="false">Int</button>
+      <button class="quiz-option" data-correct="true">Trigger</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q12-2">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">02</span>
+      <h3 class="quiz-prompt-text">Idle → Run geçişi anında olmalıysa, transition'da hangi ayar yapılır?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Has Exit Time ✓, Transition Duration = 1</button>
+      <button class="quiz-option" data-correct="true">Has Exit Time ☐, Transition Duration = 0 veya küçük bir blend süresi</button>
+      <button class="quiz-option" data-correct="false">Fixed Duration ☐, Interruption Source = Current State</button>
+      <button class="quiz-option" data-correct="false">Blend Tree kullanılır</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q12-3">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">03</span>
+      <h3 class="quiz-prompt-text">8 yöne strafe yapabilen karakter için en uygun yapı nedir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">8 ayrı state ve transition ağı</button>
+      <button class="quiz-option" data-correct="false">1D Blend Tree</button>
+      <button class="quiz-option" data-correct="true">2D Freeform Cartesian Blend Tree</button>
+      <button class="quiz-option" data-correct="false">Layer per direction</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q12-4">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">04</span>
+      <h3 class="quiz-prompt-text">Karakter koşarken üst bedenin ateş etmesini sağlamak için ne kullanılır?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Tek bir karmaşık Blend Tree</button>
+      <button class="quiz-option" data-correct="true">Avatar Mask ile ikinci Animator Layer (Upper Body)</button>
+      <button class="quiz-option" data-correct="false">Root Motion + OnAnimatorMove</button>
+      <button class="quiz-option" data-correct="false">İki ayrı Animator Component</button>
+    </div>
+  </article>
+
+  <article class="quiz-question" id="q12-5">
+    <div class="quiz-prompt">
+      <span class="quiz-prompt-num">05</span>
+      <h3 class="quiz-prompt-text">Bir state'e girildiğinde kod çalıştırmak için en uygun yöntem hangisidir?</h3>
+    </div>
+    <div class="quiz-options">
+      <button class="quiz-option" data-correct="false">Animation Event</button>
+      <button class="quiz-option" data-correct="true">StateMachineBehaviour'da OnStateEnter override</button>
+      <button class="quiz-option" data-correct="false">Update içinde GetCurrentAnimatorStateInfo</button>
+      <button class="quiz-option" data-correct="false">OnAnimatorMove</button>
+    </div>
+  </article>
+</section>
+
+<section class="complete-section">
+      <h3 class="complete-title">🎉 Bölüm 12 Tamamlandı!</h3>
+      <p class="complete-msg">Mecanim'in tüm köşelerini gördün: Clip, Controller, State Machine, Parameters, Blend Tree, Layers, Avatar Mask, Root Motion, StateMachineBehaviour. Karakterin canlı! Bir sonraki bölümde dünyaya yaşam katacağız — <strong>Particle System &amp; VFX Graph</strong>.</p>
+      <button class="complete-btn" data-section="s12">
+        <i class="ti ti-circle-check"></i>
+        <span>Bu Bölümü Tamamladım</span>
+      </button>
+      <p class="complete-note">İlerlemen otomatik tarayıcına kaydedilir.</p>
+    </section>
+    <!-- Sayfa Gezinme -->
+    <nav class="page-nav" aria-label="Bölüm gezinme">
+      <a href="11-asset-import.html" class="page-nav-link prev">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-left"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Önceki Bölüm</div>
+          <div class="page-nav-title">11. Asset Import</div>
+        </div>
+      </a>
+      <a href="13-particle-vfx.html" class="page-nav-link next">
+        <div class="page-nav-arrow"><i class="ti ti-arrow-right"></i></div>
+        <div class="page-nav-body">
+          <div class="page-nav-label">Sonraki Bölüm</div>
+          <div class="page-nav-title">13. Particle & VFX</div>
+        </div>
+      </a>
+    </nav>
+
+  </div>
+</main>
+<script src="../js/progress.js?v=11"></script>
+<script src="../js/quiz.js?v=11"></script>
+<script src="../js/toc.js?v=11"></script>
+<script src="../js/main.js?v=11"></script>
+</body>
+</html>
